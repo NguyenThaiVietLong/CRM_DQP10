@@ -710,7 +710,10 @@
                   sửa)</span
                 >
               </li>
-              <li>• Trực chỉ huy luân phiên: Vũ → Tuấn → Quân</li>
+              <li>
+                • Trực chỉ huy luân phiên: Võ Trần Vinh → Trần Anh Tuấn → Lương
+                Triệu Phát
+              </li>
               <li>
                 • Các vị trí khác được gán ngẫu nhiên từ danh sách dân quân
               </li>
@@ -731,7 +734,7 @@
           currentWeekStart: null,
           weekDays: [],
           allUsers: [],
-          commanders: ["Vũ", "Tuấn", "Quân"],
+          commanders: ["Võ Trần Vinh", "Trần Anh Tuấn", "Lương Triệu Phát"],
           editingCell: null,
           searchQuery: "",
 
@@ -752,20 +755,61 @@
             if (stored) {
               this.allUsers = JSON.parse(stored);
             } else {
+              // If no users in localStorage, create default list and save it
               this.allUsers = [
-                { name: "Nguyễn Thanh Nhân", team: "Tổ 1" },
-                { name: "Lê Văn An", team: "Tổ 1" },
-                { name: "Trần Thị Bích", team: "Tổ 1" },
-                { name: "Thái Thanh Phong", team: "Tổ 2" },
-                { name: "Phan Phong Phú", team: "Tổ 2" },
-                { name: "Dương Văn Bình", team: "Tổ 2" },
-                { name: "Nguyễn Văn Quang", team: "Tổ 3" },
-                { name: "Nguyễn Đình Thiện", team: "Tổ 3" },
-                { name: "Lương Văn Chính", team: "Tổ 3" },
-                { name: "Tuấn", team: "Tổ 1" },
-                { name: "Vũ", team: "Tổ 2" },
-                { name: "Quân", team: "Tổ 3" },
+                // Tổ 1
+                { name: "Ngô Trương Định", team: "Tổ 1" },
+                { name: "Ngô Hoài Bảo", team: "Tổ 1" },
+                { name: "Nguyễn Lý Minh Quang", team: "Tổ 1" },
+                { name: "Nguyễn Thành Tài", team: "Tổ 1" },
+                // Tổ 2
+                { name: "Lý Triệu An", team: "Tổ 2" },
+                { name: "Phạm Gia Bảo", team: "Tổ 2" },
+                { name: "Lâm Ngọc Huyền", team: "Tổ 2" },
+                { name: "Đoàn Quốc Đạt", team: "Tổ 2" },
+                { name: "Nguyễn Thanh Nhân", team: "Tổ 2" },
+                // Tổ 3
+                { name: "Phan Phong Phú", team: "Tổ 3" },
+                { name: "Trương Giang Minh Tùng", team: "Tổ 3" },
+                { name: "Lương Triệu Phát", team: "Tổ 3" },
+                { name: "Nguyễn Tấn Thuận", team: "Tổ 3" },
+                { name: "Nguyễn Ngọc Tiến", team: "Tổ 3" },
+                // Tổ 4
+                { name: "Lại Tu Trung", team: "Tổ 4" },
+                { name: "Kiều Gia Huy", team: "Tổ 4" },
+                { name: "Lâm Ngọc Yến", team: "Tổ 4" },
+                { name: "Trần Minh Hiếu", team: "Tổ 4" },
+                // Tổ 5
+                { name: "Võ Công Minh", team: "Tổ 5" },
+                { name: "Võ Trần Vinh", team: "Tổ 5" },
+                { name: "Nguyễn Đăng Đông", team: "Tổ 5" },
+                { name: "Lê Minh Hoàng", team: "Tổ 5" },
+                // Tổ 6
+                { name: "Trần Hoàng Phi", team: "Tổ 6" },
+                { name: "Lưu Vĩnh Cơ", team: "Tổ 6" },
+                { name: "Lê Hải Triều", team: "Tổ 6" },
+                { name: "Hoàng Phạm Thế Lộc", team: "Tổ 6" },
+                { name: "Vương Quý Thắng", team: "Tổ 6" },
+                // Tổ 7
+                { name: "La Gia Huy", team: "Tổ 7" },
+                { name: "Nguyễn Trung Kiên", team: "Tổ 7" },
+                { name: "Nguyễn Ngọc Sơn", team: "Tổ 7" },
+                { name: "Trần Anh Tuấn", team: "Tổ 7" },
+                // Tổ 8
+                { name: "Trương Tấn Khương", team: "Tổ 8" },
+                { name: "Nguyễn Ngô Hoàng Phương", team: "Tổ 8" },
+                { name: "Đặng Trung Hảo", team: "Tổ 8" },
+                { name: "Lê Gia Triết", team: "Tổ 8" },
+                // Tổ 9
+                { name: "Cao Thanh Long", team: "Tổ 9" },
+                { name: "Lê Huỳnh Ái Nhi", team: "Tổ 9" },
+                { name: "Nguyễn Anh Chiến", team: "Tổ 9" },
+                { name: "Hà Thanh Huy", team: "Tổ 9" },
               ];
+              localStorage.setItem(
+                "dqp10_users",
+                JSON.stringify(this.allUsers),
+              );
             }
           },
 
