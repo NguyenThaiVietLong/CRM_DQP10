@@ -734,7 +734,7 @@
           currentWeekStart: null,
           weekDays: [],
           allUsers: [],
-          commanders: ["Võ Trần Vinh", "Trần Anh Tuấn", "Lương Triệu Phát"],
+          commanders: ["Vũ", "Tuấn", "Quân", "Phát"],
           editingCell: null,
           searchQuery: "",
 
@@ -855,7 +855,7 @@
 
               // Commander rotates DAILY (not weekly)
               const absoluteDayIndex = daysSinceEpoch + i;
-              const commanderIdx = absoluteDayIndex % 3;
+              const commanderIdx = absoluteDayIndex % 4;
 
               // DQCD rotation: A1+A13, A2+A14, ..., A12+A24, then repeat
               const dqcdIdx = absoluteDayIndex % 12; // 0-11
