@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cập nhật User Session</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+      <h1 class="text-2xl font-bold text-gray-900 mb-4">
+        🔄 Cập nhật User Session
+      </h1>
+
+      <div id="currentUser" class="mb-6 p-4 bg-gray-50 rounded-lg">
+        <p class="text-sm text-gray-600 mb-2">User hiện tại:</p>
+        <p id="currentUserInfo" class="font-semibold text-gray-900">
+          Đang tải...
+        </p>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-gray-700 mb-2">
+          Chọn user mới:
+        </label>
+        <select
+          id="userSelect"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+        >
+          <option value="">-- Chọn user --</option>
+          <option value="admin">Administrator (Admin)</option>
+          <option value="nguyen-thanh-nhan">Nguyễn Thanh Nhân (User)</option>
+          <option value="nguyen-van-quang">Nguyễn Văn Quang (User)</option>
+          <option value="phan-phong-phu">Phan Phong Phú (User)</option>
+        </select>
+      </div>
+
+      <button
+        id="updateBtn"
+        class="w-full px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors font-semibold flex items-center justify-center gap-2"
+      >
+        <span>✓</span>
+        <span>Cập nhật User</span>
+      </button>
+
+      <div id="result" class="mt-4 hidden p-4 rounded-lg"></div>
+
+      <div class="mt-6 pt-6 border-t border-gray-200">
+        <a href="index.html" class="text-sm text-olive hover:underline"
+          >← Quay lại trang chủ</a
+        >
+      </div>
+    </div>
+
+    <script>
+      const userProfiles = {
+        admin: {
+          username: "admin",
+          fullName: "Administrator",
+          role: "admin",
+          team: "Ban CHQS",
+        },
+        "nguyen-thanh-nhan": {
+          username: "ntnhan",
+          fullName: "Nguyễn Thanh Nhân",
+          role: "user",
+          team: "Tổ 2",
+        },
+        "nguyen-van-quang": {
+          username: "nvquang",
+          fullName: "Nguyễn Văn Quang",
+          role: "user",
+          team: "Tổ 3",
+        },
+        "phan-phong-phu": {
+          username: "ppphu",
+          fullName: "Phan Phong Phú",
+          role: "user",
+          team: "Tổ 3",
+        },
+      };
+
+      // Display current user
+      function displayCurrentUser() {
+        const session = localStorage.getItem("dqp10_session");
+        if (session) {
+          const user = JSON.parse(session);
+          document.getElementById("currentUserInfo").innerHTML = `
+                    <span class="text-olive">${user.fullName}</span>
+                    <span class="text-gray-500 text-sm ml-2">(${user.role === "admin" ? "Admin" : "User"})</span>
+                `;
+        } else {
+          document.getElementById("currentUserInfo").textContent =
+            "Chưa đăng nhập";
+        }
+      }
+
+      // Update user session
+      document
+        .getElementById("updateBtn")
+        .addEventListener("click", function () {
+          const selectedUser = document.getElementById("userSelect").value;
+          const resultDiv = document.getElementById("result");
+
+          if (!selectedUser) {
+            resultDiv.className =
+              "mt-4 p-4 rounded-lg bg-red-50 border border-red-200";
+            resultDiv.innerHTML =
+              '<p class="text-red-600 text-sm">❌ Vui lòng chọn user</p>';
+            resultDiv.classList.remove("hidden");
+            return;
+          }
+
+          const userProfile = userProfiles[selectedUser];
+
+          // Update localStorage
+          localStorage.setItem("dqp10_session", JSON.stringify(userProfile));
+
+          // Show success message
+          resultDiv.className =
+            "mt-4 p-4 rounded-lg bg-green-50 border border-green-200";
+          resultDiv.innerHTML = `
+                <p class="text-green-600 text-sm font-semibold mb-2">✅ Đã cập nhật user thành công!</p>
+                <p class="text-sm text-gray-600">User: <span class="font-semibold">${userProfile.fullName}</span></p>
+                <p class="text-sm text-gray-600">Quyền: <span class="font-semibold">${userProfile.role === "admin" ? "Admin" : "User"}</span></p>
+                <p class="text-sm text-gray-600 mt-2">Reload lại trang để thấy thay đổi</p>
+            `;
+          resultDiv.classList.remove("hidden");
+
+          // Update current user display
+          displayCurrentUser();
+
+          // Reload after 2 seconds
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        });
+
+      // Initialize
+      displayCurrentUser();
+    </script>
+
+    <style>
+      .bg-olive {
+        background-color: #6b7c3c;
+      }
+      .text-olive {
+        color: #6b7c3c;
+      }
+      .ring-olive {
+        --tw-ring-color: #6b7c3c;
+      }
+    </style>
+  </body>
+</html>
