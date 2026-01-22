@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh Sách Hoạt Động - Quản Lý Dân Quân</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#556B2F",
+                        "primary-dark": "#0f65bd",
+                        olive: "#556B2F",
+                        "olive-light": "#EAF0E2",
+                        "background-light": "#f7f7f6",
+                        "background-dark": "#1a1d15",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1a2632",
+                        "text-main-light": "#0d141b",
+                        "text-main-dark": "#e0e6ed",
+                        "text-sub-light": "#4c739a",
+                        "text-sub-dark": "#93adc8",
+                        "border-light": "#e7edf3",
+                        "border-dark": "#304151"
+                    },
+                    fontFamily: {
+                        display: "Inter"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display transition-colors duration-200">
+<div class="flex h-screen">
+<aside class="w-64 flex-shrink-0 bg-olive text-white flex flex-col">
+<div class="flex items-center gap-3 px-6 h-16 border-b border-white/20">
+<span class="material-symbols-outlined text-3xl">shield_person</span>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Quản Lý Dân Quân</h2>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span>Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">groups</span>
+<span>Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-bold bg-white/20 text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">military_tech</span>
+<span>Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">handyman</span>
+<span>Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">model_training</span>
+<span>Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">assessment</span>
+<span>Báo cáo</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-white/20">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span>Cài đặt</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:bg-white/10 transition-colors mt-2" href="#">
+<span class="material-symbols-outlined text-xl">logout</span>
+<span>Đăng xuất</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-screen overflow-y-auto">
+<header class="sticky top-0 z-30 bg-white/70 dark:bg-card-dark/70 backdrop-blur-lg border-b border-border-light dark:border-border-dark">
+<div class="flex items-center justify-between px-6 h-16">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-text-sub-light dark:text-text-sub-dark hover:text-primary font-medium" href="#">Hoạt động</a>
+<span class="text-text-sub-light dark:text-text-sub-dark">/</span>
+<span class="text-text-main-light dark:text-text-main-dark font-medium">Danh sách hoạt động</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-background-light dark:bg-background-dark rounded-lg px-3 py-2 border border-border-light dark:border-border-dark w-64">
+<span class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark text-[20px]">search</span>
+<input class="bg-transparent border-none text-sm ml-2 focus:ring-0 w-full placeholder:text-text-sub-light" placeholder="Tìm kiếm hoạt động..."/>
+</div>
+<button class="relative text-text-sub-light dark:text-text-sub-dark hover:text-primary">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+</span>
+</button>
+<button class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white dark:ring-border-dark" data-alt="User profile avatar of a commanding officer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAeStNR4viQhQgkrc1Et3N4H2NRwHK-mA3FeLN52Co0r3K-dyy_k3hqImmJTHntw3CUeW7Fqj38Nw224ivjPhuPmZtHHAbVuI2idRB656bJZZi3hwGSHN5wVdwVw6TTPiovvguTa7U6XdNhwOCFzUVumRj6YtiudYtiyC5oq9tS3suc-2KgKZzqwybhKiDtjNRK-64Dwh7y6dZIghHWcokhn868gOVT00Cvq9YnXHAViJbYW78lUpouNnO6eNyyG-e6g4Bf7lrLHLU");'></button>
+</div>
+</div>
+</header>
+<main class="flex-1 p-6">
+<nav class="bg-olive rounded-lg p-2 mb-8 shadow-md">
+<div class="flex items-center space-x-2">
+<a class="px-4 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" href="#">Lịch hoạt động</a>
+<a class="px-4 py-2 rounded-md text-sm font-bold bg-white/20 text-white transition-colors" href="#">Danh sách hoạt động</a>
+<a class="px-4 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" href="#">Tổng quan (Dashboard)</a>
+<a class="px-4 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" href="#">Chi tiết hoạt động</a>
+<a class="px-4 py-2 rounded-md text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors" href="#">Tạo hoạt động mới</a>
+</div>
+</nav>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-text-main-light dark:text-white">Danh Sách Hoạt Động</h1>
+<p class="text-text-sub-light dark:text-text-sub-dark mt-1 text-sm">Quản lý và theo dõi các nhiệm vụ tuần tra, huấn luyện của lực lượng.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Tạo hoạt động mới</span>
+</button>
+</div>
+<div class="bg-white dark:bg-card-dark p-5 rounded-xl border border-border-light dark:border-border-dark shadow-sm mb-8">
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 items-end">
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider">Phạm vi ngày</label>
+<div class="relative">
+<select class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer">
+<option>7 ngày qua</option>
+<option>Tháng này</option>
+<option>Tháng trước</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none">calendar_month</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider">Trạng thái</label>
+<div class="relative">
+<select class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer">
+<option>Tất cả trạng thái</option>
+<option>Đang thực hiện</option>
+<option>Sắp diễn ra</option>
+<option>Hoàn thành</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider">Người phụ trách</label>
+<div class="relative">
+<select class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer">
+<option>Tất cả nhân sự</option>
+<option>Nguyễn Văn An</option>
+<option>Trần Thị Bình</option>
+<option>Lê Minh Chiến</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none">person_search</span>
+</div>
+</div>
+<div class="flex gap-2 justify-end lg:justify-start">
+<button class="h-[42px] px-4 rounded-lg bg-olive text-white font-medium hover:bg-opacity-90 transition w-full md:w-auto flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                                Lọc
+                            </button>
+<button class="h-[42px] w-[42px] rounded-lg border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark flex items-center justify-center hover:bg-background-light dark:hover:bg-border-dark transition">
+<span class="material-symbols-outlined">restart_alt</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-olive/50 transition-all duration-300 flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-olive/10 text-olive dark:text-[#a3b18a] border border-olive/20">
+<span class="size-2 rounded-full bg-olive animate-pulse"></span>
+                                    Đang thực hiện
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">Tuần tra đêm khu vực A1</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Tuần tra an ninh trật tự các tuyến đường chính và khu vực trọng điểm theo kế hoạch số 12/KH-DQTV.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    24/05/2024
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    22:00 - 02:00
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Tiến độ nhiệm vụ</span>
+<span class="text-olive dark:text-[#a3b18a]">3/5 hoàn thành</span>
+</div>
+<div class="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
+<div class="bg-olive h-2 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Nguyen Van A" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEGlDxnstAEZtZKqIoKAeCdFZFoPOc7dh6WITU2JBa4lCLiIE1U2QzGWWjaTRbhSN5BZH8aZoi6LBZOIiaIJULr6BbFZmkyA6f4eTUcNi9Prg-yAzwMpflXheSkW-RshbzS4buF_WjMVLhuyaBdTd3bCcBiQLtcq_Wcj7_9XVMBlAi78Om-m98-0s55_gHYRN2xrjcndjyaDcYgh1ysN24-dKVvgxfd_ZngFSy0gY2njMCEL-M55zi4UcVNRnK6FSKoczJph8u3VA");'></div>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-card-dark rounded-full p-0.5">
+<span class="material-symbols-outlined text-[12px] text-primary">verified_user</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Phụ trách</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Nguyễn Văn A</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline">Chi tiết</button>
+</div>
+</article>
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20">
+                                    Sắp diễn ra
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">Huấn luyện bắn đạn thật</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Tổ chức huấn luyện kỹ năng sử dụng vũ khí bộ binh cho trung đội dân quân cơ động.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    28/05/2024
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    07:30 - 11:30
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Tiến độ chuẩn bị</span>
+<span class="text-primary">1/4 mục</span>
+</div>
+<div class="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Tran Thi B" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfaEiz8L1jVQcPMFiFHNZTbzlDTeuUw0fNFw8BzzqFAWutZQqiCu7Y_N_Ci7JxXNxwk0AXNjbwTVB19TkROO-qg7zcI_BZZGZ1ma6PW83TlaBc_GKNDc6l5wFcyoN9YS0SeDWPzpocuSKmIrXTc1BsdGQC0y1VWiZcf-sLRp47pijstH1G6KGDd5a4AnswVpvUhBdOX65dcIKk0RUKL_i2pgvnOyRDoVwABsrTp8oQC3qdMuG0kHB-yvktsP8jz1jrUL2Ztsi4Hr4");'></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Phụ trách</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Trần Thị B</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline">Chi tiết</button>
+</div>
+</article>
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col opacity-80 hover:opacity-100">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Hoàn thành
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">Bảo dưỡng thiết bị quý 2</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Kiểm tra, lau chùi và bảo dưỡng toàn bộ công cụ hỗ trợ, trang thiết bị phòng cháy chữa cháy.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    20/05/2024
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    08:00 - 17:00
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Kết quả</span>
+<span class="text-gray-600 dark:text-gray-400">10/10 hoàn thành</span>
+</div>
+<div class="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
+<div class="bg-gray-500 h-2 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Le Minh C" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD14MKMlLHvsDxScz_nVaRC53QDbQrUkut82P238SggcuW-mT2Y5qVlJ7VsCXxd43DVKCMLsudZZRCEhpwj_RBzqvKuLY5BVdX2Ji4k0gqdlrdeg2GYt7oqBKYoPirr3qNuQsXDv8fO2VKJFe47P8I8zCOPYzSUhnb6DlzMroXH9bU8hIWegKT-az_AsOSH14un_tijMqLme48x5eHyH3WZTDaLteNODvBNTe0j0naTmeplSZcMYQhiUN_LTuWzSuhXjBpvUZYBiiE");'></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Phụ trách</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Lê Minh C</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-text-sub-light hover:text-text-main-light dark:hover:text-white hover:underline">Xem báo cáo</button>
+</div>
+</article>
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-red-200 dark:border-red-900 overflow-hidden hover:shadow-lg hover:shadow-red-100 dark:hover:shadow-none transition-all duration-300 flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/50">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                    Khẩn cấp
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">Họp giao ban đột xuất</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Triển khai kế hoạch ứng phó bão số 3. Yêu cầu 100% quân số có mặt tại trụ sở.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-red-50 dark:bg-red-900/10 p-3 rounded-lg border border-red-100 dark:border-red-900/20">
+<div class="flex items-center gap-1.5 text-red-700 dark:text-red-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    Hôm nay
+                                </div>
+<div class="flex items-center gap-1.5 text-red-700 dark:text-red-400">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    14:00
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Điểm danh</span>
+<span class="text-red-600 dark:text-red-400">12/40 có mặt</span>
+</div>
+<div class="w-full bg-red-100 dark:bg-red-900/30 rounded-full h-2">
+<div class="bg-red-500 h-2 rounded-full" style="width: 30%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Pham Van D" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfAEoBAy1HmYXioX26LnOyK5h-aTc5hwYIgQDPWpRcySTCpaxod5z6HnlPZlgfINOZGZO3fMdnHdo9NQtTzPUQAv7PWgOvPWqCbuqqJcaPUrWmlhEX4voufjgXs_dTVf8XEqdT30axpjtxQUs1u3y5Et8HzQaXdmxiVIHKdsLASo0uW058ys93xFXD0Sb20VMYQuVzyuBQifSxsb9FZX_ViLzS-b1Kev-lCVNwMNrR3QmdIzQfjGGb9IImAm-Z2TNq4QV9q7Hixmc");'></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Chỉ huy</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Phạm Văn D</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-red-600 dark:text-red-400 hover:text-red-700 hover:underline">Tham gia ngay</button>
+</div>
+</article>
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-olive/50 transition-all duration-300 flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-olive/10 text-olive dark:text-[#a3b18a] border border-olive/20">
+<span class="size-2 rounded-full bg-olive animate-pulse"></span>
+                                    Đang thực hiện
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">Trực ban chỉ huy sở</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Duy trì chế độ trực ban, tiếp nhận thông tin và xử lý các tình huống phát sinh tại địa bàn.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    25/05/2024
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    06:00 - 18:00
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Ca trực</span>
+<span class="text-olive dark:text-[#a3b18a]">Đang tiến hành</span>
+</div>
+<div class="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
+<div class="bg-olive h-2 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Vu Thi E" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKF-hwmLPldoO0ZhASvCbHq3TMR0WahPuuALjEHTB3IVahLxtVaGk_JwAcYEn7AGvchYAguke3oWvJNi2hO9wkiO9Q7U9WMQON30b4OYvZ9NHAogmwhMb1MPHOFBxvIU0x93IjPyVHwb6ItQPjhLoeRpvK9BeLkuxlZj1_WGF8M1XDcuJ6fAz9V2gh3oFileTFotbwqlcfkN-W_lNgi7GWwOK8iX1Js-lRdWtgtSiDN6w0vDViM9FprAaOir_VYgpL7yRmV2EPfHc");'></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Trực ban</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Vũ Thị E</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline">Chi tiết</button>
+</div>
+</article>
+<article class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 flex flex-col">
+<div class="p-5 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-primary/10 text-primary border border-primary/20">
+                                    Sắp diễn ra
+                                </span>
+<div class="relative">
+<button class="text-text-sub-light hover:text-text-main-light dark:hover:text-white">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors">Tuyên truyền pháp luật đợt 1</h3>
+<p class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1">
+                                Phối hợp với công an phường tổ chức tuyên truyền Luật Dân quân tự vệ cho người dân.
+                            </p>
+<div class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                                    01/06/2024
+                                </div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                                    19:00 - 21:00
+                                </div>
+</div>
+<div class="mb-5">
+<div class="flex justify-between text-xs font-semibold mb-1.5">
+<span class="text-text-main-light dark:text-text-main-dark">Tài liệu</span>
+<span class="text-primary">Chưa chuẩn bị</span>
+</div>
+<div class="w-full bg-border-light dark:bg-border-dark rounded-full h-2">
+<div class="bg-gray-300 dark:bg-gray-600 h-2 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</div>
+<div class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-8 rounded-full bg-cover bg-center" data-alt="Portrait of assignee Hoang Van F" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCYcTp6aIPNaNKpFB9nsy7dz8y5x4DTSqTPDTcLuLLmWiXg2dn5tx2o8WNRrvgfQIHwpAV3mGRwAXxdTEfyQk2ke_lKMOenGGBBoRfxUFRG-r_vogfuLumkPC0u3xjiXBzBbDhfYyUUNf9WyrdsdgFLVK1gAMgqvWzUBuYD6BzoN0nSaWQSG_NPk-N4sxk15t1oHX_gJfqfcwQ1mdNE6FThXudXll1dmKImtEBNyxFfQmaJBRzP8vNOy894-VfyL6fBweoxAu66dpY");'></div>
+</div>
+<div class="flex flex-col">
+<span class="text-xs text-text-sub-light dark:text-text-sub-dark">Phụ trách</span>
+<span class="text-xs font-bold text-text-main-light dark:text-white">Hoàng Văn F</span>
+</div>
+</div>
+<button class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline">Chi tiết</button>
+</div>
+</article>
+</div>
+<div class="flex items-center justify-between mt-8 border-t border-border-light dark:border-border-dark pt-4">
+<span class="text-sm text-text-sub-light dark:text-text-sub-dark">Hiển thị <span class="font-bold text-text-main-light dark:text-white">1-6</span> trên <span class="font-bold text-text-main-light dark:text-white">24</span> hoạt động</span>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-medium text-text-sub-light dark:text-text-sub-dark bg-white dark:bg-card-dark border border-border-light dark:border-border-dark rounded-lg hover:bg-background-light dark:hover:bg-border-dark transition-colors disabled:opacity-50" disabled="">
+                            Trước
+                        </button>
+<button class="px-4 py-2 text-sm font-medium text-text-main-light dark:text-white bg-white dark:bg-card-dark border border-border-light dark:border-border-dark rounded-lg hover:bg-background-light dark:hover:bg-border-dark transition-colors">
+                            Sau
+                        </button>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thêm/Chỉnh Sửa Nhân Sự - Hệ Thống Quản Lý Dân Quân</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#556B2F", "background-light": "#f7f7f6", "background-dark": "#1a1d15"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] dark:text-slate-200 font-display overflow-hidden">
+<div class="flex h-screen w-full">
+<!-- Side Navigation -->
+<aside class="w-64 flex-shrink-0 bg-slate-50 dark:bg-slate-900 border-r border-[#e7edf3] dark:border-slate-800 flex flex-col hidden lg:flex">
+<div class="p-4 flex flex-col gap-4 h-full">
+<div class="flex flex-col px-2">
+<h1 class="text-[#0d141b] dark:text-white text-lg font-bold leading-normal flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+                    Dân Quân Tự Vệ
+                </h1>
+<p class="text-[#4c739a] text-xs font-normal leading-normal mt-1">Hệ thống quản lý lực lượng</p>
+</div>
+<nav class="flex flex-col gap-2 mt-4 flex-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#4c739a] hover:bg-[#e7edf3] hover:text-[#0d141b] dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="text-sm font-medium leading-normal">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 text-primary dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-[24px] fill-current">group</span>
+<span class="text-sm font-medium leading-normal">Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#4c739a] hover:bg-[#e7edf3] hover:text-[#0d141b] dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">monitoring</span>
+<span class="text-sm font-medium leading-normal">Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#4c739a] hover:bg-[#e7edf3] hover:text-[#0d141b] dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">handyman</span>
+<span class="text-sm font-medium leading-normal">Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#4c739a] hover:bg-[#e7edf3] hover:text-[#0d141b] dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">school</span>
+<span class="text-sm font-medium leading-normal">Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#4c739a] hover:bg-[#e7edf3] hover:text-[#0d141b] dark:hover:bg-slate-800 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">description</span>
+<span class="text-sm font-medium leading-normal">Báo cáo</span>
+</a>
+</nav>
+<div class="mt-auto px-3 py-4 border-t border-[#e7edf3] dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="User avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA7tqclSlz5EmYHUESSGfzPzNYcapNHp8Sf42KEdxARfv4_kxQTMdkFLHKVY4qBu1KkcgSx5aWb1TT83g14M066nbfWE2J9ZsUs-GcOrr9c60z9in9eihE_BwFVY4_9BPITeOlz9yCDaRP4wi2m-WabID6UyRcffMUR_SjgIsFRJy3SKyTzraXvwR219URHkfn44BeDgTUbi97SYIwu1Pd7VotJWVTX4P1ZfdoXxPdMNQZ151w0__ZIw51ImrFFGc4PAadj9ELol1Y");'></div>
+<div class="flex flex-col">
+<p class="text-[#0d141b] dark:text-white text-sm font-medium">Nguyễn Văn A</p>
+<p class="text-[#4c739a] text-xs">Quản trị viên</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Layout -->
+<div class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Top Nav -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#e7edf3] dark:border-b-slate-800 bg-white dark:bg-slate-900 px-6 py-3 z-10 shrink-0">
+<div class="flex items-center gap-4 lg:hidden">
+<button class="text-[#0d141b] dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+<div class="flex items-center gap-8 w-full justify-end lg:justify-between">
+<!-- Search bar (hidden on mobile) -->
+<div class="hidden lg:flex items-center gap-4 w-full max-w-md">
+<label class="flex flex-col w-full h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#4c739a] flex border-none bg-[#e7edf3] dark:bg-slate-800 items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#0d141b] dark:text-white focus:outline-0 focus:ring-0 border-none bg-[#e7edf3] dark:bg-slate-800 focus:border-none h-full placeholder:text-[#4c739a] px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Tìm kiếm cán bộ, chiến sĩ..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#4c739a] hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 size-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Scroll Area -->
+<main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-[#101922] p-4 lg:p-8">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-6">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 items-center text-sm">
+<a class="text-[#4c739a] hover:text-primary font-medium" href="#">Trang chủ</a>
+<span class="text-[#4c739a] text-xs material-symbols-outlined">chevron_right</span>
+<a class="text-[#4c739a] hover:text-primary font-medium" href="#">Nhân sự</a>
+<span class="text-[#4c739a] text-xs material-symbols-outlined">chevron_right</span>
+<span class="text-[#0d141b] dark:text-white font-medium">Thêm mới</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between gap-4 items-end">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d141b] dark:text-white text-3xl font-bold leading-tight tracking-tight">Thêm/Chỉnh Sửa Nhân Sự</h1>
+<p class="text-[#4c739a] text-base font-normal">Điền thông tin chi tiết để cập nhật hồ sơ chiến sĩ dân quân.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg h-10 px-4 bg-white dark:bg-slate-800 border border-[#e7edf3] dark:border-slate-700 text-[#0d141b] dark:text-white text-sm font-bold shadow-sm hover:bg-slate-50 transition-colors">
+                            Hủy bỏ
+                        </button>
+<button class="flex items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-md hover:bg-blue-600 transition-colors gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                            Lưu hồ sơ
+                        </button>
+</div>
+</div>
+<!-- Main Form Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-2">
+<!-- Left Column: Avatar & Quick Status -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Upload Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-[#e7edf3] dark:border-slate-800">
+<h3 class="text-[#0d141b] dark:text-white text-lg font-bold mb-4">Ảnh hồ sơ</h3>
+<div class="flex flex-col items-center gap-6 rounded-lg border-2 border-dashed border-[#cfdbe7] dark:border-slate-700 px-6 py-10 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer group">
+<div class="size-24 rounded-full bg-[#e7edf3] dark:bg-slate-700 flex items-center justify-center text-[#4c739a]">
+<span class="material-symbols-outlined text-[40px]">person_add</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-center">
+<p class="text-[#0d141b] dark:text-white text-sm font-bold group-hover:text-primary transition-colors">Nhấp để tải ảnh lên</p>
+<p class="text-[#4c739a] text-xs">PNG, JPG tối đa 5MB</p>
+</div>
+</div>
+</div>
+<!-- Account Settings (Optional Sidebar content) -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm border border-[#e7edf3] dark:border-slate-800">
+<h3 class="text-[#0d141b] dark:text-white text-lg font-bold mb-4">Trạng thái công tác</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="status_active" name="status" type="radio"/>
+<label class="text-sm font-medium text-gray-900 dark:text-gray-300" for="status_active">Đang hoạt động</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="status_temp" name="status" type="radio"/>
+<label class="text-sm font-medium text-gray-900 dark:text-gray-300" for="status_temp">Tạm hoãn</label>
+</div>
+<div class="flex items-center gap-3">
+<input class="w-4 h-4 text-primary bg-gray-100 border-gray-300 focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" id="status_out" name="status" type="radio"/>
+<label class="text-sm font-medium text-gray-900 dark:text-gray-300" for="status_out">Xuất ngũ / Thôi việc</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Detail Form -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-[#e7edf3] dark:border-slate-800">
+<h2 class="text-[#0d141b] dark:text-white text-xl font-bold">Thông tin cá nhân</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Tên đầy đủ <span class="text-red-500">*</span></label>
+<input class="form-input w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all" placeholder="Nguyễn Văn A" type="text"/>
+</div>
+<!-- ID Card -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Số CMND/CCCD <span class="text-red-500">*</span></label>
+<input class="form-input w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all" placeholder="00109xxxxxxx" type="text"/>
+</div>
+<!-- DOB -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Ngày sinh</label>
+<div class="relative">
+<input class="form-input w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all" type="date"/>
+<!-- Note: Tailwind forms plugin removes default date picker icon styling in some browsers, custom implementation often needed for perfect UI, but standard works functionally -->
+</div>
+</div>
+<!-- Gender (Example Extra Field fitting the grid) -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Giới tính</label>
+<select class="form-select w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all">
+<option>Nam</option>
+<option>Nữ</option>
+</select>
+</div>
+<!-- Phone -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Số điện thoại <span class="text-red-500">*</span></label>
+<div class="flex items-center bg-[#e7edf3] dark:bg-slate-800 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary">
+<div class="pl-4 text-[#4c739a]">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</div>
+<input class="form-input w-full border-none bg-transparent text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-0" placeholder="090 123 4567" type="tel"/>
+</div>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Email</label>
+<div class="flex items-center bg-[#e7edf3] dark:bg-slate-800 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-primary">
+<div class="pl-4 text-[#4c739a]">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="form-input w-full border-none bg-transparent text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-0" placeholder="email@example.com" type="email"/>
+</div>
+</div>
+<!-- Address - Full Width -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Địa chỉ thường trú</label>
+<textarea class="form-textarea w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white placeholder:text-[#4c739a] px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all resize-none" placeholder="Nhập địa chỉ chi tiết..." rows="3"></textarea>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-[#e7edf3] dark:border-slate-800 overflow-hidden">
+<div class="p-6 border-b border-[#e7edf3] dark:border-slate-800">
+<h2 class="text-[#0d141b] dark:text-white text-xl font-bold">Thông tin quân sự &amp; Công tác</h2>
+</div>
+<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Role -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Chức vụ / Vai trò</label>
+<select class="form-select w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all">
+<option>Chiến sĩ</option>
+<option>Tiểu đội trưởng</option>
+<option>Trung đội trưởng</option>
+<option>Chỉ huy phó</option>
+<option>Chỉ huy trưởng</option>
+</select>
+</div>
+<!-- Main Unit -->
+<div class="flex flex-col gap-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Đội hình chính</label>
+<select class="form-select w-full rounded-lg border-none bg-[#e7edf3] dark:bg-slate-800 text-[#0d141b] dark:text-white px-4 py-2.5 focus:ring-2 focus:ring-primary transition-all">
+<option>Trung đội cơ động</option>
+<option>Tiểu đội dân quân thường trực</option>
+<option>Tiểu đội tại chỗ Khu phố 1</option>
+<option>Tiểu đội tại chỗ Khu phố 2</option>
+</select>
+</div>
+<!-- Additional Units (Multi-select simulation) -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-[#0d141b] dark:text-slate-300 text-sm font-medium">Đội hình bổ sung / Tổ chuyên trách</label>
+<div class="w-full rounded-lg bg-[#e7edf3] dark:bg-slate-800 px-2 py-2 focus-within:ring-2 focus-within:ring-primary transition-all min-h-[46px] flex flex-wrap gap-2 items-center">
+<!-- Tag 1 -->
+<div class="flex items-center gap-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded px-2 py-1">
+<span class="text-xs font-medium text-[#0d141b] dark:text-white">Tổ PCCC</span>
+<button class="text-slate-400 hover:text-red-500">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Tag 2 -->
+<div class="flex items-center gap-1 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded px-2 py-1">
+<span class="text-xs font-medium text-[#0d141b] dark:text-white">Tổ trật tự đô thị</span>
+<button class="text-slate-400 hover:text-red-500">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm min-w-[120px] text-[#0d141b] dark:text-white placeholder:text-[#4c739a]" placeholder="Thêm đội hình..." type="text"/>
+</div>
+<p class="text-xs text-[#4c739a]">Nhập tên và nhấn Enter để thêm mới.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

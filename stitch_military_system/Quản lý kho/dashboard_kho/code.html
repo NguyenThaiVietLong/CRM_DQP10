@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Kho - Dân Quân Tự Vệ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#17cf54",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#112116",
+                        "content-white": "#ffffff",
+                        "text-main": "#111813",
+                        "text-secondary": "#63886f",
+                        "border-color": "#dce5df",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 border-r border-border-color bg-white dark:bg-[#1a2e22] flex flex-col justify-between p-4 hidden md:flex h-full">
+<div class="flex flex-col gap-4">
+<div class="flex gap-3 px-2 py-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" data-alt="Vietnam Militia Logo or Emblem with star" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBfI4BDdUldX0kxA3GsmI5k1ycORplYHd2MeGa_rw_nVVUivjpdHEmfkH0YNio3589ci3TGOModG-egklp9zW-_TUTq4izcmST81WfsiiOSaF9GZFhTh1RU6tj6C_FnodTMmESGWU0BVnOvWz2yDMW5Tk-j3PM8IqCwW65Qn1NGCM6MBo0_Q7psEqsAJLzBwNOVshXbczOFT5mP9qh-b4H0-Nc3NKNepSUiICZuxvnEiXr0AZ3wQQEWeGQx_wM4dLgtp1nZM7Nh7MQ");'></div>
+<div class="flex flex-col justify-center">
+<h1 class="text-text-main dark:text-white text-base font-bold leading-normal">Dân Quân Tự Vệ</h1>
+<p class="text-text-secondary text-xs font-normal leading-normal">Hệ thống quản lý</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 mt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">home</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Tổng quan</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">group</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Nhân sự</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">monitoring</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Hoạt động</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary/10 dark:bg-primary/20" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<p class="text-text-main dark:text-white text-sm font-bold leading-normal">Thiết bị</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">school</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Huấn luyện</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">description</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Báo cáo</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-background-light dark:hover:bg-primary/20 transition-colors group" href="#">
+<span class="material-symbols-outlined text-text-main dark:text-white group-hover:text-primary">settings</span>
+<p class="text-text-main dark:text-white text-sm font-medium leading-normal">Cài đặt</p>
+</a>
+</nav>
+</div>
+<div class="px-3 py-2">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-background-light dark:bg-primary/10">
+<span class="material-symbols-outlined text-text-secondary">support_agent</span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-text-main dark:text-white">Hỗ trợ kỹ thuật</span>
+<span class="text-[10px] text-text-secondary">Liên hệ: 1900-xxxx</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full relative overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Navbar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-color bg-white dark:bg-[#1a2e22] px-8 py-3 flex-shrink-0 z-10">
+<div class="flex items-center gap-4">
+<div class="md:hidden">
+<span class="material-symbols-outlined text-text-main dark:text-white">menu</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-tight">Quản Lý Kho</h2>
+</div>
+<div class="flex items-center gap-4 w-full max-w-xl justify-end">
+<label class="hidden md:flex flex-col min-w-40 h-10 w-full max-w-sm">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full relative">
+<div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-main dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border-none bg-background-light dark:bg-white/5 focus:border-none h-full placeholder:text-text-secondary px-4 pl-10 text-sm font-normal leading-normal transition-all" placeholder="Tìm kiếm vật phẩm, mã kho..." value=""/>
+</div>
+</label>
+<div class="flex items-center gap-2">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-white/10 text-text-main dark:text-white transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-[#1a2e22]"></span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-full hover:bg-background-light dark:hover:bg-white/10 text-text-main dark:text-white transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-border-color mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-border-color" data-alt="Avatar of the commanding officer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD829Vo5t5fsq7yKescfdfpKLLQGR7025fnahP1U647hOOnR4W_Z2nFeSIeHPIyy-8NQ42kQXVwqv8MO01_Vw8gYoMQSedjrQd1nywns2litMbhDpq5rdxh4-YDYnydOKhfCgP4Q-cM65BphqzmZniUMEOiM9H8KmugGYmKmbl3P3onTMkYWKiJMwM9RBYQA2pTZmc0w55qMhaq4kqIdmAoYHkeVaOxObJQxRauMfk89edR5vosnoYeRY_jOqGII89P1ryNtXX8HSE");'></div>
+<div class="hidden lg:flex flex-col">
+<span class="text-sm font-bold text-text-main dark:text-white">Nguyễn Văn A</span>
+<span class="text-xs text-text-secondary">Chỉ huy trưởng</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+<div class="max-w-[1200px] mx-auto flex flex-col gap-6">
+<!-- Secondary Navigation Tabs -->
+<div class="border-b border-border-color">
+<div class="flex gap-6 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-text-main dark:border-b-primary pb-3 px-2 min-w-fit" href="#">
+<p class="text-text-main dark:text-white text-sm font-bold leading-normal tracking-[0.015em]">Tổng quan</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-border-color pb-3 px-2 min-w-fit transition-colors group" href="#">
+<p class="text-text-secondary group-hover:text-text-main dark:group-hover:text-white text-sm font-medium leading-normal tracking-[0.015em]">Nhập kho</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-border-color pb-3 px-2 min-w-fit transition-colors group" href="#">
+<p class="text-text-secondary group-hover:text-text-main dark:group-hover:text-white text-sm font-medium leading-normal tracking-[0.015em]">Xuất kho</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-border-color pb-3 px-2 min-w-fit transition-colors group" href="#">
+<p class="text-text-secondary group-hover:text-text-main dark:group-hover:text-white text-sm font-medium leading-normal tracking-[0.015em]">Kiểm kê</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent hover:border-b-border-color pb-3 px-2 min-w-fit transition-colors group" href="#">
+<p class="text-text-secondary group-hover:text-text-main dark:group-hover:text-white text-sm font-medium leading-normal tracking-[0.015em]">Danh mục</p>
+</a>
+</div>
+</div>
+<!-- Stats KPI -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-border-color bg-white dark:bg-[#1a2e22] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium leading-normal">Tổng vật phẩm</p>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg text-[20px]">package_2</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-text-main dark:text-white text-2xl font-bold leading-tight">1,250</p>
+<span class="text-primary text-xs font-medium bg-primary/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 5%
+                                </span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-border-color bg-white dark:bg-[#1a2e22] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium leading-normal">Tổng giá trị</p>
+<span class="material-symbols-outlined text-blue-500 bg-blue-500/10 p-1.5 rounded-lg text-[20px]">payments</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-text-main dark:text-white text-2xl font-bold leading-tight">5.2 tỷ</p>
+<span class="text-primary text-xs font-medium bg-primary/10 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> 2%
+                                </span>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-border-color bg-white dark:bg-[#1a2e22] dark:border-white/10 shadow-sm ring-2 ring-red-50 dark:ring-red-900/20">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium leading-normal">Cảnh báo tồn kho</p>
+<span class="material-symbols-outlined text-red-500 bg-red-500/10 p-1.5 rounded-lg text-[20px]">warning</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-text-main dark:text-white text-2xl font-bold leading-tight">12</p>
+<span class="text-red-600 text-xs font-medium bg-red-100 dark:bg-red-900/30 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                                    +3 mới
+                                </span>
+</div>
+<p class="text-xs text-text-secondary mt-1">Cần xử lý gấp</p>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 border border-border-color bg-white dark:bg-[#1a2e22] dark:border-white/10 shadow-sm">
+<div class="flex justify-between items-start">
+<p class="text-text-secondary text-sm font-medium leading-normal">Giao dịch gần đây</p>
+<span class="material-symbols-outlined text-orange-500 bg-orange-500/10 p-1.5 rounded-lg text-[20px]">history</span>
+</div>
+<div class="flex items-baseline gap-2 mt-2">
+<p class="text-text-main dark:text-white text-2xl font-bold leading-tight">45</p>
+<span class="text-text-secondary text-xs font-medium">trong 24h qua</span>
+</div>
+</div>
+</div>
+<!-- Alerts & Quick Actions Section -->
+<div class="flex flex-col lg:flex-row gap-6">
+<!-- Left Column (Content) -->
+<div class="flex-1 flex flex-col gap-6">
+<!-- High Priority Alert Box -->
+<div class="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/30 rounded-xl p-4 flex items-start gap-3 shadow-sm">
+<span class="material-symbols-outlined text-red-600 dark:text-red-400 mt-0.5">report</span>
+<div>
+<h3 class="text-text-main dark:text-white font-bold text-sm">Cảnh báo: 3 loại vật phẩm dưới mức an toàn nghiêm trọng</h3>
+<p class="text-text-secondary dark:text-gray-300 text-sm mt-1">Các vật phẩm bao gồm: Áo phao cứu sinh, Đèn pin chuyên dụng, Bộ đàm Motorola. Vui lòng lập kế hoạch bổ sung ngay.</p>
+<button class="mt-2 text-red-600 dark:text-red-400 text-sm font-semibold hover:underline flex items-center gap-1">
+                                        Xem chi tiết <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Top 5 Low Stock Items Table -->
+<div class="bg-white dark:bg-[#1a2e22] border border-border-color dark:border-white/10 rounded-xl overflow-hidden shadow-sm flex-1">
+<div class="px-6 py-4 border-b border-border-color dark:border-white/10 flex justify-between items-center bg-background-light/50 dark:bg-white/5">
+<h3 class="text-text-main dark:text-white font-bold text-base">Vật phẩm sắp hết (Top 5)</h3>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">Xem tất cả</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left">
+<thead class="text-xs text-text-secondary uppercase bg-background-light dark:bg-white/5 border-b border-border-color dark:border-white/10">
+<tr>
+<th class="px-6 py-3 font-medium">Tên vật phẩm</th>
+<th class="px-6 py-3 font-medium">Danh mục</th>
+<th class="px-6 py-3 font-medium text-center">Số lượng</th>
+<th class="px-6 py-3 font-medium">Trạng thái</th>
+<th class="px-6 py-3 font-medium text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-color dark:divide-white/10">
+<tr class="hover:bg-background-light dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-text-main dark:text-white">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gray-200 bg-cover bg-center" data-alt="Small icon of life jacket" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDZm89ONv5QFvCi02k11HweQcCfURo8nRJIbKpzL2q-_k3XMP-8PZusPvIVx-BBIxQgIc6twhB_lkYecbo23tbUGl4ZdjOnn63e7NCjm-ONhsY9Z0hS6DBURm2XNG18uzqJp8H-hMBUDdf7UAEs8MTaeg7EeZJ_uqOx514r8fdXzWmwF9BWPplnB81PBudzWI6DYQT0_DHMDRJeukjThKBgN2gxXeuJ7Kmf1D8vPjGLdCx1qcYNEVEC9aKxUh8fyTkLts2z4DgugKo");'></div>
+                                                        Áo phao cứu sinh
+                                                    </div>
+</td>
+<td class="px-6 py-4 text-text-secondary">Cứu hộ</td>
+<td class="px-6 py-4 text-center">
+<span class="font-bold text-text-main dark:text-white">5</span> / 100
+                                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+<div class="bg-red-500 h-1.5 rounded-full" style="width: 5%"></div>
+</div>
+<span class="text-[10px] text-red-500 font-medium mt-1 block">Nguy cấp</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-green-700 font-medium text-sm">Nhập thêm</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-text-main dark:text-white">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gray-200 bg-cover bg-center" data-alt="Small icon of Walkie Talkie" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBog7m3DtA1b5EGetoIJVik0J80LTIvpWqETZdF9K3RESYqY7sS_TCO3TtFB6WsMUMtP1r6o5aXyEWXV9dXPlchlWW8xQO_8lyacSLGDsJkPBC2_z__vcyo4z1TECU1z_cKsZky1Jzz9_IqkmOEDOE2AKS_DYcL6qfJjcb3JDMbw_2y5Tonq0b8GVJG11aTEdU8rb41hmbiDnQ1b2gxidTR_ON0Fw8sr-CqkV3VsdHOyEnql6VZaOw2O-7YEXXIuauhciQWhSC1p2U");'></div>
+                                                        Bộ đàm Motorola
+                                                    </div>
+</td>
+<td class="px-6 py-4 text-text-secondary">Liên lạc</td>
+<td class="px-6 py-4 text-center">
+<span class="font-bold text-text-main dark:text-white">12</span> / 50
+                                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+<div class="bg-orange-500 h-1.5 rounded-full" style="width: 24%"></div>
+</div>
+<span class="text-[10px] text-orange-500 font-medium mt-1 block">Thấp</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-green-700 font-medium text-sm">Nhập thêm</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-text-main dark:text-white">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gray-200 bg-cover bg-center" data-alt="Small icon of military shoes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrTXgrH9qBkRpKgQBLXt6n0bAKHvFWk56u6tj5R1mwchXE6Sg2Oyiks9R6jgxXRlcYpuATyNMt9ZdS9xvEpDpjM-E1GX7vYFS7i0qlR5sx3jnmONHYfyKLZDdD0fuYmotqutfY0gPLBzIWpWp9cSp4ATF7Lz-RIOzh1oVzg5VQ3NmgSw9lGuWfy0540Zk-4ApQQj-b34EHnALO4a3SMjYbDurn2iIzFD8hAnUR7jUdVXZ5u9_39OJ2wInjAruOz5OuwRRszumrmnc");'></div>
+                                                        Giày vải bộ đội
+                                                    </div>
+</td>
+<td class="px-6 py-4 text-text-secondary">Quân trang</td>
+<td class="px-6 py-4 text-center">
+<span class="font-bold text-text-main dark:text-white">28</span> / 200
+                                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+<div class="bg-orange-400 h-1.5 rounded-full" style="width: 14%"></div>
+</div>
+<span class="text-[10px] text-orange-400 font-medium mt-1 block">Cần chú ý</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-green-700 font-medium text-sm">Nhập thêm</button>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-white/5 transition-colors">
+<td class="px-6 py-4 font-medium text-text-main dark:text-white">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded bg-gray-200 bg-cover bg-center" data-alt="Small icon of flashlight" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFjJBmTrGYP0zdExaMjb5GMpw3gZTH1lDSfaJlvkS15vXynlIP6x0bPjm4Apbm7xoieQcpKFhgb-rZNNhtnok3V1kWBJY4Syg7Y5vwdHn_zbpKGoc7pvXkWAlXayESbw9zigG5Dx1wkyh6kkBSODpnufY9rdOBQWSNs8aRiZZtRkHyMw3oaeJPusP9g-pduUzVDpPIjIfGj4Fw7PNaQOOtb7jLdQENIT0WM3zQkP6E2QRX5HWh4swO9bx2b0QIJaiKhNKNYb4X7KY");'></div>
+                                                        Đèn pin chuyên dụng
+                                                    </div>
+</td>
+<td class="px-6 py-4 text-text-secondary">Công cụ</td>
+<td class="px-6 py-4 text-center">
+<span class="font-bold text-text-main dark:text-white">8</span> / 60
+                                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700">
+<div class="bg-red-400 h-1.5 rounded-full" style="width: 13%"></div>
+</div>
+<span class="text-[10px] text-red-400 font-medium mt-1 block">Rất thấp</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-primary hover:text-green-700 font-medium text-sm">Nhập thêm</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column (Tools & Activity) -->
+<div class="w-full lg:w-1/3 flex flex-col gap-6">
+<!-- Quick Actions -->
+<div class="bg-white dark:bg-[#1a2e22] border border-border-color dark:border-white/10 rounded-xl p-5 shadow-sm">
+<h3 class="text-text-main dark:text-white font-bold text-base mb-4">Hành động nhanh</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-background-light dark:bg-white/5 hover:bg-primary/10 dark:hover:bg-primary/20 border border-transparent hover:border-primary/30 transition-all group">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform">add_box</span>
+<span class="text-sm font-semibold text-text-main dark:text-white">Nhập kho</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-background-light dark:bg-white/5 hover:bg-orange-50 dark:hover:bg-orange-900/20 border border-transparent hover:border-orange-200 transition-all group">
+<span class="material-symbols-outlined text-orange-500 text-3xl group-hover:scale-110 transition-transform">indeterminate_check_box</span>
+<span class="text-sm font-semibold text-text-main dark:text-white">Xuất kho</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-background-light dark:bg-white/5 hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-transparent hover:border-blue-200 transition-all group">
+<span class="material-symbols-outlined text-blue-500 text-3xl group-hover:scale-110 transition-transform">content_paste</span>
+<span class="text-sm font-semibold text-text-main dark:text-white">Kiểm kê</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 rounded-lg bg-background-light dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 border border-transparent hover:border-gray-200 transition-all group">
+<span class="material-symbols-outlined text-text-secondary text-3xl group-hover:scale-110 transition-transform">assessment</span>
+<span class="text-sm font-semibold text-text-main dark:text-white">Báo cáo</span>
+</button>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="bg-white dark:bg-[#1a2e22] border border-border-color dark:border-white/10 rounded-xl p-5 shadow-sm flex-1">
+<h3 class="text-text-main dark:text-white font-bold text-base mb-4">Hoạt động gần đây</h3>
+<div class="relative pl-2">
+<!-- Timeline line -->
+<div class="absolute left-2.5 top-2 bottom-4 w-0.5 bg-border-color dark:bg-white/10"></div>
+<div class="flex flex-col gap-6">
+<div class="flex gap-4 relative z-0">
+<div class="size-6 rounded-full bg-primary border-4 border-white dark:border-[#1a2e22] flex-shrink-0"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main dark:text-white"><span class="font-bold">Nhập kho</span> 50 Áo mưa rằn ri</p>
+<p class="text-xs text-text-secondary">09:30 AM - Bởi Nguyễn Văn A</p>
+</div>
+</div>
+<div class="flex gap-4 relative z-0">
+<div class="size-6 rounded-full bg-orange-400 border-4 border-white dark:border-[#1a2e22] flex-shrink-0"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main dark:text-white"><span class="font-bold">Xuất kho</span> 20 Mũ cối cho đội 3</p>
+<p class="text-xs text-text-secondary">08:15 AM - Bởi Trần Thị B</p>
+</div>
+</div>
+<div class="flex gap-4 relative z-0">
+<div class="size-6 rounded-full bg-blue-500 border-4 border-white dark:border-[#1a2e22] flex-shrink-0"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main dark:text-white"><span class="font-bold">Kiểm kê</span> Thiết bị y tế</p>
+<p class="text-xs text-text-secondary">Hôm qua - Bởi Lê Văn C</p>
+</div>
+</div>
+<div class="flex gap-4 relative z-0">
+<div class="size-6 rounded-full bg-gray-400 border-4 border-white dark:border-[#1a2e22] flex-shrink-0"></div>
+<div class="flex flex-col gap-1">
+<p class="text-sm text-text-main dark:text-white"><span class="font-bold">Cập nhật</span> thông tin Súng trường</p>
+<p class="text-xs text-text-secondary">Hôm qua - Hệ thống</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-sm text-text-secondary hover:text-primary border border-border-color dark:border-white/10 rounded-lg hover:bg-background-light dark:hover:bg-white/5 transition-colors">
+                                        Xem toàn bộ lịch sử
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

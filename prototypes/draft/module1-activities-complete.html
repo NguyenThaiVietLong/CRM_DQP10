@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 1: Quản Lý Hoạt Động - CRM Dân Quân Phường 10</title>
+
+    <!-- Google Fonts - với hỗ trợ tiếng Việt -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Alpine.js for interactivity -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "primary-dark": "#4a5d28",
+              olive: "#556B2F",
+              "olive-light": "#EAF0E2",
+              "background-light": "#f7f7f6",
+              "background-dark": "#1a1d15",
+              "card-light": "#ffffff",
+              "card-dark": "#1a2632",
+              "text-main-light": "#0d141b",
+              "text-main-dark": "#e0e6ed",
+              "text-sub-light": "#4c739a",
+              "text-sub-dark": "#93adc8",
+              "border-light": "#e7edf3",
+              "border-dark": "#304151",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 20px;
+      }
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark font-display transition-colors duration-200"
+    x-data="activityApp()"
+  >
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col"
+      >
+        <div class="flex items-center gap-3 px-6 h-16 border-b border-gray-200">
+          <span class="material-symbols-outlined text-3xl text-olive"
+            >shield_person</span
+          >
+          <h2
+            class="text-lg font-bold leading-tight tracking-[-0.015em] text-gray-900"
+          >
+            Quản Lý Dân Quân
+          </h2>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-2">
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="module6-dashboard-complete.html"
+          >
+            <span class="material-symbols-outlined text-xl">home</span>
+            <span>Tổng quan</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="module2-personnel-complete.html"
+          >
+            <span class="material-symbols-outlined text-xl">group</span>
+            <span>Nhân sự</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-bold bg-olive/10 text-olive transition-colors"
+            href="module1-activities-complete.html"
+          >
+            <span
+              class="material-symbols-outlined text-xl"
+              style="font-variation-settings: 'FILL' 1"
+              >event</span
+            >
+            <span>Hoạt động</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-xl">inventory_2</span>
+            <span>Thiết bị</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="module4-documents-complete.html"
+          >
+            <span class="material-symbols-outlined text-xl">folder</span>
+            <span>Tài liệu</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="module5-permissions-complete.html"
+          >
+            <span class="material-symbols-outlined text-xl"
+              >admin_panel_settings</span
+            >
+            <span>Phân quyền</span>
+          </a>
+        </nav>
+
+        <div class="px-4 py-6 border-t border-gray-200 space-y-2">
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">assessment</span>
+            <span>Báo cáo</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">settings</span>
+            <span>Cài đặt</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col h-screen overflow-y-auto">
+        <!-- Header -->
+        <header
+          class="sticky top-0 z-30 bg-white/70 dark:bg-card-dark/70 backdrop-blur-lg border-b border-border-light dark:border-border-dark"
+        >
+          <div class="flex items-center justify-between px-6 h-16">
+            <div class="flex items-center gap-2 text-sm">
+              <a
+                class="text-text-sub-light dark:text-text-sub-dark hover:text-primary font-medium"
+                href="#"
+                >Hoạt động</a
+              >
+              <span class="text-text-sub-light dark:text-text-sub-dark">/</span>
+              <span
+                class="text-text-main-light dark:text-text-main-dark font-medium"
+                x-text="currentView === 'list' ? 'Danh sách hoạt động' : currentView === 'calendar' ? 'Lịch hoạt động' : currentView === 'detail' ? 'Chi tiết hoạt động' : 'Chỉnh sửa hoạt động'"
+              ></span>
+            </div>
+            <div class="flex items-center gap-4">
+              <div
+                class="hidden sm:flex items-center bg-background-light dark:bg-background-dark rounded-lg px-3 py-2 border border-border-light dark:border-border-dark w-64"
+              >
+                <span
+                  class="material-symbols-outlined text-text-sub-light dark:text-text-sub-dark text-[20px]"
+                  >search</span
+                >
+                <input
+                  class="bg-transparent border-none text-sm ml-2 focus:ring-0 w-full placeholder:text-text-sub-light"
+                  placeholder="Tìm kiếm hoạt động..."
+                />
+              </div>
+              <button
+                class="relative text-text-sub-light dark:text-text-sub-dark hover:text-primary"
+              >
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-3 w-3 bg-red-500"
+                  ></span>
+                </span>
+              </button>
+              <button
+                class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-white dark:ring-border-dark"
+                style="
+                  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeStNR4viQhQgkrc1Et3N4H2NRwHK-mA3FeLN52Co0r3K-dyy_k3hqImmJTHntw3CUeW7Fqj38Nw224ivjPhuPmZtHHAbVuI2idRB656bJZZi3hwGSHN5wVdwVw6TTPiovvguTa7U6XdNhwOCFzUVumRj6YtiudYtiyC5oq9tS3suc-2KgKZzqwybhKiDtjNRK-64Dwh7y6dZIghHWcokhn868gOVT00Cvq9YnXHAViJbYW78lUpouNnO6eNyyG-e6g4Bf7lrLHLU');
+                "
+              ></button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Sub Navigation -->
+        <nav class="bg-olive rounded-lg p-2 mx-6 mt-6 shadow-md">
+          <div class="flex items-center space-x-2 overflow-x-auto">
+            <button
+              @click="currentView = 'calendar'"
+              :class="currentView === 'calendar' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Lịch hoạt động
+            </button>
+            <button
+              @click="currentView = 'list'"
+              :class="currentView === 'list' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Danh sách hoạt động
+            </button>
+            <button
+              @click="currentView = 'detail'"
+              :class="currentView === 'detail' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Chi tiết hoạt động
+            </button>
+            <button
+              @click="currentView = 'edit'"
+              :class="currentView === 'edit' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Tạo hoạt động mới
+            </button>
+          </div>
+        </nav>
+
+        <main class="flex-1 p-6">
+          <!-- DANH SÁCH HOẠT ĐỘNG -->
+          <div x-show="currentView === 'list'" x-cloak>
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8"
+            >
+              <div>
+                <h1
+                  class="text-3xl font-black tracking-tight text-text-main-light dark:text-white"
+                >
+                  Danh Sách Hoạt Động
+                </h1>
+                <p
+                  class="text-text-sub-light dark:text-text-sub-dark mt-1 text-sm"
+                >
+                  Quản lý và theo dõi các nhiệm vụ tuần tra, huấn luyện của lực
+                  lượng dân quân.
+                </p>
+              </div>
+              <button
+                @click="currentView = 'edit'"
+                class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-colors shadow-lg shadow-primary/30"
+              >
+                <span class="material-symbols-outlined text-[20px]">add</span>
+                <span>Tạo hoạt động mới</span>
+              </button>
+            </div>
+
+            <!-- Filters -->
+            <div
+              class="bg-white dark:bg-card-dark p-5 rounded-xl border border-border-light dark:border-border-dark shadow-sm mb-8"
+            >
+              <div
+                class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 items-end"
+              >
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider"
+                    >Phạm vi ngày</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer"
+                    >
+                      <option>7 ngày qua</option>
+                      <option>Tháng này</option>
+                      <option>Tháng trước</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none"
+                      >calendar_month</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider"
+                    >Trạng thái</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer"
+                    >
+                      <option>Tất cả trạng thái</option>
+                      <option>Đang thực hiện</option>
+                      <option>Sắp diễn ra</option>
+                      <option>Hoàn thành</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none"
+                      >expand_more</span
+                    >
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="text-xs font-semibold uppercase text-text-sub-light dark:text-text-sub-dark tracking-wider"
+                    >Người phụ trách</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark text-text-main-light dark:text-white rounded-lg pl-4 pr-10 py-2.5 focus:ring-2 focus:ring-primary focus:border-transparent outline-none cursor-pointer"
+                    >
+                      <option>Tất cả nhân sự</option>
+                      <option>Nguyễn Văn An</option>
+                      <option>Trần Thị Bình</option>
+                      <option>Lê Minh Chiến</option>
+                    </select>
+                    <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-sub-light pointer-events-none"
+                      >person_search</span
+                    >
+                  </div>
+                </div>
+                <div class="flex gap-2 justify-end lg:justify-start">
+                  <button
+                    class="h-[42px] px-4 rounded-lg bg-olive text-white font-medium hover:bg-opacity-90 transition w-full md:w-auto flex items-center justify-center gap-2"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >filter_list</span
+                    >
+                    Lọc
+                  </button>
+                  <button
+                    class="h-[42px] w-[42px] rounded-lg border border-border-light dark:border-border-dark text-text-sub-light dark:text-text-sub-dark flex items-center justify-center hover:bg-background-light dark:hover:bg-border-dark transition"
+                  >
+                    <span class="material-symbols-outlined">restart_alt</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Activity Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <template x-for="activity in activities" :key="activity.id">
+                <article
+                  @click="selectActivity(activity); currentView = 'detail'"
+                  class="group bg-white dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark overflow-hidden hover:shadow-lg hover:border-olive/50 transition-all duration-300 flex flex-col cursor-pointer"
+                >
+                  <div class="p-5 flex-1 flex flex-col">
+                    <div class="flex justify-between items-start mb-3">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold border"
+                        :class="{
+                                                  'bg-olive/10 text-olive border-olive/20': activity.status === 'ongoing',
+                                                  'bg-primary/10 text-primary border-primary/20': activity.status === 'upcoming',
+                                                  'bg-gray-100 text-gray-600 border-gray-200': activity.status === 'completed',
+                                                  'bg-red-50 text-red-600 border-red-200': activity.status === 'urgent'
+                                              }"
+                      >
+                        <span
+                          class="size-2 rounded-full animate-pulse"
+                          :class="activity.status === 'ongoing' ? 'bg-olive' : activity.status === 'urgent' ? 'bg-red-500' : ''"
+                        ></span>
+                        <span x-text="activity.statusLabel"></span>
+                      </span>
+                      <button
+                        @click.stop
+                        class="text-text-sub-light hover:text-text-main-light"
+                      >
+                        <span class="material-symbols-outlined">more_vert</span>
+                      </button>
+                    </div>
+                    <h3
+                      class="text-lg font-bold text-text-main-light dark:text-white mb-2 group-hover:text-primary transition-colors"
+                      x-text="activity.name"
+                    ></h3>
+                    <p
+                      class="text-text-sub-light dark:text-text-sub-dark text-sm line-clamp-2 mb-4 flex-1"
+                      x-text="activity.description"
+                    ></p>
+                    <div
+                      class="flex items-center gap-4 text-xs font-medium text-text-sub-light dark:text-text-sub-dark mb-4 bg-background-light dark:bg-background-dark/50 p-3 rounded-lg"
+                    >
+                      <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]"
+                          >calendar_today</span
+                        >
+                        <span x-text="activity.date"></span>
+                      </div>
+                      <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px]"
+                          >schedule</span
+                        >
+                        <span x-text="activity.time"></span>
+                      </div>
+                    </div>
+                    <div class="mb-5">
+                      <div
+                        class="flex justify-between text-xs font-semibold mb-1.5"
+                      >
+                        <span
+                          class="text-text-main-light dark:text-text-main-dark"
+                          >Tiến độ nhiệm vụ</span
+                        >
+                        <span
+                          :class="activity.status === 'completed' ? 'text-gray-600' : 'text-olive dark:text-[#a3b18a]'"
+                          x-text="activity.progress"
+                        ></span>
+                      </div>
+                      <div
+                        class="w-full bg-border-light dark:bg-border-dark rounded-full h-2"
+                      >
+                        <div
+                          :class="activity.status === 'completed' ? 'bg-gray-500' : 'bg-olive'"
+                          class="h-2 rounded-full"
+                          :style="`width: ${activity.progressPercent}%`"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="px-5 py-4 border-t border-border-light dark:border-border-dark flex items-center justify-between bg-background-light/30 dark:bg-background-dark/30"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class="relative">
+                        <div
+                          class="size-8 rounded-full bg-cover bg-center"
+                          :style="`background-image: url('${activity.assigneeAvatar}')`"
+                        ></div>
+                        <div
+                          x-show="activity.hasVerified"
+                          class="absolute -bottom-1 -right-1 bg-white dark:bg-card-dark rounded-full p-0.5"
+                        >
+                          <span
+                            class="material-symbols-outlined text-[12px] text-primary"
+                            >verified_user</span
+                          >
+                        </div>
+                      </div>
+                      <div class="flex flex-col">
+                        <span
+                          class="text-xs text-text-sub-light dark:text-text-sub-dark"
+                          >Phụ trách</span
+                        >
+                        <span
+                          class="text-xs font-bold text-text-main-light dark:text-white"
+                          x-text="activity.assignee"
+                        ></span>
+                      </div>
+                    </div>
+                    <button
+                      @click.stop="selectActivity(activity); currentView = 'detail'"
+                      class="text-sm font-semibold text-primary hover:text-primary-dark hover:underline"
+                    >
+                      Chi tiết
+                    </button>
+                  </div>
+                </article>
+              </template>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="flex items-center justify-between mt-8 border-t border-border-light dark:border-border-dark pt-4"
+            >
+              <span class="text-sm text-text-sub-light dark:text-text-sub-dark"
+                >Hiển thị
+                <span class="font-bold text-text-main-light dark:text-white"
+                  >1-6</span
+                >
+                trên
+                <span class="font-bold text-text-main-light dark:text-white"
+                  >24</span
+                >
+                hoạt động</span
+              >
+              <div class="flex gap-2">
+                <button
+                  class="px-4 py-2 text-sm font-medium text-text-sub-light dark:text-text-sub-dark bg-white dark:bg-card-dark border border-border-light dark:border-border-dark rounded-lg hover:bg-background-light dark:hover:bg-border-dark transition-colors disabled:opacity-50"
+                  disabled=""
+                >
+                  Trước
+                </button>
+                <button
+                  class="px-4 py-2 text-sm font-medium text-text-main-light dark:text-white bg-white dark:bg-card-dark border border-border-light dark:border-border-dark rounded-lg hover:bg-background-light dark:hover:bg-border-dark transition-colors"
+                >
+                  Sau
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- LỊCH HOẠT ĐỘNG -->
+          <div x-show="currentView === 'calendar'" x-cloak>
+            <div class="flex flex-col gap-6">
+              <div
+                class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4"
+              >
+                <div class="flex items-center gap-3">
+                  <button
+                    class="size-9 flex items-center justify-center rounded-lg border border-border-light hover:bg-white hover:shadow-sm text-slate-600 transition-all"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >arrow_back_ios_new</span
+                    >
+                  </button>
+                  <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                    Tháng 10, 2023
+                  </h2>
+                  <button
+                    class="size-9 flex items-center justify-center rounded-lg border border-border-light hover:bg-white hover:shadow-sm text-slate-600 transition-all"
+                  >
+                    <span class="material-symbols-outlined text-base"
+                      >arrow_forward_ios</span
+                    >
+                  </button>
+                  <button
+                    class="ml-2 px-3 py-1.5 text-sm font-semibold text-slate-600 bg-white border border-border-light rounded-md hover:bg-slate-50 transition-colors"
+                  >
+                    Hôm nay
+                  </button>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 w-full xl:w-auto">
+                  <div
+                    class="hidden md:flex items-center gap-4 text-xs font-medium text-slate-600 mr-4 px-4 border-r border-border-light"
+                  >
+                    <div class="flex items-center gap-1.5">
+                      <span class="size-2.5 rounded-full bg-blue-500"></span>
+                      Huấn luyện
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="size-2.5 rounded-full bg-green-500"></span>
+                      Tuần tra
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <span class="size-2.5 rounded-full bg-orange-500"></span>
+                      Sự kiện
+                    </div>
+                  </div>
+                  <div class="flex bg-slate-100 p-1 rounded-lg">
+                    <button
+                      class="px-4 py-1.5 bg-white shadow-sm rounded-md text-sm font-semibold text-slate-900"
+                    >
+                      Tháng
+                    </button>
+                    <button
+                      class="px-4 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                    >
+                      Tuần
+                    </button>
+                    <button
+                      class="px-4 py-1.5 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors"
+                    >
+                      Ngày
+                    </button>
+                  </div>
+                  <button
+                    @click="currentView = 'edit'"
+                    class="ml-auto xl:ml-0 flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg text-sm font-bold shadow-sm transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >add</span
+                    >
+                    <span class="hidden sm:inline">Thêm mới</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Calendar Grid -->
+              <div
+                class="flex-1 bg-white border border-border-light rounded-xl shadow-sm overflow-hidden flex flex-col min-h-[600px]"
+              >
+                <div
+                  class="grid grid-cols-7 border-b border-border-light bg-slate-50"
+                >
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    T2
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    T3
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    T4
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    T5
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wide"
+                  >
+                    T6
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-red-500 uppercase tracking-wide"
+                  >
+                    T7
+                  </div>
+                  <div
+                    class="py-3 text-center text-sm font-semibold text-red-500 uppercase tracking-wide"
+                  >
+                    CN
+                  </div>
+                </div>
+                <div
+                  class="grid grid-cols-7 grid-rows-5 flex-1 divide-x divide-y divide-border-light bg-border-light gap-px"
+                >
+                  <!-- Previous month days -->
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">25</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">26</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">27</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">28</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">29</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">30</span>
+                  </div>
+                  <!-- Current month -->
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm font-medium">1</span>
+                    <div
+                      class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded border-l-2 border-orange-500 truncate cursor-pointer"
+                    >
+                      08:00 Giao ban tuần
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">2</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">3</span>
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer"
+                    >
+                      07:00 HL Điều lệnh
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">4</span>
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer"
+                    >
+                      07:00 HL Bắn súng
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">5</span>
+                    <div
+                      class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded border-l-2 border-green-500 truncate cursor-pointer"
+                    >
+                      19:00 Tuần tra đêm
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">6</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-red-500 text-sm">7</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">8</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">9</span>
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer"
+                    >
+                      08:00 Kiểm tra TB
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">10</span>
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer"
+                    >
+                      14:00 HL Võ thuật
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">11</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">12</span>
+                    <div
+                      class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded border-l-2 border-green-500 truncate cursor-pointer"
+                    >
+                      06:00 Tuần tra biên giới
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">13</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-red-500 text-sm">14</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">15</span>
+                  </div>
+                  <div class="bg-blue-50 min-h-[100px] p-2 flex flex-col gap-1">
+                    <span
+                      class="flex items-center justify-center size-7 bg-primary text-white rounded-full text-sm font-bold shadow-sm"
+                      >16</span
+                    >
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer shadow-sm mt-1"
+                    >
+                      08:00 Diễn tập KVPT
+                    </div>
+                    <div
+                      class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded border-l-2 border-green-500 truncate cursor-pointer shadow-sm"
+                    >
+                      21:00 Trực sẵn sàng
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">17</span>
+                    <div
+                      class="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded border-l-2 border-blue-500 truncate cursor-pointer"
+                    >
+                      08:00 Diễn tập (Ngày 2)
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">18</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">19</span>
+                    <div
+                      class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded border-l-2 border-green-500 truncate cursor-pointer"
+                    >
+                      19:00 Tuần tra dân phố
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">20</span>
+                    <div
+                      class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded border-l-2 border-orange-500 truncate cursor-pointer"
+                    >
+                      19:00 Tuyên truyền luật
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-red-500 text-sm">21</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">22</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">23</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">24</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2 flex flex-col gap-1">
+                    <span class="text-slate-700 text-sm">25</span>
+                    <div
+                      class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded border-l-2 border-orange-500 truncate"
+                    >
+                      15:00 Tổng kết quý
+                    </div>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">26</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">27</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-red-500 text-sm">28</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">29</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">30</span>
+                  </div>
+                  <div class="bg-white min-h-[100px] p-2">
+                    <span class="text-slate-700 text-sm">31</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">1</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">2</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">3</span>
+                  </div>
+                  <div class="bg-slate-50/50 min-h-[100px] p-2">
+                    <span class="text-slate-400 text-sm">4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHI TIẾT HOẠT ĐỘNG -->
+          <div x-show="currentView === 'detail'" x-cloak>
+            <div class="mx-auto max-w-6xl flex flex-col gap-6">
+              <!-- Breadcrumbs -->
+              <div class="flex items-center gap-2 text-sm">
+                <button
+                  @click="currentView = 'list'"
+                  class="text-text-sub-light hover:text-primary"
+                >
+                  Hoạt động
+                </button>
+                <span
+                  class="material-symbols-outlined text-text-sub-light text-base"
+                  >chevron_right</span
+                >
+                <span class="text-primary font-medium">Chi tiết</span>
+              </div>
+
+              <!-- Page Header -->
+              <div
+                class="flex flex-col lg:flex-row lg:items-start justify-between gap-4 bg-white p-6 rounded-xl border border-border-light shadow-sm"
+              >
+                <div class="flex flex-col gap-3">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h1
+                      class="text-2xl md:text-3xl font-bold leading-tight"
+                      x-text="selectedActivity?.name || 'Tuần tra khu vực biên giới Mốc 102'"
+                    ></h1>
+                    <div
+                      class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-olive/10 border border-olive/20"
+                    >
+                      <span
+                        class="size-2 rounded-full bg-olive animate-pulse"
+                      ></span>
+                      <span
+                        class="text-olive text-xs font-bold uppercase tracking-wide"
+                        x-text="selectedActivity?.statusLabel || 'Đang thực hiện'"
+                      ></span>
+                    </div>
+                  </div>
+                  <div
+                    class="flex flex-wrap items-center gap-4 text-sm text-text-sub-light"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-lg"
+                        >calendar_today</span
+                      >
+                      <span
+                        x-text="selectedActivity?.date || '12/10/2023'"
+                      ></span>
+                    </div>
+                    <div class="w-px h-4 bg-border-light"></div>
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-lg"
+                        >location_on</span
+                      >
+                      <span>Khu vực biên giới, Xã Bản Lầu</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <button
+                    class="flex items-center gap-2 px-4 py-2 bg-white border border-border-light rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-lg">share</span>
+                    Chia sẻ
+                  </button>
+                  <button
+                    @click="currentView = 'edit'"
+                    class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary-dark shadow-sm transition-all"
+                  >
+                    <span class="material-symbols-outlined text-lg">edit</span>
+                    Chỉnh sửa
+                  </button>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div
+                class="bg-white rounded-xl border border-border-light p-6 shadow-sm"
+              >
+                <h3 class="text-lg font-bold mb-3 flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary"
+                    >description</span
+                  >
+                  Mô tả hoạt động
+                </h3>
+                <p
+                  class="text-gray-600 leading-relaxed text-sm"
+                  x-text="selectedActivity?.description || 'Thực hiện tuần tra định kỳ theo kế hoạch tháng 10. Nhiệm vụ kiểm tra tình trạng cột mốc, quan sát dấu hiệu xâm nhập trái phép và đảm bảo an ninh khu vực.'"
+                ></p>
+              </div>
+
+              <!-- Tasks -->
+              <div
+                class="bg-white rounded-xl border border-border-light shadow-sm flex flex-col"
+              >
+                <div
+                  class="p-5 border-b border-border-light flex items-center justify-between"
+                >
+                  <div class="flex items-center gap-3">
+                    <h3 class="text-lg font-bold">Danh sách nhiệm vụ</h3>
+                    <span
+                      class="bg-slate-100 text-gray-600 text-xs font-bold px-2 py-0.5 rounded-full"
+                      >3/5</span
+                    >
+                  </div>
+                  <button
+                    class="flex items-center gap-1.5 text-primary text-sm font-bold hover:bg-primary/5 px-3 py-1.5 rounded-lg transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-lg">add</span>
+                    Thêm nhiệm vụ
+                  </button>
+                </div>
+                <div class="flex flex-col divide-y divide-border-light">
+                  <!-- Task 1 -->
+                  <div
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="flex items-start gap-3">
+                      <input
+                        checked
+                        type="checkbox"
+                        class="size-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/20 mt-0.5"
+                      />
+                      <div class="flex flex-col gap-0.5">
+                        <span
+                          class="text-sm font-medium line-through text-gray-400"
+                          >Chuẩn bị vũ khí, trang bị cá nhân</span
+                        >
+                        <span class="text-xs text-gray-400"
+                          >Hoàn thành lúc 05:30 12/10 - Hạ sĩ Lê Minh
+                          Chiến</span
+                        >
+                      </div>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-medium border border-green-100"
+                      >Hoàn thành</span
+                    >
+                  </div>
+                  <!-- Task 2 -->
+                  <div
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="flex items-start gap-3">
+                      <input
+                        checked
+                        type="checkbox"
+                        class="size-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/20 mt-0.5"
+                      />
+                      <div class="flex flex-col gap-0.5">
+                        <span
+                          class="text-sm font-medium line-through text-gray-400"
+                          >Kiểm tra phương tiện đi lại</span
+                        >
+                        <span class="text-xs text-gray-400"
+                          >Hoàn thành lúc 05:45 12/10 - Trung úy Vũ Thị
+                          Hoa</span
+                        >
+                      </div>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-medium border border-green-100"
+                      >Hoàn thành</span
+                    >
+                  </div>
+                  <!-- Task 3 -->
+                  <div
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="flex items-start gap-3">
+                      <input
+                        checked
+                        type="checkbox"
+                        class="size-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/20 mt-0.5"
+                      />
+                      <div class="flex flex-col gap-0.5">
+                        <span
+                          class="text-sm font-medium line-through text-gray-400"
+                          >Tuần tra tuyến 1 (Mốc 102 - Mốc 105)</span
+                        >
+                        <span class="text-xs text-gray-400"
+                          >Hoàn thành lúc 12:00 12/10 - Thượng úy Nguyễn Văn
+                          An</span
+                        >
+                      </div>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-md bg-green-50 text-green-700 text-xs font-medium border border-green-100"
+                      >Hoàn thành</span
+                    >
+                  </div>
+                  <!-- Task 4 -->
+                  <div
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        class="size-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/20 mt-0.5"
+                      />
+                      <div class="flex flex-col gap-0.5">
+                        <span class="text-sm font-medium text-gray-900"
+                          >Tuần tra tuyến 2 (Mốc 105 - Mốc 108)</span
+                        >
+                        <span class="text-xs text-gray-500"
+                          >Hạn chót: 16:00 12/10 - Trung úy Trần Thị Bình</span
+                        >
+                      </div>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-md bg-blue-50 text-blue-700 text-xs font-medium border border-blue-100"
+                      >Đang thực hiện</span
+                    >
+                  </div>
+                  <!-- Task 5 -->
+                  <div
+                    class="flex items-center justify-between p-4 hover:bg-gray-50 transition-colors"
+                  >
+                    <div class="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        class="size-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/20 mt-0.5"
+                      />
+                      <div class="flex flex-col gap-0.5">
+                        <span class="text-sm font-medium text-gray-900"
+                          >Báo cáo kết quả và nộp biên bản</span
+                        >
+                        <span class="text-xs text-gray-500"
+                          >Hạn chót: 18:00 12/10 - Thượng úy Nguyễn Văn An</span
+                        >
+                      </div>
+                    </div>
+                    <span
+                      class="px-2.5 py-1 rounded-md bg-gray-50 text-gray-600 text-xs font-medium border border-gray-200"
+                      >Chưa bắt đầu</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Attachments & Comments -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div
+                  class="bg-white rounded-xl border border-border-light p-5 shadow-sm"
+                >
+                  <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary"
+                      >attach_file</span
+                    >
+                    Tài liệu đính kèm
+                  </h3>
+                  <div class="flex flex-col gap-2">
+                    <div
+                      class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <span class="material-symbols-outlined text-red-500"
+                        >picture_as_pdf</span
+                      >
+                      <div class="flex-1">
+                        <p class="text-sm font-medium">
+                          Kế hoạch tuần tra tháng 10.pdf
+                        </p>
+                        <p class="text-xs text-gray-500">2.4 MB</p>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+                    >
+                      <span class="material-symbols-outlined text-blue-500"
+                        >image</span
+                      >
+                      <div class="flex-1">
+                        <p class="text-sm font-medium">Bản đồ khu vực.jpg</p>
+                        <p class="text-xs text-gray-500">1.8 MB</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-xl border border-border-light p-5 shadow-sm"
+                >
+                  <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary"
+                      >comment</span
+                    >
+                    Ghi chú
+                  </h3>
+                  <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <p class="text-sm text-slate-700 italic">
+                      "Tất cả chiến sĩ tập trung trước 15 phút để điểm danh.
+                      Mang theo quân trang đầy đủ. Chỉ huy trưởng sẽ trực tiếp
+                      chỉ đạo."
+                    </p>
+                    <p class="text-xs text-slate-500 mt-2">
+                      - Đại úy Phạm Văn Dũng, Chỉ huy trưởng
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHỈNH SỬA/TẠO HOẠT ĐỘNG -->
+          <div x-show="currentView === 'edit'" x-cloak>
+            <div class="max-w-5xl mx-auto flex flex-col gap-6">
+              <!-- Header -->
+              <div
+                class="flex flex-wrap justify-between items-end gap-4 border-b border-border-light pb-6"
+              >
+                <div class="flex flex-col gap-2">
+                  <h1
+                    class="text-3xl md:text-4xl font-black leading-tight tracking-tight"
+                  >
+                    Tạo Hoạt Động Mới
+                  </h1>
+                  <p class="text-text-sub-light text-base max-w-2xl">
+                    Điền thông tin chi tiết hoạt động, thời gian và phân công
+                    nhiệm vụ cho lực lượng dân quân địa phương.
+                  </p>
+                </div>
+                <div class="flex gap-3">
+                  <button
+                    @click="currentView = 'list'"
+                    class="flex h-10 items-center justify-center rounded-lg border border-border-light bg-white px-4 text-sm font-medium hover:bg-slate-50 transition-colors"
+                  >
+                    Hủy bỏ
+                  </button>
+                  <button
+                    class="flex h-10 items-center justify-center gap-2 rounded-lg bg-primary hover:bg-primary-dark px-6 text-sm font-medium text-white transition-colors shadow-sm"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >save</span
+                    >
+                    Lưu hoạt động
+                  </button>
+                </div>
+              </div>
+
+              <!-- Form -->
+              <div
+                class="bg-white rounded-xl shadow-sm border border-border-light overflow-hidden"
+              >
+                <div class="p-6 md:p-8 flex flex-col gap-6">
+                  <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary"
+                      >info</span
+                    >
+                    Thông tin chung
+                  </h2>
+                  <div class="grid grid-cols-1 gap-6">
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2"
+                        >Tên hoạt động <span class="text-red-500">*</span></span
+                      >
+                      <input
+                        class="w-full rounded-lg border border-border-light bg-slate-50 h-12 px-4 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        placeholder="Ví dụ: Huấn luyện bắn súng đợt 1 năm 2024"
+                      />
+                    </label>
+                  </div>
+                  <div class="grid grid-cols-1 gap-6">
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2"
+                        >Mô tả chi tiết</span
+                      >
+                      <textarea
+                        class="w-full rounded-lg border border-border-light bg-slate-50 min-h-[120px] p-4 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-y"
+                        placeholder="Nhập nội dung, mục đích và yêu cầu của hoạt động..."
+                      ></textarea>
+                    </label>
+                  </div>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2"
+                        >Ngày bắt đầu <span class="text-red-500">*</span></span
+                      >
+                      <input
+                        class="w-full rounded-lg border border-border-light bg-slate-50 h-12 px-4 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        type="date"
+                      />
+                    </label>
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2"
+                        >Ngày kết thúc <span class="text-red-500">*</span></span
+                      >
+                      <input
+                        class="w-full rounded-lg border border-border-light bg-slate-50 h-12 px-4 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        type="date"
+                      />
+                    </label>
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2"
+                        >Người chỉ huy/Phụ trách
+                        <span class="text-red-500">*</span></span
+                      >
+                      <select
+                        class="w-full rounded-lg border border-border-light bg-slate-50 h-12 px-4 pr-10 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all cursor-pointer"
+                      >
+                        <option disabled selected>
+                          Chọn người phụ trách...
+                        </option>
+                        <option>
+                          Thượng úy Nguyễn Văn An - Chỉ huy trưởng
+                        </option>
+                        <option>Trung úy Trần Thị Bình - Chính trị viên</option>
+                        <option>Đại úy Phạm Văn Dũng - Phó chỉ huy</option>
+                      </select>
+                    </label>
+                    <label class="flex flex-col w-full">
+                      <span class="text-sm font-medium pb-2">Địa điểm</span>
+                      <input
+                        class="w-full rounded-lg border border-border-light bg-slate-50 h-12 px-4 text-base focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
+                        placeholder="Ví dụ: Thao trường Phường 12"
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Task Builder -->
+              <div
+                class="bg-white rounded-xl shadow-sm border border-border-light overflow-hidden"
+              >
+                <div class="p-6 md:p-8 flex flex-col gap-6">
+                  <h2 class="text-lg font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary"
+                      >task_alt</span
+                    >
+                    Phân công nhiệm vụ
+                  </h2>
+                  <div
+                    class="border border-border-light rounded-lg overflow-hidden bg-white shadow-sm"
+                  >
+                    <div class="overflow-x-auto">
+                      <table class="w-full text-left border-collapse">
+                        <thead>
+                          <tr class="bg-slate-100 border-b border-border-light">
+                            <th
+                              class="p-4 text-xs font-semibold uppercase tracking-wider text-text-sec-light min-w-[200px]"
+                            >
+                              Tên nhiệm vụ
+                            </th>
+                            <th
+                              class="p-4 text-xs font-semibold uppercase tracking-wider text-text-sec-light min-w-[180px]"
+                            >
+                              Người thực hiện
+                            </th>
+                            <th
+                              class="p-4 text-xs font-semibold uppercase tracking-wider text-text-sec-light min-w-[150px]"
+                            >
+                              Hạn chót
+                            </th>
+                            <th
+                              class="p-4 text-xs font-semibold uppercase tracking-wider text-text-sec-light w-[60px] text-center"
+                            >
+                              Xóa
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="divide-y divide-border-light">
+                          <!-- Row 1 -->
+                          <tr class="group hover:bg-slate-50 transition-colors">
+                            <td class="p-3">
+                              <input
+                                class="w-full bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm transition-all"
+                                placeholder="Nhập tên nhiệm vụ..."
+                                type="text"
+                                value="Chuẩn bị vũ khí và trang bị"
+                              />
+                            </td>
+                            <td class="p-3">
+                              <div class="relative">
+                                <select
+                                  class="w-full appearance-none bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm pr-8 cursor-pointer"
+                                >
+                                  <option>Hạ sĩ Lê Minh Chiến</option>
+                                  <option>Trung úy Vũ Thị Hoa</option>
+                                  <option>Thượng úy Nguyễn Văn An</option>
+                                </select>
+                                <span
+                                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-sec-light text-[16px] pointer-events-none"
+                                  >arrow_drop_down</span
+                                >
+                              </div>
+                            </td>
+                            <td class="p-3">
+                              <input
+                                class="w-full bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm"
+                                type="date"
+                                value="2024-10-20"
+                              />
+                            </td>
+                            <td class="p-3 text-center">
+                              <button
+                                class="text-text-sec-light hover:text-red-500 transition-colors p-1.5 rounded-full hover:bg-red-50"
+                              >
+                                <span
+                                  class="material-symbols-outlined text-[20px]"
+                                  >delete</span
+                                >
+                              </button>
+                            </td>
+                          </tr>
+                          <!-- Row 2 -->
+                          <tr class="group hover:bg-slate-50 transition-colors">
+                            <td class="p-3">
+                              <input
+                                class="w-full bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm transition-all"
+                                placeholder="Nhập tên nhiệm vụ..."
+                                type="text"
+                              />
+                            </td>
+                            <td class="p-3">
+                              <div class="relative">
+                                <select
+                                  class="w-full appearance-none bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm pr-8 cursor-pointer"
+                                >
+                                  <option disabled selected>
+                                    Chọn người...
+                                  </option>
+                                  <option>Hạ sĩ Lê Minh Chiến</option>
+                                  <option>Trung úy Vũ Thị Hoa</option>
+                                  <option>Thượng úy Nguyễn Văn An</option>
+                                </select>
+                                <span
+                                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-sec-light text-[16px] pointer-events-none"
+                                  >arrow_drop_down</span
+                                >
+                              </div>
+                            </td>
+                            <td class="p-3">
+                              <input
+                                class="w-full bg-transparent border border-transparent hover:border-border-light focus:border-primary focus:ring-0 rounded px-2 py-1.5 text-sm"
+                                type="date"
+                              />
+                            </td>
+                            <td class="p-3 text-center">
+                              <button
+                                class="text-text-sec-light hover:text-red-500 transition-colors p-1.5 rounded-full hover:bg-red-50"
+                              >
+                                <span
+                                  class="material-symbols-outlined text-[20px]"
+                                  >delete</span
+                                >
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div
+                      class="bg-slate-50 p-3 flex justify-center border-t border-border-light"
+                    >
+                      <button
+                        class="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-white transition-all shadow-sm"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >add_circle</span
+                        >
+                        Thêm nhiệm vụ mới
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function activityApp() {
+        return {
+          currentView: "list",
+          selectedActivity: null,
+          activities: [
+            {
+              id: 1,
+              name: "Tuần tra khu vực biên giới Mốc 102",
+              description:
+                "Thực hiện tuần tra định kỳ theo kế hoạch tháng 10. Nhiệm vụ kiểm tra tình trạng cột mốc, quan sát dấu hiệu xâm nhập trái phép và đảm bảo an ninh khu vực.",
+              status: "ongoing",
+              statusLabel: "Đang thực hiện",
+              date: "12/10/2023",
+              time: "06:00 - 18:00",
+              progress: "3/5 hoàn thành",
+              progressPercent: 60,
+              assignee: "Thượng úy Nguyễn Văn An",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuCEGlDxnstAEZtZKqIoKAeCdFZFoPOc7dh6WITU2JBa4lCLiIE1U2QzGWWjaTRbhSN5BZH8aZoi6LBZOIiaIJULr6BbFZmkyA6f4eTUcNi9Prg-yAzwMpflXheSkW-RshbzS4buF_WjMVLhuyaBdTd3bCcBiQLtcq_Wcj7_9XVMBlAi78Om-m98-0s55_gHYRN2xrjcndjyaDcYgh1ysN24-dKVvgxfd_ZngFSy0gY2njMCEL-M55zi4UcVNRnK6FSKoczJph8u3VA",
+              hasVerified: true,
+            },
+            {
+              id: 2,
+              name: "Huấn luyện bắn súng và chiến thuật",
+              description:
+                "Tổ chức huấn luyện kỹ năng sử dụng vũ khí bộ binh, chiến thuật tiểu đội cho trung đội dân quân cơ động. Huấn luyện viên: Thiếu tá Trần Minh Đức.",
+              status: "upcoming",
+              statusLabel: "Sắp diễn ra",
+              date: "16/10/2023",
+              time: "08:00 - 17:00",
+              progress: "2/8 chuẩn bị",
+              progressPercent: 25,
+              assignee: "Trung úy Trần Thị Bình",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuCfaEiz8L1jVQcPMFiFHNZTbzlDTeuUw0fNFw8BzzqFAWutZQqiCu7Y_N_Ci7JxXNxwk0AXNjbwTVB19TkROO-qg7zcI_BZZGZ1ma6PW83TlaBc_GKNDc6l5wFcyoN9YS0SeDWPzpocuSKmIrXTc1BsdGQC0y1VWiZcf-sLRp47pijstH1G6KGDd5a4AnswVpvUhBdOX65dcIKk0RUKL_i2pgvnOyRDoVwABsrTp8oQC3qdMuG0kHB-yvktsP8jz1jrUL2Ztsi4Hr4",
+              hasVerified: false,
+            },
+            {
+              id: 3,
+              name: "Kiểm tra và bảo dưỡng thiết bị PCCC",
+              description:
+                "Kiểm tra định kỳ, lau chùi, bảo dưỡng toàn bộ thiết bị phòng cháy chữa cháy, công cụ hỗ trợ theo quy định của Ban CHQS Phường.",
+              status: "completed",
+              statusLabel: "Hoàn thành",
+              date: "05/10/2023",
+              time: "08:00 - 17:00",
+              progress: "10/10 hoàn thành",
+              progressPercent: 100,
+              assignee: "Hạ sĩ Lê Minh Chiến",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuD14MKMlLHvsDxScz_nVaRC53QDbQrUkut82P238SggcuW-mT2Y5qVlJ7VsCXxd43DVKCMLsudZZRCEhpwj_RBzqvKuLY5BVdX2Ji4k0gqdlrdeg2GYt7oqBKYoPirr3qNuQsXDv8fO2VKJFe47P8I8zCOPYzSUhnb6DlzMroXH9bU8hIWegKT-az_AsOSH14un_tijMqLme48x5eHyH3WZTDaLteNODvBNTe0j0naTmeplSZcMYQhiUN_LTuWzSuhXjBpvUZYBiiE",
+              hasVerified: true,
+            },
+            {
+              id: 4,
+              name: "Họp giao ban khẩn cấp - Ứng phó bão số 3",
+              description:
+                "Triển khai kế hoạch ứng phó với bão số 3. Yêu cầu 100% quân số có mặt tại trụ sở. Phân công nhiệm vụ sẵn sàng chiến đấu, cứu hộ cứu nạn.",
+              status: "urgent",
+              statusLabel: "Khẩn cấp",
+              date: "Hôm nay",
+              time: "14:00",
+              progress: "18/40 điểm danh",
+              progressPercent: 45,
+              assignee: "Đại úy Phạm Văn Dũng",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuBfAEoBAy1HmYXioX26LnOyK5h-aTc5hwYIgQDPWpRcySTCpaxod5z6HnlPZlgfINOZGZO3fMdnHdo9NQtTzPUQAv7PWgOvPWqCbuqqJcaPUrWmlhEX4voufjgXs_dTVf8XEqdT30axpjtxQUs1u3y5Et8HzQaXdmxiVIHKdsLASo0uW058ys93xFXD0Sb20VMYQuVzyuBQifSxsb9FZX_ViLzS-b1Kev-lCVNwMNrR3QmdIzQfjGGb9IImAm-Z2TNq4QV9q7Hixmc",
+              hasVerified: true,
+            },
+            {
+              id: 5,
+              name: "Trực ban chỉ huy sở ca ngày",
+              description:
+                "Duy trì chế độ trực ban, tiếp nhận thông tin và xử lý các tình huống phát sinh tại địa bàn phường trong ca trực ngày.",
+              status: "ongoing",
+              statusLabel: "Đang thực hiện",
+              date: "13/10/2023",
+              time: "06:00 - 18:00",
+              progress: "Đang tiến hành",
+              progressPercent: 50,
+              assignee: "Trung úy Vũ Thị Hoa",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuBKF-hwmLPldoO0ZhASvCbHq3TMR0WahPuuALjEHTB3IVahLxtVaGk_JwAcYEn7AGvchYAguke3oWvJNi2hO9wkiO9Q7U9WMQON30b4OYvZ9NHAogmwhMb1MPHOFBxvIU0x93IjPyVHwb6ItQPjhLoeRpvK9BeLkuxlZj1_WGF8M1XDcuJ6fAz9V2gh3oFileTFotbwqlcfkN-W_lNgi7GWwOK8iX1Js-lRdWtgtSiDN6w0vDViM9FprAaOir_VYgpL7yRmV2EPfHc",
+              hasVerified: true,
+            },
+            {
+              id: 6,
+              name: "Tuyên truyền Luật Dân quân tự vệ cho nhân dân",
+              description:
+                "Phối hợp với công an phường tổ chức tuyên truyền Luật Dân quân tự vệ, nội quy, quy định về trật tự an toàn xã hội cho người dân khu phố 3.",
+              status: "upcoming",
+              statusLabel: "Sắp diễn ra",
+              date: "20/10/2023",
+              time: "19:00 - 21:00",
+              progress: "Chưa chuẩn bị",
+              progressPercent: 0,
+              assignee: "Hạ sĩ Hoàng Văn Phong",
+              assigneeAvatar:
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuCYcTp6aIPNaNKpFB9nsy7dz8y5x4DTSqTPDTcLuLLmWiXg2dn5tx2o8WNRrvgfQIHwpAV3mGRwAXxdTEfyQk2ke_lKMOenGGBBoRfxUFRG-r_vogfuLumkPC0u3xjiXBzBbDhfYyUUNf9WyrdsdgFLVK1gAMgqvWzUBuYD6BzoN0nSaWQSG_NPk-N4sxk15t1oHX_gJfqfcwQ1mdNE6FThXudXll1dmKImtEBNyxFfQmaJBRzP8vNOy894-VfyL6fBweoxAu66dpY",
+              hasVerified: false,
+            },
+          ],
+
+          selectActivity(activity) {
+            this.selectedActivity = activity;
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

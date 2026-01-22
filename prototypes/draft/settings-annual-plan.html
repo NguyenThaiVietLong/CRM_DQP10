@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cài đặt Kế hoạch Năm - Dân Quân Tự Vệ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              olive: {
+                DEFAULT: "#697565",
+                50: "#f6f7f6",
+                100: "#e3e6e2",
+                200: "#c7cdc5",
+                300: "#a5ada0",
+                400: "#858e7f",
+                500: "#697565",
+                600: "#535d50",
+                700: "#434a42",
+                800: "#373c36",
+                900: "#2f332e",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50" x-data="settingsAnnualPlan()">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <div
+            class="bg-olive/20 rounded-full size-10 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-olive">shield</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">Dân Quân Tự Vệ</h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="dashboard-annual-plan.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >calendar_today</span
+            >
+            <p class="text-sm font-medium text-gray-600">Dashboard KH Năm</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="dashboard-monthly-plan.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >calendar_month</span
+            >
+            <p class="text-sm font-medium text-gray-600">Dashboard KH Tháng</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-olive/10"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined text-olive"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >settings</span
+            >
+            <p class="text-sm font-bold text-olive">Cài đặt KH Năm</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="settings-monthly-plan.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">tune</span>
+            <p class="text-sm font-medium text-gray-600">Cài đặt KH Tháng</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header
+          class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between"
+        >
+          <div>
+            <h1 class="text-2xl font-bold text-gray-900">
+              Cài đặt Kế hoạch Năm
+            </h1>
+            <p class="text-sm text-gray-500 mt-1">
+              Quản lý các nhóm công việc theo kế hoạch năm của Thành đoàn
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <select
+              x-model="selectedYear"
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+            >
+              <option value="2026">Năm 2026</option>
+              <option value="2025">Năm 2025</option>
+              <option value="2024">Năm 2024</option>
+            </select>
+            <button
+              @click="showModal = true"
+              class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined text-xl">add</span>
+              <span>Thêm Nhóm Công việc</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-auto p-6">
+          <!-- Summary Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-gray-500">Tổng nhóm công việc</p>
+                  <p
+                    class="text-2xl font-bold text-gray-900 mt-1"
+                    x-text="workGroups.length"
+                  ></p>
+                </div>
+                <div
+                  class="size-12 bg-blue-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined text-blue-600"
+                    >category</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-gray-500">Tổng KPI năm</p>
+                  <p
+                    class="text-2xl font-bold text-gray-900 mt-1"
+                    x-text="totalKPI"
+                  ></p>
+                </div>
+                <div
+                  class="size-12 bg-green-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined text-green-600"
+                    >target</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg border border-gray-200 p-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-sm text-gray-500">Cập nhật lần cuối</p>
+                  <p class="text-sm font-semibold text-gray-900 mt-1">
+                    01/01/2026 09:30
+                  </p>
+                  <p class="text-xs text-gray-500">bởi Admin</p>
+                </div>
+                <div
+                  class="size-12 bg-purple-100 rounded-lg flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined text-purple-600"
+                    >update</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div
+            class="bg-white rounded-lg border border-gray-200 overflow-hidden"
+          >
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-24"
+                    >
+                      STT
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-40"
+                    >
+                      Mã nhóm
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Nhóm công việc
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-36"
+                    >
+                      Số lượng KPI
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-36"
+                    >
+                      Đã thực hiện
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-48"
+                    >
+                      Tiến độ
+                    </th>
+                    <th
+                      class="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-44"
+                    >
+                      Thao tác
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <template
+                    x-for="(group, index) in workGroups"
+                    :key="group.id"
+                  >
+                    <tr class="hover:bg-gray-50">
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                        x-text="group.stt"
+                      ></td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <code
+                          class="px-2 py-1 text-xs bg-gray-100 rounded"
+                          x-text="group.code"
+                        ></code>
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                        x-text="group.name"
+                      ></td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                      >
+                        <span
+                          class="font-semibold"
+                          x-text="group.target"
+                        ></span>
+                        công việc
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                      >
+                        <span
+                          class="font-semibold text-green-600"
+                          x-text="group.completed"
+                        ></span>
+                        công việc
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="flex items-center gap-2">
+                          <div
+                            class="flex-1 bg-gray-200 rounded-full h-2 max-w-[80px]"
+                          >
+                            <div
+                              class="bg-green-500 h-2 rounded-full"
+                              :style="`width: ${Math.min((group.completed / group.target) * 100, 100)}%`"
+                            ></div>
+                          </div>
+                          <span
+                            class="text-xs font-medium"
+                            :class="group.completed >= group.target ? 'text-green-600' : 'text-gray-600'"
+                            x-text="`${Math.round((group.completed / group.target) * 100)}%`"
+                          ></span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm">
+                        <div class="flex items-center gap-2">
+                          <button
+                            @click="editGroup(group)"
+                            class="p-1 text-blue-600 hover:bg-blue-50 rounded"
+                            title="Sửa"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >edit</span
+                            >
+                          </button>
+                          <button
+                            @click="viewHistory(group)"
+                            class="p-1 text-purple-600 hover:bg-purple-50 rounded"
+                            title="Lịch sử thay đổi"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >history</span
+                            >
+                          </button>
+                          <button
+                            @click="deleteGroup(group)"
+                            class="p-1 text-red-600 hover:bg-red-50 rounded"
+                            title="Xóa"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >delete</span
+                            >
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Empty State -->
+          <div
+            x-show="workGroups.length === 0"
+            class="bg-white rounded-lg border-2 border-dashed border-gray-300 p-12 text-center"
+          >
+            <span class="material-symbols-outlined text-6xl text-gray-400"
+              >folder_open</span
+            >
+            <h3 class="mt-4 text-lg font-medium text-gray-900">
+              Chưa có nhóm công việc nào
+            </h3>
+            <p class="mt-2 text-sm text-gray-500">
+              Bắt đầu bằng cách thêm nhóm công việc đầu tiên cho kế hoạch năm
+            </p>
+            <button
+              @click="showModal = true"
+              class="mt-4 px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors"
+            >
+              Thêm Nhóm Công việc
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal Add/Edit -->
+    <div
+      x-show="showModal"
+      x-cloak
+      class="fixed inset-0 z-50 overflow-y-auto"
+      style="display: none"
+    >
+      <div
+        class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0"
+      >
+        <div
+          @click="showModal = false"
+          class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+        ></div>
+
+        <div
+          class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+        >
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="flex items-center justify-between mb-4">
+              <h3
+                class="text-lg font-medium text-gray-900"
+                x-text="editingGroup ? 'Sửa Nhóm Công việc' : 'Thêm Nhóm Công việc'"
+              ></h3>
+              <button
+                @click="showModal = false"
+                class="text-gray-400 hover:text-gray-500"
+              >
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            <form @submit.prevent="saveGroup" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >STT <span class="text-red-500">*</span></label
+                >
+                <input
+                  x-model="formData.stt"
+                  type="number"
+                  min="1"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                  placeholder="Số thứ tự"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Mã nhóm công việc <span class="text-red-500">*</span></label
+                >
+                <input
+                  x-model="formData.code"
+                  type="text"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive uppercase"
+                  placeholder="VD: HUANLUYEN"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Mã viết hoa, không dấu, không khoảng trắng
+                </p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Tên nhóm công việc <span class="text-red-500">*</span></label
+                >
+                <input
+                  x-model="formData.name"
+                  type="text"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                  placeholder="VD: Công tác Huấn luyện"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Số lượng KPI <span class="text-red-500">*</span></label
+                >
+                <input
+                  x-model="formData.target"
+                  type="number"
+                  min="1"
+                  required
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                  placeholder="VD: 20"
+                />
+                <p class="mt-1 text-xs text-gray-500">
+                  Số công việc cần hoàn thành trong năm
+                </p>
+              </div>
+
+              <div
+                class="flex items-center gap-3 pt-4 border-t border-gray-200"
+              >
+                <button
+                  type="button"
+                  @click="showModal = false"
+                  class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                >
+                  Hủy
+                </button>
+                <button
+                  type="submit"
+                  class="flex-1 px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90"
+                >
+                  <span x-text="editingGroup ? 'Cập nhật' : 'Thêm mới'"></span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal History -->
+    <div
+      x-show="showHistoryModal"
+      x-cloak
+      class="fixed inset-0 z-50 overflow-y-auto"
+      style="display: none"
+    >
+      <div
+        class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0"
+      >
+        <div
+          @click="showHistoryModal = false"
+          class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
+        ></div>
+
+        <div
+          class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full"
+        >
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-medium text-gray-900">
+                Lịch sử thay đổi
+              </h3>
+              <button
+                @click="showHistoryModal = false"
+                class="text-gray-400 hover:text-gray-500"
+              >
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+
+            <div class="space-y-3">
+              <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <div
+                  class="size-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined text-sm text-blue-600"
+                    >edit</span
+                  >
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    Cập nhật KPI từ 20 → 25
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    15/06/2026 14:30 • Admin Nguyễn Văn A
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <div
+                  class="size-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <span class="material-symbols-outlined text-sm text-green-600"
+                    >add</span
+                  >
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-900">
+                    Tạo nhóm công việc
+                  </p>
+                  <p class="text-xs text-gray-500 mt-1">
+                    01/01/2026 09:00 • Admin Nguyễn Văn A
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function settingsAnnualPlan() {
+        return {
+          selectedYear: "2026",
+          showModal: false,
+          showHistoryModal: false,
+          editingGroup: null,
+          formData: {
+            stt: "",
+            code: "",
+            name: "",
+            target: "",
+          },
+          workGroups: [
+            {
+              id: 1,
+              stt: 1,
+              code: "HUANLUYEN",
+              name: "Công tác Huấn luyện",
+              target: 20,
+              completed: 15,
+            },
+            {
+              id: 2,
+              stt: 2,
+              code: "DIEUDONGG",
+              name: "Công tác Điều động",
+              target: 30,
+              completed: 12,
+            },
+            {
+              id: 3,
+              stt: 3,
+              code: "CHINHTR",
+              name: "Công tác Chính trị",
+              target: 30,
+              completed: 28,
+            },
+            {
+              id: 4,
+              stt: 4,
+              code: "KTTC",
+              name: "Kiểm tra tính chiến đấu",
+              target: 15,
+              completed: 10,
+            },
+            {
+              id: 5,
+              stt: 5,
+              code: "VANNGHỀ",
+              name: "Văn nghệ - Thể thao",
+              target: 12,
+              completed: 8,
+            },
+          ],
+
+          get totalKPI() {
+            return this.workGroups.reduce((sum, g) => sum + g.target, 0);
+          },
+
+          editGroup(group) {
+            this.editingGroup = group;
+            this.formData = { ...group };
+            this.showModal = true;
+          },
+
+          saveGroup() {
+            if (this.editingGroup) {
+              // Update existing
+              const index = this.workGroups.findIndex(
+                (g) => g.id === this.editingGroup.id,
+              );
+              this.workGroups[index] = {
+                ...this.editingGroup,
+                ...this.formData,
+              };
+            } else {
+              // Add new
+              this.workGroups.push({
+                id: Date.now(),
+                ...this.formData,
+                completed: 0,
+              });
+            }
+            this.resetForm();
+          },
+
+          resetForm() {
+            this.showModal = false;
+            this.editingGroup = null;
+            this.formData = { stt: "", code: "", name: "", target: "" };
+          },
+
+          viewHistory(group) {
+            this.showHistoryModal = true;
+          },
+
+          deleteGroup(group) {
+            if (
+              confirm(`Bạn có chắc muốn xóa nhóm công việc "${group.name}"?`)
+            ) {
+              this.workGroups = this.workGroups.filter(
+                (g) => g.id !== group.id,
+              );
+            }
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

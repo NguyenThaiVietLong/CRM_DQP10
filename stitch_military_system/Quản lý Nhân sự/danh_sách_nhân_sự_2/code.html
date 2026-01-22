@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Import Nhân sự - Quản Lý Dân Quân</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#556B2F",
+                        "primary-dark": "#0b8acb",
+                        "background-light": "#f7f7f6",
+                        "background-dark": "#1a1d15",
+                        "card-light": "#ffffff",
+                        "card-dark": "#182830",
+                        "text-main": "#0d171c",
+                        "text-sub": "#49819c"
+                    },
+                    fontFamily: {
+                        display: "Inter",
+                        body: ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 min-h-screen">
+<div class="flex">
+<aside class="w-64 bg-primary text-white h-screen flex flex-col fixed top-0 left-0">
+<div class="px-6 py-4 flex items-center gap-3 border-b border-white/10">
+<span class="material-symbols-outlined text-3xl">shield_person</span>
+<h2 class="text-xl font-bold tracking-tight">QLDQ Việt Nam</h2>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-medium text-sm">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-white/20 font-semibold text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="font-medium text-sm">Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">campaign</span>
+<span class="font-medium text-sm">Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+<span class="font-medium text-sm">Lịch trực</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">radio</span>
+<span class="font-medium text-sm">Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">model_training</span>
+<span class="font-medium text-sm">Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">summarize</span>
+<span class="font-medium text-sm">Báo cáo</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-white/10 mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-medium text-sm">Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col pl-64">
+<header class="sticky top-0 z-50 bg-primary dark:bg-primary px-6 py-3 border-b border-white/10">
+<div class="w-full flex items-center justify-between">
+<nav class="flex items-center gap-8">
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Tổng quan</a>
+<a class="text-white font-bold text-sm leading-normal border-b-2 border-white pb-0.5" href="#">Nhân sự</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Hoạt động</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Lịch trực</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Thiết bị</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Huấn luyện</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Báo cáo</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-white/80 hover:text-white">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border border-primary"></span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-white/30" data-alt="Avatar của chỉ huy đơn vị" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvLj1N_ZqQe7xOtSJeDySjBceLAYbdlFjefG6t4sovRxASJe0npCsxJxn86vJvhYZHnF2nNrHErCH92bB4MqafZCH6h7XfMZv08zVC774cJdPpKKpF-VdIC3YFJRnbl5zT00ii79eWi-k5vhRBU8a3BeF0tIaCE-Vsgur-C0C-vu2IsEpKIkt3aJi3_twX-G9b4QM5n49JFmdRjvo33PEO4jAKvRer5f5wAZdZpCPn7beXO8FXrr5V_Attw8wN3zPMsgclgIBIpAA');"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 sm:px-6 py-8">
+<div class="flex items-center gap-3 mb-8">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-1">Import Nhân sự</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Tải lên file Excel hoặc CSV để nhập hàng loạt hồ sơ nhân sự.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-6 md:p-8 max-w-4xl mx-auto">
+<div class="mb-8">
+<label class="cursor-pointer" for="file-upload">
+<div class="relative flex flex-col items-center justify-center w-full h-64 border-2 border-slate-300 dark:border-gray-600 border-dashed rounded-xl hover:bg-slate-50 dark:hover:bg-gray-800 transition-colors">
+<div class="flex flex-col items-center justify-center pt-5 pb-6 text-center">
+<span class="material-symbols-outlined text-6xl text-slate-400 dark:text-gray-500 mb-4">cloud_upload</span>
+<p class="mb-2 text-lg font-semibold text-slate-700 dark:text-slate-300">Kéo &amp; thả file vào đây</p>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">hoặc</p>
+<span class="px-6 py-2.5 bg-slate-100 text-slate-700 dark:bg-gray-700 dark:text-slate-300 rounded-lg text-sm font-semibold hover:bg-slate-200 dark:hover:bg-gray-600 transition-colors">
+                                        Chọn File Excel/CSV
+                                    </span>
+</div>
+<input accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="hidden" id="file-upload" type="file"/>
+</div>
+</label>
+<div class="mt-4 text-center">
+<a class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline" href="#">
+<span class="material-symbols-outlined text-base">description</span>
+<span>Tải xuống file mẫu (.xlsx)</span>
+</a>
+</div>
+</div>
+<div class="mb-8">
+<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-4 border-b border-slate-200 dark:border-gray-700 pb-3">Tùy chọn xử lý dữ liệu</h3>
+<div class="space-y-4">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="h-5 w-5 rounded border-slate-300 dark:border-gray-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-gray-700" type="checkbox"/>
+<span class="text-sm text-slate-700 dark:text-slate-300">Bỏ qua dòng đầu tiên (dòng tiêu đề)</span>
+</label>
+<div class="flex items-start gap-3">
+<input class="h-5 w-5 rounded border-slate-300 dark:border-gray-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-gray-700 mt-0.5" id="handle-duplicates" type="checkbox"/>
+<div>
+<label class="text-sm text-slate-700 dark:text-slate-300 cursor-pointer" for="handle-duplicates">Xử lý dữ liệu trùng lặp</label>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Chọn cách xử lý khi tìm thấy nhân sự có mã hồ sơ đã tồn tại.</p>
+<div class="mt-2 space-y-2 pl-2">
+<label class="flex items-center gap-2">
+<input checked="" class="h-4 w-4 border-slate-300 dark:border-gray-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-gray-700" name="duplicate-option" type="radio" value="skip"/>
+<span class="text-sm text-slate-600 dark:text-slate-400">Bỏ qua (Không cập nhật)</span>
+</label>
+<label class="flex items-center gap-2">
+<input class="h-4 w-4 border-slate-300 dark:border-gray-600 text-primary focus:ring-primary/50 bg-slate-100 dark:bg-gray-700" name="duplicate-option" type="radio" value="update"/>
+<span class="text-sm text-slate-600 dark:text-slate-400">Cập nhật thông tin</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex items-center justify-end gap-3 pt-6 border-t border-slate-200 dark:border-gray-700">
+<button class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-slate-800 dark:text-slate-200 transition-colors">Hủy</button>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-semibold shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">upload_file</span>
+<span>Import</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+<div class="relative w-full max-w-md p-6 bg-white dark:bg-card-dark rounded-xl shadow-2xl border border-slate-200 dark:border-gray-700 m-4">
+<div class="text-center">
+<span class="material-symbols-outlined text-6xl text-amber-500 mb-4">warning</span>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Xác nhận Import</h3>
+<p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Bạn có chắc chắn muốn tiến hành import dữ liệu nhân sự không?</p>
+</div>
+<div class="mt-6 p-4 bg-slate-50 dark:bg-gray-700/50 rounded-lg border border-slate-200 dark:border-gray-600">
+<h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-3">Tóm tắt tùy chọn:</h4>
+<ul class="space-y-2 text-sm">
+<li class="flex justify-between items-center">
+<span class="text-slate-600 dark:text-slate-400">Tên file:</span>
+<span class="font-medium text-slate-800 dark:text-slate-200">DanhSachNhanSu_Q1_2024.xlsx</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-slate-600 dark:text-slate-400">Số dòng sẽ nhập:</span>
+<span class="font-medium text-slate-800 dark:text-slate-200">254</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="text-slate-600 dark:text-slate-400">Xử lý trùng lặp:</span>
+<span class="font-medium text-slate-800 dark:text-slate-200">Bỏ qua (Không cập nhật)</span>
+</li>
+</ul>
+</div>
+<div class="mt-6 flex justify-end gap-3">
+<button class="px-5 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 hover:bg-slate-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-slate-800 dark:text-slate-200 transition-colors">Hủy</button>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-semibold shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined text-base">task_alt</span>
+<span>Xác nhận Import</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

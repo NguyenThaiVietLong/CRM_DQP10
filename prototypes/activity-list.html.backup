@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách Hoạt động - CRM Dân Quân Phường 10</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              olive: "#556B2F",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden" x-data="listApp()">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <!-- Logo & Title -->
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <div
+            class="bg-olive/20 rounded-full size-10 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-olive">shield</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">Dân Quân Tự Vệ</h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+          </div>
+        </div>
+
+        <!-- User Profile Card -->
+        <div
+          class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20"
+        >
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <div
+                class="size-10 rounded-full bg-olive/20 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-olive text-2xl"
+                  >account_circle</span
+                >
+              </div>
+              <span
+                class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"
+              ></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p
+                class="text-sm font-bold text-gray-900 truncate"
+                x-text="currentUser.fullName || 'Guest'"
+              ></p>
+              <p class="text-xs text-gray-600">
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-medium"
+                  :class="{
+                    'bg-blue-100 text-blue-700': currentUser.role === 'dqtt',
+                    'bg-orange-100 text-orange-700': currentUser.role === 'admin'
+                  }"
+                  x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"
+                ></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="dashboard-tong-hop.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >assessment</span
+            >
+            <p class="text-sm font-medium text-gray-600">Dashboard</p>
+          </a>
+
+          <!-- Hoạt động Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">event</span>
+              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-olive"></span>
+                <p class="text-sm font-bold">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch trực</p>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            @click.prevent="logout()"
+            href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">
+                Danh sách Hoạt động
+              </h1>
+              <p class="text-sm text-gray-500 mt-1">
+                Quản lý và theo dõi các hoạt động
+              </p>
+            </div>
+            <a
+              href="create-activity.html"
+              class="flex items-center gap-2 bg-olive text-white px-4 py-2 rounded-lg hover:bg-olive/90 transition-colors font-medium"
+            >
+              <span class="material-symbols-outlined">add</span>
+              <span>Tạo hoạt động</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Filters -->
+        <div
+          class="bg-white border-b border-gray-200 px-6 py-4"
+          x-data="{ showFilters: false }"
+        >
+          <div class="flex items-center gap-4 flex-wrap">
+            <div class="flex-1 min-w-[300px]">
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  >search</span
+                >
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm hoạt động..."
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-olive focus:border-transparent"
+                />
+              </div>
+            </div>
+            <button
+              @click="showFilters = !showFilters"
+              class="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
+              <span class="material-symbols-outlined">filter_list</span>
+              <span>Bộ lọc</span>
+            </button>
+            <select
+              class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-olive focus:border-transparent"
+            >
+              <option>Tất cả trạng thái</option>
+              <option>Đang thực hiện</option>
+              <option>Hoàn thành</option>
+              <option>Quá hạn</option>
+            </select>
+          </div>
+
+          <!-- Advanced Filters -->
+          <div x-show="showFilters" x-cloak class="mt-4 pt-4 border-t">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Loại công việc</label
+                >
+                <select
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                >
+                  <option>Tất cả</option>
+                  <option>Huấn luyện</option>
+                  <option>Tuần tra</option>
+                  <option>Sự kiện</option>
+                  <option>Hội thảo</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Nhóm công việc</label
+                >
+                <select
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                >
+                  <option>Tất cả</option>
+                  <option>Công tác huấn luyện</option>
+                  <option>Công tác Dân vận</option>
+                  <option>Công tác Chính trị</option>
+                  <option>Kiểm tra bảo dưỡng</option>
+                  <option>Văn nghệ - Thể thao</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1"
+                  >Tổ phụ trách</label
+                >
+                <select
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                >
+                  <option>Tất cả</option>
+                  <option>Tổ 1</option>
+                  <option>Tổ 2</option>
+                  <option>Tổ 3</option>
+                  <option>Tổ 4</option>
+                  <option>Tổ 5</option>
+                  <option>Tổ 6</option>
+                  <option>Tổ 7</option>
+                  <option>Tổ 8</option>
+                  <option>Tổ 9</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity List -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <!-- Empty state -->
+          <div
+            x-show="filteredActivities.length === 0"
+            class="text-center py-12"
+          >
+            <span class="material-symbols-outlined text-gray-400 text-6xl"
+              >event_busy</span
+            >
+            <p class="text-gray-500 mt-4">Không có kế hoạch nào</p>
+          </div>
+
+          <!-- Activity Cards Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <template x-for="activity in filteredActivities" :key="activity.id">
+              <a
+                :href="`activity-detail.html?id=${activity.id}`"
+                class="block bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-all"
+              >
+                <div class="p-5">
+                  <!-- Header -->
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                      <h3
+                        class="text-lg font-bold text-gray-900 mb-1"
+                        x-text="activity.name"
+                      ></h3>
+                      <div
+                        class="flex items-center gap-4 text-sm text-gray-500"
+                      >
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >calendar_today</span
+                          >
+                          <span
+                            x-text="`${activity.startDate} - ${activity.endDate}`"
+                          ></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 px-3 py-1 rounded-full"
+                      :class="getStatusColor(activity.status)"
+                    >
+                      <span
+                        class="size-2 rounded-full bg-current opacity-70"
+                      ></span>
+                      <span
+                        class="text-xs font-bold uppercase"
+                        x-text="activity.status"
+                      ></span>
+                    </div>
+                  </div>
+
+                  <!-- Tags -->
+                  <div class="flex items-center gap-2 flex-wrap mb-3">
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >school</span
+                      >
+                      <span x-text="activity.workGroup"></span>
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >group</span
+                      >
+                      <span x-text="`Tổ ${activity.department}`"></span>
+                    </span>
+                    <span
+                      x-show="activity.location"
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >location_on</span
+                      >
+                      <span x-text="activity.location"></span>
+                    </span>
+                  </div>
+
+                  <!-- Tasks Summary -->
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >task</span
+                        >
+                        <span
+                          x-text="`${activity.tasks.length} nhiệm vụ`"
+                        ></span>
+                      </div>
+                      <div
+                        x-show="activity.documentNumber"
+                        class="flex items-center gap-1"
+                      >
+                        <span class="material-symbols-outlined text-sm"
+                          >description</span
+                        >
+                        <span x-text="activity.documentNumber"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </template>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+              <a
+                href="activity-detail.html"
+                class="block bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-all"
+              >
+                <div class="p-5">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">
+                        Huấn luyện sử dụng vũ khí AK
+                      </h3>
+                      <div class="flex items-center gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >calendar_today</span
+                          >
+                          <span>01/12/2025 - 05/12/2025</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >person</span
+                          >
+                          <span>Nguyễn Văn A</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 border border-green-200"
+                    >
+                      <span class="size-2 rounded-full bg-green-500"></span>
+                      <span class="text-green-700 text-xs font-bold"
+                        >ĐANG THỰC HIỆN</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2 flex-wrap mb-3">
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >school</span
+                      >
+                      Huấn luyện
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm">group</span>
+                      Tổ 1
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >category</span
+                      >
+                      Công tác huấn luyện
+                    </span>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="flex items-center justify-between text-sm mb-1">
+                      <span class="text-gray-600">Tiến độ</span>
+                      <span class="font-bold text-olive">68%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-olive h-2 rounded-full"
+                        style="width: 68%"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >task</span
+                        >
+                        <span>4/6 nhiệm vụ</span>
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >description</span
+                        >
+                        <span>Số CV: 123/CV-DQ</span>
+                      </div>
+                    </div>
+                    <span
+                      class="material-symbols-outlined text-olive hover:translate-x-1 transition-transform"
+                      >arrow_forward</span
+                    >
+                  </div>
+                </div>
+              </a>
+
+              <!-- Activity Card 2 -->
+              <a
+                href="activity-detail.html"
+                class="block bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-all"
+              >
+                <div class="p-5">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">
+                        Tuần tra khu vực biên giới Mốc 102
+                      </h3>
+                      <div class="flex items-center gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >calendar_today</span
+                          >
+                          <span>10/11/2025 - 15/11/2025</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >person</span
+                          >
+                          <span>Trần Văn B</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-100 border border-blue-200"
+                    >
+                      <span class="size-2 rounded-full bg-blue-500"></span>
+                      <span class="text-blue-700 text-xs font-bold"
+                        >HOÀN THÀNH</span
+                      >
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2 flex-wrap mb-3">
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >explore</span
+                      >
+                      Tuần tra
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm">group</span>
+                      Tổ 3
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >category</span
+                      >
+                      Công tác Dân vận
+                    </span>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="flex items-center justify-between text-sm mb-1">
+                      <span class="text-gray-600">Tiến độ</span>
+                      <span class="font-bold text-blue-600">100%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-blue-600 h-2 rounded-full"
+                        style="width: 100%"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >task</span
+                        >
+                        <span>3/3 nhiệm vụ</span>
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >description</span
+                        >
+                        <span>Số CV: 089/CV-DQ</span>
+                      </div>
+                    </div>
+                    <span
+                      class="material-symbols-outlined text-olive hover:translate-x-1 transition-transform"
+                      >arrow_forward</span
+                    >
+                  </div>
+                </div>
+              </a>
+
+              <!-- Activity Card 3 -->
+              <a
+                href="activity-detail.html"
+                class="block bg-white rounded-lg border border-red-200 hover:shadow-lg transition-all"
+              >
+                <div class="p-5">
+                  <div class="flex items-start justify-between mb-3">
+                    <div class="flex-1">
+                      <h3 class="text-lg font-bold text-gray-900 mb-1">
+                        Kiểm tra vũ khí trang bị định kỳ Q4
+                      </h3>
+                      <div class="flex items-center gap-4 text-sm text-gray-500">
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >calendar_today</span
+                          >
+                          <span>01/10/2025 - 05/10/2025</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                          <span class="material-symbols-outlined text-sm"
+                            >person</span
+                          >
+                          <span>Lê Văn C</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 border border-red-200"
+                    >
+                      <span
+                        class="size-2 rounded-full bg-red-500 animate-pulse"
+                      ></span>
+                      <span class="text-red-700 text-xs font-bold">QUÁ HẠN</span>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center gap-2 flex-wrap mb-3">
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm">build</span>
+                      Kiểm tra
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm">group</span>
+                      Tổ 5
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full font-medium"
+                    >
+                      <span class="material-symbols-outlined text-sm"
+                        >category</span
+                      >
+                      Kiểm tra bảo dưỡng
+                    </span>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="flex items-center justify-between text-sm mb-1">
+                      <span class="text-gray-600">Tiến độ</span>
+                      <span class="font-bold text-red-600">45%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        class="bg-red-600 h-2 rounded-full"
+                        style="width: 45%"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4 text-sm text-gray-600">
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >task</span
+                        >
+                        <span>2/5 nhiệm vụ</span>
+                      </div>
+                      <div class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm"
+                          >description</span
+                        >
+                        <span>Số CV: 098/CV-DQ</span>
+                      </div>
+                    </div>
+                    <span
+                      class="material-symbols-outlined text-olive hover:translate-x-1 transition-transform"
+                      >arrow_forward</span
+                    >
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-between mt-6">
+              <div class="text-sm text-gray-600">
+                Hiển thị <span class="font-medium">1-3</span> trong
+                <span class="font-medium">45</span> hoạt động
+              </div>
+              <div class="flex gap-2">
+                <button
+                  class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+                  disabled
+                >
+                  Trước
+                </button>
+                <button class="px-3 py-1 bg-olive text-white rounded-lg">
+                  1
+                </button>
+                <button
+                  class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  3
+                </button>
+                <button
+                  class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  Sau
+                </button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <script>
+        function listApp() {
+          return {
+            currentUser: {
+              fullName: "Guest",
+              role: null,
+              team: null,
+            },
+            activities: [],
+            filteredActivities: [],
+
+            init() {
+              // Check authentication
+              const session = localStorage.getItem("dqp10_session");
+              if (!session) {
+                window.location.href = "login.html";
+                return;
+              }
+              this.currentUser = JSON.parse(session);
+
+              // Initialize sample data if not exists
+              this.initSampleData();
+
+              // Load activities
+              this.loadActivities();
+            },
+
+            initSampleData() {
+              const existing = localStorage.getItem("dqp10_activities");
+              if (!existing) {
+                const sampleActivities = [
+                  {
+                    id: 1,
+                    name: "Hoạt động kế hoạch hành quân tháng 02",
+                    workType: "kehoach",
+                    workGroup: "HUANLUYEN",
+                    department: "1",
+                    startDate: "01/01/2026",
+                    endDate: "31/01/2026",
+                    documentNumber: "456/CV-BCH",
+                    location: "Sân tập Phường 10",
+                    tasks: [
+                      {
+                        title: "Xây dựng lịch hành quân",
+                        team: "Tổ 1",
+                        assignees: "Nguyễn Thanh Nhân",
+                        dueDate: "02/01/2026",
+                      },
+                      {
+                        title: "Chụp ảnh quay phim",
+                        team: "Tổ 4",
+                        assignees: "Mai Văn Dũng",
+                        dueDate: "13/01/2026",
+                      },
+                      {
+                        title: "Biên tập hình ảnh",
+                        team: "Tổ 4",
+                        assignees: "Lê Văn Cường",
+                        dueDate: "15/01/2026",
+                      },
+                      {
+                        title: "Chuẩn bị tư trang",
+                        team: "Tổ 5",
+                        assignees: "Hồ Văn Hoàng",
+                        dueDate: "13/01/2026",
+                      },
+                    ],
+                    status: "Đang thực hiện",
+                  },
+                  {
+                    id: 2,
+                    name: "Tập huấn nghiệp vụ chiến đấu quý 1/2026",
+                    workType: "kehoach",
+                    workGroup: "HUANLUYEN",
+                    department: "2",
+                    startDate: "05/01/2026",
+                    endDate: "28/02/2026",
+                    documentNumber: "123/CV-DQ",
+                    location: "Trường bắn Củ Chi",
+                    tasks: [
+                      {
+                        title: "Lập kế hoạch tập huấn",
+                        team: "Tổ 2",
+                        assignees: "Thái Thanh Phong",
+                        dueDate: "08/01/2026",
+                      },
+                      {
+                        title: "Huấn luyện thực hành",
+                        team: "Tổ 2",
+                        assignees: "Phan Phong Phú",
+                        dueDate: "20/02/2026",
+                      },
+                    ],
+                    status: "Đang thực hiện",
+                  },
+                  {
+                    id: 3,
+                    name: "Kiểm tra trang bị vũ khí quý 1",
+                    workType: "kehoach",
+                    workGroup: "KTTC",
+                    department: "3",
+                    startDate: "10/01/2026",
+                    endDate: "15/01/2026",
+                    documentNumber: "789/QĐ-BCH",
+                    location: "Kho vũ khí P10",
+                    tasks: [
+                      {
+                        title: "Kiểm kê vũ khí",
+                        team: "Tổ 3",
+                        assignees: "Nguyễn Văn Quang",
+                        dueDate: "12/01/2026",
+                      },
+                    ],
+                    status: "Hoàn thành",
+                  },
+                ];
+
+                localStorage.setItem(
+                  "dqp10_activities",
+                  JSON.stringify(sampleActivities),
+                );
+                console.log("✅ Initialized sample activities data");
+              }
+            },
+
+            loadActivities() {
+              const data = localStorage.getItem("dqp10_activities");
+              if (data) {
+                this.activities = JSON.parse(data);
+
+                // Filter based on user role
+                if (this.currentUser.role === "admin") {
+                  // Admin sees all activities
+                  this.filteredActivities = this.activities;
+                } else {
+                  // DQTT users only see activities from their team
+                  const userTeam = this.currentUser.team; // e.g. "Tổ 3"
+                  const teamNumber = userTeam
+                    ? userTeam.replace("Tổ ", "")
+                    : null;
+
+                  if (teamNumber) {
+                    this.filteredActivities = this.activities.filter(
+                      (activity) => activity.department === teamNumber,
+                    );
+                  } else {
+                    // If no team, show all (fallback)
+                    this.filteredActivities = this.activities;
+                  }
+                }
+
+                console.log(
+                  `Loaded ${this.activities.length} activities, showing ${this.filteredActivities.length} filtered`,
+                );
+              }
+            },
+
+            getStatusColor(status) {
+              if (status === "Hoàn thành") return "bg-green-100 text-green-700";
+              if (status === "Đang thực hiện") return "bg-blue-100 text-blue-700";
+              return "bg-gray-100 text-gray-700";
+            },
+
+            logout() {
+              localStorage.removeItem("dqp10_session");
+              window.location.href = "login.html";
+            },
+          };
+        }
+    </script>
+
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </body>
+</html>

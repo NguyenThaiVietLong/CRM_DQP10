@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Báo Cáo Xuất File - Hệ Thống Quản Lý Dân Quân</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#196ee6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-slate-200 dark:border-slate-700 flex flex-col h-screen shrink-0 sticky top-0">
+<div class="p-6 pb-2">
+<div class="flex items-center gap-3 mb-8">
+<div class="bg-center bg-no-repeat bg-cover rounded-lg size-10 shadow-sm" data-alt="Vietnam militia logo emblem with star and rice" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFF3pRVGHQ3BuLZUTvvJzpQtIPSZjbXLCljrXw01_GmncbwlgbAw8BzQ-oGKQ-Npz3lJk_1zJ0jWpsTHWG87dqO8qMLPQwlMN5f5l2gy2qrpNpGX4XzDT6i7LTBoDXkfnA8uax9mivAcqrWAfCgWsGluWxgmK1PhrLLhp03UDZtAx9YaepuQY_qFXq19fdqj_6Mqsb6F7OnSA1fvadviNHT3SebnFMgT2SJpaas_EKkGptsRhmKMgEQJuuARVctylfDhhqGnms6k4");'></div>
+<div>
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Dân Quân Tự Vệ</h1>
+<p class="text-slate-500 text-xs font-medium">Ban Chỉ Huy Quân Sự</p>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">groups</span>
+<span class="text-sm font-medium">Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm font-medium">Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">inventory_2</span>
+<span class="text-sm font-medium">Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">school</span>
+<span class="text-sm font-medium">Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-primary group-hover:text-primary transition-colors">description</span>
+<span class="text-sm font-medium">Báo cáo</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Cài đặt</span>
+</a>
+</div>
+</div>
+<div class="mt-auto p-4 border-t border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border border-slate-200" data-alt="Portrait of user officer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBJHPdRwAzBzx_aeN1JF6eF_b34-PQ2-WPxHSR7Hb32CQ2esnp2qLBFANvCkVdacdFQ841PU5QzlLxt-182UzQpsZzl698SE8QH89tm6u93HDk4KsiEsNwGRKpfiAahZR-yFV9071AoOE0-Vp8YAQwLIMQWXAfLSvy6TLE7M-Rh8xEvuyNNglqSj8ykmMrGke-XwP7QmuhWsEU4QSwZAnboPBicvojJ7JGpJFmxYLcZMlkrQ-55Rm-jYO8lqWQ9QFSnRlTi9LkgOBo");'></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">Đ/c Nguyễn Văn A</p>
+<p class="text-xs text-slate-500 truncate">Chỉ huy trưởng</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- Top Navigation -->
+<header class="bg-surface-light dark:bg-surface-dark border-b border-slate-200 dark:border-slate-700 px-8 py-4 sticky top-0 z-20">
+<div class="flex items-center justify-between gap-8 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400">menu</span>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold">Hệ Thống Quản Lý</h2>
+</div>
+<div class="flex-1 max-w-lg">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+</div>
+<input class="block w-full p-2.5 pl-10 text-sm text-slate-900 bg-slate-50 rounded-lg border border-slate-200 focus:ring-primary focus:border-primary dark:bg-slate-800 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white" placeholder="Tìm kiếm nhanh báo cáo, nhân sự..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full"></span>
+</button>
+<button class="p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex-1 px-8 py-8 max-w-7xl mx-auto w-full">
+<!-- Page Heading -->
+<div class="flex flex-col gap-1 mb-8">
+<h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Xuất Báo Cáo Hệ Thống</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Tùy chỉnh tham số và tải xuống các báo cáo chi tiết cho công tác quản lý.</p>
+</div>
+<!-- Tabs -->
+<div class="border-b border-slate-200 dark:border-slate-700 mb-8">
+<div class="flex gap-8">
+<a class="flex items-center gap-2 pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+                        Thống kê chung
+                    </a>
+<a class="flex items-center gap-2 pb-3 border-b-2 border-primary text-primary font-bold text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] fill-1">file_download</span>
+                        Xuất File
+                    </a>
+<a class="flex items-center gap-2 pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                        Lịch sử báo cáo
+                    </a>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Main Configuration Form -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Step 1: Report Type -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-4 flex items-center gap-2">
+<span class="flex items-center justify-center size-6 rounded-full bg-primary text-white text-xs font-bold">1</span>
+                            Chọn loại báo cáo
+                        </h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<label class="cursor-pointer group relative">
+<input checked="" class="peer sr-only" name="report_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 transition-all h-full">
+<div class="size-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">event_note</span>
+</div>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300 peer-checked:text-primary text-center">Hoạt động</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+<!-- Card 2 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="report_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 transition-all h-full">
+<div class="size-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300 peer-checked:text-primary text-center">Lực lượng</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+<!-- Card 3 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="report_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 transition-all h-full">
+<div class="size-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300 peer-checked:text-primary text-center">Kho Thiết bị</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+<!-- Card 4 -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" name="report_type" type="radio"/>
+<div class="flex flex-col items-center justify-center p-4 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:border-primary peer-checked:border-primary peer-checked:bg-primary/5 transition-all h-full">
+<div class="size-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined">public</span>
+</div>
+<span class="text-sm font-semibold text-slate-700 dark:text-slate-300 peer-checked:text-primary text-center">Facebook</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Step 2: Time Configuration -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-4 flex items-center gap-2">
+<span class="flex items-center justify-center size-6 rounded-full bg-primary text-white text-xs font-bold">2</span>
+                            Thời gian xuất báo cáo
+                        </h3>
+<div class="flex flex-col gap-4">
+<!-- Quick Select Chips -->
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-1.5 rounded-full bg-primary text-white text-sm font-medium shadow-sm ring-2 ring-primary ring-offset-1">Tuần này</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Tháng trước</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Quý I/2023</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 text-sm font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Năm 2023</button>
+</div>
+<!-- Custom Date Range -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Từ ngày</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+</div>
+<input class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white" type="date" value="2023-10-01"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Đến ngày</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-slate-400 text-lg">calendar_today</span>
+</div>
+<input class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full pl-10 p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white" type="date" value="2023-10-07"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 3: Format and Actions -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div class="flex-1">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold mb-3 flex items-center gap-2">
+<span class="flex items-center justify-center size-6 rounded-full bg-primary text-white text-xs font-bold">3</span>
+                                    Định dạng tệp
+                                </h3>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="w-4 h-4 text-primary bg-slate-100 border-slate-300 focus:ring-primary dark:ring-offset-slate-800 dark:bg-slate-700 dark:border-slate-600" name="file_format" type="radio"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-lg">picture_as_pdf</span> PDF
+                                        </span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary bg-slate-100 border-slate-300 focus:ring-primary dark:ring-offset-slate-800 dark:bg-slate-700 dark:border-slate-600" name="file_format" type="radio"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-green-600 text-lg">table_view</span> Excel
+                                        </span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 text-primary bg-slate-100 border-slate-300 focus:ring-primary dark:ring-offset-slate-800 dark:bg-slate-700 dark:border-slate-600" name="file_format" type="radio"/>
+<span class="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1">
+<span class="material-symbols-outlined text-blue-500 text-lg">csv</span> CSV
+                                        </span>
+</label>
+</div>
+</div>
+<div class="flex gap-3 items-end">
+<button class="px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Xem trước</button>
+<button class="px-5 py-2.5 rounded-lg bg-primary text-white font-medium shadow-md shadow-primary/20 hover:bg-primary/90 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+                                    Xuất báo cáo
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Recent History -->
+<div class="lg:col-span-1">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl border border-slate-200 dark:border-slate-700 h-full flex flex-col shadow-sm">
+<div class="p-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center">
+<h3 class="text-slate-900 dark:text-white font-bold">Lịch sử xuất file</h3>
+<a class="text-xs font-medium text-primary hover:underline" href="#">Xem tất cả</a>
+</div>
+<div class="p-2 flex-1 overflow-y-auto max-h-[500px]">
+<!-- History Item 1 -->
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 group">
+<div class="size-10 rounded bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">Báo cáo Hoạt động Q3</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<span>10:30 AM, Hôm nay</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span>2.4 MB</span>
+</div>
+</div>
+<button class="text-slate-400 group-hover:text-primary p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+<!-- History Item 2 -->
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 group">
+<div class="size-10 rounded bg-green-50 dark:bg-green-900/20 text-green-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">table_view</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">Danh sách Dân quân 2023</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<span>08:15 AM, Hôm qua</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span>850 KB</span>
+</div>
+</div>
+<button class="text-slate-400 group-hover:text-primary p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+<!-- History Item 3 -->
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 group">
+<div class="size-10 rounded bg-blue-50 dark:bg-blue-900/20 text-blue-500 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">csv</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">Dữ liệu Kho V2</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<span>09/10/2023</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span>120 KB</span>
+</div>
+</div>
+<button class="text-slate-400 group-hover:text-primary p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+<!-- History Item 4 -->
+<div class="p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-start gap-3 group">
+<div class="size-10 rounded bg-red-50 dark:bg-red-900/20 text-red-500 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">Báo cáo Facebook Tháng 9</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mt-1">
+<span>05/10/2023</span>
+<span class="size-1 bg-slate-300 rounded-full"></span>
+<span>5.1 MB</span>
+</div>
+</div>
+<button class="text-slate-400 group-hover:text-primary p-1 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition-colors">
+<span class="material-symbols-outlined text-xl">download</span>
+</button>
+</div>
+</div>
+<!-- Mini Alert/Tip -->
+<div class="p-4 mt-auto">
+<div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 flex gap-3 items-start border border-blue-100 dark:border-blue-900/30">
+<span class="material-symbols-outlined text-blue-600 text-sm mt-0.5">info</span>
+<p class="text-xs text-blue-800 dark:text-blue-300 leading-relaxed">
+                                    Các tệp báo cáo sẽ tự động bị xóa khỏi hệ thống sau 30 ngày để đảm bảo bảo mật thông tin.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

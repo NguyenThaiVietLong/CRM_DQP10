@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Phân Quyền</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "background-light": "#F8F9FA",
+              "background-dark": "#121212",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#1E1E1E",
+              "text-light-primary": "#212529",
+              "text-dark-primary": "#E0E0E0",
+              "text-light-secondary": "#6C757D",
+              "text-dark-secondary": "#A0A0A0",
+              "border-light": "#DEE2E6",
+              "border-dark": "#424242",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-icons-outlined {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen">
+<aside class="w-64 bg-primary text-white flex flex-col fixed h-full">
+<div class="p-6 text-center">
+<h1 class="text-2xl font-bold tracking-wider">PIHOME</h1>
+<p class="text-xs text-gray-300">HOME IN YOUR HAND</p>
+</div>
+<nav class="flex-grow pt-4">
+<ul>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">home</span>Trang chính</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">receipt_long</span>Đơn hàng</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">business</span>Dự án</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">apartment</span>Tòa nhà</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">group</span>Phòng ban</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">badge</span>Thành viên</li>
+<li class="bg-white/20 px-6 py-3 text-sm text-white font-semibold flex items-center gap-3 rounded-l-full ml-4"><span class="material-icons-outlined">admin_panel_settings</span>Nhóm quyền</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">description</span>Tài liệu</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">history</span>Lịch sử</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3"><span class="material-icons-outlined">settings</span>Cài đặt</li>
+</ul>
+</nav>
+</aside>
+<div class="flex-1 ml-64 flex flex-col">
+<header class="bg-primary shadow-md h-16 flex items-center justify-end px-6 text-white">
+<div class="flex items-center gap-4">
+<span>Việt Long</span>
+<div class="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center">
+<img alt="User avatar" class="rounded-full w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUq60NX9jV2tjBvWNd4kohTnFnaNMkv4Gxdpb-UaScTzFP9ER-5x1IdEjuyp4wyyfph7rnrdnsQeEPltzaxaXn3SLFADAygLxlLPysQqH-SOZhKwFKscqXHwkiLqeAQCX3UEvVGSGR5jcla-ZIUjHKZQNEFLuUZ1ACQGJAkcqr7qxOJwpL1peNvTr-WczN0R9Ulwz_iyVdPy5S1hW9wqFE7Nj5I-NDxbfJ9cijQWIkjAht1b8_NTstIG2Y1c6UYW4WywocJQRfVZXn"/>
+</div>
+<button class="p-2">
+<span class="material-icons-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-4">
+<div class="relative w-72">
+<span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-light-secondary dark:text-text-dark-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md text-text-light-primary dark:text-text-dark-primary focus:ring-primary focus:border-primary" placeholder="Tìm" type="text"/>
+</div>
+<button class="px-4 py-2 border border-border-light dark:border-border-dark rounded-md text-text-light-primary dark:text-text-dark-primary bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-700">Tìm kiếm</button>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-opacity-90">
+<span class="material-icons-outlined">add</span>
+                            Thêm mới
+                        </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm">
+<thead class="text-text-light-secondary dark:text-text-dark-secondary uppercase">
+<tr>
+<th class="py-3 px-4 font-medium">Tên</th>
+<th class="py-3 px-4 font-medium">Ngày tạo</th>
+<th class="py-3 px-4 font-medium text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="text-text-light-primary dark:text-text-dark-primary">
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col">
+<div class="flex justify-between items-center p-6 border-b border-border-light dark:border-border-dark">
+<h2 class="text-xl font-semibold text-text-light-primary dark:text-text-dark-primary">Sửa nhóm quyền</h2>
+<button class="text-text-light-secondary dark:text-text-dark-secondary hover:text-text-light-primary dark:hover:text-text-dark-primary">
+<span class="material-icons-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6 overflow-y-auto">
+<div>
+<label class="block text-sm font-medium text-text-light-primary dark:text-text-dark-primary mb-2" for="group-name">Tên <span class="text-red-500">*</span></label>
+<input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md py-2 px-3 text-text-light-primary dark:text-text-dark-primary focus:ring-primary focus:border-primary" id="group-name" type="text" value="Business Development"/>
+</div>
+<div class="space-y-4">
+<h3 class="text-sm font-semibold text-text-light-primary dark:text-text-dark-primary uppercase tracking-wider">PHÂN HỆ QUẢN LÝ</h3>
+<div class="space-y-2">
+<div class="grid grid-cols-12 gap-4 items-center text-sm font-medium text-text-light-secondary dark:text-text-dark-secondary">
+<div class="col-span-3">Tính năng</div>
+<div class="col-span-2 text-center">Chọn tất cả</div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<span>Tạo</span>
+<span>Xem</span>
+<span>Sửa</span>
+<span>Xóa</span>
+<span>Duyệt</span>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary">
+<div class="col-span-3 font-medium">Nhân sự</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary bg-background-light dark:bg-background-dark rounded">
+<div class="col-span-3 font-medium">Hoạt động</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary">
+<div class="col-span-3 font-medium">Thiết bị</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary bg-background-light dark:bg-background-dark rounded">
+<div class="col-span-3 font-medium">Tài liệu</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary">
+<div class="col-span-3 font-medium">Lịch trực</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary bg-background-light dark:bg-background-dark rounded">
+<div class="col-span-3 font-medium">Báo cáo</div>
+<div class="col-span-2 flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-4 items-center py-3 text-sm text-text-light-primary dark:text-text-dark-primary">
+<div class="col-span-3 font-medium">Cài đặt</div>
+<div class="col-span-2 flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="col-span-7 grid grid-cols-5 text-center">
+<div class="flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+<div class="flex justify-center"><input checked="" class="rounded text-primary focus:ring-primary/50" type="checkbox"/></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end items-center p-6 border-t border-border-light dark:border-border-dark mt-auto">
+<div class="flex gap-3">
+<button class="px-6 py-2.5 text-sm font-semibold text-text-light-primary dark:text-text-dark-primary bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">Hủy</button>
+<button class="px-6 py-2.5 text-sm font-semibold text-white bg-primary rounded-md hover:bg-opacity-90">Lưu</button>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

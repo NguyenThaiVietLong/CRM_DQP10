@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hệ thống Quản lý Dân quân Phường Bình Phú</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "primary-dark": "#4a5d28",
+              olive: "#556B2F",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .hero-gradient {
+        background: linear-gradient(
+          135deg,
+          #556b2f 0%,
+          #6b8e23 50%,
+          #8b4513 100%
+        );
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50">
+    <!-- Hero Header -->
+    <header class="hero-gradient text-white">
+      <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="flex items-center gap-6">
+          <img
+            src="logo-dqtv.png"
+            alt="Logo Dân quân Tự vệ"
+            class="size-24 object-contain drop-shadow-lg"
+          />
+          <div>
+            <h1 class="text-4xl font-black tracking-tight">
+              Hệ thống Quản lý Dân quân
+            </h1>
+            <p class="text-xl text-white/90 mt-2 font-medium">
+              Phường đội Bình Phú - Quận 6, TP.HCM
+            </p>
+          </div>
+        </div>
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+            <div class="text-3xl font-bold">11</div>
+            <div class="text-sm text-white/80">Trang prototype</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+            <div class="text-3xl font-bold">5</div>
+            <div class="text-sm text-white/80">Module chính</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+            <div class="text-3xl font-bold">100%</div>
+            <div class="text-sm text-white/80">Tiếng Việt</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-xl p-4 text-center">
+            <div class="text-3xl font-bold">✓</div>
+            <div class="text-sm text-white/80">Responsive</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quick Access -->
+    <div class="max-w-7xl mx-auto px-6 -mt-6">
+      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-4">
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="login.html"
+            class="flex items-center gap-2 px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition font-medium"
+          >
+            <span class="material-symbols-outlined text-xl">login</span>
+            Đăng nhập
+          </a>
+          <a
+            href="activity-list.html"
+            class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-medium"
+          >
+            <span class="material-symbols-outlined text-xl">list</span>
+            Danh sách kế hoạch
+          </a>
+          <a
+            href="activity-calendar.html"
+            class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-medium"
+          >
+            <span class="material-symbols-outlined text-xl"
+              >calendar_month</span
+            >
+            Lịch nhiệm vụ
+          </a>
+          <a
+            href="dashboard-tong-hop.html"
+            class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-medium"
+          >
+            <span class="material-symbols-outlined text-xl">dashboard</span>
+            Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12">
+      <!-- Module Chính Section -->
+      <section class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="bg-olive/10 p-2 rounded-lg">
+            <span class="material-symbols-outlined text-olive text-2xl"
+              >apps</span
+            >
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900">Module Chính</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Module 2 - Nhân Sự -->
+          <a
+            href="module2-personnel-complete.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-400"
+          >
+            <div class="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="bg-blue-100 p-3 rounded-xl">
+                  <span class="material-symbols-outlined text-blue-600 text-3xl"
+                    >group</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors"
+                  >
+                    Nhân Sự
+                  </h3>
+                  <p class="text-xs text-gray-500">Module 2</p>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Quản lý hồ sơ, chức vụ, đơn vị của lực lượng dân quân
+              </p>
+            </div>
+          </a>
+
+          <!-- Module 3 - Kho -->
+          <a
+            href="module3-inventory-complete.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-green-400"
+          >
+            <div class="h-2 bg-gradient-to-r from-green-500 to-green-600"></div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="bg-green-100 p-3 rounded-xl">
+                  <span
+                    class="material-symbols-outlined text-green-600 text-3xl"
+                    >inventory_2</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors"
+                  >
+                    Kho Thiết Bị
+                  </h3>
+                  <p class="text-xs text-gray-500">Module 3</p>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Quản lý vũ khí, thiết bị, theo dõi xuất/nhập kho
+              </p>
+            </div>
+          </a>
+
+          <!-- Module 4 - Tài Liệu -->
+          <a
+            href="module4-documents-complete.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-yellow-400"
+          >
+            <div
+              class="h-2 bg-gradient-to-r from-yellow-500 to-yellow-600"
+            ></div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="bg-yellow-100 p-3 rounded-xl">
+                  <span
+                    class="material-symbols-outlined text-yellow-600 text-3xl"
+                    >folder</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-yellow-600 transition-colors"
+                  >
+                    Tài Liệu
+                  </h3>
+                  <p class="text-xs text-gray-500">Module 4</p>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Lưu trữ văn bản, tài liệu huấn luyện
+              </p>
+            </div>
+          </a>
+
+          <!-- Lịch Trực -->
+          <a
+            href="module-lich-truc.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-purple-400"
+          >
+            <div
+              class="h-2 bg-gradient-to-r from-purple-500 to-purple-600"
+            ></div>
+            <div class="p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="bg-purple-100 p-3 rounded-xl">
+                  <span
+                    class="material-symbols-outlined text-purple-600 text-3xl"
+                    >schedule</span
+                  >
+                </div>
+                <div>
+                  <h3
+                    class="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors"
+                  >
+                    Lịch Trực
+                  </h3>
+                  <p class="text-xs text-gray-500">Module 5</p>
+                </div>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Phân công ca trực tuần, quản lý vị trí
+              </p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- Quản Lý Hoạt Động Section -->
+      <section class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="bg-olive/10 p-2 rounded-lg">
+            <span class="material-symbols-outlined text-olive text-2xl"
+              >event</span
+            >
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900">Quản Lý Hoạt Động</h2>
+          <span
+            class="bg-olive/10 text-olive text-xs font-semibold px-2 py-1 rounded-full"
+            >Module 1</span
+          >
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Danh sách kế hoạch -->
+          <a
+            href="activity-list.html"
+            class="group bg-gradient-to-br from-olive to-olive/80 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-white/20 p-3 rounded-xl">
+                <span class="material-symbols-outlined text-3xl">list</span>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold">Danh sách</h3>
+                <p class="text-xs text-white/70">Kế hoạch</p>
+              </div>
+            </div>
+            <p class="text-sm text-white/90">
+              Xem tất cả hoạt động, lọc theo trạng thái
+            </p>
+          </a>
+
+          <!-- Lịch hoạt động -->
+          <a
+            href="activity-calendar.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-olive p-6"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-olive/10 p-3 rounded-xl">
+                <span class="material-symbols-outlined text-olive text-3xl"
+                  >calendar_month</span
+                >
+              </div>
+              <div>
+                <h3
+                  class="text-lg font-bold text-gray-900 group-hover:text-olive transition-colors"
+                >
+                  Lịch
+                </h3>
+                <p class="text-xs text-gray-500">Nhiệm vụ</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm">Xem hoạt động theo tháng/tuần</p>
+          </a>
+
+          <!-- Tạo hoạt động -->
+          <a
+            href="create-activity.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-olive p-6"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-olive/10 p-3 rounded-xl">
+                <span class="material-symbols-outlined text-olive text-3xl"
+                  >add_circle</span
+                >
+              </div>
+              <div>
+                <h3
+                  class="text-lg font-bold text-gray-900 group-hover:text-olive transition-colors"
+                >
+                  Tạo mới
+                </h3>
+                <p class="text-xs text-gray-500">Kế hoạch</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm">Form tạo hoạt động mới</p>
+          </a>
+
+          <!-- Chi tiết hoạt động -->
+          <a
+            href="activity-detail.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-olive p-6"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-olive/10 p-3 rounded-xl">
+                <span class="material-symbols-outlined text-olive text-3xl"
+                  >task_alt</span
+                >
+              </div>
+              <div>
+                <h3
+                  class="text-lg font-bold text-gray-900 group-hover:text-olive transition-colors"
+                >
+                  Chi tiết
+                </h3>
+                <p class="text-xs text-gray-500">Hoạt động</p>
+              </div>
+            </div>
+            <p class="text-gray-600 text-sm">Xem nhiệm vụ, cập nhật tiến độ</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="bg-orange-100 p-2 rounded-lg">
+            <span class="material-symbols-outlined text-orange-600 text-2xl"
+              >dashboard</span
+            >
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900">Dashboard & Báo cáo</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Dashboard Tổng hợp -->
+          <a
+            href="dashboard-tong-hop.html"
+            class="group bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-8"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <div class="bg-white/20 p-4 rounded-xl">
+                <span class="material-symbols-outlined text-4xl"
+                  >analytics</span
+                >
+              </div>
+              <div>
+                <h3 class="text-2xl font-bold">Dashboard Tổng hợp</h3>
+                <p class="text-white/80">Thống kê và báo cáo</p>
+              </div>
+            </div>
+            <p class="text-white/90">
+              Xem tổng quan hoạt động, biểu đồ thống kê, KPI của đơn vị
+            </p>
+          </a>
+
+          <!-- Login -->
+          <a
+            href="login.html"
+            class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 p-8 flex items-center"
+          >
+            <div class="flex items-center gap-4 flex-1">
+              <div class="bg-gray-100 p-4 rounded-xl">
+                <span class="material-symbols-outlined text-gray-600 text-4xl"
+                  >login</span
+                >
+              </div>
+              <div>
+                <h3
+                  class="text-2xl font-bold text-gray-900 group-hover:text-olive transition-colors"
+                >
+                  Đăng nhập
+                </h3>
+                <p class="text-gray-500">Vào hệ thống</p>
+              </div>
+            </div>
+            <span
+              class="material-symbols-outlined text-gray-400 text-3xl group-hover:translate-x-2 transition-transform"
+              >arrow_forward</span
+            >
+          </a>
+        </div>
+      </section>
+
+      <!-- Technical Info -->
+      <section class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h3 class="text-xl font-bold text-gray-900 mb-6">Thông Tin Kỹ Thuật</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="flex items-start gap-3">
+            <span
+              class="material-symbols-outlined text-olive bg-olive/10 p-2 rounded-lg"
+              >code</span
+            >
+            <div>
+              <strong class="text-gray-900">Framework</strong>
+              <p class="text-sm text-gray-600">
+                HTML + Tailwind CSS + Alpine.js
+              </p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span
+              class="material-symbols-outlined text-olive bg-olive/10 p-2 rounded-lg"
+              >palette</span
+            >
+            <div>
+              <strong class="text-gray-900">Design System</strong>
+              <p class="text-sm text-gray-600">Olive Green (#556B2F)</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span
+              class="material-symbols-outlined text-olive bg-olive/10 p-2 rounded-lg"
+              >translate</span
+            >
+            <div>
+              <strong class="text-gray-900">Ngôn ngữ</strong>
+              <p class="text-sm text-gray-600">100% Tiếng Việt</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span
+              class="material-symbols-outlined text-olive bg-olive/10 p-2 rounded-lg"
+              >devices</span
+            >
+            <div>
+              <strong class="text-gray-900">Responsive</strong>
+              <p class="text-sm text-gray-600">Mobile & Desktop</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12">
+      <div class="max-w-7xl mx-auto px-6 py-8">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <div class="flex items-center gap-4">
+            <img
+              src="logo-dqtv.png"
+              alt="Logo"
+              class="size-12 object-contain"
+            />
+            <div>
+              <p class="font-bold">Phường đội Bình Phú</p>
+              <p class="text-sm text-gray-400">Quận 6, TP. Hồ Chí Minh</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-400">© 2024 Hệ thống Quản lý Dân quân</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

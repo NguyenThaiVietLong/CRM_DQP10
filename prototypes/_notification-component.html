@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Notification Component - Shared</title>
+  </head>
+  <body>
+    <!-- 
+  NOTIFICATION BELL COMPONENT
+  Paste this component into any page's header section
+-->
+
+    <!-- Notification Bell Button & Dropdown -->
+    <div x-data="notificationSystem()" class="relative">
+      <!-- Bell Button -->
+      <button
+        @click="toggleNotifications()"
+        class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+        :class="{'bg-gray-100': showNotifications}"
+      >
+        <span class="material-symbols-outlined">notifications</span>
+
+        <!-- Red Dot (only when has unread) -->
+        <span
+          x-show="unreadCount > 0"
+          class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"
+        ></span>
+
+        <!-- Badge Count -->
+        <span
+          x-show="unreadCount > 0"
+          class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"
+          x-text="unreadCount"
+        ></span>
+      </button>
+
+      <!-- Dropdown Panel -->
+      <div
+        x-show="showNotifications"
+        @click.away="showNotifications = false"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 scale-100"
+        x-transition:leave-end="opacity-0 scale-95"
+        class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
+        style="display: none"
+      >
+        <!-- Header -->
+        <div
+          class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
+        >
+          <h3 class="text-sm font-bold text-gray-900">Thông báo nhiệm vụ</h3>
+          <span
+            class="text-xs text-gray-500"
+            x-text="notifications.length + ' nhiệm vụ'"
+          ></span>
+        </div>
+
+        <!-- Notifications List -->
+        <div class="max-h-96 overflow-y-auto">
+          <template x-if="notifications.length === 0">
+            <div class="p-8 text-center">
+              <span
+                class="material-symbols-outlined text-4xl text-gray-300 mb-2"
+                >notifications_off</span
+              >
+              <p class="text-sm text-gray-500">Không có thông báo mới</p>
+            </div>
+          </template>
+
+          <div class="divide-y divide-gray-100">
+            <template x-for="notif in notifications" :key="notif.id">
+              <div class="p-4 hover:bg-gray-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <!-- Icon -->
+                  <div class="bg-yellow-100 rounded-lg p-2 flex-shrink-0">
+                    <span
+                      class="material-symbols-outlined text-yellow-600 text-xl"
+                      >assignment</span
+                    >
+                  </div>
+
+                  <!-- Content -->
+                  <div class="flex-1 min-w-0">
+                    <p
+                      class="text-sm font-semibold text-gray-900 mb-1"
+                      x-text="notif.taskName"
+                    ></p>
+
+                    <div class="space-y-1 mb-2">
+                      <p class="text-xs text-gray-600 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]"
+                          >location_on</span
+                        >
+                        <span x-text="notif.location"></span>
+                      </p>
+                      <p class="text-xs text-gray-600 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]"
+                          >schedule</span
+                        >
+                        <span
+                          >Thời hạn: <span x-text="notif.deadline"></span
+                        ></span>
+                      </p>
+                      <p class="text-xs text-gray-600 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]"
+                          >groups</span
+                        >
+                        <span
+                          x-text="notif.teamInfo || 'Tất cả thành viên'"
+                        ></span>
+                      </p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="flex gap-2">
+                      <a
+                        :href="'activity-detail.html?id=' + notif.activityId"
+                        class="text-xs text-olive hover:underline font-medium"
+                      >
+                        Xem chi tiết
+                      </a>
+                      <button
+                        @click="confirmReadNotification(notif.id, notif.taskId)"
+                        class="text-xs text-blue-600 hover:underline font-medium"
+                      >
+                        Xác nhận đã đọc
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div
+          x-show="notifications.length > 0"
+          class="px-4 py-3 border-t border-gray-200 bg-gray-50"
+        >
+          <button
+            @click="markAllAsRead()"
+            class="text-xs text-olive hover:underline font-medium w-full text-center"
+          >
+            Đánh dấu tất cả đã đọc
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+  JAVASCRIPT COMPONENT
+  Add this to your Alpine.js data initialization
+-->
+    <script>
+      function notificationSystem() {
+        return {
+          showNotifications: false,
+          notifications: [],
+
+          get unreadCount() {
+            return this.notifications.length;
+          },
+
+          init() {
+            // Load notifications from localStorage
+            this.loadNotifications();
+
+            // For demo: Create sample notifications for Nguyễn Văn Quang
+            if (this.notifications.length === 0) {
+              this.createSampleNotifications();
+            }
+          },
+
+          toggleNotifications() {
+            this.showNotifications = !this.showNotifications;
+          },
+
+          loadNotifications() {
+            const stored = localStorage.getItem("userNotifications");
+            if (stored) {
+              this.notifications = JSON.parse(stored);
+            }
+          },
+
+          saveNotifications() {
+            localStorage.setItem(
+              "userNotifications",
+              JSON.stringify(this.notifications),
+            );
+          },
+
+          confirmReadNotification(notificationId, taskId) {
+            // Remove notification
+            this.notifications = this.notifications.filter(
+              (n) => n.id !== notificationId,
+            );
+            this.saveNotifications();
+
+            // Update task status to "chưa bắt đầu"
+            this.updateTaskStatus(taskId, "chua-bat-dau");
+
+            // Show success message (optional)
+            alert(
+              'Đã xác nhận nhiệm vụ. Trạng thái chuyển sang "Chưa bắt đầu"',
+            );
+          },
+
+          markAllAsRead() {
+            if (confirm("Đánh dấu tất cả nhiệm vụ đã đọc?")) {
+              // Update all task statuses
+              this.notifications.forEach((n) => {
+                this.updateTaskStatus(n.taskId, "chua-bat-dau");
+              });
+
+              // Clear notifications
+              this.notifications = [];
+              this.saveNotifications();
+              this.showNotifications = false;
+            }
+          },
+
+          updateTaskStatus(taskId, newStatus) {
+            // Get current activities from localStorage
+            const activities = JSON.parse(
+              localStorage.getItem("activities") || "[]",
+            );
+
+            // Find and update task
+            activities.forEach((activity) => {
+              if (activity.tasks) {
+                const task = activity.tasks.find((t) => t.id === taskId);
+                if (task) {
+                  task.status = newStatus;
+                }
+              }
+            });
+
+            // Save back
+            localStorage.setItem("activities", JSON.stringify(activities));
+          },
+
+          createSampleNotifications() {
+            // Sample notifications for Nguyễn Văn Quang based on uncompleted tasks
+            this.notifications = [
+              {
+                id: "notif-001",
+                taskId: 1001,
+                activityId: 1,
+                taskName: "Chuẩn bị thiết bị huấn luyện",
+                location: "Sân trường THPT Trần Phú",
+                deadline: "25/01/2026",
+                teamInfo: "Tổ 3",
+                createdAt: "2026-01-20T10:00:00",
+              },
+              {
+                id: "notif-002",
+                taskId: 1002,
+                activityId: 1,
+                taskName: "Kiểm tra danh sách tham gia",
+                location: "Phòng họp phường",
+                deadline: "23/01/2026",
+                teamInfo: "Tổ 3",
+                createdAt: "2026-01-20T14:30:00",
+              },
+              {
+                id: "notif-003",
+                taskId: 2001,
+                activityId: 2,
+                taskName: "Tuần tra khu vực chợ",
+                location: "Chợ Phường 10",
+                deadline: "24/01/2026",
+                teamInfo: "Tổ 3",
+                createdAt: "2026-01-21T09:00:00",
+              },
+            ];
+
+            this.saveNotifications();
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

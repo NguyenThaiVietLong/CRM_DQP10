@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Lực Lượng - Hệ Thống Quản Lý Dân Quân</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111418",
+                        "surface-dark": "#283039",
+                        "text-secondary": "#9dabb9",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #111418; }
+        ::-webkit-scrollbar-thumb { background: #3b4754; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-hidden h-screen flex">
+<!-- Sidebar -->
+<aside class="w-[280px] bg-background-dark border-r border-[#283039] flex-shrink-0 flex flex-col h-full">
+<div class="p-4 flex items-center gap-3 border-b border-[#283039]/50 pb-6 mt-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="Vietnam militia logo emblem style" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBTr6Oxi_cSE2Gd2kWIAS8N1raE9bejttdcotunT7AeNX6Ockro34Tcz91D-D8p2qcC9Yg5r4ApmYRdQdzNBT4kfS8UqwVp-ocUTBkVJJb1Usacho_G7crxseO_Sc4Of1YgLHfXka9lvh1IpxxzKxAy2GQ3_0f3GaRLtTUKZteK6aBEEHgvpGuUaScnI8G-ou1Rl0bANmYwElG3kJedZ4SevFe3TmjPM37TdtVM8_hhb0NdYIjIPSnFD2k__RPMYR5-CSwpOnBS2ew");'></div>
+<div class="flex flex-col">
+<h1 class="text-white text-base font-bold leading-normal tracking-tight">Dân Quân Tự Vệ</h1>
+<p class="text-text-secondary text-xs font-normal leading-normal">Hệ thống quản lý</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 p-4 overflow-y-auto flex-1">
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg bg-primary text-white shadow-lg shadow-primary/20 transition-all hover:bg-primary/90" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<p class="text-sm font-medium leading-normal">Tổng quan</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<p class="text-sm font-medium leading-normal">Nhân sự</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">query_stats</span>
+<p class="text-sm font-medium leading-normal">Hoạt động</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">military_tech</span>
+<p class="text-sm font-medium leading-normal">Thiết bị</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">school</span>
+<p class="text-sm font-medium leading-normal">Huấn luyện</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+<p class="text-sm font-medium leading-normal">Báo cáo</p>
+</a>
+</nav>
+<div class="mt-auto border-t border-[#283039] pt-4">
+<a class="flex items-center gap-3 px-3 py-3 rounded-lg text-text-secondary hover:bg-[#283039] hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<p class="text-sm font-medium leading-normal">Cài đặt</p>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full min-w-0 bg-background-dark overflow-hidden relative">
+<!-- TopNavBar -->
+<header class="flex items-center justify-between border-b border-solid border-[#283039] px-6 py-4 bg-background-dark/95 backdrop-blur z-20">
+<div class="flex items-center gap-6">
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">Dashboard Lực Lượng</h2>
+<div class="hidden md:flex h-10 w-64 items-center rounded-lg bg-[#283039] border border-[#3b4754] focus-within:border-primary transition-colors">
+<div class="pl-3 text-text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full bg-transparent border-none text-white text-sm placeholder:text-[#9dabb9] focus:ring-0" placeholder="Tìm kiếm cán bộ, đơn vị..."/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative flex items-center justify-center size-10 rounded-full bg-[#283039] text-white hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-[#283039]"></span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full bg-[#283039] text-white hover:bg-[#3b4754] transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<div class="h-8 w-[1px] bg-[#3b4754] mx-1"></div>
+<div class="flex items-center gap-3 cursor-pointer hover:bg-[#283039] py-1 px-2 rounded-lg transition-colors">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9" data-alt="User profile avatar of commander" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAU8WnsqFw8-H2jE60T4fJccxdNLYIQFqUBwCeDou53VaaTy19L4AobbQFWCYRJIMrV5hcvc4GXjbLCO0PYEQeEhtHkTj7pu6zeRrv-qT-vYGgnmp12o5r8XuENlir5pOlAhauRSOxkj4q17O1piNgSSzzBRFNxQSJ6TWhkKmwWw5Jkz1xTUZD5eU2VkhoeUPtiKxXWgRhEV5CmaM3y8s-gWjQyiN9YkGneLQ4S68--4M1Z7xL5ldHEwVFaP6I08zKJ9_JsY7Npj7k");'></div>
+<div class="hidden lg:block text-sm">
+<p class="text-white font-medium">Chỉ huy trưởng</p>
+<p class="text-text-secondary text-xs">Ban CHQS Phường</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Secondary Tabs -->
+<div class="border-b border-[#3b4754] bg-background-dark">
+<div class="px-6 flex gap-6 overflow-x-auto no-scrollbar">
+<a class="flex flex-col items-center justify-center border-b-[3px] border-primary text-white py-4 min-w-fit px-2" href="#">
+<p class="text-sm font-bold tracking-wide">Dashboard Lực Lượng</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-text-secondary hover:text-white hover:border-[#3b4754] transition-all py-4 min-w-fit px-2" href="#">
+<p class="text-sm font-bold tracking-wide">Hoạt Động</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-text-secondary hover:text-white hover:border-[#3b4754] transition-all py-4 min-w-fit px-2" href="#">
+<p class="text-sm font-bold tracking-wide">Kho Vũ Khí</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-text-secondary hover:text-white hover:border-[#3b4754] transition-all py-4 min-w-fit px-2" href="#">
+<p class="text-sm font-bold tracking-wide">Mạng Xã Hội</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-text-secondary hover:text-white hover:border-[#3b4754] transition-all py-4 min-w-fit px-2 group" href="#">
+<div class="flex items-center gap-2">
+<p class="text-sm font-bold tracking-wide group-hover:text-red-400">Cảnh Báo</p>
+<span class="bg-red-500 text-white text-[10px] font-bold px-1.5 rounded-sm">3</span>
+</div>
+</a>
+<a class="flex flex-col items-center justify-center border-b-[3px] border-transparent text-text-secondary hover:text-white hover:border-[#3b4754] transition-all py-4 min-w-fit px-2" href="#">
+<p class="text-sm font-bold tracking-wide">Dữ Liệu Chi Tiết</p>
+</a>
+</div>
+</div>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-6 bg-background-dark">
+<div class="max-w-[1400px] mx-auto flex flex-col gap-6 pb-10">
+<!-- Date Filter & Actions -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2 text-text-secondary text-sm">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span>Cập nhật lần cuối: 15:30 24/05/2024</span>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2 shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+                        Xuất báo cáo nhanh
+                    </button>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Metric 1 -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-5 hover:border-primary/50 transition-colors group">
+<div class="flex items-start justify-between mb-4">
+<div class="p-2 bg-blue-500/10 rounded-lg text-blue-500">
+<span class="material-symbols-outlined">badge</span>
+</div>
+<span class="text-[#0bda5b] text-xs font-bold bg-[#0bda5b]/10 px-2 py-1 rounded">+5%</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Tổng số DQTT</p>
+<h3 class="text-white text-2xl font-bold tracking-tight">120</h3>
+<p class="text-xs text-text-secondary mt-2">Dân quân thường trực</p>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-5 hover:border-primary/50 transition-colors group">
+<div class="flex items-start justify-between mb-4">
+<div class="p-2 bg-indigo-500/10 rounded-lg text-indigo-500">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<span class="text-[#0bda5b] text-xs font-bold bg-[#0bda5b]/10 px-2 py-1 rounded">+2%</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Tổng số DQCĐ</p>
+<h3 class="text-white text-2xl font-bold tracking-tight">450</h3>
+<p class="text-xs text-text-secondary mt-2">Dân quân cơ động</p>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-5 hover:border-primary/50 transition-colors group">
+<div class="flex items-start justify-between mb-4">
+<div class="p-2 bg-green-500/10 rounded-lg text-green-500">
+<span class="material-symbols-outlined">add_location_alt</span>
+</div>
+<span class="text-text-secondary text-xs font-bold bg-[#3b4754] px-2 py-1 rounded">0%</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Đơn vị hoạt động</p>
+<h3 class="text-white text-2xl font-bold tracking-tight">12</h3>
+<p class="text-xs text-text-secondary mt-2">Đang làm nhiệm vụ</p>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-5 hover:border-primary/50 transition-colors group">
+<div class="flex items-start justify-between mb-4">
+<div class="p-2 bg-red-500/10 rounded-lg text-red-500">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<span class="text-red-500 text-xs font-bold bg-red-500/10 px-2 py-1 rounded">+1 Mới</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Cảnh báo</p>
+<h3 class="text-white text-2xl font-bold tracking-tight">3</h3>
+<p class="text-xs text-text-secondary mt-2">Cần xử lý ngay</p>
+</div>
+<!-- Metric 5 -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-5 hover:border-primary/50 transition-colors group">
+<div class="flex items-start justify-between mb-4">
+<div class="p-2 bg-orange-500/10 rounded-lg text-orange-500">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<span class="text-[#fa6238] text-xs font-bold bg-[#fa6238]/10 px-2 py-1 rounded">-1%</span>
+</div>
+<p class="text-text-secondary text-sm font-medium mb-1">Sẵn sàng chiến đấu</p>
+<h3 class="text-white text-2xl font-bold tracking-tight">98%</h3>
+<p class="text-xs text-text-secondary mt-2">Tỷ lệ toàn lực lượng</p>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Bar Chart (Takes up 2 cols) -->
+<div class="lg:col-span-2 bg-surface-dark border border-[#3b4754] rounded-xl p-6 flex flex-col h-full">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-white text-lg font-bold">Phân bổ nhân sự theo Tổ / Tiểu đội</h3>
+<p class="text-text-secondary text-sm mt-1">Biểu đồ lực lượng trực chiến tháng này</p>
+</div>
+<div class="flex gap-2 bg-[#111418] p-1 rounded-lg border border-[#3b4754]">
+<button class="px-3 py-1 bg-[#3b4754] text-white text-xs font-medium rounded shadow-sm">Tháng</button>
+<button class="px-3 py-1 text-text-secondary text-xs font-medium hover:text-white transition-colors">Quý</button>
+</div>
+</div>
+<!-- Bar Chart Implementation using CSS Grid -->
+<div class="flex-1 min-h-[240px] flex items-end justify-between gap-4 px-2 pt-8 pb-2">
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 70%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">Tổ 1</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 85%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">Tổ 2</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 45%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">Tổ 3</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-[#fa6238] hover:bg-[#fa6238]/90 transition-all w-full" style="height: 30%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">Tổ CK</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 60%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">TĐ A</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 90%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">TĐ B</span>
+</div>
+<!-- Bar Item -->
+<div class="flex flex-col items-center gap-2 h-full justify-end w-full group">
+<div class="relative w-full max-w-[60px] bg-[#3b4754] rounded-t-sm h-full flex flex-col-reverse overflow-hidden">
+<div class="bg-primary hover:bg-primary/90 transition-all w-full" style="height: 55%;"></div>
+</div>
+<span class="text-text-secondary text-xs font-medium group-hover:text-white">TĐ C</span>
+</div>
+</div>
+</div>
+<!-- Pie/Status Chart -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl p-6 flex flex-col h-full">
+<div class="mb-4">
+<h3 class="text-white text-lg font-bold">Trạng thái lực lượng</h3>
+<p class="text-text-secondary text-sm mt-1">Tỷ lệ sẵn sàng chiến đấu</p>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center relative">
+<!-- Donut Chart representation with SVG -->
+<div class="relative size-48">
+<svg class="size-full -rotate-90" viewbox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+<!-- Background Circle -->
+<circle class="stroke-[#3b4754]" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<!-- Series 1: Active (Blue) - 70% -->
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="70 100" stroke-linecap="round" stroke-width="3"></circle>
+<!-- Series 2: Reserve (Teal/Green) - 20% -->
+<circle class="stroke-green-500" cx="18" cy="18" fill="none" r="16" stroke-dasharray="20 100" stroke-dashoffset="-75" stroke-linecap="round" stroke-width="3"></circle>
+<!-- Series 3: Leave (Orange) - 5% -->
+<circle class="stroke-orange-500" cx="18" cy="18" fill="none" r="16" stroke-dasharray="5 100" stroke-dashoffset="-98" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<!-- Center Text -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-3xl font-bold text-white">570</span>
+<span class="text-xs text-text-secondary font-medium uppercase tracking-wider">Tổng</span>
+</div>
+</div>
+</div>
+<div class="mt-6 space-y-3">
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-primary"></div>
+<span class="text-text-secondary">Trực chiến</span>
+</div>
+<span class="text-white font-medium">70%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-green-500"></div>
+<span class="text-text-secondary">Huấn luyện</span>
+</div>
+<span class="text-white font-medium">20%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-orange-500"></div>
+<span class="text-text-secondary">Nghỉ phép</span>
+</div>
+<span class="text-white font-medium">5%</span>
+</div>
+<div class="flex items-center justify-between text-sm">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-[#3b4754]"></div>
+<span class="text-text-secondary">Khác</span>
+</div>
+<span class="text-white font-medium">5%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Data Table -->
+<div class="bg-surface-dark border border-[#3b4754] rounded-xl overflow-hidden">
+<div class="p-6 border-b border-[#3b4754] flex justify-between items-center">
+<div>
+<h3 class="text-white text-lg font-bold">Danh sách nhân sự trực ban</h3>
+<p class="text-text-secondary text-sm mt-1">Cập nhật theo thời gian thực</p>
+</div>
+<button class="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+                            Xem tất cả
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#111418] border-b border-[#3b4754]">
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Họ và Tên</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Chức vụ</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Đơn vị</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Trạng thái</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary">Thời gian vào ca</th>
+<th class="py-4 px-6 text-xs font-semibold uppercase tracking-wider text-text-secondary text-right">Thao tác</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#3b4754]">
+<tr class="group hover:bg-[#3b4754]/20 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar user 1" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBOS4qtrffr4oZf0Ql0aB8CmoU44YWFwp_472InD_a9knQ4hwdgV6ZZlxKWaiV_ksqDBsmy0SsUq94j69xvVgH4Cj4fM1Lbf8qUg8Ak-SIYmAhwEu_wG5WQ0g8GWL2GTGlcMzE3Ft7KIB4NUJnHEe96SK-vXQlPECut4613e_-Wum-_GMi7b-_4mBV3DdFR9ShrvMyXf7VMxnpMB4277wcQcgVS0aUvSs8JqOuFMf6nmh4uIqdZWhim6_w27-CwzcEPP4MmNGyvkL8");'></div>
+<div>
+<p class="text-white text-sm font-medium">Nguyễn Văn A</p>
+<p class="text-text-secondary text-xs">ID: DQ-0012</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">Tiểu đội trưởng</td>
+<td class="py-4 px-6 text-sm text-text-secondary">Tiểu đội Cơ động 1</td>
+<td class="py-4 px-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20">
+<div class="size-1.5 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-medium text-green-500">Đang trực</span>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">06:00 24/05</td>
+<td class="py-4 px-6 text-right">
+<button class="text-text-secondary hover:text-white p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-[#3b4754]/20 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar user 2" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqjtUmH4CssJ-UtARkn7k1_racxTwmck9_SfV9gKaCTGZscKzFfn6YWniIWBEywVRFAZ_H-T5vymQyPH5bBpZw3umd0aSPXA7TOdxOmzsxmG2Fc3F4mR_RJO5hyUfQ6kPCpuY-WfUwndMWXnSFxg6Vu9hTqfgwaZXz7Kpp1el8ZIzq9ttUyHunmjdxhQmv935Vc9UMQMR_wrnG6FCkg0dE1xpgD1gUNeCctzSsivpt3_uvdxTbPlXnpioMyneP6N4uUjvljhIh2Sg");'></div>
+<div>
+<p class="text-white text-sm font-medium">Trần Văn B</p>
+<p class="text-text-secondary text-xs">ID: DQ-0045</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">Chiến sĩ</td>
+<td class="py-4 px-6 text-sm text-text-secondary">Tổ Dân quân thường trực</td>
+<td class="py-4 px-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10 border border-green-500/20">
+<div class="size-1.5 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-medium text-green-500">Đang trực</span>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">06:00 24/05</td>
+<td class="py-4 px-6 text-right">
+<button class="text-text-secondary hover:text-white p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-[#3b4754]/20 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar user 3" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfA0mQ9xES5h9xV1bO7jbWQBePXLhUbE7FgVpYDr1H07ZOBcMPT4yLgfb8p6hbSS6imscStn58g5w4rtM1IHzwbbq-T_KS9MgDQ_3VXNn-OyMEOBycquo7rqPVJtVKbEAdQPxY1U8Z025cs7qfxv9Ezi7zLRAQ1vayM7Luq-4iqs3ztMdw4kcwvNmOnX0CtrCcpMhr8yF2GEvZD4vTZD7tApP4ZrEwUJI-4hn2tmLYrz9F9tbBm4M19YPsXcsPbwZZfePy9fHE2xs");'></div>
+<div>
+<p class="text-white text-sm font-medium">Lê Thị C</p>
+<p class="text-text-secondary text-xs">ID: DQ-0089</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">Y tá</td>
+<td class="py-4 px-6 text-sm text-text-secondary">Tổ Hậu cần</td>
+<td class="py-4 px-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20">
+<div class="size-1.5 rounded-full bg-orange-500"></div>
+<span class="text-xs font-medium text-orange-500">Nghỉ phép</span>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">--</td>
+<td class="py-4 px-6 text-right">
+<button class="text-text-secondary hover:text-white p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="group hover:bg-[#3b4754]/20 transition-colors">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar user 4" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXZz0lp7OzAn8hxbKpfr_32tfpeQ0Kw49Xe5uOFCZ7PRB-pVjOJQKJF9YosB603RwqzJEj6QEBmzGhFUKD0tyHH65XtCL3Mx9aokoE1GGKiVOzi6GlHrNGApF4cBo-l5nkM78ZzBvs6n1ULcV7OKDnY5u_39aFbpe2UYlU4rCk5Px9H0v8nD3y8dGSjlN0R9RkgyoiEejLKPYdGdgLtPX2T2bzNyrggL2q3YjOwk8xcOUM1wwlmeXJ7GCfiYcCxFbQYTE2vVE3vKo");'></div>
+<div>
+<p class="text-white text-sm font-medium">Phạm Văn D</p>
+<p class="text-text-secondary text-xs">ID: DQ-0112</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">Chiến sĩ</td>
+<td class="py-4 px-6 text-sm text-text-secondary">Tiểu đội Cơ động 2</td>
+<td class="py-4 px-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/10 border border-red-500/20">
+<div class="size-1.5 rounded-full bg-red-500 animate-bounce"></div>
+<span class="text-xs font-medium text-red-500">Cảnh báo vắng</span>
+</div>
+</td>
+<td class="py-4 px-6 text-sm text-white">--</td>
+<td class="py-4 px-6 text-right">
+<button class="text-text-secondary hover:text-white p-1">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hệ Thống Quản Lý Dân Quân - Bảng Dữ Liệu Chi Tiết</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-light": "#e0effd",
+                        "primary-dark": "#0e5cb0",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Custom scrollbar for tables if needed */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d141b] overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- SIDEBAR -->
+<div class="w-64 flex-shrink-0 border-r border-[#e7edf3] bg-white flex flex-col h-full overflow-y-auto">
+<div class="p-4 flex flex-col h-full justify-between">
+<div class="flex flex-col gap-6">
+<!-- Brand -->
+<div class="flex gap-3 items-center px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 shadow-sm shrink-0" data-alt="Vietnam militia logo emblem with star and gear" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClZPGBY3cygu34km9LC48-j6IgeTJ1JkWjs-SumVehZXZElJ7cHjqO6MIIou8olCE2qWtx5XQfyb5G2cLfIQsbNvl70jx0YdKqZpuOVI0nnEIu76mOtazZb7R_E3YXKzSRgyOhXSPIhV9gJ3JoJsMeSDd76v98a7AfEUNNKtnKq-gMOhYwUVh1lReo87wWoRGk6U3SUw3cEDnPxDneyl7tg6RbQ4i23pFxXMVfyeYkU-tUzLk5Ov6WUzaRBkEkMf1BOVOpFtvtt_0");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#0d141b] text-base font-bold leading-normal">Dân Quân Tự Vệ</h1>
+<p class="text-[#4c739a] text-xs font-normal leading-normal">Hệ thống quản lý</p>
+</div>
+</div>
+<!-- Navigation -->
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">dashboard</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Tổng quan</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">groups</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Nhân sự</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">trending_up</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Hoạt động</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">military_tech</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Thiết bị</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">school</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Huấn luyện</p>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary-light text-primary" href="#">
+<span class="material-symbols-outlined text-primary">description</span>
+<p class="text-primary text-sm font-bold">Báo cáo</p>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-background-light group transition-colors" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-primary">settings</span>
+<p class="text-[#4c739a] group-hover:text-[#0d141b] text-sm font-medium">Cài đặt</p>
+</a>
+</div>
+</div>
+<!-- Bottom Profile/Logout -->
+<div class="pt-4 border-t border-[#e7edf3]">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-red-50 group" href="#">
+<span class="material-symbols-outlined text-[#4c739a] group-hover:text-red-600">logout</span>
+<p class="text-[#4c739a] group-hover:text-red-600 text-sm font-medium">Đăng xuất</p>
+</a>
+</div>
+</div>
+</div>
+<!-- MAIN CONTENT -->
+<div class="flex-1 flex flex-col h-full overflow-hidden bg-background-light">
+<!-- TOP NAVBAR -->
+<header class="flex-shrink-0 flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7edf3] bg-white px-8 py-3 z-10">
+<div class="flex items-center gap-4 text-[#0d141b]">
+<button class="text-[#4c739a] hover:text-primary lg:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="text-[#0d141b] text-lg font-bold leading-tight">Module Dashboard</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<div class="hidden md:flex w-full max-w-md items-center rounded-lg bg-[#e7edf3] px-3 h-10">
+<span class="material-symbols-outlined text-[#4c739a]">search</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-sm text-[#0d141b] placeholder-[#4c739a] ml-2" placeholder="Tìm kiếm dữ liệu, cán bộ, báo cáo..."/>
+</div>
+<div class="flex gap-3 items-center">
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-[#e7edf3] text-[#4c739a] relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<button class="flex items-center justify-center rounded-full size-10 hover:bg-[#e7edf3] text-[#4c739a]">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<div class="h-8 w-[1px] bg-[#cfdbe7] mx-1"></div>
+<button class="flex items-center gap-2 pl-1">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-9 border-2 border-white shadow-sm" data-alt="Portrait of a male officer in uniform" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDwLmsGy-zChupt3AjnDuDuJApFb_3gwQ_vAHLxyz5KBNXgfEfskss9pCjCioU9XbtJfksNasLmRzQ808utp2fMFf3vuNDK9EqllqbJ0bPAK1pmUJt5PW30aTH9vx_vxWDZntvimAZmL9EHjTXcO0MBfsgZUr7-6F8AarjrBiWkCbO6ef4geLMSWZS5XumVtaugvkqErwVhFXv70j9AdL5dlZ7R8SzUiQNkIzKeVBYVHaW7Js3VjWjVGuTEgxaG9TKrmpv2AEpKbgA");'></div>
+<div class="flex flex-col items-start hidden sm:flex">
+<span class="text-xs font-bold text-[#0d141b]">Nguyễn Văn A</span>
+<span class="text-[10px] text-[#4c739a]">Chỉ huy trưởng</span>
+</div>
+</button>
+</div>
+</div>
+</header>
+<!-- SCROLLABLE CONTENT AREA -->
+<main class="flex-1 overflow-y-auto p-6 md:p-8">
+<div class="max-w-[1280px] mx-auto flex flex-col gap-6">
+<!-- BREADCRUMBS -->
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#4c739a] hover:text-primary font-medium" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[#4c739a] text-xs">chevron_right</span>
+<span class="text-[#0d141b] font-medium">Bảng Dữ Liệu Chi Tiết</span>
+</div>
+<!-- TABS -->
+<div class="border-b border-[#cfdbe7] bg-white rounded-t-lg px-2">
+<div class="flex gap-8 overflow-x-auto scrollbar-hide">
+<a class="flex items-center justify-center border-b-[3px] border-transparent text-[#4c739a] hover:text-primary px-4 py-4 whitespace-nowrap transition-colors" href="#">
+<p class="text-sm font-bold tracking-[0.015em]">Tổng hợp</p>
+</a>
+<a class="flex items-center justify-center border-b-[3px] border-primary text-primary px-4 py-4 whitespace-nowrap transition-colors" href="#">
+<p class="text-sm font-bold tracking-[0.015em]">Bảng dữ liệu chi tiết</p>
+</a>
+<a class="flex items-center justify-center border-b-[3px] border-transparent text-[#4c739a] hover:text-primary px-4 py-4 whitespace-nowrap transition-colors" href="#">
+<p class="text-sm font-bold tracking-[0.015em]">Bản đồ số</p>
+</a>
+</div>
+</div>
+<!-- GRID LAYOUT FOR TABLES -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+<!-- TABLE 1: TOP DQCĐ TÍCH CỰC (Left, spans 7 columns) -->
+<div class="xl:col-span-7 flex flex-col bg-white rounded-lg shadow-sm border border-[#e7edf3]">
+<!-- Header -->
+<div class="px-6 py-4 border-b border-[#e7edf3] flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">leaderboard</span>
+<h3 class="text-[#0d141b] text-base font-bold">Top DQCĐ Tích Cực</h3>
+</div>
+<button class="text-sm text-[#4c739a] font-medium hover:text-primary flex items-center gap-1">
+                                    Tháng này <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f8fafc] text-[#4c739a] text-xs uppercase font-semibold tracking-wider">
+<th class="px-6 py-3">Họ và Tên</th>
+<th class="px-6 py-3">Đơn vị</th>
+<th class="px-6 py-3 w-1/3">Hiệu suất</th>
+<th class="px-6 py-3 text-right">Trạng thái</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e7edf3] text-sm">
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar of militia member" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDQajqmbkZkIoThHWsww-uMm-BmrkCwYc6k6ig9gBQUPY4MEOEaShFaCpPuPQtVWz7ZH6qcN0K-FikK78m9q4EylcwvmZFM2nlwaq0NyyQhrQC56Kg5sxB0XKJ2dvz6CiEDRDpJnBReRWLZIpvV7hllY52wMC9ZGXyEVhraufem9hz-Ay3cuZF3UqKWlOATFqaRdTZjrM3Z4ytdlrZvg5GWXsO3PbsCWt7cb2xOHX8aPJu43sm5hRHQyo4xL4cK6UCyWvcAHleJP6A");'></div>
+<div>
+<p class="font-medium text-[#0d141b]">Trần Văn Bình</p>
+<p class="text-xs text-[#4c739a]">DQ Cơ Động</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-[#0d141b]">Phường 12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-[#e7edf3] rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 92%"></div>
+</div>
+<span class="text-xs font-bold text-primary">92%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Xuất sắc
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar of militia member" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbc-g0trFR-OlUE_XLUoTD-NFgM2csocH2NCPaFDOFw7KOB3R9ywB2DCH0No4FvFYDHhanvJTEJgvJy3ay3gntR05P7HZWfp19cMaluwcOCNiWVShIgqRnnYq7fed08yvcGehQFU5LnjWt-CliPvUviDRCfkkFQKUnqfDNFYuKjXVAoh2bKoxF7Tn8zKruxPyUyk6fJFFrSw0zFq04PRd-ODeSKp8K40cyOs_xffIxnsqzJYaSX5JQHDmlJsu4q5Ij3012O0hqG7E");'></div>
+<div>
+<p class="font-medium text-[#0d141b]">Lê Thị Mai</p>
+<p class="text-xs text-[#4c739a]">DQ Y Tế</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-[#0d141b]">Phường 05</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-[#e7edf3] rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 88%"></div>
+</div>
+<span class="text-xs font-bold text-primary">88%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Tốt
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar of militia member" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA3k0xehxMeRkAYHB4MLSZ_Jd2KfCb8LcUoyYBWt2brVreHznMwteSHxPwhqMU0FYtHxiB5Dg4K6IqpuTOVLlH5nyhHafKyxIogcfvYaCT0sznWkpK7V7U6yJ0vStPCj14xbLvPV5BEaPr1JZN7YP5A7BooxL7hRckj6g_QZ-S9ZfHhhTXvHoTOPC-b6y20mA6luJHk97vDOcJ4AW5UEaa7WP5UuOIUSQ3SJEslCjgff9hjfJP-flpZ5AemSeagkKfPPz_2lPeWIyE");'></div>
+<div>
+<p class="font-medium text-[#0d141b]">Phạm Quốc Hưng</p>
+<p class="text-xs text-[#4c739a]">DQ Tại Chỗ</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-[#0d141b]">Phường 09</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-[#e7edf3] rounded-full h-1.5">
+<div class="bg-primary h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+<span class="text-xs font-bold text-primary">85%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Tốt
+                                                </span>
+</td>
+</tr>
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-8" data-alt="Avatar of militia member" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBsXR2JkAED0GR-W4Ij80-amg89UZC1Bf6J9d6WbG0knskF3Q9XCSh8C9T7b0_7ewtpkzK1uHMy262q5IvPfKySXOm2IduzIxBtqSxeeavt0L7sDTerSqeDnbSW-NUVlv6fBMs_ZOvGbe0mPcBi9emyzosS_I7tUeakumblmhuBJhiDBiWoAw8Ui3TbkNYz7Pss9-LgXsQK8hdcn6s0Ipj27ZNkvJR6YExbCv0OJ07L82GS0jm-sk_nrqnJsiLUN8ZFm-JrWFyMiLM");'></div>
+<div>
+<p class="font-medium text-[#0d141b]">Nguyễn Tấn Đạt</p>
+<p class="text-xs text-[#4c739a]">DQ Cơ Động</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-[#0d141b]">Phường 12</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="w-full bg-[#e7edf3] rounded-full h-1.5">
+<div class="bg-yellow-400 h-1.5 rounded-full" style="width: 74%"></div>
+</div>
+<span class="text-xs font-bold text-yellow-600">74%</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                    Khá
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 border-t border-[#e7edf3] bg-[#f8fafc] rounded-b-lg">
+<a class="text-primary text-sm font-medium hover:underline flex items-center justify-center gap-1" href="#">
+                                    Xem tất cả báo cáo <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- TABLE 2: DANH SÁCH VI PHẠM (Right, spans 5 columns) -->
+<div class="xl:col-span-5 flex flex-col bg-white rounded-lg shadow-sm border border-[#e7edf3]">
+<!-- Header -->
+<div class="px-6 py-4 border-b border-[#e7edf3] flex justify-between items-center">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-red-500">warning</span>
+<h3 class="text-[#0d141b] text-base font-bold">Danh sách vi phạm</h3>
+</div>
+<button class="p-1 hover:bg-[#e7edf3] rounded">
+<span class="material-symbols-outlined text-[#4c739a]">filter_list</span>
+</button>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="bg-[#f8fafc]">
+<tr class="text-[#4c739a] text-xs uppercase font-semibold tracking-wider">
+<th class="px-4 py-3">Họ tên</th>
+<th class="px-4 py-3">Lỗi vi phạm</th>
+<th class="px-4 py-3 text-right">Mức độ</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e7edf3] text-sm">
+<tr class="group hover:bg-red-50/50 transition-colors">
+<td class="px-4 py-3 font-medium text-[#0d141b]">Hoàng Văn Hùng</td>
+<td class="px-4 py-3 text-[#4c739a]">
+<div class="flex flex-col">
+<span>Vắng mặt không phép</span>
+<span class="text-[10px] text-[#8e9aab]">12/05/2024</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-red-100 text-red-700">
+                                                    Cảnh cáo
+                                                </span>
+</td>
+</tr>
+<tr class="group hover:bg-red-50/50 transition-colors">
+<td class="px-4 py-3 font-medium text-[#0d141b]">Trần Đức Lương</td>
+<td class="px-4 py-3 text-[#4c739a]">
+<div class="flex flex-col">
+<span>Trang phục sai quy định</span>
+<span class="text-[10px] text-[#8e9aab]">14/05/2024</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-yellow-100 text-yellow-700">
+                                                    Nhắc nhở
+                                                </span>
+</td>
+</tr>
+<tr class="group hover:bg-red-50/50 transition-colors">
+<td class="px-4 py-3 font-medium text-[#0d141b]">Nguyễn Văn Cường</td>
+<td class="px-4 py-3 text-[#4c739a]">
+<div class="flex flex-col">
+<span>Đi trễ buổi tập huấn</span>
+<span class="text-[10px] text-[#8e9aab]">10/05/2024</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-yellow-100 text-yellow-700">
+                                                    Nhắc nhở
+                                                </span>
+</td>
+</tr>
+<tr class="group hover:bg-red-50/50 transition-colors">
+<td class="px-4 py-3 font-medium text-[#0d141b]">Võ Thanh Tân</td>
+<td class="px-4 py-3 text-[#4c739a]">
+<div class="flex flex-col">
+<span>Sử dụng thiết bị sai</span>
+<span class="text-[10px] text-[#8e9aab]">09/05/2024</span>
+</div>
+</td>
+<td class="px-4 py-3 text-right">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-orange-100 text-orange-700">
+                                                    Khiển trách
+                                                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-3 border-t border-[#e7edf3] bg-[#f8fafc] rounded-b-lg flex justify-end">
+<button class="text-xs text-[#4c739a] hover:text-[#0d141b] font-medium uppercase tracking-wide">Xem chi tiết xử lý</button>
+</div>
+</div>
+<!-- TABLE 3: LỊCH TRỰC TUẦN NÀY (Full width) -->
+<div class="xl:col-span-12 flex flex-col bg-white rounded-lg shadow-sm border border-[#e7edf3]">
+<!-- Header -->
+<div class="px-6 py-4 border-b border-[#e7edf3] flex flex-col sm:flex-row justify-between sm:items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</div>
+<div>
+<h3 class="text-[#0d141b] text-base font-bold">Lịch Trực Tuần Này</h3>
+<p class="text-xs text-[#4c739a]">Tuần 20: 13/05/2024 - 19/05/2024</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-3 py-2 bg-[#f6f7f8] rounded-lg text-sm font-medium text-[#4c739a] hover:bg-[#e7edf3]">
+<span class="material-symbols-outlined text-sm">print</span>
+                                        In lịch
+                                    </button>
+<button class="flex items-center gap-2 px-3 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-dark">
+<span class="material-symbols-outlined text-sm">add</span>
+                                        Phân công
+                                    </button>
+</div>
+</div>
+<!-- Table Content -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f8fafc] border-b border-[#e7edf3] text-[#4c739a] text-xs uppercase font-semibold tracking-wider">
+<th class="px-6 py-3">Thời gian</th>
+<th class="px-6 py-3">Ca trực</th>
+<th class="px-6 py-3">Đơn vị / Nhân sự</th>
+<th class="px-6 py-3">Địa điểm</th>
+<th class="px-6 py-3">Ghi chú</th>
+<th class="px-6 py-3 text-right">Hành động</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e7edf3] text-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-bold text-[#0d141b]">Thứ Hai</span>
+<span class="text-xs text-[#4c739a]">13/05/2024</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-blue-50 text-blue-700 text-xs font-semibold">
+                                                    Sáng (06:00 - 14:00)
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGnyM5RlABPeIHHdBaHWHUAaX67xePDn3TPLuzF7_JURxIql2sejyPW4p2d2S1grFqI9HED_XVeuhH8GXDcETWRlfpiN7HxKtPqzgfkY0gPhtrUdKIsZwbtusQB_SST99CuUZCxXiftV0GfYeKyr3yRM9jX4xvh_S0azD0RRB8RUTjsdfaMwn0h5D6PAz_7KYcYcmDwpsQP4_kBhbbHUUMRUDfwKyNJfTvhbU-pkA0pWrLA5JHcuGgQwVAIZnnXmRnW0M_x0o-pKo")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDj0fyppgQ8_HLUxefzkhQmWYVqNCWzoAkwubTRWNCpzI0LrTRiiI8b5I6MHMV2JsE-kUPB7Um7y7hl-52itVFILZ4e0uc8z7Hunogdi8vQengThPdr-gUPVEY00H2iKfURQBGufSPUKWThoUxFoDGt1sXEsCkJqVuqs4FwOu8lK8Fh45KR9yhno0dltg2PuaW68vaTOVASJpQ7QMaiHuL0hZdHsXQvhICug5mjzmXSXFhaQE5VojTVPMA9-NZcT-Fx0rQOvvIXkEw")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBznj8D2s2i2uG6QhZbfFPefihGTXQmWR4lLnixFlzhabfwBOwvYqtc1XarVG7XMr2faBoySUMAA32as92w3x-sxbvhLs1LG8WjjRywxLZEJMHjilKtrwSwdDZvChnd6Roa8Z-zySdNpRNe77ytTJ_hp3a4Ch5j0U64j1exTc9sxWDN9q42Bwi5UtrzlOO2GJEZ00RZWyeL99L1qwdiFmrKthKWd3vlqXnkATssmNhodlPiLteIy1b0tG9cCU5gw07meQzFqirBrAk")'></div>
+</div>
+<span class="text-[#0d141b] font-medium ml-1">Tổ Cơ động số 1</span>
+</div>
+</td>
+<td class="px-6 py-4 text-[#4c739a]">UBND Phường 12</td>
+<td class="px-6 py-4 text-[#4c739a] max-w-xs truncate">Tuần tra khu vực chợ dân sinh</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#4c739a] hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#f8fafc] transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-bold text-[#0d141b]">Thứ Hai</span>
+<span class="text-xs text-[#4c739a]">13/05/2024</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-purple-50 text-purple-700 text-xs font-semibold">
+                                                    Chiều (14:00 - 22:00)
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCDkLAP_rkfwBImYGrZa21gvjj6LGmIue3JuDBdPRymGGrIqxu2PkOqneB0p309PYBYeTeW91_W2X8-GdaIwHU-eg-52b7fcAFtwWBx4GCp2ubx_kPRcw8Ihfd5elcOz91HMfSBZwRE0o9rHhGXs8vuddcEOLEPIBjChaHe2Hz9kXOoPcxtwKjX11xRxGnhUDO-cj8vu1ltkGASxonG7ItU-xSNmwjSboFuEbURjHwjJ-kBHhyy0jjVS-OEbmrHcTAafp_3Bvlasd0")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDR_zbCf56rfl2z0ww84hMjaH3d90JBZj6dySMajgOy5zKaLTe-X2pyG94f7YfBOruIjKqyHktXiMtHqsWzVBHqWLEMP6nQ_1AdzOXQlZuY1zc_anidZ5mKTAQ3gqRLP2-yKSJsCyZLY7HLOsq-_SQlCBIbJJSJcqhSWeqUA71UfTXvPBcSykOvN56dxf3wfGxIacRYBdTYDmBjNTJs4TXc4nsEVspuO_7kXH-9jYEFnhopEBp0sh2_aVXYHMiJXmWBHbby9D7w3CQ")'></div>
+</div>
+<span class="text-[#0d141b] font-medium ml-1">Tổ DQ Tại chỗ</span>
+</div>
+</td>
+<td class="px-6 py-4 text-[#4c739a]">Chốt Dân Quân</td>
+<td class="px-6 py-4 text-[#4c739a] max-w-xs truncate">Trực ban chỉ huy</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#4c739a] hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#f8fafc] transition-colors bg-red-50/10">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="font-bold text-[#0d141b]">Thứ Ba</span>
+<span class="text-xs text-[#4c739a]">14/05/2024</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-orange-50 text-orange-700 text-xs font-semibold">
+                                                    Đêm (22:00 - 06:00)
+                                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-2 overflow-hidden">
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAkmHXmv4vtHlv1AbXhNuCVggoviNYWM4V73y31B-KFCVj2dj7uaqBHwHGsv2XeBMw1qjyBD0DJWZGqdqqxQq9k0HO1ZOiim2y22Fzgij1cEV6oy7HvQJ6iuUElmtZGR4e_Cs5h6PmwnfOV-LtcSUttjgeWAQ_44WaX99Y-B1yiaoOpUkbUGo6_Bif3k8emjyeQZIYXLl91CCRCP9ffxhdfCEtd1xAbiSKjzJSwTGNh899A3jy9GvJH2Ua8d_TEZfV2ZHlN8JleKd0")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCv4f0rYAg6npjAYrueySmCIzw4vjwYmWKqxte45bXzhb9YS9KzUMmZok68W4kuQ5m0txoQ5CBvZ_DtAHq0iqDrEEKef8J9oLiwfugG1WKebK9YXklQmCzyj1kM7WLa0dEyK_g5mtYbK78XRs7P6VRKOyeLjBSKCk38nr0vewKOw0U-Iz2RmkCt6lW7f26fnUFkpn3rQsuz99lijbioACs3hS6GOkUwxWMwYkyO7zXUlvkvNiDq5Mm9nGTSg3o0Kx6QruVT9V19Ocs")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDj9QUWroj0OgpZzJs8L0y1QOZvTipyjc1k75YaYxaBvGbj5ZsVtQ3QKypxmHsmrUjq9_C9SD6-_125eOSal9P6Pq31346CNgvAssx1KLSbE-PB7Yf-u8CITAVyqLWturIDjSZe_L4EgYEfhiUNupdV49WzgBUJP5XtjJihqsePwWxR2bBqX58UXhESYEowI6vpqGI9R78mNUaKnOs--r4vmL3J9WvbHrBXfihnlJUQdlo9jD-lQUlbRVz_V4M9ZsFCF0_Prz8tUpc")'></div>
+<div class="inline-block size-6 rounded-full ring-2 ring-white bg-cover bg-center" data-alt="Avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDyJB9weZRu2ET6sRhemS7TBCb3tSN6qkIPUBia8g6WwcERbYZKJw426pLHw-u83aD89dTwXfUhDD3ye2hBxK3hwWmAZVaR2QwRaLAzQ6RsRZDqF_s4i1WxYk6NcKeZYzD63oo9bMDbvgxVu77ickdf-IDSlLNSk79PjYNa4-RQyuu9I6cdXTpU9g9T0Cbd1lsWQjAuHe7NWV-60sQKORVNbl0LzAp7OqLmcZiXuGXGp3HGB3IEf0yHYBOQsd7nnZv2oW3hD7YnaLs")'></div>
+</div>
+<span class="text-[#0d141b] font-medium ml-1">Tiểu đội 1</span>
+</div>
+</td>
+<td class="px-6 py-4 text-[#4c739a]">Khu phố 3 &amp; 4</td>
+<td class="px-6 py-4 text-[#4c739a] max-w-xs truncate">Tuần tra phòng chống tội phạm</td>
+<td class="px-6 py-4 text-right">
+<button class="text-[#4c739a] hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-[#e7edf3] flex items-center justify-between">
+<p class="text-sm text-[#4c739a]">Hiển thị <span class="font-medium text-[#0d141b]">1-3</span> của <span class="font-medium text-[#0d141b]">21</span> ca trực</p>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-[#e7edf3] rounded text-sm text-[#4c739a] hover:bg-background-light disabled:opacity-50">Trước</button>
+<button class="px-3 py-1 bg-primary text-white rounded text-sm hover:bg-primary-dark">1</button>
+<button class="px-3 py-1 border border-[#e7edf3] rounded text-sm text-[#4c739a] hover:bg-background-light">2</button>
+<button class="px-3 py-1 border border-[#e7edf3] rounded text-sm text-[#4c739a] hover:bg-background-light">3</button>
+<button class="px-3 py-1 border border-[#e7edf3] rounded text-sm text-[#4c739a] hover:bg-background-light">Sau</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

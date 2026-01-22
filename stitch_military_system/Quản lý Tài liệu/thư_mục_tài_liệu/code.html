@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thư Mục Tài Liệu</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "background-light": "#F8FAFC",
+              "background-dark": "#1E293B",
+            },
+            fontFamily: {
+              display: ["Be Vietnam Pro", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        .material-icons-outlined {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200">
+<div class="flex h-screen">
+<nav class="w-20 bg-primary flex flex-col items-center justify-between text-white p-4">
+<div class="flex flex-col items-center space-y-8">
+<div class="w-10 h-10 bg-white/30 rounded-full flex items-center justify-center">
+<span class="material-icons-outlined text-white">shield</span>
+</div>
+<div class="flex flex-col items-center space-y-6">
+<a aria-label="Dashboard" class="p-2 rounded-lg hover:bg-white/10" href="#">
+<span class="material-icons-outlined">dashboard</span>
+</a>
+<a aria-label="Personnel" class="p-2 rounded-lg hover:bg-white/10" href="#">
+<span class="material-icons-outlined">groups</span>
+</a>
+<a aria-label="Training" class="p-2 rounded-lg hover:bg-white/10" href="#">
+<span class="material-icons-outlined">model_training</span>
+</a>
+<a aria-label="Documents" class="p-2 rounded-lg bg-white/20" href="#">
+<span class="material-icons-outlined">folder</span>
+</a>
+<a aria-label="Reports" class="p-2 rounded-lg hover:bg-white/10" href="#">
+<span class="material-icons-outlined">assessment</span>
+</a>
+</div>
+</div>
+<div class="flex flex-col items-center space-y-4">
+<a aria-label="Settings" class="p-2 rounded-lg hover:bg-white/10" href="#">
+<span class="material-icons-outlined">settings</span>
+</a>
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-white/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSxLZz8-Ho4u0TBfq1h6JhPo2f_2W_a9BqgerJbTCqUNel1Ew5YvDgYFficQDGSmmPz_cj6AWlhV7Wxzs0zDHBo4lik5SsTWJjIt-5gmuxm15AWup0q7O5BO6XGk7yLZhJQ9bmPx6ONpl0DRoyUmVYoprR_q9GTMhaaDKFKdC174iSBeS6TGszE46V3bNZ9bJPgUjirjiMop4E4iL0Ra6fItE_-X_rlcfOjwdvTsvelfL3dOT6u_vSChxrH4w8SxVnecYcl7u1QkoT"/>
+</div>
+</nav>
+<div class="flex-1 flex flex-col">
+<header class="bg-primary flex items-center justify-between p-4 text-white shadow-md">
+<h1 class="text-xl font-semibold">Thư Mục Tài Liệu</h1>
+<div class="flex items-center space-x-4">
+<button aria-label="Notifications" class="relative p-2 rounded-full hover:bg-white/10">
+<span class="material-icons-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="flex items-center space-x-2">
+<img alt="User avatar" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMd7zrFBJGbIpA9DO8aF3rGf5ELdZralh7c-xlJ_edmjIvpr4bfShdyhXzpkjOiFUPbGlgpCot14dl2j2QPANDkxE5QWP9HFRZv8bLnmKdZwEZ1xs9uzlauz898IeBSGPgBwqINTOUUYd70GwO7kNtAY0nJSpiqHyeEe3zfVnkJHGzUAM5_kz6JR7N4jEjstsRBSR_GBQU_jiAp0fRNQb5pVeuQ7O4MShzTY7pM6l1BRn6gwXW3tTcH7BDcQf0K-HsJKnzp48dxpPE"/>
+<div class="text-sm">
+<p class="font-medium">Admin</p>
+<p class="text-xs text-white/70">Quản trị viên</p>
+</div>
+<button aria-label="User menu" class="p-1 rounded-full hover:bg-white/10">
+<span class="material-icons-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 p-6 overflow-y-auto">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-end gap-4">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Danh sách tài liệu</h2>
+<span class="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm rounded-md">3</span>
+<p class="text-sm text-slate-500 dark:text-slate-400">Đã sử dụng 11 MB / 5109 MB</p>
+</div>
+<button class="bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2 transition-colors">
+<span class="material-icons-outlined">add</span>
+                        Tạo danh mục
+                    </button>
+</div>
+<div class="flex items-center gap-2 border-b border-slate-200 dark:border-slate-700 mb-6">
+<button class="flex items-center gap-2 py-2 px-3 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+<span class="material-icons-outlined" style="font-size: 18px;">table_rows</span>
+                        Tài liệu
+                    </button>
+<button class="flex items-center gap-2 py-2 px-3 text-sm font-medium border-b-2 border-teal-500 text-teal-500">
+<span class="material-icons-outlined" style="font-size: 18px;">folder_open</span>
+                        Danh mục
+                    </button>
+</div>
+<div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-sm">
+<div class="mb-8">
+<h3 class="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200">Tài liệu dự án</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">QLVH003-ADEN SERVICES - FPT PLAZA 1</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">QLVH002-AN PHÚ GIA - TRUNG YÊN SMILE</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT006-BOTANICA PREMIER</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT003-CSC6</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT001-KINGSTON</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT005-MỸ PHƯỚC</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT002-NEW CITY</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">QLVH001-SGPM - AN HOÀ</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">BQT004-WILTON</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-200">Tài liệu hồ sơ</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">01-Ban giám đốc</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">08-Công nghệ thông tin</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">02-Hành chính Nhân sự</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">04-Kinh doanh</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">07-Marketing</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">05-Sản phẩm</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">03-Tài chính Kế toán</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">00-Tài liệu chung</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+<div class="flex items-center justify-between bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-2 text-sm">
+<div class="flex items-center gap-2 truncate">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">folder</span>
+<span class="font-medium truncate">06-Triển khai</span>
+</div>
+<span class="material-icons-outlined text-slate-400 dark:text-slate-500 cursor-pointer">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

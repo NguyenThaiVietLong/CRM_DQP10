@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hiển Thị Phân Quyền</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "background-light": "#F8F9FA",
+              "background-dark": "#121212",
+              "surface-light": "#FFFFFF",
+              "surface-dark": "#1E1E1E",
+              "text-light-primary": "#212529",
+              "text-dark-primary": "#E0E0E0",
+              "text-light-secondary": "#6C757D",
+              "text-dark-secondary": "#A0A0A0",
+              "border-light": "#DEE2E6",
+              "border-dark": "#424242",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-icons-outlined {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen">
+<aside class="w-64 bg-primary text-white flex flex-col fixed h-full">
+<div class="p-6 text-center">
+<h1 class="text-2xl font-bold tracking-wider">HỆ THỐNG</h1>
+<p class="text-xs text-gray-300">QUẢN LÝ DÂN QUÂN</p>
+</div>
+<nav class="flex-grow pt-4">
+<ul>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">dashboard</span>Bảng điều khiển</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">people</span>Nhân sự</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">event</span>Hoạt động</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">devices</span>Thiết bị</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">description</span>Tài liệu</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">schedule</span>Lịch trực</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">assessment</span>Báo cáo</li>
+<li class="bg-white/20 px-6 py-3 text-sm text-white font-semibold flex items-center gap-3 rounded-l-full ml-4"><span class="material-icons-outlined">admin_panel_settings</span>Phân quyền</li>
+<li class="px-6 py-3 text-sm text-white/70 flex items-center gap-3 hover:bg-white/10 cursor-pointer"><span class="material-icons-outlined">settings</span>Cài đặt</li>
+</ul>
+</nav>
+</aside>
+<div class="flex-1 ml-64 flex flex-col">
+<header class="bg-primary shadow-md h-16 flex items-center justify-between px-6 text-white sticky top-0 z-10">
+<div class="flex items-center gap-4">
+<button class="p-2 -ml-2">
+<span class="material-icons-outlined">menu</span>
+</button>
+<h2 class="text-lg font-semibold">Hiển Thị Phân Quyền</h2>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-icons-outlined">notifications</span>
+<div class="flex items-center gap-2">
+<img alt="User avatar" class="rounded-full w-8 h-8 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUq60NX9jV2tjBvWNd4kohTnFnaNMkv4Gxdpb-UaScTzFP9ER-5x1IdEjuyp4wyyfph7rnrdnsQeEPltzaxaXn3SLFADAygLxlLPysQqH-SOZhKwFKscqXHwkiLqeAQCX3UEvVGSGR5jcla-ZIUjHKZQNEFLuUZ1ACQGJAkcqr7qxOJwpL1peNvTr-WczN0R9Ulwz_iyVdPy5S1hW9wqFE7Nj5I-NDxbfJ9cijQWIkjAht1b8_NTstIG2Y1c6UYW4WywocJQRfVZXn"/>
+<span>Việt Long</span>
+<span class="material-icons-outlined">expand_more</span>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h1 class="text-2xl font-bold text-text-light-primary dark:text-text-dark-primary">Quản lý Nhóm Quyền</h1>
+<button class="bg-primary text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-opacity-90 transition-colors">
+<span class="material-icons-outlined text-base">add</span>
+<span>Thêm Nhóm Quyền Mới</span>
+</button>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="relative flex-grow max-w-sm">
+<span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-light-secondary dark:text-text-dark-secondary">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md text-text-light-primary dark:text-text-dark-primary focus:ring-primary focus:border-primary" placeholder="Tìm kiếm nhóm quyền..." type="text"/>
+</div>
+<button class="px-4 py-2 border border-border-light dark:border-border-dark rounded-md text-text-light-primary dark:text-text-dark-primary bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center gap-2">
+<span class="material-icons-outlined text-base">filter_list</span>
+                            Bộ lọc
+                        </button>
+</div>
+<div class="overflow-x-auto border border-border-light dark:border-border-dark rounded-lg">
+<table class="w-full text-left text-sm">
+<thead class="bg-background-light dark:bg-background-dark text-text-light-secondary dark:text-text-dark-secondary uppercase">
+<tr>
+<th class="py-3 px-4 font-semibold">Tên nhóm quyền</th>
+<th class="py-3 px-4 font-semibold">Mô tả</th>
+<th class="py-3 px-4 font-semibold text-center">Hành động</th>
+</tr>
+</thead>
+<tbody class="text-text-light-primary dark:text-text-dark-primary divide-y divide-border-light dark:divide-border-dark">
+<tr class="hover:bg-background-light dark:hover:bg-background-dark">
+<td class="py-3 px-4 font-medium">Quản trị viên</td>
+<td class="py-3 px-4 text-text-light-secondary dark:text-text-dark-secondary">Toàn quyền truy cập vào tất cả các tính năng của hệ thống.</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center items-center gap-2">
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Xem chi tiết"><span class="material-icons-outlined">visibility</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Chỉnh sửa"><span class="material-icons-outlined">edit</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-red-500" title="Xóa"><span class="material-icons-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-background-dark">
+<td class="py-3 px-4 font-medium">Cán bộ nhân sự</td>
+<td class="py-3 px-4 text-text-light-secondary dark:text-text-dark-secondary">Quyền quản lý thông tin nhân sự, hợp đồng, và quá trình công tác.</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center items-center gap-2">
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Xem chi tiết"><span class="material-icons-outlined">visibility</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Chỉnh sửa"><span class="material-icons-outlined">edit</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-red-500" title="Xóa"><span class="material-icons-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-background-dark">
+<td class="py-3 px-4 font-medium">Cán bộ huấn luyện</td>
+<td class="py-3 px-4 text-text-light-secondary dark:text-text-dark-secondary">Quyền tạo và quản lý các kế hoạch, hoạt động huấn luyện.</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center items-center gap-2">
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Xem chi tiết"><span class="material-icons-outlined">visibility</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Chỉnh sửa"><span class="material-icons-outlined">edit</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-red-500" title="Xóa"><span class="material-icons-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-background-light dark:hover:bg-background-dark">
+<td class="py-3 px-4 font-medium">Người dùng cơ bản</td>
+<td class="py-3 px-4 text-text-light-secondary dark:text-text-dark-secondary">Quyền xem thông tin cá nhân và các lịch hoạt động được phân công.</td>
+<td class="py-3 px-4 text-center">
+<div class="flex justify-center items-center gap-2">
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Xem chi tiết"><span class="material-icons-outlined">visibility</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-primary dark:hover:text-white" title="Chỉnh sửa"><span class="material-icons-outlined">edit</span></button>
+<button class="p-2 text-text-light-secondary dark:text-text-dark-secondary hover:text-red-500" title="Xóa"><span class="material-icons-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

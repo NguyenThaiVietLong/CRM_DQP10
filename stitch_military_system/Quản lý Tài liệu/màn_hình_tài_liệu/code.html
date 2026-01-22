@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Màn Hình Tài Liệu</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2E8B57", // Seagreen, similar to the green in screenshots
+            "background-light": "#F8F9FA",
+            "background-dark": "#121212",
+            "surface-light": "#FFFFFF",
+            "surface-dark": "#1E1E1E",
+            "border-light": "#E5E7EB",
+            "border-dark": "#374151",
+            "text-light-primary": "#1F2937",
+            "text-dark-primary": "#F9FAFB",
+            "text-light-secondary": "#6B7280",
+            "text-dark-secondary": "#9CA3AF",
+            "olive": "#556B2F"
+          },
+          fontFamily: {
+            display: ["Roboto", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "8px",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light-primary dark:text-dark-primary">
+<div class="flex h-screen">
+<aside class="w-64 bg-olive text-white flex flex-col">
+<div class="p-6 text-2xl font-bold">
+        Hệ Thống
+      </div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">dashboard</span>
+          Bảng điều khiển
+        </a>
+<a class="flex items-center p-3 rounded bg-white/20" href="#">
+<span class="material-icons-outlined mr-3">folder</span>
+          Tài liệu
+        </a>
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">people</span>
+          Nhân sự
+        </a>
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">event</span>
+          Hoạt động
+        </a>
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">shield</span>
+          Thiết bị
+        </a>
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">model_training</span>
+          Huấn luyện
+        </a>
+<a class="flex items-center p-3 rounded text-white/70 hover:bg-white/10" href="#">
+<span class="material-icons-outlined mr-3">assessment</span>
+          Báo cáo
+        </a>
+</nav>
+</aside>
+<div class="flex-1 flex flex-col">
+<header class="h-16 bg-olive flex items-center justify-end px-6">
+<div class="flex items-center space-x-4">
+<span class="material-icons-outlined text-white cursor-pointer">notifications</span>
+<div class="w-8 h-8 rounded-full bg-gray-300"></div>
+</div>
+</header>
+<main class="flex-1 p-6 overflow-y-auto">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-end space-x-4">
+<h1 class="text-3xl font-bold text-text-light-primary dark:text-dark-primary">Danh sách tài liệu</h1>
+<span class="px-2.5 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm font-semibold">3</span>
+<p class="text-text-light-secondary dark:text-dark-secondary">Đã sử dụng 11 MB / 5109 MB</p>
+</div>
+<div class="flex items-center space-x-3">
+<button class="flex items-center justify-center px-4 py-2 bg-gray-600 dark:bg-gray-700 text-white rounded hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors">
+<span class="material-icons-outlined text-base mr-2">history</span>
+              Lịch sử xóa
+            </button>
+<button class="flex items-center justify-center px-4 py-2 bg-primary text-white rounded hover:bg-green-700 transition-colors">
+<span class="material-icons-outlined text-base mr-2">add</span>
+              Thêm mới
+            </button>
+</div>
+</div>
+<div class="flex items-center space-x-2 mb-4">
+<button class="flex items-center px-4 py-2 border border-border-light dark:border-border-dark bg-surface-light dark:bg-surface-dark rounded text-text-light-primary dark:text-dark-primary">
+<span class="material-icons-outlined text-base mr-2">folder_open</span>
+            Tài liệu
+          </button>
+<button class="flex items-center px-4 py-2 border border-transparent text-text-light-secondary dark:text-dark-secondary hover:bg-gray-100 dark:hover:bg-gray-800 rounded">
+<span class="material-icons-outlined text-base mr-2">list_alt</span>
+            Danh mục
+          </button>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+<input class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-text-light-primary dark:text-dark-primary" placeholder="Tìm theo mã/tên tài liệu" type="text"/>
+<select class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-text-light-secondary dark:text-dark-secondary">
+<option>Danh mục</option>
+</select>
+<select class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-text-light-secondary dark:text-dark-secondary">
+<option>Loại</option>
+</select>
+<select class="w-full bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-text-light-secondary dark:text-dark-secondary">
+<option>Người tạo</option>
+</select>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-text-light-secondary dark:text-dark-secondary">
+<thead class="text-xs uppercase bg-gray-100 dark:bg-gray-800">
+<tr>
+<th class="px-4 py-3 font-medium" scope="col">Danh mục</th>
+<th class="px-4 py-3 font-medium" scope="col">Mã tài liệu</th>
+<th class="px-4 py-3 font-medium" scope="col">Tên tài liệu</th>
+<th class="px-4 py-3 font-medium" scope="col">Loại</th>
+<th class="px-4 py-3 font-medium" scope="col">Ngày tạo</th>
+<th class="px-4 py-3 font-medium" scope="col">Người tạo</th>
+<th class="px-4 py-3 font-medium" scope="col">Người cập nhật</th>
+<th class="px-4 py-3 font-medium" scope="col">Thuộc phòng ban</th>
+<th class="px-4 py-3 font-medium" scope="col">Phòng ban lưu</th>
+<th class="px-4 py-3 font-medium" scope="col">Số lượng tập tin</th>
+<th class="px-4 py-3 font-medium" scope="col">Lượt tải</th>
+<th class="px-4 py-3 font-medium" scope="col">Lượt xem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">Tài liệu chung</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">00202500</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">GPKD</td>
+<td class="px-4 py-4">Tài liệu hội sở</td>
+<td class="px-4 py-4">13:56 15/12/2025</td>
+<td class="px-4 py-4">Trần Anh Tuyết</td>
+<td class="px-4 py-4"></td>
+<td class="px-4 py-4">TÀI CHÍNH KẾ TOÁN</td>
+<td class="px-4 py-4">TÀI CHÍNH KẾ TOÁN</td>
+<td class="px-4 py-4">1 Tập tin</td>
+<td class="px-4 py-4">1</td>
+<td class="px-4 py-4">0</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">Hành chính Nhân sự</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">02202503</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">HỢP ĐỒNG LAO ĐỘNG</td>
+<td class="px-4 py-4">Tài liệu hội sở</td>
+<td class="px-4 py-4">13:45 13/11/2025</td>
+<td class="px-4 py-4">Trần Anh Tuyết</td>
+<td class="px-4 py-4"></td>
+<td class="px-4 py-4">TRIỂN KHAI</td>
+<td class="px-4 py-4">TÀI CHÍNH KẾ TOÁN</td>
+<td class="px-4 py-4">1 Tập tin</td>
+<td class="px-4 py-4">0</td>
+<td class="px-4 py-4">1</td>
+</tr>
+<tr class="border-b border-border-light dark:border-border-dark hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">Triển khai</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">06202507</td>
+<td class="px-4 py-4 text-text-light-primary dark:text-dark-primary">BIÊN BẢN</td>
+<td class="px-4 py-4">Tài liệu hội sở</td>
+<td class="px-4 py-4">16:25 10/11/2025</td>
+<td class="px-4 py-4">Trần Anh Tuyết</td>
+<td class="px-4 py-4"></td>
+<td class="px-4 py-4">TRIỂN KHAI</td>
+<td class="px-4 py-4"></td>
+<td class="px-4 py-4">
+<span class="bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 text-xs font-medium px-2.5 py-1 rounded-full">6 Tập tin</span>
+</td>
+<td class="px-4 py-4">0</td>
+<td class="px-4 py-4">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4">
+<div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+<div class="h-2 bg-primary rounded-full" style="width: 10%;"></div>
+</div>
+</div>
+<div class="flex justify-between items-center pt-4 text-sm text-text-light-secondary dark:text-dark-secondary">
+<div>
+              Tổng 3
+            </div>
+<div class="flex items-center space-x-2">
+<select class="w-auto bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm py-1">
+<option>50/trang</option>
+</select>
+<button class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-icons-outlined text-base">chevron_left</span>
+</button>
+<span class="px-2 py-1 bg-primary text-white text-xs rounded">1</span>
+<button class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
+<span class="material-icons-outlined text-base">chevron_right</span>
+</button>
+<span>Nhảy tới</span>
+<input class="w-12 text-center bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded focus:ring-primary focus:border-primary text-sm py-1 text-text-light-primary dark:text-dark-primary" type="text" value="1"/>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

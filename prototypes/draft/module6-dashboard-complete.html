@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 6: Dashboard Tổng Quan - CRM Dân Quân Phường 10</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "primary-dark": "#4a5d28",
+              olive: "#556B2F",
+              "background-light": "#f7f7f6",
+              "background-dark": "#1a1d15",
+              "text-main": "#0f172a",
+              "text-secondary": "#64748b",
+              "border-light": "#e2e8f0",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 20px;
+      }
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background-light text-text-main font-display"
+    x-data="dashboardApp()"
+  >
+    <div class="flex h-screen w-full overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <div
+            class="bg-olive/20 rounded-full size-10 flex items-center justify-center"
+          >
+            <span class="material-symbols-outlined text-olive">shield</span>
+          </div>
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">Dân Quân Tự Vệ</h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-olive/10"
+            href="module6-dashboard-complete.html"
+          >
+            <span
+              class="material-symbols-outlined text-olive"
+              style="font-variation-settings: 'FILL' 1"
+              >home</span
+            >
+            <p class="text-sm font-bold text-olive">Tổng quan</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module2-personnel-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">group</span>
+            <p class="text-sm font-medium text-gray-600">Nhân sự</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module1-activities-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">event</span>
+            <p class="text-sm font-medium text-gray-600">Hoạt động</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >inventory_2</span
+            >
+            <p class="text-sm font-medium text-gray-600">Thiết bị</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module4-documents-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">folder</span>
+            <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module5-permissions-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >admin_panel_settings</span
+            >
+            <p class="text-sm font-medium text-gray-600">Phân quyền</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header -->
+        <header
+          class="flex items-center justify-between border-b border-border-light bg-white px-8 py-3"
+        >
+          <h2 class="text-text-main text-lg font-bold">Dashboard Tổng Quan</h2>
+          <div class="flex items-center gap-4">
+            <input
+              class="hidden md:block w-64 px-4 h-10 rounded-lg border border-border-light placeholder:text-text-secondary"
+              placeholder="Tìm kiếm..."
+            />
+            <button class="relative p-2">
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"
+              ></span>
+            </button>
+          </div>
+        </header>
+
+        <!-- Sub Navigation -->
+        <nav class="bg-white border-b border-border-light p-2">
+          <div class="flex items-center space-x-2 overflow-x-auto">
+            <button
+              @click="currentView = 'forces'"
+              :class="currentView === 'forces' ? 'bg-primary text-white font-bold' : 'text-text-secondary hover:bg-gray-100'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Lực lượng
+            </button>
+            <button
+              @click="currentView = 'warehouse'"
+              :class="currentView === 'warehouse' ? 'bg-primary text-white font-bold' : 'text-text-secondary hover:bg-gray-100'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Kho vũ khí
+            </button>
+            <button
+              @click="currentView = 'facebook'"
+              :class="currentView === 'facebook' ? 'bg-primary text-white font-bold' : 'text-text-secondary hover:bg-gray-100'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Mạng xã hội
+            </button>
+            <button
+              @click="currentView = 'alerts'"
+              :class="currentView === 'alerts' ? 'bg-primary text-white font-bold' : 'text-text-secondary hover:bg-gray-100'"
+              class="flex items-center gap-1 px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Cảnh báo
+              <span
+                class="bg-red-500 text-white text-[10px] font-bold px-1.5 rounded-sm"
+                >3</span
+              >
+            </button>
+          </div>
+        </nav>
+
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <!-- FORCES DASHBOARD -->
+          <div x-show="currentView === 'forces'" x-cloak>
+            <div class="max-w-7xl mx-auto">
+              <h1 class="text-3xl font-black text-text-main mb-6">
+                Dashboard Lực Lượng
+              </h1>
+
+              <!-- Force Metrics -->
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6"
+              >
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="p-2 bg-primary/10 rounded-lg">
+                      <span class="material-symbols-outlined text-primary"
+                        >badge</span
+                      >
+                    </div>
+                    <span
+                      class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded"
+                      >+5%</span
+                    >
+                  </div>
+                  <p class="text-text-secondary text-sm mb-1">Tổng số DQTT</p>
+                  <h3 class="text-2xl font-bold">280</h3>
+                  <p class="text-xs text-text-secondary mt-1">
+                    Dân quân thường trực
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="p-2 bg-indigo-100 rounded-lg">
+                      <span class="material-symbols-outlined text-indigo-600"
+                        >military_tech</span
+                      >
+                    </div>
+                    <span
+                      class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded"
+                      >+3%</span
+                    >
+                  </div>
+                  <p class="text-text-secondary text-sm mb-1">Tổng số DQCĐ</p>
+                  <h3 class="text-2xl font-bold">170</h3>
+                  <p class="text-xs text-text-secondary mt-1">
+                    Dân quân cơ động
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="p-2 bg-green-100 rounded-lg">
+                      <span class="material-symbols-outlined text-green-600"
+                        >location_on</span
+                      >
+                    </div>
+                    <span
+                      class="text-text-secondary text-xs font-bold bg-gray-100 px-2 py-1 rounded"
+                      >0%</span
+                    >
+                  </div>
+                  <p class="text-text-secondary text-sm mb-1">
+                    Đơn vị hoạt động
+                  </p>
+                  <h3 class="text-2xl font-bold">12</h3>
+                  <p class="text-xs text-text-secondary mt-1">
+                    Đang làm nhiệm vụ
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="p-2 bg-red-100 rounded-lg">
+                      <span class="material-symbols-outlined text-red-600"
+                        >warning</span
+                      >
+                    </div>
+                    <span
+                      class="text-red-600 text-xs font-bold bg-red-100 px-2 py-1 rounded"
+                      >+1 Mới</span
+                    >
+                  </div>
+                  <p class="text-text-secondary text-sm mb-1">Cảnh báo</p>
+                  <h3 class="text-2xl font-bold">3</h3>
+                  <p class="text-xs text-text-secondary mt-1">Cần xử lý ngay</p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="p-2 bg-orange-100 rounded-lg">
+                      <span class="material-symbols-outlined text-orange-600"
+                        >bolt</span
+                      >
+                    </div>
+                    <span
+                      class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded"
+                      >98%</span
+                    >
+                  </div>
+                  <p class="text-text-secondary text-sm mb-1">
+                    Sẵn sàng chiến đấu
+                  </p>
+                  <h3 class="text-2xl font-bold">98%</h3>
+                  <p class="text-xs text-text-secondary mt-1">
+                    Tỷ lệ toàn lực lượng
+                  </p>
+                </div>
+              </div>
+
+              <!-- Table -->
+              <div
+                class="bg-white rounded-xl border border-border-light overflow-hidden"
+              >
+                <div
+                  class="p-6 border-b border-border-light flex justify-between items-center"
+                >
+                  <div>
+                    <h3 class="text-lg font-bold text-text-main">
+                      Danh sách nhân sự trực ban
+                    </h3>
+                    <p class="text-text-secondary text-sm mt-1">
+                      Cập nhật theo thời gian thực
+                    </p>
+                  </div>
+                  <button
+                    class="text-primary text-sm font-medium hover:underline"
+                  >
+                    Xem tất cả →
+                  </button>
+                </div>
+                <table class="w-full">
+                  <thead class="bg-gray-50 border-b border-border-light">
+                    <tr>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                      >
+                        Họ và Tên
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                      >
+                        Chức vụ
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                      >
+                        Đơn vị
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                      >
+                        Trạng thái
+                      </th>
+                      <th
+                        class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                      >
+                        Thời gian
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-border-light">
+                    <template x-for="person in personnelData" :key="person.id">
+                      <tr class="hover:bg-gray-50">
+                        <td
+                          class="px-6 py-4 text-sm font-medium text-text-main"
+                          x-text="person.name"
+                        ></td>
+                        <td
+                          class="px-6 py-4 text-sm text-text-secondary"
+                          x-text="person.position"
+                        ></td>
+                        <td
+                          class="px-6 py-4 text-sm text-text-secondary"
+                          x-text="person.unit"
+                        ></td>
+                        <td class="px-6 py-4">
+                          <span
+                            :class="person.statusClass"
+                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+                          >
+                            <span
+                              :class="person.dotClass"
+                              class="size-1.5 rounded-full"
+                            ></span>
+                            <span x-text="person.status"></span>
+                          </span>
+                        </td>
+                        <td
+                          class="px-6 py-4 text-sm text-text-secondary"
+                          x-text="person.time"
+                        ></td>
+                      </tr>
+                    </template>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- WAREHOUSE DASHBOARD -->
+          <div x-show="currentView === 'warehouse'" x-cloak>
+            <div class="max-w-7xl mx-auto">
+              <h1 class="text-3xl font-black text-text-main mb-6">
+                Dashboard Kho Vũ Khí
+              </h1>
+
+              <!-- Warehouse Metrics -->
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+              >
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <p class="text-text-secondary text-sm">Tổng vật phẩm</p>
+                    <span
+                      class="material-symbols-outlined text-primary bg-primary/10 p-1.5 rounded-lg text-[20px]"
+                      >package_2</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-bold">1,250</h3>
+                  <span
+                    class="text-primary text-xs font-medium bg-primary/10 px-2 py-1 rounded mt-2 inline-block"
+                    >+5%</span
+                  >
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <p class="text-text-secondary text-sm">Tổng giá trị</p>
+                    <span
+                      class="material-symbols-outlined text-blue-600 bg-blue-100 p-1.5 rounded-lg text-[20px]"
+                      >payments</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-bold">5.2 tỷ</h3>
+                  <span
+                    class="text-primary text-xs font-medium bg-primary/10 px-2 py-1 rounded mt-2 inline-block"
+                    >+2%</span
+                  >
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-red-50 shadow-sm ring-2 ring-red-100"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <p class="text-text-secondary text-sm">Cảnh báo tồn kho</p>
+                    <span
+                      class="material-symbols-outlined text-red-600 bg-red-100 p-1.5 rounded-lg text-[20px]"
+                      >warning</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-bold text-red-600">12</h3>
+                  <span
+                    class="text-red-600 text-xs font-medium bg-red-100 px-2 py-1 rounded mt-2 inline-block"
+                    >+3 mới</span
+                  >
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <div class="flex justify-between items-start mb-3">
+                    <p class="text-text-secondary text-sm">Giao dịch gần đây</p>
+                    <span
+                      class="material-symbols-outlined text-orange-600 bg-orange-100 p-1.5 rounded-lg text-[20px]"
+                      >history</span
+                    >
+                  </div>
+                  <h3 class="text-2xl font-bold">45</h3>
+                  <p class="text-xs text-text-secondary mt-2">trong 24h qua</p>
+                </div>
+              </div>
+
+              <!-- Alert Box -->
+              <div
+                class="bg-red-50 border border-red-100 rounded-xl p-4 flex items-start gap-3 mb-6"
+              >
+                <span class="material-symbols-outlined text-red-600 mt-0.5"
+                  >report</span
+                >
+                <div>
+                  <h3 class="text-text-main font-bold text-sm">
+                    Cảnh báo: 3 loại vật phẩm dưới mức an toàn
+                  </h3>
+                  <p class="text-text-secondary text-sm mt-1">
+                    Áo phao cứu sinh (5/100), Đèn pin chuyên dụng (8/60), Bộ đàm
+                    Motorola (12/50)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FACEBOOK DASHBOARD -->
+          <div x-show="currentView === 'facebook'" x-cloak>
+            <div class="max-w-7xl mx-auto">
+              <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-black text-text-main">
+                  Dashboard Facebook
+                </h1>
+                <button
+                  class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >sync</span
+                  >
+                  Đồng bộ dữ liệu
+                </button>
+              </div>
+
+              <!-- Facebook Metrics -->
+              <div
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6"
+              >
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <p class="text-text-secondary text-sm mb-1">Lượt tiếp cận</p>
+                  <h3 class="text-2xl font-bold">12,450</h3>
+                  <span
+                    class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded mt-2 inline-block"
+                    >+5.2%</span
+                  >
+                  <p class="text-xs text-text-secondary mt-1">
+                    So với tuần trước
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <p class="text-text-secondary text-sm mb-1">Lượt thích</p>
+                  <h3 class="text-2xl font-bold">3,280</h3>
+                  <span
+                    class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded mt-2 inline-block"
+                    >+3.8%</span
+                  >
+                  <p class="text-xs text-text-secondary mt-1">Tổng tương tác</p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <p class="text-text-secondary text-sm mb-1">Tương tác</p>
+                  <h3 class="text-2xl font-bold">850</h3>
+                  <span
+                    class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded mt-2 inline-block"
+                    >+8.4%</span
+                  >
+                  <p class="text-xs text-text-secondary mt-1">
+                    Like, Comment, Share
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white rounded-xl p-5 border border-border-light shadow-sm"
+                >
+                  <p class="text-text-secondary text-sm mb-1">Bài viết</p>
+                  <h3 class="text-2xl font-bold">15</h3>
+                  <span
+                    class="text-green-600 text-xs font-bold bg-green-100 px-2 py-1 rounded mt-2 inline-block"
+                    >+2</span
+                  >
+                  <p class="text-xs text-text-secondary mt-1">Tuần này</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ALERTS DASHBOARD -->
+          <div x-show="currentView === 'alerts'" x-cloak>
+            <div class="max-w-7xl mx-auto">
+              <h1 class="text-3xl font-black text-text-main mb-6">
+                Cảnh Báo Hệ Thống
+              </h1>
+
+              <!-- Alert Cards -->
+              <div class="space-y-4">
+                <div class="bg-red-50 border-l-4 border-red-500 rounded-lg p-5">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="material-symbols-outlined text-red-500 text-3xl"
+                      >warning</span
+                    >
+                    <div class="flex-1">
+                      <h3 class="font-bold text-red-900 text-lg">
+                        Thiết bị dưới mức an toàn
+                      </h3>
+                      <p class="text-red-700 mt-1">
+                        3 loại thiết bị đang ở mức tồn kho nguy cấp: Áo phao cứu
+                        sinh (5/100), Đèn pin chuyên dụng (8/60), Bộ đàm
+                        Motorola (12/50)
+                      </p>
+                      <div class="flex gap-3 mt-3">
+                        <button
+                          class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-bold hover:bg-red-700"
+                        >
+                          Xử lý ngay
+                        </button>
+                        <button
+                          class="px-4 py-2 border border-red-600 text-red-600 rounded-lg text-sm font-medium hover:bg-red-50"
+                        >
+                          Xem chi tiết
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-orange-50 border-l-4 border-orange-500 rounded-lg p-5"
+                >
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="material-symbols-outlined text-orange-500 text-3xl"
+                      >schedule</span
+                    >
+                    <div class="flex-1">
+                      <h3 class="font-bold text-orange-900 text-lg">
+                        Hoạt động sắp diễn ra
+                      </h3>
+                      <p class="text-orange-700 mt-1">
+                        Diễn tập phòng cháy chữa cháy sẽ diễn ra vào 02/01/2025.
+                        Cần chuẩn bị thiết bị và triển khai lực lượng.
+                      </p>
+                      <div class="flex gap-3 mt-3">
+                        <button
+                          class="px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-bold hover:bg-orange-700"
+                        >
+                          Xem kế hoạch
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-5"
+                >
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="material-symbols-outlined text-blue-500 text-3xl"
+                      >info</span
+                    >
+                    <div class="flex-1">
+                      <h3 class="font-bold text-blue-900 text-lg">
+                        Cập nhật hồ sơ nhân sự
+                      </h3>
+                      <p class="text-blue-700 mt-1">
+                        15 hồ sơ dân quân cần cập nhật thông tin trước ngày
+                        31/12/2024 để đảm bảo dữ liệu chính xác.
+                      </p>
+                      <div class="flex gap-3 mt-3">
+                        <button
+                          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700"
+                        >
+                          Cập nhật ngay
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function dashboardApp() {
+        return {
+          currentView: "forces",
+          personnelData: [
+            {
+              id: "DQ-0012",
+              name: "Nguyễn Văn An",
+              position: "Tiểu đội trưởng",
+              unit: "Tiểu đội Cơ động 1",
+              status: "Đang trực",
+              time: "06:00 29/12",
+              statusClass: "bg-green-100 text-green-700",
+              dotClass: "bg-green-600 animate-pulse",
+            },
+            {
+              id: "DQ-0045",
+              name: "Trần Văn Bình",
+              position: "Chiến sĩ",
+              unit: "Tổ Dân quân thường trực",
+              status: "Đang trực",
+              time: "06:00 29/12",
+              statusClass: "bg-green-100 text-green-700",
+              dotClass: "bg-green-600 animate-pulse",
+            },
+            {
+              id: "DQ-0089",
+              name: "Lê Thị Cúc",
+              position: "Y tá",
+              unit: "Tổ Hậu cần",
+              status: "Nghỉ phép",
+              time: "--",
+              statusClass: "bg-orange-100 text-orange-700",
+              dotClass: "bg-orange-500",
+            },
+            {
+              id: "DQ-0112",
+              name: "Phạm Văn Dũng",
+              position: "Chiến sĩ",
+              unit: "Tiểu đội Cơ động 2",
+              status: "Cảnh báo vắng",
+              time: "--",
+              statusClass: "bg-red-100 text-red-700",
+              dotClass: "bg-red-600 animate-bounce",
+            },
+          ],
+        };
+      }
+    </script>
+  </body>
+</html>

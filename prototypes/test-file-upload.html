@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test File Upload</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-gray-100 p-8"
+    x-data="{
+    uploadedFiles: [],
+    handleFileSelect(event) {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            Array.from(files).forEach(file => {
+                const extension = file.name.split('.').pop().toLowerCase();
+                this.uploadedFiles.push({
+                    name: file.name,
+                    size: this.formatFileSize(file.size),
+                    extension: extension,
+                    rawSize: file.size
+                });
+            });
+        }
+        event.target.value = '';
+    },
+    removeFile(index) {
+        this.uploadedFiles.splice(index, 1);
+    },
+    formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
+    }
+}"
+  >
+    <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8">
+      <h1 class="text-2xl font-bold mb-6">
+        Test File Upload - Module Tài liệu
+      </h1>
+
+      <!-- Upload Button -->
+      <input
+        type="file"
+        id="fileUpload"
+        @change="handleFileSelect($event)"
+        accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+        multiple
+        class="hidden"
+      />
+      <button
+        @click="document.getElementById('fileUpload').click()"
+        class="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg"
+      >
+        <span class="material-symbols-outlined text-[20px]">upload</span>
+        Chọn file từ máy tính
+      </button>
+
+      <!-- Uploaded Files Display -->
+      <div x-show="uploadedFiles.length > 0" class="mt-6">
+        <div class="bg-white rounded-xl border border-gray-300 p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-bold text-gray-900">
+              Tập tin đã chọn (<span x-text="uploadedFiles.length"></span>)
+            </h3>
+            <button
+              @click="uploadedFiles = []"
+              class="text-xs text-gray-500 hover:text-red-500"
+            >
+              Xóa tất cả
+            </button>
+          </div>
+          <div class="space-y-2">
+            <template x-for="(file, index) in uploadedFiles" :key="index">
+              <div
+                class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="material-symbols-outlined text-2xl"
+                    :class="{
+                                        'text-red-500': file.extension === 'pdf',
+                                        'text-blue-500': ['doc', 'docx'].includes(file.extension),
+                                        'text-green-500': ['xls', 'xlsx'].includes(file.extension),
+                                        'text-orange-500': ['ppt', 'pptx'].includes(file.extension),
+                                        'text-purple-500': file.extension === 'zip',
+                                        'text-gray-400': !['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'].includes(file.extension)
+                                    }"
+                    x-text="file.extension === 'pdf' ? 'picture_as_pdf' : 
+                                            ['doc', 'docx'].includes(file.extension) ? 'description' : 
+                                            ['xls', 'xlsx'].includes(file.extension) ? 'table_chart' : 
+                                            ['ppt', 'pptx'].includes(file.extension) ? 'slideshow' :
+                                            file.extension === 'zip' ? 'folder_zip' : 'insert_drive_file'"
+                  ></span>
+                  <div>
+                    <p
+                      class="text-sm font-medium text-gray-900"
+                      x-text="file.name"
+                    ></p>
+                    <p class="text-xs text-gray-600">
+                      <span x-text="file.size"></span> •
+                      <span
+                        class="uppercase font-bold"
+                        x-text="file.extension"
+                      ></span>
+                    </p>
+                  </div>
+                </div>
+                <button
+                  @click="removeFile(index)"
+                  class="text-gray-400 hover:text-red-500 transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >close</span
+                  >
+                </button>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+
+      <div
+        x-show="uploadedFiles.length === 0"
+        class="mt-6 text-center text-gray-500 text-sm"
+      >
+        Chưa có file nào được chọn. Click nút "Chọn file từ máy tính" để thử
+        nghiệm.
+      </div>
+    </div>
+  </body>
+</html>

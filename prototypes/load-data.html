@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Load Sample Data</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #556b2f;
+        margin-bottom: 20px;
+      }
+      .status {
+        padding: 15px;
+        border-radius: 4px;
+        margin: 20px 0;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+      }
+      button {
+        background: #556b2f;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+      button:hover {
+        background: #445522;
+      }
+      .danger {
+        background: #dc3545;
+      }
+      .danger:hover {
+        background: #c82333;
+      }
+      pre {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔄 Load Sample Data</h1>
+
+      <div class="info">
+        <strong>Hướng dẫn:</strong><br />
+        1. Click "Load Data" để load 12 activities vào localStorage<br />
+        2. Data sẽ được lưu vào key: <code>dqp10_activities</code><br />
+        3. Sau khi load xong, quay lại activity-list.html và refresh
+      </div>
+
+      <div style="margin: 20px 0">
+        <button onclick="loadData()">📥 Load Data (12 Activities)</button>
+        <button class="danger" onclick="clearData()">🗑️ Clear Data</button>
+      </div>
+
+      <div id="status"></div>
+      <div id="preview"></div>
+    </div>
+
+    <script src="sample-data.js?v=3"></script>
+    <script>
+      function loadData() {
+        try {
+          // sampleActivities is already defined in sample-data.js
+          localStorage.setItem(
+            "dqp10_activities",
+            JSON.stringify(sampleActivities),
+          );
+
+          const statusDiv = document.getElementById("status");
+          statusDiv.className = "status success";
+          statusDiv.innerHTML = `
+                    <strong>✅ Success!</strong><br>
+                    Đã load ${sampleActivities.length} activities vào localStorage<br>
+                    Key: <code>dqp10_activities</code>
+                `;
+
+          showPreview();
+        } catch (error) {
+          const statusDiv = document.getElementById("status");
+          statusDiv.className = "status danger";
+          statusDiv.innerHTML = `<strong>❌ Error:</strong> ${error.message}`;
+        }
+      }
+
+      function clearData() {
+        localStorage.removeItem("dqp10_activities");
+        const statusDiv = document.getElementById("status");
+        statusDiv.className = "status info";
+        statusDiv.innerHTML =
+          "<strong>🗑️ Cleared!</strong> localStorage đã được xóa";
+        document.getElementById("preview").innerHTML = "";
+      }
+
+      function showPreview() {
+        const data = localStorage.getItem("dqp10_activities");
+        if (data) {
+          const activities = JSON.parse(data);
+          const previewDiv = document.getElementById("preview");
+
+          let html = "<h3>📋 Preview Data:</h3><pre>";
+          activities.forEach((act) => {
+            html += `ID: ${act.id} | Tổ ${act.department} | ${act.name}\n`;
+          });
+          html += "</pre>";
+
+          // Group by department
+          const byDept = {};
+          activities.forEach((act) => {
+            if (!byDept[act.department]) byDept[act.department] = [];
+            byDept[act.department].push(act);
+          });
+
+          html += "<h4>Phân bổ theo Tổ:</h4><pre>";
+          Object.keys(byDept)
+            .sort()
+            .forEach((dept) => {
+              html += `Tổ ${dept}: ${byDept[dept].length} activities\n`;
+            });
+          html += "</pre>";
+
+          previewDiv.innerHTML = html;
+        }
+      }
+
+      // Check on load
+      window.onload = function () {
+        const existing = localStorage.getItem("dqp10_activities");
+        if (existing) {
+          const statusDiv = document.getElementById("status");
+          statusDiv.className = "status info";
+          const count = JSON.parse(existing).length;
+          statusDiv.innerHTML = `<strong>ℹ️ Info:</strong> Đã có ${count} activities trong localStorage`;
+          showPreview();
+        }
+      };
+    </script>
+  </body>
+</html>

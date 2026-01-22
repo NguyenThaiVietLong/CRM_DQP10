@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lịch Hoạt Động (Chỉ Xem Tháng &amp; Tuần)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#556B2F",
+                        "primary-dark": "#4a5d28",
+                        secondary: "#556b2f",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#121212",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e1e1e",
+                        "border-light": "#dee2e6",
+                        "border-dark": "#343a40"
+                    },
+                    fontFamily: {
+                        display: "Inter"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+             font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased">
+<div class="flex h-screen w-full">
+<aside class="w-[260px] flex-shrink-0 bg-primary dark:bg-[#556B2F] flex flex-col z-30">
+<div class="h-16 flex items-center px-6 gap-3">
+<div class="bg-cover bg-center rounded-lg size-9 shadow-sm" data-alt="Logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDr-5egaY7mujN2ErxSXG1zIZLNuHm5CSPwATE1_dR65IiHnoXleZjX_N8_kxLdr3O66OI2e09ZGAYirWiucV6Bibcsn6jjgCBWd8CEwj41HiDgvbxowKBBruImvJ-ZRMtro5Qj9d1NP4P5KHlU4I9R-bUuWFAzcmiJP6qBqSe-8HSXI57ZwjmnpSwMnwPT6p6tG1ZjjwuLHsW2wp-4-CE8BzPtmbS6gs_RSv4st2zT9KIRuwrGtTKXl5jgDTJXDHyJzeRkr2uzZMw");'></div>
+<h1 class="text-white text-lg font-bold">Quản lý Dân quân</h1>
+</div>
+<nav class="flex-1 px-4 py-2 overflow-y-auto">
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-sm font-medium">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">groups</span>
+<span class="text-sm font-medium">Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg bg-white/20 text-white font-semibold relative group" href="#">
+<span class="material-symbols-outlined text-[24px] fill">local_activity</span>
+<span class="text-sm font-medium">Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">event_available</span>
+<span class="text-sm font-medium">Lịch trực</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">inventory_2</span>
+<span class="text-sm font-medium">Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">school</span>
+<span class="text-sm font-medium">Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">bar_chart</span>
+<span class="text-sm font-medium">Báo cáo</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-white/10">
+<a class="flex items-center gap-3 w-full p-3 rounded-lg text-white/80 hover:bg-white/10 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-sm font-medium">Cài đặt</span>
+</a>
+<div class="mt-4 flex items-center gap-3 p-2 rounded-lg bg-white/5">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 font-bold text-sm border-2 border-white/20 cursor-pointer">AD</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-white">Admin</p>
+<p class="text-xs text-white/60">admin@qldq.vn</p>
+</div>
+<button class="text-white/60 hover:text-white">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-screen overflow-hidden">
+<header class="h-16 flex items-center justify-between px-6 bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shrink-0">
+<div class="flex items-center gap-4">
+<h1 class="text-xl font-bold text-slate-800 dark:text-white">Lịch Hoạt Động</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-transparent focus:border-primary focus:ring-primary rounded-lg text-sm text-slate-900 dark:text-white placeholder-slate-400 w-64 transition-all" placeholder="Tìm kiếm..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-red-500 rounded-full border border-white dark:border-surface-dark"></span>
+</button>
+</div>
+</header>
+<nav class="h-14 bg-primary dark:bg-[#556B2F] flex items-center px-6 text-white shrink-0 shadow-md">
+<div class="flex items-center gap-1">
+<a class="px-3 py-2 text-sm font-semibold rounded-md bg-white/20" href="#">Lịch hoạt động</a>
+<a class="px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 rounded-md transition-colors" href="#">Danh sách hoạt động</a>
+<a class="px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 rounded-md transition-colors" href="#">Tổng quan</a>
+<a class="px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 rounded-md transition-colors" href="#">Chi tiết hoạt động</a>
+<a class="px-3 py-2 text-sm font-medium text-white/80 hover:bg-white/10 rounded-md transition-colors" href="#">Tạo hoạt động mới</a>
+</div>
+</nav>
+<div class="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 bg-background-light dark:bg-background-dark">
+<div class="max-w-full mx-auto flex flex-col gap-6 h-full">
+<div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+<div class="flex items-center gap-3">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center">12/2025 <span class="material-symbols-outlined text-sky-600 text-xl ml-2 cursor-pointer">info</span></h2>
+</div>
+<div class="flex flex-wrap items-center gap-3 w-full xl:w-auto ml-auto">
+<div class="flex items-center gap-2 text-sm font-medium">
+<span>Xem theo tuần</span>
+<button class="p-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+<button class="px-3 py-1.5 text-sm font-semibold text-slate-600 bg-white dark:bg-slate-700 dark:text-slate-200 border border-border-light dark:border-slate-700 rounded-md hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">Tuần</button>
+<button class="p-1.5 text-sky-600 dark:text-sky-400 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-xl">chevron_left</span>
+</button>
+<button class="p-1.5 text-sky-600 dark:text-sky-400 rounded hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-xl">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex-1 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-xl shadow-sm overflow-hidden flex flex-col min-h-[600px]">
+<div class="grid grid-cols-7 border-b border-border-light dark:border-border-dark">
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div class="text-red-500">28</div><div class="text-red-500 uppercase">CN</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50"><div class="text-sky-600">29</div><div class="uppercase">Thứ 2</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div>30</div><div class="uppercase">Thứ 3</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div>31</div><div class="uppercase">Thứ 4</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div>1</div><div class="uppercase">Thứ 5</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div>2</div><div class="uppercase">Thứ 6</div></div>
+<div class="p-3 text-center text-sm font-semibold text-slate-500 dark:text-slate-400"><div>3</div><div class="uppercase">Thứ 7</div></div>
+</div>
+<div class="grid grid-cols-7 flex-1 divide-x divide-border-light dark:divide-border-dark">
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+<div class="p-2 space-y-2 bg-slate-50 dark:bg-slate-800/50"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[Bắn súng]</div><div class="text-slate-500 dark:text-slate-400 text-xs">Bắn súng</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 4</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div><div class="size-2 bg-red-600 rounded-full mt-1.5 flex-shrink-0"></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[Bắn súng]</div><div class="text-slate-500 dark:text-slate-400 text-xs">Bắn súng</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 4</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[Bắn súng]</div><div class="text-slate-500 dark:text-slate-400 text-xs">Bắn súng</div></div></div></div>
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 4</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 4</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+<div class="p-2 space-y-2"><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 4</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 3</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 2</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">calendar_today</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[O-AN-HN] Ca 1</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div><div class="bg-white dark:bg-neutral-0 border border-slate-200 dark:border-slate-700 rounded-lg p-2 flex items-start gap-2 text-sm"><span class="material-symbols-outlined text-sky-600 text-base mt-0.5">star</span><div class="flex-1"><div class="font-semibold text-slate-800 dark:text-slate-100">[TESTXACNHANCV]...</div><div class="text-slate-500 dark:text-slate-400 text-xs">Nguyễn Thái Việt Long</div></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

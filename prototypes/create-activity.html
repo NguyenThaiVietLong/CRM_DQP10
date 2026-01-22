@@ -1,0 +1,1022 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tạo Hoạt động/Công việc - Dân Quân Tự Vệ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="notification-system.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              olive: {
+                DEFAULT: "#697565",
+                50: "#f6f7f6",
+                100: "#e3e6e2",
+                200: "#c7cdc5",
+                300: "#a5ada0",
+                400: "#858e7f",
+                500: "#697565",
+                600: "#535d50",
+                700: "#434a42",
+                800: "#373c36",
+                900: "#2f332e",
+              },
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50" x-data="createActivity()">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">Phường đội Bình Phú</h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+          </div>
+        </div>
+
+        <!-- User Profile Card -->
+        <div
+          class="bg-gradient-to-r from-olive/10 to-olive/5 rounded-xl p-3 mb-4 border border-olive/20"
+        >
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <div
+                class="bg-olive/20 rounded-full size-10 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-olive text-lg"
+                  >person</span
+                >
+              </div>
+              <span
+                class="absolute bottom-0 right-0 size-2.5 bg-green-500 rounded-full border-2 border-white"
+              ></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-bold text-gray-900 truncate">
+                Nguyễn Văn Quang
+              </p>
+              <p class="text-xs text-gray-600">DQTT</p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="dashboard-tong-hop.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >assessment</span
+            >
+            <p class="text-sm font-medium text-gray-600">Dashboard</p>
+          </a>
+
+          <!-- Hoạt động Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">event</span>
+              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch trực</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nhân sự -->
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module2-personnel-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">group</span>
+            <p class="text-sm font-medium text-gray-600">Nhân sự</p>
+          </a>
+
+          <!-- Kho -->
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >inventory_2</span
+            >
+            <p class="text-sm font-medium text-gray-600">Kho</p>
+          </a>
+
+          <!-- Tài liệu -->
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module4-documents-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">folder</span>
+            <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">Tạo kế hoạch mới</h1>
+              <p class="text-sm text-gray-500 mt-1">
+                Điền thông tin chi tiết cho kế hoạch mới
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <!-- Notification Bell System -->
+              <div x-data="notificationBell" class="relative">
+                <button @click="toggleDropdown()" class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors" :class="{'bg-gray-100': isOpen}">
+                  <span class="material-symbols-outlined">notifications</span>
+                  <span x-show="unreadCount > 0" class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
+                  <span x-show="unreadCount > 0" x-text="unreadCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"></span>
+                </button>
+                <div x-show="isOpen" @click.away="isOpen = false" class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50" style="display: none" x-cloak>
+                  <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                    <h3 class="text-sm font-bold text-gray-900">Thông báo nhiệm vụ</h3>
+                    <span class="text-xs text-gray-500" x-text="notifications.length + ' nhiệm vụ'"></span>
+                  </div>
+                  <div class="max-h-96 overflow-y-auto">
+                    <template x-if="notifications.length === 0">
+                      <div class="p-8 text-center">
+                        <span class="material-symbols-outlined text-4xl text-gray-300">notifications_off</span>
+                        <p class="text-sm text-gray-500 mt-2">Không có thông báo mới</p>
+                      </div>
+                    </template>
+                    <div class="divide-y divide-gray-100">
+                      <template x-for="notif in notifications" :key="notif.id">
+                        <div class="p-4 hover:bg-gray-50 transition-colors">
+                          <div class="flex items-start gap-3">
+                            <div class="bg-yellow-100 rounded-lg p-2 flex-shrink-0">
+                              <span class="material-symbols-outlined text-yellow-600 text-xl">assignment</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <p class="text-sm font-semibold text-gray-900 mb-1" x-text="notif.taskName"></p>
+                              <div class="space-y-1 mb-2">
+                                <p class="text-xs text-gray-600 flex items-center gap-1">
+                                  <span class="material-symbols-outlined text-[14px]">location_on</span>
+                                  <span x-text="notif.location"></span>
+                                </p>
+                                <p class="text-xs text-gray-600 flex items-center gap-1">
+                                  <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                  <span>Thời hạn: <span x-text="notif.deadline"></span></span>
+                                </p>
+                              </div>
+                              <div class="flex gap-2">
+                                <a :href="'activity-detail.html?id=' + notif.activityId" class="text-xs text-olive hover:underline font-medium">Xem chi tiết</a>
+                                <button @click="confirmRead(notif.id)" class="text-xs text-blue-600 hover:underline font-medium">Xác nhận đã đọc</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </template>
+                    </div>
+                  </div>
+                  <div x-show="notifications.length > 0" class="px-4 py-3 border-t border-gray-200 bg-gray-50">
+                    <button @click="markAllRead()" class="text-xs text-olive hover:underline font-medium w-full text-center">Đánh dấu tất cả đã đọc</button>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="module1-activities-complete.html"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined">arrow_back</span>
+                <span>Quay lại</span>
+            </a>
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="flex-1 overflow-auto p-6">
+          <div class="max-w-4xl mx-auto">
+            <form
+              @submit.prevent="submitActivity"
+              class="bg-white rounded-lg border border-gray-200 p-6"
+            >
+              <!-- Section 1: Thông tin cơ bản -->
+              <div class="mb-6">
+                <h2
+                  class="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-olive">info</span>
+                  Thông tin cơ bản
+                </h2>
+
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                      Tên kế hoạch <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      x-model="formData.name"
+                      type="text"
+                      required
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      placeholder="VD: Huấn luyện sử dụng vũ khí"
+                    />
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Loại hoạt động <span class="text-red-500">*</span>
+                      </label>
+                      <select
+                        x-model="formData.workType"
+                        required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      >
+                        <option value="">-- Chọn loại công việc --</option>
+                        <option value="phat-sinh">
+                          🔴 Công việc phát sinh (đột xuất)
+                        </option>
+                        <option value="ke-hoach">
+                          🟢 Công việc theo kế hoạch năm
+                        </option>
+                      </select>
+                      <p class="mt-1 text-xs text-gray-500">
+                        Tất cả công việc đều tính vào KPI năm
+                      </p>
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Nhóm công việc <span class="text-red-500">*</span>
+                      </label>
+                      <select
+                        x-model="formData.workGroup"
+                        required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      >
+                        <option value="">-- Chọn nhóm công việc --</option>
+                        <template x-for="group in workGroups" :key="group.code">
+                          <option
+                            :value="group.code"
+                            x-text="group.name"
+                          ></option>
+                        </template>
+                      </select>
+                      <p
+                        class="mt-1 text-xs text-gray-500"
+                        x-show="formData.workGroup"
+                      >
+                        Tiến độ nhóm:
+                        <span
+                          class="font-semibold"
+                          x-text="getGroupProgress(formData.workGroup)"
+                        ></span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Tổ phụ trách <span class="text-red-500">*</span>
+                      </label>
+                      <select
+                        x-model="formData.to"
+                        required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      >
+                        <option value="">-- Chọn tổ --</option>
+                        <option value="1">Tổ 1</option>
+                        <option value="2">Tổ 2</option>
+                        <option value="3">Tổ 3</option>
+                        <option value="4">Tổ 4</option>
+                        <option value="5">Tổ 5</option>
+                        <option value="6">Tổ 6</option>
+                        <option value="7">Tổ 7</option>
+                        <option value="8">Tổ 8</option>
+                        <option value="9">Tổ 9</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Địa điểm
+                      </label>
+                      <input
+                        x-model="formData.location"
+                        type="text"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                        placeholder="VD: Sân tập P10, Kho vũ khí..."
+                      />
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Ngày bắt đầu <span class="text-red-500">*</span>
+                      </label>
+                      <input
+                        x-model="formData.startDate"
+                        type="text"
+                        required
+                        placeholder="dd/mm/yyyy"
+                        pattern="\d{2}/\d{2}/\d{4}"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Ngày kết thúc <span class="text-red-500">*</span>
+                      </label>
+                      <input
+                        x-model="formData.endDate"
+                        type="text"
+                        required
+                        placeholder="dd/mm/yyyy"
+                        pattern="\d{2}/\d{2}/\d{4}"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Số công văn
+                      </label>
+                      <input
+                        x-model="formData.documentNumber"
+                        type="text"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                        placeholder="VD: 123/CV-DQ..."
+                      />
+                      <p class="mt-1 text-xs text-gray-500">
+                        💡 Số hiệu công văn liên quan (nếu có)
+                      </p>
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Đính kèm tài liệu
+                      </label>
+                      <input
+                        type="file"
+                        @change="handleFileUpload"
+                        multiple
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-olive/10 file:text-olive hover:file:bg-olive/20"
+                      />
+                      <p class="mt-1 text-xs text-gray-500">
+                        📎 Hỗ trợ: PDF, DOC, DOCX, JPG, PNG (Tối đa 10MB)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section 2: Nhiệm vụ -->
+              <div class="mb-6">
+                <div class="flex items-center justify-between mb-4">
+                  <h2
+                    class="text-lg font-semibold text-gray-900 flex items-center gap-2"
+                  >
+                    <span class="material-symbols-outlined text-olive"
+                      >task</span
+                    >
+                    Nhiệm vụ
+                  </h2>
+                  <button
+                    type="button"
+                    @click="addTask"
+                    class="px-3 py-1 text-sm bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors flex items-center gap-1"
+                  >
+                    <span class="material-symbols-outlined text-lg">add</span>
+                    <span>Thêm nhiệm vụ</span>
+                  </button>
+                </div>
+
+                <div class="space-y-3">
+                  <template
+                    x-for="(task, index) in formData.tasks"
+                    :key="index"
+                  >
+                    <div
+                      class="border border-gray-200 rounded-lg p-4 bg-gray-50"
+                    >
+                      <div class="flex items-start justify-between mb-3">
+                        <h3 class="font-medium text-gray-900">
+                          Nhiệm vụ <span x-text="index + 1"></span>
+                        </h3>
+                        <button
+                          type="button"
+                          @click="removeTask(index)"
+                          class="text-red-600 hover:bg-red-50 p-1 rounded"
+                        >
+                          <span class="material-symbols-outlined text-lg"
+                            >delete</span
+                          >
+                        </button>
+                      </div>
+
+                      <div class="space-y-3">
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Tên nhiệm vụ
+                            <span class="text-red-500">*</span></label
+                          >
+                          <input
+                            x-model="task.title"
+                            type="text"
+                            required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-olive"
+                            placeholder="VD: Chuẩn bị vũ khí"
+                          />
+                        </div>
+
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                          >
+                            Tổ phụ trách
+                          </label>
+                          <select
+                            x-model="task.team"
+                            @change="task.assignees = ''"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-olive"
+                          >
+                            <option value="">Tất cả</option>
+                            <option value="Tổ 1">Tổ 1</option>
+                            <option value="Tổ 2">Tổ 2</option>
+                            <option value="Tổ 3">Tổ 3</option>
+                            <option value="Tổ 4">Tổ 4</option>
+                            <option value="Tổ 5">Tổ 5</option>
+                            <option value="Tổ 6">Tổ 6</option>
+                            <option value="Tổ 7">Tổ 7</option>
+                            <option value="Tổ 8">Tổ 8</option>
+                            <option value="Tổ 9">Tổ 9</option>
+                          </select>
+                          <p class="mt-1 text-xs text-gray-500">
+                            💡 Chọn tổ để lọc người thực hiện
+                          </p>
+                        </div>
+
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Người thực hiện (1-2 người)
+                            <span class="text-red-500">*</span></label
+                          >
+                          <select
+                            x-model="task.assignees"
+                            required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-olive"
+                          >
+                            <option value="">-- Chọn người thực hiện --</option>
+                            <template
+                              x-for="user in getUsersByTeam(task.team)"
+                              :key="user.name"
+                            >
+                              <option
+                                :value="user.name"
+                                x-text="user.name"
+                              ></option>
+                            </template>
+                          </select>
+                          <p class="mt-1 text-xs text-gray-500">
+                            <span
+                              x-show="!task.team || task.team === ''"
+                              class="text-blue-600"
+                            >
+                              💡 Hiển thị tất cả users. Chọn Tổ để lọc.
+                            </span>
+                            <span
+                              x-show="task.team && task.team !== ''"
+                              class="text-olive"
+                            >
+                              ✓ Đang lọc theo <span x-text="task.team"></span>
+                            </span>
+                          </p>
+                        </div>
+
+                        <div>
+                          <label
+                            class="block text-sm font-medium text-gray-700 mb-1"
+                            >Thời hạn hoàn thành</label
+                          >
+                          <input
+                            x-model="task.dueDate"
+                            type="text"
+                            placeholder="dd/mm/yyyy"
+                            pattern="\d{2}/\d{2}/\d{4}"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-olive"
+                          />
+                          <p class="mt-1 text-xs text-orange-600">
+                            ⚠️ Khi quá hạn, hệ thống sẽ gửi email cảnh báo tự
+                            động
+                          </p>
+                        </div>
+
+                        <!-- Hạng mục báo cáo -->
+                        <div class="border-t border-gray-200 pt-3 mt-3">
+                          <div class="flex items-center justify-between mb-2">
+                            <label
+                              class="block text-sm font-medium text-gray-700"
+                              >Hạng mục báo cáo (tùy chọn)</label
+                            >
+                            <button
+                              type="button"
+                              @click="addReportField(task)"
+                              class="text-xs text-olive hover:text-olive/80 flex items-center gap-1"
+                            >
+                              <span class="material-symbols-outlined text-sm"
+                                >add</span
+                              >
+                              <span>Thêm hạng mục</span>
+                            </button>
+                          </div>
+
+                          <template
+                            x-if="!task.reportFields || task.reportFields.length === 0"
+                          >
+                            <p class="text-xs text-gray-500 italic">
+                              Chưa có hạng mục báo cáo nào
+                            </p>
+                          </template>
+
+                          <div
+                            class="space-y-2"
+                            x-show="task.reportFields && task.reportFields.length > 0"
+                          >
+                            <template
+                              x-for="(field, fieldIndex) in task.reportFields"
+                              :key="fieldIndex"
+                            >
+                              <div class="flex items-center gap-2">
+                                <input
+                                  x-model="field.name"
+                                  type="text"
+                                  class="flex-1 px-3 py-2 border border-gray-300 rounded-lg bg-white text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                                  placeholder="VD: Số lượng súng, Số người tham gia..."
+                                />
+                                <button
+                                  type="button"
+                                  @click="task.reportFields.splice(fieldIndex, 1)"
+                                  class="text-red-600 hover:bg-red-50 p-1 rounded"
+                                >
+                                  <span
+                                    class="material-symbols-outlined text-lg"
+                                    >close</span
+                                  >
+                                </button>
+                              </div>
+                            </template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+
+                  <div
+                    x-show="formData.tasks.length === 0"
+                    class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center"
+                  >
+                    <span
+                      class="material-symbols-outlined text-4xl text-gray-400"
+                      >task_alt</span
+                    >
+                    <p class="mt-2 text-sm text-gray-500">
+                      Chưa có nhiệm vụ nào. Nhấn "Thêm nhiệm vụ" để bắt đầu.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div
+                class="flex items-center justify-end gap-3 pt-4 border-t border-gray-200"
+              >
+                <button
+                  type="button"
+                  class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Hủy
+                </button>
+                <button
+                  type="submit"
+                  class="px-6 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined">save</span>
+                  <span>Tạo hoạt động</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function createActivity() {
+        return {
+          formData: {
+            name: "",
+            workType: "",
+            workGroup: "",
+            to: "",
+            startDate: "",
+            endDate: "",
+            documentNumber: "",
+            location: "",
+            // notes: "", // REMOVED - moved to task level
+            attachedFiles: [],
+            tasks: [],
+          },
+          workGroups: [
+            {
+              code: "HUANLUYEN",
+              name: "Công tác Huấn luyện",
+              target: 20,
+              completed: 15,
+            },
+            {
+              code: "DIEUDONGG",
+              name: "Công tác Điều động",
+              target: 30,
+              completed: 12,
+            },
+            {
+              code: "CHINHTR",
+              name: "Công tác Chính trị",
+              target: 30,
+              completed: 28,
+            },
+            {
+              code: "KTTC",
+              name: "Kiểm tra tính chiến đấu",
+              target: 15,
+              completed: 10,
+            },
+            {
+              code: "VANNGHỀ",
+              name: "Văn nghệ - Thể thao",
+              target: 12,
+              completed: 8,
+            },
+          ],
+          allUsers: [],
+          availableTasks: [],
+
+          init() {
+            // Load users from localStorage or create default
+            const storedUsers = localStorage.getItem("dqp10_users");
+            if (storedUsers) {
+              this.allUsers = JSON.parse(storedUsers);
+            } else {
+              // 30 users phân bổ 9 tổ
+              this.allUsers = [
+                { name: "Nguyễn Thanh Nhân", team: "Tổ 1" },
+                { name: "Nguyễn Minh Nhân", team: "Tổ 1" },
+                { name: "Cao Văn An", team: "Tổ 1" },
+                { name: "Đặng Văn Quý", team: "Tổ 1" },
+                { name: "Thái Thanh Phong", team: "Tổ 2" },
+                { name: "Phan Phong Phú", team: "Tổ 2" },
+                { name: "Dương Văn Bình", team: "Tổ 2" },
+                { name: "Huỳnh Văn Sang", team: "Tổ 2" },
+                { name: "Nguyễn Văn Quang", team: "Tổ 3" },
+                { name: "Nguyễn Đình Thiện", team: "Tổ 3" },
+                { name: "Lương Văn Chính", team: "Tổ 3" },
+                { name: "Tô Văn Thắng", team: "Tổ 3" },
+                { name: "Lê Văn Cường", team: "Tổ 4" },
+                { name: "Trần Minh Đức", team: "Tổ 4" },
+                { name: "Mai Văn Dũng", team: "Tổ 4" },
+                { name: "Phạm Văn Hùng", team: "Tổ 5" },
+                { name: "Hoàng Văn Khánh", team: "Tổ 5" },
+                { name: "Hồ Văn Hoàng", team: "Tổ 5" },
+                { name: "Đỗ Văn Long", team: "Tổ 6" },
+                { name: "Bùi Văn Nam", team: "Tổ 6" },
+                { name: "Phan Văn Kiên", team: "Tổ 6" },
+                { name: "Vũ Văn Phúc", team: "Tổ 7" },
+                { name: "Ngô Văn Sơn", team: "Tổ 7" },
+                { name: "Nguyễn Văn Lâm", team: "Tổ 7" },
+                { name: "Đinh Văn Tâm", team: "Tổ 8" },
+                { name: "Lý Văn Toàn", team: "Tổ 8" },
+                { name: "Trần Văn Minh", team: "Tổ 8" },
+                { name: "Võ Văn Tuấn", team: "Tổ 9" },
+                { name: "Trương Văn Vinh", team: "Tổ 9" },
+                { name: "Lê Văn Phong", team: "Tổ 9" },
+              ];
+              localStorage.setItem(
+                "dqp10_users",
+                JSON.stringify(this.allUsers),
+              );
+            }
+
+            // Load available tasks from localStorage or create default
+            const stored = localStorage.getItem("availableTasks");
+            if (stored) {
+              this.availableTasks = JSON.parse(stored);
+            } else {
+              // Default 5 tasks
+              this.availableTasks = [
+                {
+                  id: 1,
+                  name: "Họp triển khai kế hoạch quý 1",
+                  to: "Tổ 1",
+                  status: "Hoàn thành",
+                },
+                {
+                  id: 2,
+                  name: "Kiểm tra trang bị vũ khí",
+                  to: "Tổ 2",
+                  status: "Đang thực hiện",
+                },
+                {
+                  id: 3,
+                  name: "Đánh giá năng lực chiến đấu",
+                  to: "Tổ 3",
+                  status: "Đang thực hiện",
+                },
+                {
+                  id: 4,
+                  name: "Tổ chức văn nghệ chào mừng Tết",
+                  to: "Tổ 4",
+                  status: "Chưa bắt đầu",
+                },
+                {
+                  id: 5,
+                  name: "Diễn tập phòng chống cháy nổ",
+                  to: "Tổ 5",
+                  status: "Đang thực hiện",
+                },
+              ];
+              localStorage.setItem(
+                "availableTasks",
+                JSON.stringify(this.availableTasks),
+              );
+            }
+          },
+
+          addTask() {
+            this.formData.tasks.push({
+              title: "",
+              team: "",
+              assignees: "",
+              dueDate: "",
+              reportFields: [],
+              notes: "", // NEW - Ghi chú for this task
+            });
+          },
+
+          removeTask(index) {
+            this.formData.tasks.splice(index, 1);
+          },
+
+          addReportField(task) {
+            if (!task.reportFields) {
+              task.reportFields = [];
+            }
+            task.reportFields.push({ name: "" });
+          },
+
+          getUsersByTeam(team) {
+            if (!team || team === "") {
+              return this.allUsers; // All users
+            }
+            return this.allUsers.filter((u) => u.team === team);
+          },
+
+          getGroupProgress(code) {
+            const group = this.workGroups.find((g) => g.code === code);
+            if (!group) return "";
+            const progress = Math.round((group.completed / group.target) * 100);
+            return `${group.completed}/${group.target} (${progress}%)`;
+          },
+
+          searchAssignees(event, task) {
+            // Simulate autocomplete
+            console.log("Searching assignees:", event.target.value);
+          },
+
+          handleFileUpload(event) {
+            const files = Array.from(event.target.files);
+            this.formData.attachedFiles = files;
+            console.log(
+              "Uploaded files:",
+              files.map((f) => f.name),
+            );
+          },
+
+          submitActivity() {
+            console.log("Submitting activity:", this.formData);
+
+            // Validation
+            if (!this.formData.name) {
+              alert("Vui lòng nhập tên hoạt động");
+              return;
+            }
+
+            if (!this.formData.to) {
+              alert("Vui lòng chọn Tổ phụ trách");
+              return;
+            }
+
+            if (this.formData.tasks.length === 0) {
+              alert("Vui lòng thêm ít nhất 1 nhiệm vụ");
+              return;
+            }
+
+            if (!this.formData.workGroup) {
+              alert("Vui lòng chọn Nhóm công việc");
+              return;
+            }
+
+            if (this.formData.endDate < this.formData.startDate) {
+              alert("Ngày kết thúc phải sau ngày bắt đầu");
+              return;
+            }
+
+            // Validate task dueDates are within activity date range
+            const parseDate = (dateStr) => {
+              const [day, month, year] = dateStr.split("/");
+              return new Date(year, month - 1, day);
+            };
+
+            const activityStart = parseDate(this.formData.startDate);
+            const activityEnd = parseDate(this.formData.endDate);
+
+            for (let i = 0; i < this.formData.tasks.length; i++) {
+              const task = this.formData.tasks[i];
+              if (!task.dueDate) {
+                alert(`Nhiệm vụ "${task.title}" chưa có thời hạn hoàn thành`);
+                return;
+              }
+
+              const taskDue = parseDate(task.dueDate);
+
+              if (taskDue < activityStart || taskDue > activityEnd) {
+                alert(
+                  `❌ Thời hạn hoàn thành không hợp lệ!\n\n` +
+                    `Nhiệm vụ: "${task.title}"\n` +
+                    `Thời hạn: ${task.dueDate}\n\n` +
+                    `Thời hạn phải nằm trong khoảng:\n` +
+                    `Từ ${this.formData.startDate} đến ${this.formData.endDate}`,
+                );
+                return;
+              }
+            }
+
+            // Load existing activities
+            const data = localStorage.getItem("dqp10_activities");
+            const activities = data ? JSON.parse(data) : [];
+
+            // Generate new ID
+            const newId =
+              activities.length > 0
+                ? Math.max(...activities.map((a) => a.id)) + 1
+                : 1;
+
+            // Get current user
+            const session = localStorage.getItem("dqp10_session");
+            const currentUser = session
+              ? JSON.parse(session)
+              : { username: "admin" };
+
+            // Create new activity object
+            const newActivity = {
+              id: newId,
+              name: this.formData.name,
+              workType: this.formData.workType || "kehoach",
+              workGroup: this.formData.workGroup,
+              department: this.formData.to,
+              startDate: this.formData.startDate,
+              endDate: this.formData.endDate,
+              documentNumber: this.formData.documentNumber || "",
+              location: this.formData.location || "",
+              attachedFiles: this.formData.attachedFiles || [],
+              tasks: this.formData.tasks.map((task) => ({
+                title: task.title,
+                team: task.team,
+                assignees: task.assignees,
+                dueDate: task.dueDate,
+                reportFields: task.reportFields || [],
+                notes: task.notes || "",
+                completed: false,
+              })),
+              createdBy: currentUser.username,
+              createdAt: new Date().toISOString(),
+            };
+
+            // Add to activities array
+            activities.push(newActivity);
+
+            // Save to localStorage
+            localStorage.setItem(
+              "dqp10_activities",
+              JSON.stringify(activities),
+            );
+
+            // Show success message
+            alert(
+              "✅ Tạo hoạt động thành công!" +
+                "\n\n📊 Loại: " +
+                (this.formData.workType === "dotxuat"
+                  ? "Đột xuất"
+                  : "Kế hoạch năm") +
+                "\n📁 Nhóm: " +
+                this.formData.workGroup +
+                "\n👥 Tổ: Tổ " +
+                this.formData.to +
+                "\n📅 Thời gian: " +
+                this.formData.startDate +
+                " - " +
+                this.formData.endDate +
+                "\n📋 Nhiệm vụ: " +
+                this.formData.tasks.length,
+            );
+
+            // Redirect to activity list
+            window.location.href = "activity-list.html";
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

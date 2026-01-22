@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danh Sách Nhân Sự - Quản Lý Dân Quân</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#556B2F",
+                        "primary-dark": "#0b8acb",
+                        "background-light": "#f7f7f6",
+                        "background-dark": "#1a1d15",
+                        "card-light": "#ffffff",
+                        "card-dark": "#182830",
+                        "text-main": "#0d171c",
+                        "text-sub": "#49819c"
+                    },
+                    fontFamily: {
+                        display: "Inter",
+                        body: ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 min-h-screen">
+<div class="flex">
+<aside class="w-64 bg-primary text-white h-screen flex flex-col fixed top-0 left-0">
+<div class="px-6 py-4 flex items-center gap-3 border-b border-white/10">
+<span class="material-symbols-outlined text-3xl">shield_person</span>
+<h2 class="text-xl font-bold tracking-tight">QLDQ Việt Nam</h2>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-medium text-sm">Tổng quan</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-white/20 font-semibold text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="font-medium text-sm">Nhân sự</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">campaign</span>
+<span class="font-medium text-sm">Hoạt động</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">calendar_month</span>
+<span class="font-medium text-sm">Lịch trực</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">radio</span>
+<span class="font-medium text-sm">Thiết bị</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">model_training</span>
+<span class="font-medium text-sm">Huấn luyện</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">summarize</span>
+<span class="font-medium text-sm">Báo cáo</span>
+</a>
+</nav>
+<div class="px-4 py-6 border-t border-white/10 mt-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-white/80 hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-medium text-sm">Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col pl-64">
+<header class="sticky top-0 z-50 bg-primary dark:bg-primary px-6 py-3 border-b border-white/10">
+<div class="w-full flex items-center justify-between">
+<nav class="flex items-center gap-8">
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Tổng quan</a>
+<a class="text-white font-bold text-sm leading-normal border-b-2 border-white pb-0.5" href="#">Nhân sự</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Hoạt động</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Lịch trực</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Thiết bị</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Huấn luyện</a>
+<a class="text-white/70 hover:text-white text-sm font-medium transition-colors" href="#">Báo cáo</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-white/80 hover:text-white">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border border-primary"></span>
+</button>
+<div class="size-9 rounded-full bg-cover bg-center border border-white/30" data-alt="Avatar của chỉ huy đơn vị" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvLj1N_ZqQe7xOtSJeDySjBceLAYbdlFjefG6t4sovRxASJe0npCsxJxn86vJvhYZHnF2nNrHErCH92bB4MqafZCH6h7XfMZv08zVC774cJdPpKKpF-VdIC3YFJRnbl5zT00ii79eWi-k5vhRBU8a3BeF0tIaCE-Vsgur-C0C-vu2IsEpKIkt3aJi3_twX-G9b4QM5n49JFmdRjvo33PEO4jAKvRer5f5wAZdZpCPn7beXO8FXrr5V_Attw8wN3zPMsgclgIBIpAA');"></div>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-[1280px] mx-auto px-4 sm:px-6 py-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-black tracking-tight text-slate-900 dark:text-white mb-1">Danh Sách Nhân Sự</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Quản lý hồ sơ dân quân tự vệ địa phương</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-semibold shadow-md transition-all active:scale-95 w-full md:w-auto">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Thêm Nhân sự</span>
+</button>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl shadow-sm border border-slate-200 dark:border-gray-700 p-4 mb-8 flex flex-col lg:flex-row gap-4 items-center">
+<div class="relative w-full lg:w-96 group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 material-symbols-outlined">search</span>
+<input class="w-full h-11 pl-10 pr-4 bg-slate-50 dark:bg-gray-800 border-slate-200 dark:border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Tìm kiếm theo tên, mã hồ sơ..." type="text"/>
+</div>
+<div class="hidden lg:block w-px h-8 bg-slate-200 dark:bg-gray-700"></div>
+<div class="flex flex-wrap gap-3 w-full lg:w-auto flex-1 overflow-x-auto pb-1 lg:pb-0">
+<button class="flex items-center gap-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors whitespace-nowrap group">
+<span>Vai trò</span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors whitespace-nowrap group">
+<span>Đội hình</span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 transition-colors whitespace-nowrap group">
+<span>Trạng thái</span>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<div class="ml-auto flex items-center">
+<button class="text-sm text-slate-500 hover:text-primary font-medium flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+<span class="hidden sm:inline">Xóa bộ lọc</span>
+</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm" data-alt="Ảnh chân dung Nguyễn Văn A" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC4do5EC_yF_8EZbtzhtRnKecAC-TYM8q50dPpcgJxnC7uB8BKtEESrjZ6w3dnV9sQMJb1tFSSNnslV9Bt50WncB7q80W3UjJVpaS4nT8df82kl5XIYDUE1vCv5qDkSj6Z4cTqMYTEpIO1Clzb4yYxHIulswhUUPNVa47H4mt13EWYgITymdFT0g6vNP90thPR8qZbeeg8GOhdnU5Ax_v8jn6Wo_eEo_OQoP-GpChUKHygMzsvQ9svxCLJp1TcphAZj9A0Dgcnlkew');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white dark:border-card-dark rounded-full" title="Đang hoạt động"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Nguyễn Văn A</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Trung đội Dân quân Cơ động 1</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                                    DQTT
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    Hoạt động
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Chi tiết
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm" data-alt="Ảnh chân dung Trần Thị B" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5AOvjHKU_7LxVMkyBeu_1-QA_YfFwHtPcFi1TCdDt6FEn-s8hUjgmBWEY3gFY1_ej1VAbOLDi4Au6zkwVaLbM2S6cWSQeUrl-fUpJCG79TkVbiqcXDcMycFdLYgBFcvpUeg_ta8zCki0AgQGAJ5T8MI5mSMc5ONmATB-yQvhHr8UpbIRnUB9iaIZh86OdymGEdTfU21TCaC1kzRysSR21d5V33OP5AcYNtFeki1cogXA9xJt4dtUPrS6WwYMto3Bj9kMKCCwpwLA');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white dark:border-card-dark rounded-full"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Trần Thị B</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Ban Chỉ Huy Quân Sự Phường</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border border-red-200 dark:border-red-800">
+                                    Quản trị viên
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    Hoạt động
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Chi tiết
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm opacity-80" data-alt="Ảnh chân dung Lê Văn C" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3sgU8mItvzWk4CrPzW6XuIKBtoKGA9h1Chjzh7BE9Jq2UG3TnHyRa1qWHcVIBfH01Q5okV1RyDMaT06AyD9965Pl-K1wDjgFfK6k6tE6C1vd2_LY5sXKIYKRDj3xGx-s7OcPCjEuqC2zblTkojNjidaPfPjji-xqXyO5yUovqw7PCJuBfqENruSC8M-6QgOE14QQYmM_4hJqsW8D12w1hOj41wlTYLvcOcuicRjBgv0TmmJ52VAfuC_WwFsJDLiEQv3FAEBpcT4Q');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-amber-400 border-2 border-white dark:border-card-dark rounded-full" title="Tạm vắng"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Lê Văn C</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Tiểu đội Dân quân Tại chỗ 3</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                    DQCĐ
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                                    Nghỉ phép
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Chi tiết
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm" data-alt="Ảnh chân dung Phạm Minh D" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGepP6QA7CSbcprMOS644xGrF2M2dQAUwbecJ21GXfm2ucwkm0jNlOOMB6YgQeA-56KTI8qE_-eaSKv9j1AAQg1ICtACrR6A6tLhaC6JLe3QToYrGBL_scVgSkCtbdIDum1IlOZ2yH2oH4n4yiaw_7zxL3LhT3lOQOJPHRNKUMPa208n8abm0ojMm72r9DIy37dWsztful-07L0D8kp50P0r1C5Sj4bpMsMI_fnse9hGEldfrRk-yJ3dxIqFJDGOonolpJvfWE6hs');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white dark:border-card-dark rounded-full"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Phạm Minh D</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Trung đội Dân quân Cơ động 2</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                                    DQTT
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    Hoạt động
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Chi tiết
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm" data-alt="Ảnh chân dung Vũ Thị E" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcBuibAZ8VNcJ8U65GwsaUcKM4XhxhAN0-eAJUnZ0i6AM2Rx4I41HRPwW2qGHMK0Srgi75eNHTJNsxWYmb1C1g-4jwXtrZbTteoGbMBSDhHnDRISBmOMoLiosXteUtRv2RAEuOrf3Lze1Y8tcTtyuSD7mqvWLhqtQxGRIKIM5yCbwNV__ULkCUAhWXozvCSQ9Vmldd0nZfaL_cNqFKURwPaybzH3itPmwTCsNEy8JpZcg1mZU1YM4uhQYjtAUjYOrZYKQ2dBsaETE');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-white dark:border-card-dark rounded-full"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Vũ Thị E</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Khẩu đội Pháo binh</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                    DQCĐ
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                                    Hoạt động
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Chi tiết
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group relative bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-gray-700 hover:border-primary/50 hover:shadow-lg transition-all duration-300 overflow-hidden">
+<div class="absolute top-4 right-4">
+<button class="text-slate-400 hover:text-primary p-1 rounded-full hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="p-6 flex flex-col items-center text-center opacity-75">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full bg-cover bg-center border-4 border-slate-50 dark:border-gray-800 shadow-sm grayscale" data-alt="Ảnh chân dung Hoàng Văn F" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCgOVunDG0YbId7I37fg8bDWhNi3Yz0nPCGCxYdzsx0WdaHM2S9X3a9nKu8CjTxlU8vJpaWJWxTwgvFn1xrgHakDQG7eR6XAZmCX2GLsxEKla2-IldqHMyf-YQK7u20_BkMGRRuuBYFZ7hKKpVJgLwJJ2yqTuMsIHMqHivqvFEoiWlRtc-XZ5F8k9HD0wQ1PAf9dyY1P1prOvpZSxzj95eMByvLQCmRSpHF8qd5_CAIZf12qwhoVJ16Ruz76ryNjWrJ5Ah4KGEVRwk');"></div>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-slate-400 border-2 border-white dark:border-card-dark rounded-full"></div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Hoàng Văn F</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Tiểu đội Công binh</p>
+<div class="flex items-center gap-2 mb-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                                    DQCĐ
+                                </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-gray-800 dark:text-slate-400">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                    Đã giải ngũ
+                                </span>
+</div>
+<div class="flex w-full gap-3 mt-auto">
+<button class="flex-1 flex items-center justify-center gap-2 h-9 rounded-lg border border-slate-200 dark:border-gray-600 text-slate-700 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                                    Hồ sơ
+                                </button>
+<button class="h-9 w-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-gray-600 text-slate-500 hover:text-primary hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-[18px]">history</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200 dark:border-gray-700 pt-6 gap-4">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                        Hiển thị <span class="font-bold text-slate-900 dark:text-white">1</span> đến <span class="font-bold text-slate-900 dark:text-white">6</span> trong tổng số <span class="font-bold text-slate-900 dark:text-white">128</span> nhân sự
+                    </p>
+<div class="flex items-center gap-1">
+<button class="flex items-center justify-center size-9 rounded-lg border border-slate-200 dark:border-gray-700 bg-white dark:bg-card-dark text-slate-500 hover:bg-slate-50 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="size-9 rounded-lg bg-primary text-white font-medium text-sm">1</button>
+<button class="size-9 rounded-lg border border-transparent hover:bg-slate-100 dark:hover:bg-gray-800 text-slate-600 dark:text-slate-300 font-medium text-sm transition-colors">2</button>
+<button class="size-9 rounded-lg border border-transparent hover:bg-slate-100 dark:hover:bg-gray-800 text-slate-600 dark:text-slate-300 font-medium text-sm transition-colors">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="size-9 rounded-lg border border-transparent hover:bg-slate-100 dark:hover:bg-gray-800 text-slate-600 dark:text-slate-300 font-medium text-sm transition-colors">22</button>
+<button class="flex items-center justify-center size-9 rounded-lg border border-slate-200 dark:border-gray-700 bg-white dark:bg-card-dark text-slate-500 hover:bg-slate-50 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

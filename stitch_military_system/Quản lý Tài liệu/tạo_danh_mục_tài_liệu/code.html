@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tạo Danh Mục Tài Liệu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<style>
+        .material-icons-outlined {
+            font-size: 20px;
+        }
+    </style>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "background-light": "#F8F9FA",
+              "background-dark": "#121212",
+            },
+            fontFamily: {
+              display: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200">
+<div class="flex h-screen">
+<aside class="w-64 bg-primary text-white flex flex-col">
+<div class="p-6 text-2xl font-bold border-b border-white/20">
+                Hệ Thống QLDQ
+            </div>
+<nav class="flex-1 p-4 space-y-2">
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">dashboard</span>
+<span>Bảng điều khiển</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">people</span>
+<span>Nhân sự</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">event</span>
+<span>Hoạt động</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">construction</span>
+<span>Thiết bị</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">school</span>
+<span>Huấn luyện</span>
+</a>
+<a class="flex items-center p-3 rounded-lg bg-white/20 font-semibold transition-colors" href="#">
+<span class="material-icons-outlined mr-3">folder</span>
+<span>Tài liệu</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">bar_chart</span>
+<span>Báo cáo</span>
+</a>
+</nav>
+<div class="p-4 border-t border-white/20">
+<a class="flex items-center p-3 rounded-lg hover:bg-white/10 transition-colors" href="#">
+<span class="material-icons-outlined mr-3">settings</span>
+<span>Cài đặt</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col">
+<header class="bg-primary text-white shadow-md">
+<div class="flex items-center justify-between p-4">
+<div class="flex items-center">
+<button class="mr-4 p-2 rounded-full hover:bg-white/10">
+<span class="material-icons-outlined">menu</span>
+</button>
+<h1 class="text-xl font-semibold">Tài liệu</h1>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full hover:bg-white/10">
+<span class="material-icons-outlined">notifications</span>
+</button>
+<div class="flex items-center space-x-2">
+<img alt="User avatar" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHy-kA9A1VjzQFdNF5mom_j9JWA3jYc5Oq4stJkIxHroTFnDSLIRAeKRvYHrdIUhMewEtPFMioC5xTKGaYr56kynsWelPVdaJRB8A5IcAgEmeWX1NpPeRlhL8luEAYskKeQSXhT1PnxcRdFp9b6LUczXO3lBCCL1zhYrVSF38uY3Zl-tWVbrOksdo3NgVv_lLRsBcOfPcLIwAiIZH33qbT3QSYttLA5asVt-ytixkSLvscYdtxW3KxpRFBPj1Lsz3gByX_q3PiDrI3"/>
+<span class="font-medium">Admin User</span>
+<span class="material-icons-outlined">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="text-3xl font-bold text-gray-800 dark:text-white">Danh sách tài liệu</h2>
+<p class="text-gray-500 dark:text-gray-400">Quản lý các tài liệu của bạn tại đây.</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:opacity-90 transition-opacity">
+<span class="material-icons-outlined">add</span>
+<span>Thêm mới</span>
+</button>
+</div>
+<div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+<p class="text-gray-600 dark:text-gray-300">Nội dung trang chính sẽ được hiển thị ở đây. Modal tạo danh mục đang được hiển thị ở trên.</p>
+</div>
+</main>
+</div>
+</div>
+<div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl">
+<div class="flex justify-between items-center p-5 border-b border-gray-200 dark:border-gray-700">
+<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    Tạo danh mục
+                </h3>
+<button class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+<span class="material-icons-outlined">close</span>
+</button>
+</div>
+<div class="p-6 space-y-6">
+<form action="#" class="space-y-5">
+<div>
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="symbol">Ký hiệu <span class="text-red-500">*</span></label>
+<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary/50 dark:focus:border-primary" id="symbol" name="symbol" type="text"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="category-name">Tên danh mục <span class="text-red-500">*</span></label>
+<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary/50 dark:focus:border-primary" id="category-name" name="category-name" type="text"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="code-prefix">Tiền tố mã của 1 tài liệu sẽ có dạng như sau yyyy01-[Tên tài liệu] <span class="text-red-500">*</span></label>
+<select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary/50 dark:focus:border-primary" id="code-prefix">
+<option selected="">yyyy</option>
+<option value="1">yy</option>
+<option value="2">yymm</option>
+<option value="3">yyyymm</option>
+</select>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div>
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="start-number">Số thứ tự tài liệu đầu tiên <span class="text-red-500">*</span></label>
+<input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary/50 dark:focus:border-primary" id="start-number" name="start-number" type="number" value="1"/>
+</div>
+<div>
+<label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="color-picker">Màu sắc</label>
+<div class="relative">
+<input class="p-1 h-10 w-full block bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none" id="color-picker" name="color-picker" type="color" value="#374151"/>
+<div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+<span class="material-icons-outlined text-gray-400">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+<div class="flex items-center justify-end p-6 border-t border-gray-200 dark:border-gray-700 rounded-b">
+<button class="bg-teal-500 text-white hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800 transition-colors flex items-center space-x-2" type="button">
+<span class="material-icons-outlined text-base">check</span>
+<span>Tạo</span>
+</button>
+</div>
+</div>
+</div>
+
+</body></html>

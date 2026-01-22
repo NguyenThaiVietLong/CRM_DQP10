@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Biểu Mẫu Giao Dịch Thiết Bị - Hệ Thống Quản Lý Dân Quân</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#556B2F", "primary-dark": "#0b62b8", "background-light": "#f7f7f6", "background-dark": "#1a1d15", "surface-light": "#ffffff", "surface-dark": "#1e293b", "border-light": "#e2e8f0", "border-dark": "#334155", "text-main": "#0f172a", "text-sub": "#64748b"}, fontFamily: {display: "Inter"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-background-light dark:bg-background-dark font-display text-text-main dark:text-slate-100 transition-colors duration-200">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark shadow-sm">
+<div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo & Brand -->
+<div class="flex items-center gap-3">
+<div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-2xl">shield_person</span>
+</div>
+<span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white">Quản Lý Dân Quân</span>
+</div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-1">
+<a class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors rounded-md" href="#">Tổng quan</a>
+<a class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors rounded-md" href="#">Nhân sự</a>
+<a class="px-3 py-2 text-sm font-medium text-primary bg-primary/5 dark:bg-primary/10 dark:text-primary rounded-md" href="#">Thiết bị</a>
+<a class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors rounded-md" href="#">Huấn luyện</a>
+<a class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors rounded-md" href="#">Báo cáo</a>
+</nav>
+<!-- User Actions -->
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="h-8 w-[1px] bg-border-light dark:bg-border-dark hidden sm:block"></div>
+<div class="flex items-center gap-3">
+<div class="bg-center bg-cover bg-no-repeat rounded-full w-9 h-9 border border-border-light dark:border-border-dark" data-alt="Portrait of the logged in officer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCyZ8oRWKzBzrVls74kT2VWSrUtHF6a1_56rG0hvi2TI0Hvu6LXwLJT2cGdsMZh6ktTvBjn8-95pvOPUMQRir-trMrMDS7aoQBfQam0xKEwZkhvF2_UksohLgM_Oltce4NghbRLcwxs6Sl0BTXfcfLJFk7BmOXFYTFvsBJzPOokcZzUeUVf8HAkOMulsPHG6iYE5y0i-pTK38BW6iTNNW5QN-Y1jAD29-DY7RcJAAae1Gm7XpIBoPurcofEQ0f-ZGfkFlyWRQtQnwU");'></div>
+<div class="hidden sm:block">
+<p class="text-sm font-semibold leading-none">Thiếu tá Hùng</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ban Chỉ Huy Quân Sự</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center py-8 px-4 sm:px-6">
+<div class="w-full max-w-[800px] flex flex-col gap-6">
+<!-- Page Heading -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<a class="hover:underline" href="#">Quay lại danh sách</a>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Biểu Mẫu Giao Dịch Thiết Bị</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base">Ghi nhận nhập kho, xuất kho hoặc điều chuyển trang thiết bị và vũ khí.</p>
+</div>
+<!-- Form Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark overflow-hidden">
+<!-- Form Header -->
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark bg-slate-50/50 dark:bg-slate-800/50">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Thông tin giao dịch</h2>
+</div>
+<form class="p-6 md:p-8 flex flex-col gap-8">
+<!-- Transaction Type (Radio) -->
+<div class="flex flex-col gap-3">
+<label class="text-sm font-semibold text-slate-900 dark:text-white">Loại giao dịch</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="transaction_type" type="radio"/>
+<div class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all duration-200 hover:border-primary/50">
+<span class="material-symbols-outlined">download</span>
+<span class="font-medium">Nhập kho</span>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input checked="" class="peer sr-only" name="transaction_type" type="radio"/>
+<div class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all duration-200 hover:border-primary/50">
+<span class="material-symbols-outlined">upload</span>
+<span class="font-medium">Xuất kho</span>
+</div>
+</label>
+<label class="cursor-pointer group">
+<input class="peer sr-only" name="transaction_type" type="radio"/>
+<div class="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary transition-all duration-200 hover:border-primary/50">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-medium">Chuyển giao</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Main Fields Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Equipment Selector -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Chọn thiết bị</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined">search</span>
+</div>
+<select class="w-full pl-10 pr-10 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer">
+<option disabled="" selected="" value="">Tìm kiếm tên thiết bị hoặc mã số...</option>
+<option value="AK47">Súng trường AK-47 (Mã: VU-AK-089) - Khu A</option>
+<option value="K54">Súng ngắn K54 (Mã: VU-K54-012) - Khu A</option>
+<option value="AG">Áo giáp chống đạn Cấp 3 (Mã: QB-AG-105) - Khu B</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Quantity -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Số lượng</label>
+<div class="relative">
+<input class="w-full pl-4 pr-12 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary font-medium" min="1" placeholder="0" type="number"/>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-400 text-sm">
+                                    Cái
+                                </div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">inventory_2</span>
+                                Tồn kho khả dụng: 150
+                            </span>
+</div>
+<!-- Condition Field: Receiver (Assuming Export is selected) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Người nhận</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined">person</span>
+</div>
+<select class="w-full pl-10 pr-10 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary appearance-none cursor-pointer">
+<option disabled="" value="">Chọn nhân sự...</option>
+<option selected="" value="nv1">Trần Văn Nam - Trung đội 1</option>
+<option value="nv2">Nguyễn Thị Mai - Trung đội 2</option>
+<option value="nv3">Lê Hoàng - Hậu cần</option>
+</select>
+<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<span class="text-xs text-slate-500 dark:text-slate-400 mt-1">Người chịu trách nhiệm quản lý sau khi xuất.</span>
+</div>
+<!-- Date Picker (Auto today but editable) -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Ngày thực hiện</label>
+<div class="relative">
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary" type="date" value="2023-10-27"/>
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-500">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Notes -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300">Ghi chú / Lý do</label>
+<textarea class="w-full p-4 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none" placeholder="Nhập chi tiết về mục đích giao dịch hoặc tình trạng thiết bị..." rows="4"></textarea>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-4 pt-4 border-t border-border-light dark:border-border-dark">
+<button class="px-6 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-800 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white transition-colors" type="button">
+                            Hủy bỏ
+                        </button>
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-sm shadow-blue-200 dark:shadow-none transition-all hover:-translate-y-0.5" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                            Xác nhận giao dịch
+                        </button>
+</div>
+</form>
+</div>
+<!-- Footer Info -->
+<div class="text-center pb-8">
+<p class="text-xs text-slate-400 dark:text-slate-500">Hệ Thống Quản Lý Dân Quân Tự Vệ © 2023</p>
+</div>
+</div>
+</main>
+</body></html>
