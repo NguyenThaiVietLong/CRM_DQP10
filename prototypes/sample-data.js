@@ -1,6 +1,67 @@
 // Sample Activity Data Initializer for CRM Dân Quân P10
-// Updated with task completion tracking and January 2026 dates
+// Updated with 39 real user names distributed across 9 teams
 
+// User Database - 39 members distributed across 9 teams
+const dqp10_users = [
+  // Tổ 1 (4 members)
+  { name: "Ngô Trương Định", team: "Tổ 1" },
+  { name: "Ngô Hoài Bảo", team: "Tổ 1" },
+  { name: "Nguyễn Lý Minh Quang", team: "Tổ 1" },
+  { name: "Nguyễn Thành Tài", team: "Tổ 1" },
+  
+  // Tổ 2 (5 members)
+  { name: "Lý Triệu An", team: "Tổ 2" },
+  { name: "Phạm Gia Bảo", team: "Tổ 2" },
+  { name: "Lâm Ngọc Huyền", team: "Tổ 2" },
+  { name: "Đoàn Quốc Đạt", team: "Tổ 2" },
+  { name: "Nguyễn Thanh Nhân", team: "Tổ 2" },
+  
+  // Tổ 3 (5 members)
+  { name: "Phan Phong Phú", team: "Tổ 3" },
+  { name: "Trương Giang Minh Tùng", team: "Tổ 3" },
+  { name: "Lương Triệu Phát", team: "Tổ 3" },
+  { name: "Nguyễn Tấn Thuận", team: "Tổ 3" },
+  { name: "Nguyễn Ngọc Tiến", team: "Tổ 3" },
+  
+  // Tổ 4 (4 members)
+  { name: "Lại Tu Trung", team: "Tổ 4" },
+  { name: "Kiều Gia Huy", team: "Tổ 4" },
+  { name: "Lâm Ngọc Yến", team: "Tổ 4" },
+  { name: "Trần Minh Hiếu", team: "Tổ 4" },
+  
+  // Tổ 5 (4 members)
+  { name: "Võ Công Minh", team: "Tổ 5" },
+  { name: "Võ Trần Vinh", team: "Tổ 5" },
+  { name: "Nguyễn Đăng Đông", team: "Tổ 5" },
+  { name: "Lê Minh Hoàng", team: "Tổ 5" },
+  
+  // Tổ 6 (5 members)
+  { name: "Trần Hoàng Phi", team: "Tổ 6" },
+  { name: "Lưu Vĩnh Cơ", team: "Tổ 6" },
+  { name: "Lê Hải Triều", team: "Tổ 6" },
+  { name: "Hoàng Phạm Thế Lộc", team: "Tổ 6" },
+  { name: "Vương Quý Thắng", team: "Tổ 6" },
+  
+  // Tổ 7 (4 members)
+  { name: "La Gia Huy", team: "Tổ 7" },
+  { name: "Nguyễn Trung Kiên", team: "Tổ 7" },
+  { name: "Nguyễn Ngọc Sơn", team: "Tổ 7" },
+  { name: "Trần Anh Tuấn", team: "Tổ 7" },
+  
+  // Tổ 8 (4 members)
+  { name: "Trương Tấn Khương", team: "Tổ 8" },
+  { name: "Nguyễn Ngô Hoàng Phương", team: "Tổ 8" },
+  { name: "Đặng Trung Hảo", team: "Tổ 8" },
+  { name: "Lê Gia Triết", team: "Tổ 8" },
+  
+  // Tổ 9 (4 members)
+  { name: "Cao Thanh Long", team: "Tổ 9" },
+  { name: "Lê Huỳnh Ái Nhi", team: "Tổ 9" },
+  { name: "Nguyễn Anh Chiến", team: "Tổ 9" },
+  { name: "Hà Thanh Huy", team: "Tổ 9" }
+];
+
+// Sample Activities with updated user assignments
 const sampleActivities = [
   {
     id: 1,
@@ -17,7 +78,7 @@ const sampleActivities = [
       {
         title: "Xây dựng lịch hành quân và tham mưu ban CHQS",
         team: "Tổ 1",
-        assignees: "Nguyễn Thanh Nhân",
+        assignees: "Ngô Trương Định",
         dueDate: "08/01/2026",
         reportFields: [],
         notes: "",
@@ -26,7 +87,7 @@ const sampleActivities = [
       {
         title: "Chụp ảnh quay phim tư liệu",
         team: "Tổ 4",
-        assignees: "Mai Văn Dũng",
+        assignees: "Kiều Gia Huy",
         dueDate: "15/01/2026",
         reportFields: [
           { name: "Số lượng ảnh" },
@@ -38,7 +99,7 @@ const sampleActivities = [
       {
         title: "Tổ chức biên tập hình ảnh",
         team: "Tổ 4",
-        assignees: "Lê Văn Cường",
+        assignees: "Lâm Ngọc Yến",
         dueDate: "20/01/2026",
         reportFields: [
           { name: "Số ảnh đã biên tập" }
@@ -49,7 +110,7 @@ const sampleActivities = [
       {
         title: "Chuẩn bị hệ thống tư trang",
         team: "Tổ 5",
-        assignees: "Hồ Văn Hoàng",
+        assignees: "Võ Công Minh",
         dueDate: "18/01/2026",
         reportFields: [
           { name: "Số lượng trang phục" },
@@ -77,7 +138,7 @@ const sampleActivities = [
       {
         title: "Lập kế hoạch tập huấn",
         team: "Tổ 2",
-        assignees: "Thái Thanh Phong",
+        assignees: "Lý Triệu An",
         dueDate: "12/01/2026",
         reportFields: [
           { name: "Nội dung đào tạo" }
@@ -88,7 +149,7 @@ const sampleActivities = [
       {
         title: "Tổ chức huấn luyện thực hành",
         team: "Tổ 2",
-        assignees: "Phan Phong Phú",
+        assignees: "Phạm Gia Bảo",
         dueDate: "25/01/2026",
         reportFields: [
           { name: "Số học viên tham gia" },
@@ -100,7 +161,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra đánh giá kết quả",
         team: "Tổ 2",
-        assignees: "Dương Văn Bình",
+        assignees: "Đoàn Quốc Đạt",
         dueDate: "28/01/2026",
         reportFields: [
           { name: "Số người đạt" },
@@ -128,7 +189,7 @@ const sampleActivities = [
       {
         title: "Kiểm kê số lượng vũ khí",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang",
+        assignees: "Phan Phong Phú",
         dueDate: "08/01/2026",
         reportFields: [
           { name: "Tổng số súng" },
@@ -140,7 +201,7 @@ const sampleActivities = [
       {
         title: "Đánh giá tình trạng kỹ thuật",
         team: "Tổ 3",
-        assignees: "Nguyễn Đình Thiện",
+        assignees: "Trương Giang Minh Tùng",
         dueDate: "10/01/2026",
         reportFields: [
           { name: "Số vũ khí tốt" },
@@ -168,7 +229,7 @@ const sampleActivities = [
       {
         title: "Chuẩn bị tài liệu tuyên truyền",
         team: "Tổ 1",
-        assignees: "Trần Thị Bích",
+        assignees: "Nguyễn Lý Minh Quang",
         dueDate: "12/01/2026",
         reportFields: [{ name: "Số tài liệu" }],
         notes: "",
@@ -177,7 +238,7 @@ const sampleActivities = [
       {
         title: "Tổ chức buổi tập huấn",
         team: "Tổ 2",
-        assignees: "Phan Phong Phú",
+        assignees: "Nguyễn Thanh Nhân",
         dueDate: "13/01/2026",
         reportFields: [{ name: "Số người tham dự" }],
         notes: "",
@@ -186,7 +247,7 @@ const sampleActivities = [
       {
         title: "Đánh giá kết quả",
         team: "Tổ 1",
-        assignees: "Nguyễn Thanh Nhân",
+        assignees: "Ngô Hoài Bảo",
         dueDate: "14/01/2026",
         reportFields: [{ name: "Báo cáo đánh giá" }],
         notes: "",
@@ -211,7 +272,7 @@ const sampleActivities = [
       {
         title: "Kiểm kê vật tư",
         team: "Tổ 2",
-        assignees: "Thái Thanh Phong",
+        assignees: "Lâm Ngọc Huyền",
         dueDate: "16/01/2026",
         reportFields: [{ name: "Danh sách vật tư" }],
         notes: "",
@@ -220,7 +281,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra kho lương thực",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang",
+        assignees: "Lương Triệu Phát",
         dueDate: "17/01/2026",
         reportFields: [{ name: "Số lượng tồn kho" }],
         notes: "",
@@ -229,7 +290,7 @@ const sampleActivities = [
       {
         title: "Lập báo cáo tổng hợp",
         team: "Tổ 2",
-        assignees: "Dương Văn Bình",
+        assignees: "Đoàn Quốc Đạt",
         dueDate: "18/01/2026",
         reportFields: [{ name: "Báo cáo" }],
         notes: "",
@@ -254,7 +315,7 @@ const sampleActivities = [
       {
         title: "Lập kế hoạch diễn tập",
         team: "Tổ 3",
-        assignees: "Nguyễn Đình Thiện",
+        assignees: "Nguyễn Tấn Thuận",
         dueDate: "19/01/2026",
         reportFields: [{ name: "Kế hoạch chi tiết" }],
         notes: "",
@@ -263,7 +324,7 @@ const sampleActivities = [
       {
         title: "Phân công lực lượng",
         team: "Tổ 1",
-        assignees: "Lê Văn An",
+        assignees: "Nguyễn Thành Tài",
         dueDate: "19/01/2026",
         reportFields: [{ name: "Danh sách phân công" }],
         notes: "",
@@ -272,7 +333,7 @@ const sampleActivities = [
       {
         title: "Tổ chức diễn tập",
         team: "Tổ 3",
-        assignees: "Lương Văn Chính",
+        assignees: "Nguyễn Ngọc Tiến",
         dueDate: "20/01/2026",
         reportFields: [{ name: "Thời gian thực hiện" }, { name: "Kết quả" }],
         notes: "",
@@ -281,7 +342,7 @@ const sampleActivities = [
       {
         title: "Tổng kết rút kinh nghiệm",
         team: "Tổ 2",
-        assignees: "Phan Phong Phú",
+        assignees: "Phạm Gia Bảo",
         dueDate: "21/01/2026",
         reportFields: [{ name: "Biên bản tổng kết" }],
         notes: "",
@@ -306,7 +367,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra thiết bị thông tin liên lạc",
         team: "Tổ 3",
-        assignees: "Lương Văn Chính",
+        assignees: "Phan Phong Phú",
         dueDate: "16/01/2026",
         reportFields: [
           { name: "Số thiết bị được kiểm tra" },
@@ -318,7 +379,7 @@ const sampleActivities = [
       {
         title: "Bảo dưỡng phương tiện giao thông",
         team: "Tổ 3",
-        assignees: "Tô Văn Thắng",
+        assignees: "Trương Giang Minh Tùng",
         dueDate: "18/01/2026",
         reportFields: [
           { name: "Số xe được bảo dưỡng" }
@@ -345,7 +406,7 @@ const sampleActivities = [
       {
         title: "Chuẩn bị tài liệu đào tạo",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang",
+        assignees: "Lương Triệu Phát",
         dueDate: "21/01/2026",
         reportFields: [
           { name: "Số tài liệu photo" }
@@ -356,7 +417,7 @@ const sampleActivities = [
       {
         title: "Tổ chức lớp đào tạo",
         team: "Tổ 3",
-        assignees: "Nguyễn Đình Thiện",
+        assignees: "Nguyễn Tấn Thuận",
         dueDate: "24/01/2026",
         reportFields: [
           { name: "Số học viên" },
@@ -368,7 +429,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra kỹ năng thực hành",
         team: "Tổ 3",
-        assignees: "Lương Văn Chính",
+        assignees: "Nguyễn Ngọc Tiến",
         dueDate: "25/01/2026",
         reportFields: [
           { name: "Số người đạt" },
@@ -396,7 +457,7 @@ const sampleActivities = [
       {
         title: "Lập kế hoạch diễn tập chi tiết",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang",
+        assignees: "Phan Phong Phú",
         dueDate: "25/01/2026",
         reportFields: [
           { name: "Kịch bản diễn tập" }
@@ -407,7 +468,7 @@ const sampleActivities = [
       {
         title: "Chuẩn bị trang thiết bị cứu hộ",
         team: "Tổ 3",
-        assignees: "Tô Văn Thắng",
+        assignees: "Trương Giang Minh Tùng",
         dueDate: "26/01/2026",
         reportFields: [
           { name: "Số bộ dụng cụ TKNN" },
@@ -419,7 +480,7 @@ const sampleActivities = [
       {
         title: "Tổ chức diễn tập thực tế",
         team: "Tổ 3",
-        assignees: "Nguyễn Đình Thiện",
+        assignees: "Lương Triệu Phát",
         dueDate: "27/01/2026",
         reportFields: [
           { name: "Số người tham gia" },
@@ -448,7 +509,7 @@ const sampleActivities = [
       {
         title: "Lập kế hoạch diễn tập",
         team: "Tổ 1",
-        assignees: "Nguyễn Thanh Nhân",
+        assignees: "Ngô Trương Định",
         dueDate: "16/01/2026",
         reportFields: [{ name: "Kịch bản diễn tập" }],
         notes: "Phối hợp với UBND",
@@ -457,7 +518,7 @@ const sampleActivities = [
       {
         title: "Chuẩn bị thiết bị PCCC",
         team: "Tổ 2",
-        assignees: "Thái Thanh Phong",
+        assignees: "Lý Triệu An",
         dueDate: "17/01/2026",
         reportFields: [{ name: "Số bình chữa cháy" }, { name: "Số vòi nước" }],
         notes: "",
@@ -466,7 +527,7 @@ const sampleActivities = [
       {
         title: "Huấn luyện kỹ năng PCCC",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang",
+        assignees: "Phan Phong Phú",
         dueDate: "18/01/2026",
         reportFields: [{ name: "Số người tham gia" }],
         notes: "",
@@ -475,7 +536,7 @@ const sampleActivities = [
       {
         title: "Tổ chức diễn tập thực tế",
         team: "Tổ 1",
-        assignees: "Lê Văn An",
+        assignees: "Nguyễn Lý Minh Quang",
         dueDate: "19/01/2026",
         reportFields: [{ name: "Thời gian hoàn thành (phút)" }, { name: "Đánh giá" }],
         notes: "",
@@ -500,7 +561,7 @@ const sampleActivities = [
       {
         title: "Tổng hợp báo cáo Tổ 1",
         team: "Tổ 1",
-        assignees: "Trần Thị Bích",
+        assignees: "Ngô Hoài Bảo",
         dueDate: "28/01/2026",
         reportFields: [{ name: "Nội dung báo cáo" }],
         notes: "",
@@ -509,7 +570,7 @@ const sampleActivities = [
       {
         title: "Tổng hợp báo cáo Tổ 2",
         team: "Tổ 2",
-        assignees: "Phan Phong Phú",
+        assignees: "Lâm Ngọc Huyền",
         dueDate: "28/01/2026",
         reportFields: [{ name: "Nội dung báo cáo" }],
         notes: "",
@@ -518,7 +579,7 @@ const sampleActivities = [
       {
         title: "Tổng hợp báo cáo Tổ 3",
         team: "Tổ 3",
-        assignees: "Nguyễn Đình Thiện",
+        assignees: "Trương Giang Minh Tùng",
         dueDate: "28/01/2026",
         reportFields: [{ name: "Nội dung báo cáo" }],
         notes: "",
@@ -527,7 +588,7 @@ const sampleActivities = [
       {
         title: "Biên tập slide trình bày",
         team: "Tổ 1",
-        assignees: "Nguyễn Thanh Nhân",
+        assignees: "Nguyễn Thành Tài",
         dueDate: "29/01/2026",
         reportFields: [{ name: "Số slide" }],
         notes: "Sử dụng template chuẩn",
@@ -536,7 +597,7 @@ const sampleActivities = [
       {
         title: "Tổ chức họp tổng kết",
         team: "Tổ 1",
-        assignees: "Lê Văn An",
+        assignees: "Ngô Trương Định",
         dueDate: "30/01/2026",
         reportFields: [{ name: "Số người tham dự" }, { name: "Biên bản họp" }],
         notes: "",
@@ -561,7 +622,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra khu vực 1",
         team: "Tổ 1",
-        assignees: "Nguyễn Thanh Nhân, Lê Văn An",
+        assignees: "Ngô Trương Định, Nguyễn Lý Minh Quang",
         dueDate: "22/01/2026",
         reportFields: [{ name: "Tình hình ANTT" }, { name: "Vấn đề phát hiện" }],
         notes: "",
@@ -570,7 +631,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra khu vực 2",
         team: "Tổ 2",
-        assignees: "Thái Thanh Phong, Dương Văn Bình",
+        assignees: "Lý Triệu An, Phạm Gia Bảo",
         dueDate: "22/01/2026",
         reportFields: [{ name: "Tình hình ANTT" }, { name: "Vấn đề phát hiện" }],
         notes: "",
@@ -579,7 +640,7 @@ const sampleActivities = [
       {
         title: "Kiểm tra khu vực 3",
         team: "Tổ 3",
-        assignees: "Nguyễn Văn Quang, Lương Văn Chính",
+        assignees: "Phan Phong Phú, Lương Triệu Phát",
         dueDate: "23/01/2026",
         reportFields: [{ name: "Tình hình ANTT" }, { name: "Vấn đề phát hiện" }],
         notes: "",
@@ -588,7 +649,7 @@ const sampleActivities = [
       {
         title: "Tổng hợp báo cáo",
         team: "Tổ 2",
-        assignees: "Phan Phong Phú",
+        assignees: "Nguyễn Thanh Nhân",
         dueDate: "24/01/2026",
         reportFields: [{ name: "Báo cáo tổng hợp" }],
         notes: "Gửi báo cáo cho UBND",
@@ -601,8 +662,20 @@ const sampleActivities = [
 ];
 
 // Save to localStorage
+localStorage.setItem('dqp10_users', JSON.stringify(dqp10_users));
 localStorage.setItem('dqp10_activities', JSON.stringify(sampleActivities));
-console.log('✅ Đã lưu 12 hoạt động mẫu vào localStorage!');
-console.log('Key: dqp10_activities');
-console.log('Sample data:', sampleActivities);
+
+console.log('✅ Đã lưu 39 users và 12 hoạt động mẫu vào localStorage!');
+console.log('📊 User Distribution:');
+console.log('   Tổ 1: 4 members');
+console.log('   Tổ 2: 5 members');
+console.log('   Tổ 3: 5 members');
+console.log('   Tổ 4: 4 members');
+console.log('   Tổ 5: 4 members');
+console.log('   Tổ 6: 5 members');
+console.log('   Tổ 7: 4 members');
+console.log('   Tổ 8: 4 members');
+console.log('   Tổ 9: 4 members');
+console.log('   Total: 39 members');
+console.log('📋 Keys: dqp10_users, dqp10_activities');
 console.log('📊 Progress tracking enabled - each task has completed status');
