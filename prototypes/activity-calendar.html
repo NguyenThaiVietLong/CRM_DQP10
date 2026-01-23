@@ -1,809 +1,607 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lịch Nhiệm vụ - Dân quân Phường Bình Phú</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-    <script src="notification-system.js"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: { olive: "#556B2F" },
-          },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lịch Nhiệm vụ - Dân quân Phường Bình Phú</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="notification-system.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { olive: "#556B2F" },
         },
-      };
-    </script>
-  </head>
-  <body class="bg-gray-50 font-sans antialiased">
-    <div
-      class="flex h-screen overflow-hidden"
-      x-data="calendarApp()"
-      x-init="init()"
-    >
-      <!-- Sidebar (simplified) -->
-      <aside
-        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 p-4 hidden md:flex flex-col"
-      >
-        <div class="flex gap-3 px-2 py-2 mb-6">
-          <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
-          <div class="flex flex-col justify-center">
-            <h1 class="text-gray-900 text-base font-bold">
-              Phường đội Bình Phú
-            </h1>
-            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-gray-50 font-sans antialiased">
+  <div class="flex h-screen overflow-hidden" x-data="calendarApp()" x-init="init()">
+    <!-- Sidebar (simplified) -->
+    <aside class="w-64 flex-shrink-0 bg-white border-r border-gray-200 p-4 hidden md:flex flex-col">
+      <div class="flex gap-3 px-2 py-2 mb-6">
+        <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
+        <div class="flex flex-col justify-center">
+          <h1 class="text-gray-900 text-base font-bold">
+            BAN CHQS PHƯỜNG BÌNH PHÚ
+          </h1>
+          <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+        </div>
+      </div>
+
+      <!-- User Profile -->
+      <div class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20">
+        <div class="flex items-center gap-2">
+          <div class="relative">
+            <div class="size-10 rounded-full bg-olive/20 flex items-center justify-center">
+              <span class="material-symbols-outlined text-olive text-2xl">account_circle</span>
+            </div>
+            <span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"></span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-bold text-gray-900 truncate" x-text="currentUser.fullName || 'Guest'"></p>
+            <p class="text-xs text-gray-600">
+              <span class="px-2 py-0.5 rounded-full text-xs font-medium"
+                :class="{'bg-blue-100 text-blue-700': currentUser.role === 'dqtt', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
+                x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"></span>
+            </p>
           </div>
         </div>
+      </div>
 
-        <!-- User Profile -->
-        <div
-          class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20"
-        >
-          <div class="flex items-center gap-2">
-            <div class="relative">
-              <div
-                class="size-10 rounded-full bg-olive/20 flex items-center justify-center"
-              >
-                <span class="material-symbols-outlined text-olive text-2xl"
-                  >account_circle</span
-                >
-              </div>
-              <span
-                class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"
-              ></span>
-            </div>
-            <div class="flex-1 min-w-0">
-              <p
-                class="text-sm font-bold text-gray-900 truncate"
-                x-text="currentUser.fullName || 'Guest'"
-              ></p>
-              <p class="text-xs text-gray-600">
-                <span
-                  class="px-2 py-0.5 rounded-full text-xs font-medium"
-                  :class="{'bg-blue-100 text-blue-700': currentUser.role === 'dqtt', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
-                  x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"
-                ></span>
-              </p>
-            </div>
+      <nav class="flex flex-col gap-2">
+        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors" href="index.html">
+          <span class="material-symbols-outlined text-gray-600">home</span>
+          <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+        </a>
+        <a x-show="currentUser.role === 'admin'"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          href="dashboard-tong-hop.html">
+          <span class="material-symbols-outlined text-gray-600">assessment</span>
+          <p class="text-sm font-medium text-gray-600">Dashboard</p>
+        </a>
+        <div>
+          <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+            <span class="material-symbols-outlined text-gray-600">event</span>
+            <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+          </div>
+          <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="activity-list.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">Danh sách</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
+              href="activity-calendar.html">
+              <span class="size-1.5 rounded-full bg-olive"></span>
+              <p class="text-sm font-bold">Lịch</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="module-lich-truc.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">Lịch trực</p>
+            </a>
           </div>
         </div>
+        <!-- Nhân sự with submenu -->
+        <div>
+          <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+            <span class="material-symbols-outlined text-gray-600">group</span>
+            <p class="text-sm font-bold text-gray-700">Nhân sự</p>
+          </div>
+          <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="personnel-tuoi17.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">Tuổi 17</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="personnel-nguon.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">Nguồn</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="personnel-qndb.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">Quân nhân dự bị</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="personnel-dqtt.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">DQTT</p>
+            </a>
+            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+              href="personnel-dqcd.html">
+              <span class="size-1.5 rounded-full bg-gray-400"></span>
+              <p class="text-sm font-medium">DQCĐ</p>
+            </a>
+          </div>
+        </div>
+        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          href="module3-inventory-complete.html">
+          <span class="material-symbols-outlined text-gray-600">inventory_2</span>
+          <p class="text-sm font-medium text-gray-600">Kho</p>
+        </a>
+        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          href="module4-documents-complete.html">
+          <span class="material-symbols-outlined text-gray-600">folder</span>
+          <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+        </a>
+      </nav>
 
-        <nav class="flex flex-col gap-2">
-          <a
-            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-            href="index.html"
-          >
-            <span class="material-symbols-outlined text-gray-600">home</span>
-            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
-          </a>
-          <a
-            x-show="currentUser.role === 'admin'"
-            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-            href="dashboard-tong-hop.html"
-          >
-            <span class="material-symbols-outlined text-gray-600"
-              >assessment</span
-            >
-            <p class="text-sm font-medium text-gray-600">Dashboard</p>
-          </a>
+      <div class="mt-auto pt-4 border-t border-gray-200">
+        <a @click.prevent="logout()" href="#"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer">
+          <span class="material-symbols-outlined text-xl">logout</span>
+          <span>Đăng xuất</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+      <!-- Header -->
+      <header class="bg-white border-b border-gray-200 px-6 py-4">
+        <div class="flex items-center justify-between">
           <div>
-            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
-              <span class="material-symbols-outlined text-gray-600">event</span>
-              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
-            </div>
-            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="activity-list.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">Danh sách</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
-                href="activity-calendar.html"
-              >
-                <span class="size-1.5 rounded-full bg-olive"></span>
-                <p class="text-sm font-bold">Lịch</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="module-lich-truc.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">Lịch trực</p>
-              </a>
-            </div>
+            <h1 class="text-2xl font-bold text-gray-900">Lịch Nhiệm vụ</h1>
+            <p class="text-sm text-gray-500 mt-1">
+              Xem các nhiệm vụ được giao cho bạn
+            </p>
           </div>
-          <!-- Nhân sự with submenu -->
-          <div>
-            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
-              <span class="material-symbols-outlined text-gray-600">group</span>
-              <p class="text-sm font-bold text-gray-700">Nhân sự</p>
-            </div>
-            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="personnel-tuoi17.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">Tuổi 17</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="personnel-nguon.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">Nguồn</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="personnel-qndb.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">Quân nhân dự bị</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="personnel-dqtt.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">DQTT</p>
-              </a>
-              <a
-                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-                href="personnel-dqcd.html"
-              >
-                <span class="size-1.5 rounded-full bg-gray-400"></span>
-                <p class="text-sm font-medium">DQCĐ</p>
-              </a>
-            </div>
-          </div>
-          <a
-            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-            href="module3-inventory-complete.html"
-          >
-            <span class="material-symbols-outlined text-gray-600"
-              >inventory_2</span
-            >
-            <p class="text-sm font-medium text-gray-600">Kho</p>
-          </a>
-          <a
-            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-            href="module4-documents-complete.html"
-          >
-            <span class="material-symbols-outlined text-gray-600">folder</span>
-            <p class="text-sm font-medium text-gray-600">Tài liệu</p>
-          </a>
-        </nav>
+          <div class="flex items-center gap-3">
+            <!-- Notification Bell System -->
+            <div x-data="notificationBell" class="relative">
+              <!-- Bell Button -->
+              <button @click="toggleDropdown()" class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                :class="{'bg-gray-100': isOpen}">
+                <span class="material-symbols-outlined">notifications</span>
+                <span x-show="unreadCount > 0" class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
+                <span x-show="unreadCount > 0"
+                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"
+                  x-text="unreadCount"></span>
+              </button>
 
-        <div class="mt-auto pt-4 border-t border-gray-200">
-          <a
-            @click.prevent="logout()"
-            href="#"
-            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer"
-          >
-            <span class="material-symbols-outlined text-xl">logout</span>
-            <span>Đăng xuất</span>
-          </a>
-        </div>
-      </aside>
+              <!-- Dropdown Panel -->
+              <div x-show="isOpen" @click.away="isOpen = false"
+                class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
+                style="display: none" x-cloak>
+                <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
+                  <h3 class="text-sm font-bold text-gray-900">
+                    Thông báo nhiệm vụ
+                  </h3>
+                  <span class="text-xs text-gray-500" x-text="notifications.length + ' nhiệm vụ'"></span>
+                </div>
 
-      <!-- Main Content -->
-      <main class="flex-1 flex flex-col overflow-hidden">
-        <!-- Header -->
-        <header class="bg-white border-b border-gray-200 px-6 py-4">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-2xl font-bold text-gray-900">Lịch Nhiệm vụ</h1>
-              <p class="text-sm text-gray-500 mt-1">
-                Xem các nhiệm vụ được giao cho bạn
-              </p>
-            </div>
-            <div class="flex items-center gap-3">
-              <!-- Notification Bell System -->
-              <div x-data="notificationBell" class="relative">
-                <!-- Bell Button -->
-                <button
-                  @click="toggleDropdown()"
-                  class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  :class="{'bg-gray-100': isOpen}"
-                >
-                  <span class="material-symbols-outlined">notifications</span>
-                  <span
-                    x-show="unreadCount > 0"
-                    class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"
-                  ></span>
-                  <span
-                    x-show="unreadCount > 0"
-                    class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"
-                    x-text="unreadCount"
-                  ></span>
-                </button>
+                <div class="max-h-96 overflow-y-auto">
+                  <template x-if="notifications.length === 0">
+                    <div class="p-8 text-center">
+                      <span class="material-symbols-outlined text-4xl text-gray-300">notifications_off</span>
+                      <p class="text-sm text-gray-500 mt-2">
+                        Không có thông báo mới
+                      </p>
+                    </div>
+                  </template>
 
-                <!-- Dropdown Panel -->
-                <div
-                  x-show="isOpen"
-                  @click.away="isOpen = false"
-                  class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
-                  style="display: none"
-                  x-cloak
-                >
-                  <div
-                    class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
-                  >
-                    <h3 class="text-sm font-bold text-gray-900">
-                      Thông báo nhiệm vụ
-                    </h3>
-                    <span
-                      class="text-xs text-gray-500"
-                      x-text="notifications.length + ' nhiệm vụ'"
-                    ></span>
-                  </div>
-
-                  <div class="max-h-96 overflow-y-auto">
-                    <template x-if="notifications.length === 0">
-                      <div class="p-8 text-center">
-                        <span
-                          class="material-symbols-outlined text-4xl text-gray-300"
-                          >notifications_off</span
-                        >
-                        <p class="text-sm text-gray-500 mt-2">
-                          Không có thông báo mới
-                        </p>
-                      </div>
-                    </template>
-
-                    <div class="divide-y divide-gray-100">
-                      <template x-for="notif in notifications" :key="notif.id">
-                        <div class="p-4 hover:bg-gray-50 transition-colors">
-                          <div class="flex items-start gap-3">
-                            <div
-                              class="bg-yellow-100 rounded-lg p-2 flex-shrink-0"
-                            >
-                              <span
-                                class="material-symbols-outlined text-yellow-600 text-xl"
-                                >assignment</span
-                              >
+                  <div class="divide-y divide-gray-100">
+                    <template x-for="notif in notifications" :key="notif.id">
+                      <div class="p-4 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start gap-3">
+                          <div class="bg-yellow-100 rounded-lg p-2 flex-shrink-0">
+                            <span class="material-symbols-outlined text-yellow-600 text-xl">assignment</span>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-900 mb-1" x-text="notif.taskName"></p>
+                            <div class="space-y-1 mb-2">
+                              <p class="text-xs text-gray-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">location_on</span>
+                                <span x-text="notif.location"></span>
+                              </p>
+                              <p class="text-xs text-gray-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-[14px]">schedule</span>
+                                <span>Thời hạn:
+                                  <span x-text="notif.deadline"></span></span>
+                              </p>
                             </div>
-                            <div class="flex-1 min-w-0">
-                              <p
-                                class="text-sm font-semibold text-gray-900 mb-1"
-                                x-text="notif.taskName"
-                              ></p>
-                              <div class="space-y-1 mb-2">
-                                <p
-                                  class="text-xs text-gray-600 flex items-center gap-1"
-                                >
-                                  <span
-                                    class="material-symbols-outlined text-[14px]"
-                                    >location_on</span
-                                  >
-                                  <span x-text="notif.location"></span>
-                                </p>
-                                <p
-                                  class="text-xs text-gray-600 flex items-center gap-1"
-                                >
-                                  <span
-                                    class="material-symbols-outlined text-[14px]"
-                                    >schedule</span
-                                  >
-                                  <span
-                                    >Thời hạn:
-                                    <span x-text="notif.deadline"></span
-                                  ></span>
-                                </p>
-                              </div>
-                              <div class="flex gap-2">
-                                <a
-                                  :href="'activity-detail.html?id=' + notif.activityId"
-                                  class="text-xs text-olive hover:underline font-medium"
-                                  >Xem chi tiết</a
-                                >
-                                <button
-                                  @click="confirmRead(notif.id)"
-                                  class="text-xs text-blue-600 hover:underline font-medium"
-                                >
-                                  Xác nhận đã đọc
-                                </button>
-                              </div>
+                            <div class="flex gap-2">
+                              <a :href="'activity-detail.html?id=' + notif.activityId"
+                                class="text-xs text-olive hover:underline font-medium">Xem chi tiết</a>
+                              <button @click="confirmRead(notif.id)"
+                                class="text-xs text-blue-600 hover:underline font-medium">
+                                Xác nhận đã đọc
+                              </button>
                             </div>
                           </div>
                         </div>
-                      </template>
-                    </div>
-                  </div>
-
-                  <div
-                    x-show="notifications.length > 0"
-                    class="px-4 py-3 border-t border-gray-200 bg-gray-50"
-                  >
-                    <button
-                      @click="markAllRead()"
-                      class="text-xs text-olive hover:underline font-medium w-full text-center"
-                    >
-                      Đánh dấu tất cả đã đọc
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Calendar Controls -->
-              <button
-                @click="previousMonth()"
-                class="p-2 hover:bg-gray-100 rounded-lg"
-              >
-                <span class="material-symbols-outlined">chevron_left</span>
-              </button>
-              <div class="text-center min-w-[200px]">
-                <p
-                  class="text-lg font-bold text-gray-900"
-                  x-text="monthYearText"
-                ></p>
-              </div>
-              <button
-                @click="nextMonth()"
-                class="p-2 hover:bg-gray-100 rounded-lg"
-              >
-                <span class="material-symbols-outlined">chevron_right</span>
-              </button>
-              <button
-                @click="goToToday()"
-                class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 text-sm font-semibold"
-              >
-                Hôm nay
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <!-- Calendar Grid -->
-        <div class="flex-1 overflow-auto p-6">
-          <div
-            class="bg-white rounded-lg border border-gray-200 overflow-hidden"
-          >
-            <!-- Weekday Headers -->
-            <div class="grid grid-cols-7 border-b border-gray-200">
-              <template
-                x-for="day in ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']"
-                :key="day"
-              >
-                <div
-                  class="p-3 text-center font-bold text-gray-700 bg-gray-50"
-                  x-text="day"
-                ></div>
-              </template>
-            </div>
-
-            <!-- Calendar Days -->
-            <div
-              class="grid grid-cols-7 auto-rows-fr"
-              style="min-height: 600px"
-            >
-              <template x-for="day in calendarDays" :key="day.dateStr">
-                <div
-                  class="border-r border-b border-gray-200 p-2 min-h-[100px]"
-                  :class="{'bg-gray-50': !day.isCurrentMonth, 'bg-blue-50': day.isToday}"
-                >
-                  <div class="flex justify-between items-start mb-2">
-                    <span
-                      class="text-sm font-semibold"
-                      :class="day.isToday ? 'text-blue-600' : (day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400')"
-                      x-text="day.date"
-                    ></span>
-                    <span
-                      x-show="day.tasks.length > 0"
-                      class="text-xs bg-olive text-white px-2 py-0.5 rounded-full"
-                      x-text="day.tasks.length"
-                    ></span>
-                  </div>
-                  <div class="space-y-1">
-                    <template
-                      x-for="task in day.tasks.slice(0, 3)"
-                      :key="task.id"
-                    >
-                      <div
-                        @click="showTaskDetail(task)"
-                        class="text-xs p-1.5 rounded cursor-pointer hover:opacity-80"
-                        :class="task.completed ? 'bg-green-100 text-green-800 line-through' : 'bg-olive/20 text-olive'"
-                        :title="`${task.activityName} - ${task.title}`"
-                      >
-                        <p
-                          class="font-semibold truncate"
-                          x-text="task.title"
-                        ></p>
-                        <p
-                          class="text-[10px] opacity-75 truncate"
-                          x-text="task.activityName"
-                        ></p>
                       </div>
                     </template>
-                    <div
-                      x-show="day.tasks.length > 3"
-                      class="text-xs text-gray-500 text-center"
-                    >
-                      +<span x-text="day.tasks.length - 3"></span> nhiệm vụ khác
-                    </div>
                   </div>
                 </div>
-              </template>
-            </div>
-          </div>
 
-          <!-- Task Summary -->
-          <div class="mt-6 grid grid-cols-3 gap-4">
-            <div class="bg-white rounded-lg border border-gray-200 p-4">
-              <div class="flex items-center gap-3">
-                <div
-                  class="size-12 rounded-full bg-blue-100 flex items-center justify-center"
-                >
-                  <span class="material-symbols-outlined text-blue-600"
-                    >assignment</span
-                  >
-                </div>
-                <div>
-                  <p
-                    class="text-2xl font-bold text-gray-900"
-                    x-text="myTasks.length"
-                  ></p>
-                  <p class="text-sm text-gray-600">Tổng nhiệm vụ</p>
+                <div x-show="notifications.length > 0" class="px-4 py-3 border-t border-gray-200 bg-gray-50">
+                  <button @click="markAllRead()"
+                    class="text-xs text-olive hover:underline font-medium w-full text-center">
+                    Đánh dấu tất cả đã đọc
+                  </button>
                 </div>
               </div>
             </div>
-            <div class="bg-white rounded-lg border border-gray-200 p-4">
-              <div class="flex items-center gap-3">
-                <div
-                  class="size-12 rounded-full bg-green-100 flex items-center justify-center"
-                >
-                  <span class="material-symbols-outlined text-green-600"
-                    >check_circle</span
-                  >
-                </div>
-                <div>
-                  <p
-                    class="text-2xl font-bold text-gray-900"
-                    x-text="completedTasks"
-                  ></p>
-                  <p class="text-sm text-gray-600">Đã hoàn thành</p>
-                </div>
-              </div>
+
+            <!-- Calendar Controls -->
+            <button @click="previousMonth()" class="p-2 hover:bg-gray-100 rounded-lg">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <div class="text-center min-w-[200px]">
+              <p class="text-lg font-bold text-gray-900" x-text="monthYearText"></p>
             </div>
-            <div class="bg-white rounded-lg border border-gray-200 p-4">
-              <div class="flex items-center gap-3">
-                <div
-                  class="size-12 rounded-full bg-orange-100 flex items-center justify-center"
-                >
-                  <span class="material-symbols-outlined text-orange-600"
-                    >pending</span
-                  >
-                </div>
-                <div>
-                  <p
-                    class="text-2xl font-bold text-gray-900"
-                    x-text="pendingTasks"
-                  ></p>
-                  <p class="text-sm text-gray-600">Chưa hoàn thành</p>
-                </div>
-              </div>
-            </div>
+            <button @click="nextMonth()" class="p-2 hover:bg-gray-100 rounded-lg">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+            <button @click="goToToday()"
+              class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 text-sm font-semibold">
+              Hôm nay
+            </button>
           </div>
         </div>
-      </main>
+      </header>
 
-      <!-- Task Detail Modal -->
-      <div
-        x-show="selectedTask"
-        @click.self="selectedTask = null"
-        class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-        x-cloak
-      >
-        <div
-          @click.stop
-          class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4"
-        >
-          <div class="p-6">
-            <div class="flex items-start justify-between mb-4">
-              <h3
-                class="text-xl font-bold text-gray-900"
-                x-text="selectedTask?.title"
-              ></h3>
-              <button
-                @click="selectedTask = null"
-                class="text-gray-400 hover:text-gray-600"
-              >
-                <span class="material-symbols-outlined">close</span>
-              </button>
-            </div>
+      <!-- Calendar Grid -->
+      <div class="flex-1 overflow-auto p-6">
+        <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <!-- Weekday Headers -->
+          <div class="grid grid-cols-7 border-b border-gray-200">
+            <template x-for="day in ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7']" :key="day">
+              <div class="p-3 text-center font-bold text-gray-700 bg-gray-50" x-text="day"></div>
+            </template>
+          </div>
 
-            <div class="space-y-4">
-              <div>
-                <p class="text-sm text-gray-500 mb-1">Hoạt động</p>
-                <p
-                  class="font-medium text-gray-900"
-                  x-text="selectedTask?.activityName"
-                ></p>
+          <!-- Calendar Days -->
+          <div class="grid grid-cols-7 auto-rows-fr" style="min-height: 600px">
+            <template x-for="day in calendarDays" :key="day.dateStr">
+              <div class="border-r border-b border-gray-200 p-2 min-h-[100px]"
+                :class="{'bg-gray-50': !day.isCurrentMonth, 'bg-blue-50': day.isToday}">
+                <div class="flex justify-between items-start mb-2">
+                  <span class="text-sm font-semibold"
+                    :class="day.isToday ? 'text-blue-600' : (day.isCurrentMonth ? 'text-gray-900' : 'text-gray-400')"
+                    x-text="day.date"></span>
+                  <span x-show="day.tasks.length > 0" class="text-xs bg-olive text-white px-2 py-0.5 rounded-full"
+                    x-text="day.tasks.length"></span>
+                </div>
+                <div class="space-y-1">
+                  <template x-for="task in day.tasks.slice(0, 3)" :key="task.id">
+                    <div @click="showTaskDetail(task)" class="text-xs p-1.5 rounded cursor-pointer hover:opacity-80"
+                      :class="task.completed ? 'bg-green-100 text-green-800 line-through' : 'bg-olive/20 text-olive'"
+                      :title="`${task.activityName} - ${task.title}`">
+                      <p class="font-semibold truncate" x-text="task.title"></p>
+                      <p class="text-[10px] opacity-75 truncate" x-text="task.activityName"></p>
+                    </div>
+                  </template>
+                  <div x-show="day.tasks.length > 3" class="text-xs text-gray-500 text-center">
+                    +<span x-text="day.tasks.length - 3"></span> nhiệm vụ khác
+                  </div>
+                </div>
               </div>
+            </template>
+          </div>
+        </div>
 
-              <div>
-                <p class="text-sm text-gray-500 mb-1">Địa điểm</p>
-                <p
-                  class="font-medium text-gray-900"
-                  x-text="selectedTask?.location || 'Chưa xác định'"
-                ></p>
+        <!-- Task Summary -->
+        <div class="mt-6 grid grid-cols-3 gap-4">
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex items-center gap-3">
+              <div class="size-12 rounded-full bg-blue-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-blue-600">assignment</span>
               </div>
-
               <div>
-                <p class="text-sm text-gray-500 mb-1">Người phụ trách</p>
-                <p
-                  class="font-medium text-gray-900"
-                  x-text="selectedTask?.assignees"
-                ></p>
-              </div>
-
-              <div>
-                <p class="text-sm text-gray-500 mb-1">Hạn hoàn thành</p>
-                <p
-                  class="font-medium text-gray-900"
-                  x-text="selectedTask?.dueDate"
-                ></p>
-              </div>
-
-              <div>
-                <p class="text-sm text-gray-500 mb-1">Trạng thái</p>
-                <span
-                  class="inline-flex px-3 py-1 rounded-full text-sm font-medium"
-                  :class="selectedTask?.completed ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'"
-                  x-text="selectedTask?.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'"
-                ></span>
+                <p class="text-2xl font-bold text-gray-900" x-text="myTasks.length"></p>
+                <p class="text-sm text-gray-600">Tổng nhiệm vụ</p>
               </div>
             </div>
-
-            <div class="mt-6 flex justify-end">
-              <a
-                :href="`activity-detail.html?id=${selectedTask?.activityId}`"
-                class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 font-semibold flex items-center gap-2"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >visibility</span
-                >
-                <span>Xem chi tiết</span>
-              </a>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex items-center gap-3">
+              <div class="size-12 rounded-full bg-green-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-green-600">check_circle</span>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-gray-900" x-text="completedTasks"></p>
+                <p class="text-sm text-gray-600">Đã hoàn thành</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg border border-gray-200 p-4">
+            <div class="flex items-center gap-3">
+              <div class="size-12 rounded-full bg-orange-100 flex items-center justify-center">
+                <span class="material-symbols-outlined text-orange-600">pending</span>
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-gray-900" x-text="pendingTasks"></p>
+                <p class="text-sm text-gray-600">Chưa hoàn thành</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </main>
+
+    <!-- Task Detail Modal -->
+    <div x-show="selectedTask" @click.self="selectedTask = null"
+      class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" x-cloak>
+      <div @click.stop class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4">
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-4">
+            <h3 class="text-xl font-bold text-gray-900" x-text="selectedTask?.title"></h3>
+            <button @click="selectedTask = null" class="text-gray-400 hover:text-gray-600">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Hoạt động</p>
+              <p class="font-medium text-gray-900" x-text="selectedTask?.activityName"></p>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Địa điểm</p>
+              <p class="font-medium text-gray-900" x-text="selectedTask?.location || 'Chưa xác định'"></p>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Người phụ trách</p>
+              <p class="font-medium text-gray-900" x-text="selectedTask?.assignees"></p>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Hạn hoàn thành</p>
+              <p class="font-medium text-gray-900" x-text="selectedTask?.dueDate"></p>
+            </div>
+
+            <div>
+              <p class="text-sm text-gray-500 mb-1">Trạng thái</p>
+              <span class="inline-flex px-3 py-1 rounded-full text-sm font-medium"
+                :class="selectedTask?.completed ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'"
+                x-text="selectedTask?.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'"></span>
+            </div>
+          </div>
+
+          <div class="mt-6 flex justify-end">
+            <a :href="`activity-detail.html?id=${selectedTask?.activityId}`"
+              class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 font-semibold flex items-center gap-2">
+              <span class="material-symbols-outlined text-lg">visibility</span>
+              <span>Xem chi tiết</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-      function calendarApp() {
-        return {
-          currentUser: null,
-          currentMonth: new Date().getMonth(),
-          currentYear: new Date().getFullYear(),
-          myTasks: [],
-          calendarDays: [],
-          selectedTask: null,
+  <script>
+    function calendarApp() {
+      return {
+        currentUser: null,
+        currentMonth: new Date().getMonth(),
+        currentYear: new Date().getFullYear(),
+        myTasks: [],
+        calendarDays: [],
+        selectedTask: null,
 
-          init() {
-            const session = localStorage.getItem("dqp10_session");
-            if (!session) {
-              window.location.href = "login.html";
-              return;
-            }
-            this.currentUser = JSON.parse(session);
-            this.loadMyTasks();
-            this.generateCalendar();
-          },
-
-          loadMyTasks() {
-            const data = localStorage.getItem("dqp10_activities");
-            if (!data) return;
-
-            const activities = JSON.parse(data);
-            const userName = this.currentUser.fullName;
-            const isAdmin = this.currentUser.role === "admin";
-
-            this.myTasks = [];
-
-            if (isAdmin) {
-              // Admin sees ACTIVITIES (not individual tasks)
-              activities.forEach((activity) => {
-                this.myTasks.push({
-                  id: `activity-${activity.id}`,
-                  activityId: activity.id,
-                  activityName: activity.name,
-                  title: activity.name,
-                  dueDate: activity.startDate, // Use startDate for calendar display
-                  endDate: activity.endDate,
-                  team: `Tổ ${activity.department}`,
-                  assignees: activity.workGroup,
-                  location: activity.location,
-                  completed: false,
-                  isActivity: true, // Flag to identify this is an activity
-                });
-              });
-            } else {
-              // Regular users see TASKS assigned to them
-              activities.forEach((activity) => {
-                if (activity.tasks) {
-                  activity.tasks.forEach((task, index) => {
-                    if (task.assignees && task.assignees.includes(userName)) {
-                      this.myTasks.push({
-                        id: `${activity.id}-${index}`,
-                        activityId: activity.id,
-                        activityName: activity.name,
-                        title: task.title,
-                        dueDate: task.dueDate,
-                        team: task.team,
-                        assignees: task.assignees,
-                        location: activity.location,
-                        completed: task.completed || false,
-                        isActivity: false,
-                      });
-                    }
-                  });
-                }
-              });
-            }
-
-            console.log(
-              `Loaded ${this.myTasks.length} ${isAdmin ? "activities" : "tasks"} for ${isAdmin ? "Admin" : userName}`,
-            );
-          },
-
-          generateCalendar() {
-            const firstDay = new Date(this.currentYear, this.currentMonth, 1);
-            const lastDay = new Date(
-              this.currentYear,
-              this.currentMonth + 1,
-              0,
-            );
-            const prevLastDay = new Date(
-              this.currentYear,
-              this.currentMonth,
-              0,
-            );
-
-            const firstDayOfWeek = firstDay.getDay();
-            const daysInMonth = lastDay.getDate();
-            const daysInPrevMonth = prevLastDay.getDate();
-
-            this.calendarDays = [];
-
-            // Previous month days
-            for (let i = firstDayOfWeek - 1; i >= 0; i--) {
-              const date = daysInPrevMonth - i;
-              const dateStr = `${this.currentYear}-${String(this.currentMonth).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
-              this.calendarDays.push({
-                date: date,
-                dateStr: dateStr,
-                isCurrentMonth: false,
-                isToday: false,
-                tasks: [],
-              });
-            }
-
-            // Current month days
-            const today = new Date();
-            for (let date = 1; date <= daysInMonth; date++) {
-              const dateStr = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
-              const isToday =
-                date === today.getDate() &&
-                this.currentMonth === today.getMonth() &&
-                this.currentYear === today.getFullYear();
-
-              // Find tasks for this date
-              const tasksForDate = this.myTasks.filter((task) => {
-                const [day, month, year] = task.dueDate.split("/");
-                const taskDateStr = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-                return taskDateStr === dateStr;
-              });
-
-              this.calendarDays.push({
-                date: date,
-                dateStr: dateStr,
-                isCurrentMonth: true,
-                isToday: isToday,
-                tasks: tasksForDate,
-              });
-            }
-
-            // Next month days
-            const remainingDays = 42 - this.calendarDays.length;
-            for (let date = 1; date <= remainingDays; date++) {
-              const dateStr = `${this.currentYear}-${String(this.currentMonth + 2).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
-              this.calendarDays.push({
-                date: date,
-                dateStr: dateStr,
-                isCurrentMonth: false,
-                isToday: false,
-                tasks: [],
-              });
-            }
-          },
-
-          get monthYearText() {
-            const months = [
-              "Tháng 1",
-              "Tháng 2",
-              "Tháng 3",
-              "Tháng 4",
-              "Tháng 5",
-              "Tháng 6",
-              "Tháng 7",
-              "Tháng 8",
-              "Tháng 9",
-              "Tháng 10",
-              "Tháng 11",
-              "Tháng 12",
-            ];
-            return `${months[this.currentMonth]} ${this.currentYear}`;
-          },
-
-          get completedTasks() {
-            return this.myTasks.filter((t) => t.completed).length;
-          },
-
-          get pendingTasks() {
-            return this.myTasks.filter((t) => !t.completed).length;
-          },
-
-          previousMonth() {
-            if (this.currentMonth === 0) {
-              this.currentMonth = 11;
-              this.currentYear--;
-            } else {
-              this.currentMonth--;
-            }
-            this.generateCalendar();
-          },
-
-          nextMonth() {
-            if (this.currentMonth === 11) {
-              this.currentMonth = 0;
-              this.currentYear++;
-            } else {
-              this.currentMonth++;
-            }
-            this.generateCalendar();
-          },
-
-          goToToday() {
-            const today = new Date();
-            this.currentMonth = today.getMonth();
-            this.currentYear = today.getFullYear();
-            this.generateCalendar();
-          },
-
-          showTaskDetail(task) {
-            this.selectedTask = task;
-          },
-
-          logout() {
-            localStorage.removeItem("dqp10_session");
+        init() {
+          const session = localStorage.getItem("dqp10_session");
+          if (!session) {
             window.location.href = "login.html";
-          },
-        };
-      }
-    </script>
+            return;
+          }
+          this.currentUser = JSON.parse(session);
+          this.loadMyTasks();
+          this.generateCalendar();
+        },
 
-    <style>
-      [x-cloak] {
-        display: none !important;
-      }
-    </style>
-  </body>
+        loadMyTasks() {
+          const data = localStorage.getItem("dqp10_activities");
+          if (!data) return;
+
+          const activities = JSON.parse(data);
+          const userName = this.currentUser.fullName;
+          const isAdmin = this.currentUser.role === "admin";
+
+          this.myTasks = [];
+
+          if (isAdmin) {
+            // Admin sees ACTIVITIES (not individual tasks)
+            activities.forEach((activity) => {
+              this.myTasks.push({
+                id: `activity-${activity.id}`,
+                activityId: activity.id,
+                activityName: activity.name,
+                title: activity.name,
+                dueDate: activity.startDate, // Use startDate for calendar display
+                endDate: activity.endDate,
+                team: `Tổ ${activity.department}`,
+                assignees: activity.workGroup,
+                location: activity.location,
+                completed: false,
+                isActivity: true, // Flag to identify this is an activity
+              });
+            });
+          } else {
+            // Regular users see TASKS assigned to them
+            activities.forEach((activity) => {
+              if (activity.tasks) {
+                activity.tasks.forEach((task, index) => {
+                  if (task.assignees && task.assignees.includes(userName)) {
+                    this.myTasks.push({
+                      id: `${activity.id}-${index}`,
+                      activityId: activity.id,
+                      activityName: activity.name,
+                      title: task.title,
+                      dueDate: task.dueDate,
+                      team: task.team,
+                      assignees: task.assignees,
+                      location: activity.location,
+                      completed: task.completed || false,
+                      isActivity: false,
+                    });
+                  }
+                });
+              }
+            });
+          }
+
+          console.log(
+            `Loaded ${this.myTasks.length} ${isAdmin ? "activities" : "tasks"} for ${isAdmin ? "Admin" : userName}`,
+          );
+        },
+
+        generateCalendar() {
+          const firstDay = new Date(this.currentYear, this.currentMonth, 1);
+          const lastDay = new Date(
+            this.currentYear,
+            this.currentMonth + 1,
+            0,
+          );
+          const prevLastDay = new Date(
+            this.currentYear,
+            this.currentMonth,
+            0,
+          );
+
+          const firstDayOfWeek = firstDay.getDay();
+          const daysInMonth = lastDay.getDate();
+          const daysInPrevMonth = prevLastDay.getDate();
+
+          this.calendarDays = [];
+
+          // Previous month days
+          for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+            const date = daysInPrevMonth - i;
+            const dateStr = `${this.currentYear}-${String(this.currentMonth).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+            this.calendarDays.push({
+              date: date,
+              dateStr: dateStr,
+              isCurrentMonth: false,
+              isToday: false,
+              tasks: [],
+            });
+          }
+
+          // Current month days
+          const today = new Date();
+          for (let date = 1; date <= daysInMonth; date++) {
+            const dateStr = `${this.currentYear}-${String(this.currentMonth + 1).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+            const isToday =
+              date === today.getDate() &&
+              this.currentMonth === today.getMonth() &&
+              this.currentYear === today.getFullYear();
+
+            // Find tasks for this date
+            const tasksForDate = this.myTasks.filter((task) => {
+              const [day, month, year] = task.dueDate.split("/");
+              const taskDateStr = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+              return taskDateStr === dateStr;
+            });
+
+            this.calendarDays.push({
+              date: date,
+              dateStr: dateStr,
+              isCurrentMonth: true,
+              isToday: isToday,
+              tasks: tasksForDate,
+            });
+          }
+
+          // Next month days
+          const remainingDays = 42 - this.calendarDays.length;
+          for (let date = 1; date <= remainingDays; date++) {
+            const dateStr = `${this.currentYear}-${String(this.currentMonth + 2).padStart(2, "0")}-${String(date).padStart(2, "0")}`;
+            this.calendarDays.push({
+              date: date,
+              dateStr: dateStr,
+              isCurrentMonth: false,
+              isToday: false,
+              tasks: [],
+            });
+          }
+        },
+
+        get monthYearText() {
+          const months = [
+            "Tháng 1",
+            "Tháng 2",
+            "Tháng 3",
+            "Tháng 4",
+            "Tháng 5",
+            "Tháng 6",
+            "Tháng 7",
+            "Tháng 8",
+            "Tháng 9",
+            "Tháng 10",
+            "Tháng 11",
+            "Tháng 12",
+          ];
+          return `${months[this.currentMonth]} ${this.currentYear}`;
+        },
+
+        get completedTasks() {
+          return this.myTasks.filter((t) => t.completed).length;
+        },
+
+        get pendingTasks() {
+          return this.myTasks.filter((t) => !t.completed).length;
+        },
+
+        previousMonth() {
+          if (this.currentMonth === 0) {
+            this.currentMonth = 11;
+            this.currentYear--;
+          } else {
+            this.currentMonth--;
+          }
+          this.generateCalendar();
+        },
+
+        nextMonth() {
+          if (this.currentMonth === 11) {
+            this.currentMonth = 0;
+            this.currentYear++;
+          } else {
+            this.currentMonth++;
+          }
+          this.generateCalendar();
+        },
+
+        goToToday() {
+          const today = new Date();
+          this.currentMonth = today.getMonth();
+          this.currentYear = today.getFullYear();
+          this.generateCalendar();
+        },
+
+        showTaskDetail(task) {
+          this.selectedTask = task;
+        },
+
+        logout() {
+          localStorage.removeItem("dqp10_session");
+          window.location.href = "login.html";
+        },
+      };
+    }
+  </script>
+
+  <style>
+    [x-cloak] {
+      display: none !important;
+    }
+  </style>
+</body>
+
 </html>
