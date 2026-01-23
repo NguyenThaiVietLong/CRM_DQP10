@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách DQTT - BAN CHQS PHƯỜNG BÌNH PHÚ</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { olive: "#556B2F" },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-50 font-sans antialiased" x-data="personnelApp()">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">
+              BAN CHQS PHƯỜNG BÌNH PHÚ
+            </h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
+          </div>
+        </div>
+
+        <!-- User Profile -->
+        <div
+          class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20"
+        >
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <div
+                class="size-10 rounded-full bg-olive/20 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-olive text-2xl"
+                  >account_circle</span
+                >
+              </div>
+              <span
+                class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"
+              ></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p
+                class="text-sm font-bold text-gray-900 truncate"
+                x-text="currentUser.fullName || 'Guest'"
+              ></p>
+              <p class="text-xs text-gray-600">
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-medium"
+                  :class="{'bg-blue-100 text-blue-700': currentUser.role !== 'admin', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
+                  x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'User')"
+                ></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="dashboard-tong-hop.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >assessment</span
+            >
+            <p class="text-sm font-medium text-gray-600">Dashboard</p>
+          </a>
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">event</span>
+              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch trực</p>
+              </a>
+            </div>
+          </div>
+          <!-- Nhân sự with submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-olive">
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >group</span
+              >
+              <p class="text-sm font-bold">Nhân sự</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-olive/30 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-tuoi17.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tuổi 17</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-nguon.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Nguồn</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-qndb.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Quân nhân dự bị</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
+                href="personnel-dqtt.html"
+              >
+                <span class="size-1.5 rounded-full bg-olive"></span>
+                <p class="text-sm font-bold">DQTT</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-dqcd.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">DQCĐ</p>
+              </a>
+            </div>
+          </div>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >inventory_2</span
+            >
+            <p class="text-sm font-medium text-gray-600">Kho</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module4-documents-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">folder</span>
+            <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            @click.prevent="logout()"
+            href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="bg-white border-b border-gray-200 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">Danh sách DQTT</h1>
+              <p class="text-sm text-gray-500 mt-1">
+                Quản lý danh sách dân quân thường trực
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button
+                class="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                <span class="material-symbols-outlined">file_download</span>
+                <span class="font-semibold">Xuất Excel</span>
+              </button>
+              <button
+                class="flex items-center gap-2 px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 transition-colors"
+              >
+                <span class="material-symbols-outlined">add</span>
+                <span class="font-semibold">Thêm mới</span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6">
+          <!-- Filters -->
+          <div class="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+            <div class="flex flex-wrap items-center gap-4">
+              <div class="flex-1 min-w-[200px]">
+                <div class="relative">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                    >search</span
+                  >
+                  <input
+                    type="text"
+                    x-model="searchQuery"
+                    placeholder="Tìm kiếm theo họ tên, mã hồ sơ..."
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+                  />
+                </div>
+              </div>
+              <select
+                class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+              >
+                <option value="">Tất cả tổ</option>
+                <option value="1">Tổ 1</option>
+                <option value="2">Tổ 2</option>
+                <option value="3">Tổ 3</option>
+              </select>
+              <select
+                class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive"
+              >
+                <option value="">Trạng thái</option>
+                <option value="active">Đang sử dụng</option>
+                <option value="pending">Chờ duyệt</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div
+            class="bg-white rounded-lg border border-gray-200 overflow-hidden"
+          >
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      <input type="checkbox" class="rounded border-gray-300" />
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Mã hồ sơ
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Họ tên & Năm sinh
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Địa chỉ
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      CMND/CCCD
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Số điện thoại
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Trình độ
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Tình trạng
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider"
+                    >
+                      Thao tác
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <template
+                    x-for="person in filteredPersonnel"
+                    :key="person.id"
+                  >
+                    <tr class="hover:bg-gray-50 transition-colors">
+                      <td class="px-4 py-3">
+                        <input
+                          type="checkbox"
+                          class="rounded border-gray-300"
+                        />
+                      </td>
+                      <td class="px-4 py-3">
+                        <a
+                          href="#"
+                          class="text-olive hover:underline font-medium"
+                          x-text="person.code"
+                        ></a>
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center gap-3">
+                          <div
+                            class="size-10 rounded-full bg-olive/10 flex items-center justify-center"
+                          >
+                            <span class="material-symbols-outlined text-olive"
+                              >person</span
+                            >
+                          </div>
+                          <div>
+                            <p
+                              class="font-semibold text-gray-900"
+                              x-text="person.name"
+                            ></p>
+                            <p
+                              class="text-sm text-gray-500"
+                              x-text="person.dob"
+                            ></p>
+                          </div>
+                        </div>
+                      </td>
+                      <td
+                        class="px-4 py-3 text-sm text-gray-600"
+                        x-text="person.address"
+                      ></td>
+                      <td
+                        class="px-4 py-3 text-sm text-gray-600"
+                        x-text="person.cccd"
+                      ></td>
+                      <td
+                        class="px-4 py-3 text-sm text-gray-600"
+                        x-text="person.phone"
+                      ></td>
+                      <td
+                        class="px-4 py-3 text-sm text-gray-600"
+                        x-text="person.education"
+                      ></td>
+                      <td class="px-4 py-3">
+                        <span
+                          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+                          :class="person.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'"
+                        >
+                          <span
+                            class="size-1.5 rounded-full"
+                            :class="person.status === 'active' ? 'bg-green-600' : 'bg-yellow-600'"
+                          ></span>
+                          <span
+                            x-text="person.status === 'active' ? 'Đang sử dụng' : 'Chờ duyệt'"
+                          ></span>
+                        </span>
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center gap-2">
+                          <button
+                            class="p-1.5 text-gray-500 hover:text-olive hover:bg-olive/10 rounded-lg transition-colors"
+                            title="Xem"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >visibility</span
+                            >
+                          </button>
+                          <button
+                            class="p-1.5 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                            title="Sửa"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >edit</span
+                            >
+                          </button>
+                          <button
+                            class="p-1.5 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            title="Xóa"
+                          >
+                            <span class="material-symbols-outlined text-lg"
+                              >delete</span
+                            >
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="px-4 py-3 border-t border-gray-200 flex items-center justify-between"
+            >
+              <p class="text-sm text-gray-600">
+                Hiển thị <span class="font-bold">1</span> đến
+                <span
+                  class="font-bold"
+                  x-text="filteredPersonnel.length"
+                ></span>
+                trong tổng số
+                <span class="font-bold" x-text="personnel.length"></span> hồ sơ
+              </p>
+              <div class="flex items-center gap-1">
+                <button
+                  class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+                >
+                  Trước
+                </button>
+                <button
+                  class="px-3 py-1.5 bg-olive text-white rounded-lg text-sm"
+                >
+                  1
+                </button>
+                <button
+                  class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1.5 border border-gray-300 rounded-lg text-sm hover:bg-gray-50"
+                >
+                  Sau
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      function personnelApp() {
+        return {
+          currentUser: { fullName: "Guest", role: null, team: null },
+          searchQuery: "",
+          personnel: [
+            {
+              id: 1,
+              code: "T17-001",
+              name: "Nguyễn Văn An",
+              dob: "15/03/2009",
+              address: "123 Đường ABC, P.Bình Phú",
+              cccd: "079209001234",
+              phone: "0901234567",
+              education: "THPT",
+              status: "active",
+            },
+            {
+              id: 2,
+              code: "T17-002",
+              name: "Trần Thị Bình",
+              dob: "22/05/2009",
+              address: "456 Đường XYZ, P.Bình Phú",
+              cccd: "079209002345",
+              phone: "0902345678",
+              education: "THPT",
+              status: "active",
+            },
+            {
+              id: 3,
+              code: "T17-003",
+              name: "Lê Hoàng Cường",
+              dob: "08/11/2009",
+              address: "789 Đường DEF, P.Bình Phú",
+              cccd: "079209003456",
+              phone: "0903456789",
+              education: "THPT",
+              status: "pending",
+            },
+            {
+              id: 4,
+              code: "T17-004",
+              name: "Phạm Minh Đức",
+              dob: "30/01/2009",
+              address: "321 Đường GHI, P.Bình Phú",
+              cccd: "079209004567",
+              phone: "0904567890",
+              education: "THPT",
+              status: "active",
+            },
+            {
+              id: 5,
+              code: "T17-005",
+              name: "Hoàng Thị Hoa",
+              dob: "12/07/2009",
+              address: "654 Đường JKL, P.Bình Phú",
+              cccd: "079209005678",
+              phone: "0905678901",
+              education: "THPT",
+              status: "pending",
+            },
+          ],
+
+          init() {
+            const session = localStorage.getItem("dqp10_session");
+            if (!session) {
+              window.location.href = "login.html";
+              return;
+            }
+            this.currentUser = JSON.parse(session);
+          },
+
+          get filteredPersonnel() {
+            if (!this.searchQuery) return this.personnel;
+            const query = this.searchQuery.toLowerCase();
+            return this.personnel.filter(
+              (p) =>
+                p.name.toLowerCase().includes(query) ||
+                p.code.toLowerCase().includes(query),
+            );
+          },
+
+          logout() {
+            localStorage.removeItem("dqp10_session");
+            window.location.href = "login.html";
+          },
+        };
+      }
+    </script>
+
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </body>
+</html>
