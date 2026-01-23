@@ -597,8 +597,19 @@
             // Admin can toggle all tasks
             if (this.currentUser.role === "admin") return true;
 
-            // DQTT can only toggle tasks from their own team
-            return task.team === this.currentUser.team;
+            // User can only toggle tasks where they are assigned
+            // Check if user's fullName is in the assignees list
+            const userFullName = this.currentUser.fullName;
+            if (task.assignees && task.assignees.includes(userFullName)) {
+              return true;
+            }
+
+            // Also check if user is in same team (fallback for team-level access)
+            // This allows any team member to help with team tasks
+            // Comment out next line if you want STRICT assignee-only access
+            // return task.team === this.currentUser.team;
+
+            return false;
           },
 
           checkOverdue(dueDate) {

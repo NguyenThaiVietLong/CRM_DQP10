@@ -1,208 +1,263 @@
 <!doctype html>
 <html lang="vi">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Đăng nhập - Dân quân Phường Bình Phú</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            olive: "#556B2F",
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập - Dân quân Phường Bình Phú</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              olive: "#556B2F",
+            },
           },
         },
-      },
-    };
-  </script>
-</head>
-
-<body class="bg-gray-50 font-sans antialiased">
-  <div class="min-h-screen flex items-center justify-center p-4" x-data="loginApp()">
-    <!-- Login Card -->
-    <div class="w-full max-w-md">
-      <!-- Logo & Title -->
-      <div class="text-center mb-8">
-        <img src="logo-dqtv.png" alt="Logo Dân quân Tự vệ" class="size-24 object-contain mb-4" />
-        <h1 class="text-3xl font-bold text-gray-900">Dân Quân Tự Vệ</h1>
-        <p class="text-gray-600 mt-2">BAN CHQS PHƯỜNG BÌNH PHÚ</p>
-      </div>
-
-      <!-- Login Form -->
-      <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
-        <!-- Error Message -->
-        <div x-show="errorMessage" x-cloak
-          class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
-          <span class="material-symbols-outlined text-red-600 text-xl">error</span>
-          <p class="text-sm text-red-700 flex-1" x-text="errorMessage"></p>
-        </div>
-
-        <!-- Success Message -->
-        <div x-show="successMessage" x-cloak
-          class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
-          <span class="material-symbols-outlined text-green-600 text-xl">check_circle</span>
-          <p class="text-sm text-green-700 flex-1" x-text="successMessage"></p>
-        </div>
-
-        <form @submit.prevent="handleLogin">
-          <!-- Username -->
-          <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Tên đăng nhập
-            </label>
-            <div class="relative">
-              <span
-                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">person</span>
-              <input x-model="username" type="text" required autofocus
-                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive focus:border-transparent"
-                placeholder="Nhập tên đăng nhập" />
-            </div>
-          </div>
-
-          <!-- Password -->
-          <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 mb-2">
-              Mật khẩu
-            </label>
-            <div class="relative">
-              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
-              <input x-model="password" :type="showPassword ? 'text' : 'password'" required
-                class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive focus:border-transparent"
-                placeholder="Nhập mật khẩu" />
-              <button type="button" @click="showPassword = !showPassword"
-                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                <span x-text="showPassword ? 'visibility_off' : 'visibility'"></span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" :disabled="loading"
-            class="w-full bg-olive text-white py-3 px-4 rounded-lg font-semibold hover:bg-olive/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-            <span x-show="loading" class="inline-block animate-spin">⏳</span>
-            <span x-text="loading ? 'Đang đăng nhập...' : 'Đăng nhập'"></span>
-          </button>
-        </form>
-      </div>
-
-      <!-- Footer -->
-      <p class="text-center text-sm text-gray-500 mt-6">
-        © 2026 Phường đội Bình Phú
-      </p>
-    </div>
-  </div>
-
-  <style>
-    [x-cloak] {
-      display: none !important;
-    }
-  </style>
-
-  <script>
-    function loginApp() {
-      return {
-        username: "",
-        password: "",
-        showPassword: false,
-        loading: false,
-        errorMessage: "",
-        successMessage: "",
-
-        init() {
-          // Check if already logged in
-          const session = localStorage.getItem("dqp10_session");
-          if (session) {
-            window.location.href = "activity-calendar.html";
-            return;
-          }
-
-          // Initialize demo accounts
-          this.initializeAccounts();
-        },
-
-        initializeAccounts() {
-          const existingAccounts = localStorage.getItem("dqp10_accounts");
-          if (!existingAccounts) {
-            const accounts = [
-              {
-                username: "dqtt",
-                password: "123456",
-                role: "dqtt",
-                fullName: "Nguyễn Văn Quang",
-                team: "Tổ 3",
-              },
-              {
-                username: "admin",
-                password: "admin123",
-                role: "admin",
-                fullName: "Administrator",
-                team: null,
-              },
-            ];
-            localStorage.setItem("dqp10_accounts", JSON.stringify(accounts));
-          }
-        },
-
-        async handleLogin() {
-          this.errorMessage = "";
-          this.successMessage = "";
-
-          // Validation
-          if (!this.username || !this.password) {
-            this.errorMessage = "Vui lòng nhập đầy đủ thông tin!";
-            return;
-          }
-
-          this.loading = true;
-
-          // Simulate API delay
-          await new Promise((resolve) => setTimeout(resolve, 800));
-
-          // Get accounts from localStorage
-          const accounts = JSON.parse(
-            localStorage.getItem("dqp10_accounts") || "[]",
-          );
-
-          // Find matching account
-          const account = accounts.find(
-            (acc) =>
-              acc.username === this.username &&
-              acc.password === this.password,
-          );
-
-          if (account) {
-            // Login successful
-            this.successMessage = `Đăng nhập thành công! Xin chào ${account.fullName}`;
-
-            // Create session
-            const session = {
-              username: account.username,
-              fullName: account.fullName,
-              role: account.role,
-              team: account.team,
-              loginTime: new Date().toISOString(),
-            };
-            localStorage.setItem("dqp10_session", JSON.stringify(session));
-
-            // Redirect to dashboard
-            setTimeout(() => {
-              window.location.href = "activity-calendar.html";
-            }, 1000);
-          } else {
-            // Login failed
-            this.errorMessage = "Tên đăng nhập hoặc mật khẩu không đúng!";
-            this.loading = false;
-          }
-        },
       };
-    }
-  </script>
-</body>
+    </script>
+  </head>
 
+  <body class="bg-gray-50 font-sans antialiased">
+    <div
+      class="min-h-screen flex items-center justify-center p-4"
+      x-data="loginApp()"
+    >
+      <!-- Login Card -->
+      <div class="w-full max-w-md">
+        <!-- Logo & Title -->
+        <div class="text-center mb-8">
+          <img
+            src="logo-dqtv.png"
+            alt="Logo Dân quân Tự vệ"
+            class="size-24 object-contain mb-4"
+          />
+          <h1 class="text-3xl font-bold text-gray-900">Dân Quân Tự Vệ</h1>
+          <p class="text-gray-600 mt-2">BAN CHQS PHƯỜNG BÌNH PHÚ</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+          <!-- Error Message -->
+          <div
+            x-show="errorMessage"
+            x-cloak
+            class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2"
+          >
+            <span class="material-symbols-outlined text-red-600 text-xl"
+              >error</span
+            >
+            <p class="text-sm text-red-700 flex-1" x-text="errorMessage"></p>
+          </div>
+
+          <!-- Success Message -->
+          <div
+            x-show="successMessage"
+            x-cloak
+            class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2"
+          >
+            <span class="material-symbols-outlined text-green-600 text-xl"
+              >check_circle</span
+            >
+            <p
+              class="text-sm text-green-700 flex-1"
+              x-text="successMessage"
+            ></p>
+          </div>
+
+          <form @submit.prevent="handleLogin">
+            <!-- Username -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Tên đăng nhập
+              </label>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  >person</span
+                >
+                <input
+                  x-model="username"
+                  type="text"
+                  required
+                  autofocus
+                  class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive focus:border-transparent"
+                  placeholder="Nhập tên đăng nhập"
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">
+                Mật khẩu
+              </label>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  >lock</span
+                >
+                <input
+                  x-model="password"
+                  :type="showPassword ? 'text' : 'password'"
+                  required
+                  class="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive focus:border-transparent"
+                  placeholder="Nhập mật khẩu"
+                />
+                <button
+                  type="button"
+                  @click="showPassword = !showPassword"
+                  class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <span
+                    x-text="showPassword ? 'visibility_off' : 'visibility'"
+                  ></span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button
+              type="submit"
+              :disabled="loading"
+              class="w-full bg-olive text-white py-3 px-4 rounded-lg font-semibold hover:bg-olive/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              <span x-show="loading" class="inline-block animate-spin">⏳</span>
+              <span x-text="loading ? 'Đang đăng nhập...' : 'Đăng nhập'"></span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-center text-sm text-gray-500 mt-6">
+          © 2026 Phường đội Bình Phú
+        </p>
+      </div>
+    </div>
+
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+
+    <script>
+      function loginApp() {
+        return {
+          username: "",
+          password: "",
+          showPassword: false,
+          loading: false,
+          errorMessage: "",
+          successMessage: "",
+
+          init() {
+            // Check if already logged in
+            const session = localStorage.getItem("dqp10_session");
+            if (session) {
+              window.location.href = "activity-calendar.html";
+              return;
+            }
+
+            // Initialize demo accounts
+            this.initializeAccounts();
+          },
+
+          initializeAccounts() {
+            const existingAccounts = localStorage.getItem("dqp10_accounts");
+            if (!existingAccounts) {
+              const accounts = [
+                {
+                  username: "ntnhan",
+                  password: "123456",
+                  role: "user",
+                  fullName: "Nguyễn Thanh Nhân",
+                  team: "Tổ 2",
+                },
+                {
+                  username: "ppphu",
+                  password: "123456",
+                  role: "user",
+                  fullName: "Phan Phong Phú",
+                  team: "Tổ 3",
+                },
+                {
+                  username: "admin",
+                  password: "admin123",
+                  role: "admin",
+                  fullName: "Administrator",
+                  team: null,
+                },
+              ];
+              localStorage.setItem("dqp10_accounts", JSON.stringify(accounts));
+            }
+          },
+
+          async handleLogin() {
+            this.errorMessage = "";
+            this.successMessage = "";
+
+            // Validation
+            if (!this.username || !this.password) {
+              this.errorMessage = "Vui lòng nhập đầy đủ thông tin!";
+              return;
+            }
+
+            this.loading = true;
+
+            // Simulate API delay
+            await new Promise((resolve) => setTimeout(resolve, 800));
+
+            // Get accounts from localStorage
+            const accounts = JSON.parse(
+              localStorage.getItem("dqp10_accounts") || "[]",
+            );
+
+            // Find matching account
+            const account = accounts.find(
+              (acc) =>
+                acc.username === this.username &&
+                acc.password === this.password,
+            );
+
+            if (account) {
+              // Login successful
+              this.successMessage = `Đăng nhập thành công! Xin chào ${account.fullName}`;
+
+              // Create session
+              const session = {
+                username: account.username,
+                fullName: account.fullName,
+                role: account.role,
+                team: account.team,
+                loginTime: new Date().toISOString(),
+              };
+              localStorage.setItem("dqp10_session", JSON.stringify(session));
+
+              // Redirect to dashboard
+              setTimeout(() => {
+                window.location.href = "activity-calendar.html";
+              }, 1000);
+            } else {
+              // Login failed
+              this.errorMessage = "Tên đăng nhập hoặc mật khẩu không đúng!";
+              this.loading = false;
+            }
+          },
+        };
+      }
+    </script>
+  </body>
 </html>

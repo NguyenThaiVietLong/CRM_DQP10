@@ -523,9 +523,9 @@
           activities: [],
           filteredActivities: [],
           statusFilters: {
-            notStarted: false, // Chưa bắt đầu
+            notStarted: true, // Chưa bắt đầu - default checked
             inProgress: true, // Đang thực hiện - default checked
-            completed: true, // Hoàn thành - default checked
+            completed: false, // Hoàn thành
           },
 
           init() {
@@ -542,21 +542,9 @@
             const data = localStorage.getItem("dqp10_activities");
             if (data) {
               this.activities = JSON.parse(data);
-              if (this.currentUser.role === "admin") {
-                this.applyStatusFilter();
-              } else {
-                const teamNumber = this.currentUser.team
-                  ? this.currentUser.team.replace("Tổ ", "")
-                  : null;
-                if (teamNumber) {
-                  const teamActivities = this.activities.filter(
-                    (a) => a.department === teamNumber,
-                  );
-                  this.applyStatusFilterTo(teamActivities);
-                } else {
-                  this.applyStatusFilter();
-                }
-              }
+              // Apply status filter to ALL activities for all users
+              // (Both admin and regular users see all activities)
+              this.applyStatusFilter();
             }
           },
 
