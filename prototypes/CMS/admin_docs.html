@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Quy định - Dân quân Phường Bình Phú</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#546a2f", // Olive green - unified color
+              "primary-hover": "#3d4f22",
+              "background-light": "#f3f4f6", // Gray-100
+              "background-dark": "#111827", // Gray-900
+              "surface-light": "#ffffff",
+              "surface-dark": "#1f2937", // Gray-800
+              "text-light": "#1f2937",
+              "text-dark": "#e5e7eb",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
+            },
+            fontFamily: {
+              display: ["Roboto", "sans-serif"],
+              body: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.375rem",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-body antialiased transition-colors duration-200"
+  >
+    <nav
+      class="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark fixed w-full z-30 top-0 transition-colors duration-200"
+    >
+      <div class="px-6 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4 w-64">
+            <button
+              class="text-gray-500 dark:text-gray-400 hover:text-primary transition-colors"
+            >
+              <span class="material-icons">menu</span>
+            </button>
+            <a
+              class="text-xl font-bold text-primary flex items-center gap-2"
+              href="#"
+            >
+              <span class="material-icons text-3xl">security</span>
+              <span>DQ Bình Phú</span>
+            </a>
+          </div>
+          <div class="flex-1 px-8 hidden md:block">
+            <p class="text-sm text-gray-500 dark:text-gray-400 italic">
+              Chúc bạn một ngày làm việc thật vui vẻ, hiệu quả và tràn đầy năng
+              lượng! 😊✨
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative hidden md:block">
+              <span
+                class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500 dark:text-gray-400"
+              >
+                <span class="material-icons text-xl">search</span>
+              </span>
+              <input
+                class="pl-10 pr-4 py-2 border border-border-light dark:border-border-dark rounded-full bg-background-light dark:bg-background-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary w-64 transition-colors"
+                placeholder="Tìm kiếm..."
+                type="text"
+              />
+            </div>
+            <button
+              class="p-2 text-gray-500 dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-700 rounded-full transition-colors relative"
+            >
+              <span class="material-icons">notifications</span>
+              <span
+                class="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"
+              ></span>
+            </button>
+            <button
+              class="p-2 text-gray-500 dark:text-gray-400 hover:bg-background-light dark:hover:bg-gray-700 rounded-full transition-colors"
+              onclick="document.documentElement.classList.toggle('dark')"
+            >
+              <span class="material-icons dark:hidden">dark_mode</span>
+              <span class="material-icons hidden dark:block">light_mode</span>
+            </button>
+            <div class="flex items-center gap-2 ml-2 cursor-pointer">
+              <img
+                alt="User Avatar"
+                class="h-8 w-8 rounded-full border border-border-light dark:border-border-dark"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbmq1lA16cBmVDOQbQCF3J1HiwokFwy4ckpH2RUC0dMkqFg-CSUPSEqH37r13oBiGv2IdZXcLGzPtYLUQG9LKNnY6BjiD539WT_6PS0pVpqHEbBAGQXvGTpEroQicfgEDJa0qumIywEyZIjy5nzj3JWzcWRR9eUrOs-4_8iJwNftX6bJAdmOsNNy0nrLcFena_5Fr6xeYl9LJ2mOInHpNmI51iLuReYULh4ZNptPSn9j-REVoYPBu87v7VOZdo6IwoBdjfhoLSdIxG"
+              />
+              <span class="text-sm font-medium hidden md:block">Admin</span>
+              <span class="material-icons text-sm hidden md:block"
+                >expand_more</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <aside
+      class="fixed left-0 top-0 pt-16 h-full w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark z-20 hidden lg:block transition-colors duration-200 overflow-y-auto"
+    >
+      <div class="p-4 space-y-1">
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded-lg transition-colors"
+          href="admin_news.html"
+        >
+          <span class="material-icons">article</span>
+          <span class="font-medium">Tin tức</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg"
+          href="admin_docs.html"
+        >
+          <span class="material-icons">gavel</span>
+          <span class="font-medium">Văn bản pháp luật</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white rounded-lg transition-colors"
+          href="admin_slide.html"
+        >
+          <span class="material-icons">slideshow</span>
+          <span class="font-medium">Slide ảnh</span>
+        </a>
+        <div
+          class="mt-8 px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+        >
+          Hệ thống
+        </div>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-gray-500 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors"
+          href="index.html"
+        >
+          <span class="material-icons">logout</span>
+          <span class="font-medium">Đăng xuất</span>
+        </a>
+      </div>
+    </aside>
+    <main class="lg:ml-64 pt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="p-6 md:p-8">
+        <div class="md:flex md:items-center md:justify-between mb-8">
+          <div class="flex-1 min-w-0">
+            <h2
+              class="text-2xl font-bold leading-7 text-gray-900 dark:text-white sm:text-3xl sm:truncate"
+            >
+              Danh sách Quy định &amp; Văn bản
+            </h2>
+            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Cập nhật các quy định mới nhất về công tác dân quân tự vệ và an
+              ninh quốc phòng.
+            </p>
+          </div>
+          <div class="mt-4 flex md:mt-0 md:ml-4 gap-3">
+            <div class="relative rounded-md shadow-sm">
+              <div
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+              >
+                <span class="material-icons text-gray-400 text-sm">search</span>
+              </div>
+              <input
+                class="focus:ring-primary focus:border-primary block w-full pl-10 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-surface-dark dark:text-white rounded-md h-10"
+                id="search"
+                name="search"
+                placeholder="Tìm kiếm quy định..."
+                type="text"
+              />
+            </div>
+            <button
+              class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              type="button"
+            >
+              <span class="material-icons text-sm mr-2">filter_list</span>
+              Lọc
+            </button>
+          </div>
+        </div>
+        <div
+          class="bg-surface-light dark:bg-surface-dark shadow overflow-hidden sm:rounded-lg border border-border-light dark:border-border-dark"
+        >
+          <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div
+                class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+              >
+                <div class="overflow-hidden">
+                  <table
+                    class="min-w-full divide-y divide-border-light dark:divide-border-dark"
+                  >
+                    <thead class="bg-gray-50 dark:bg-gray-800">
+                      <tr>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-16"
+                          scope="col"
+                        >
+                          ID
+                        </th>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                          scope="col"
+                        >
+                          Bài viết / Văn bản
+                        </th>
+                        <th
+                          class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-48"
+                          scope="col"
+                        >
+                          Chuyên mục
+                        </th>
+                        <th
+                          class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-24"
+                          scope="col"
+                        >
+                          Thứ tự
+                        </th>
+                        <th
+                          class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-24"
+                          scope="col"
+                        >
+                          Trạng thái
+                        </th>
+                        <th
+                          class="px-6 py-3 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-32"
+                          scope="col"
+                        >
+                          Thao tác
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody
+                      class="bg-surface-light dark:bg-surface-dark divide-y divide-border-light dark:divide-border-dark"
+                    >
+                      <tr
+                        class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      >
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          #12238
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0 h-10 w-10">
+                              <img
+                                alt="Building complex"
+                                class="h-10 w-10 rounded-md object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCShr73X9QfcyCRSsO35Ebt4jlxCsuAKnXc4De2Tj6CsEo17C50WYu4M_rEBwQFMjX9TjqnPGg_JtbQiyyLTW-7wQN-gWn6difae-KqhFlUB_ksbEceSEaklqBc5iI7N58fEf_J5_bhvUBDNb8rc-JGiSzNZ2DRJC5o8Unvr1hpHqsyRrqGXHbxcl2BCfgVy19lSuC5HGGhzba8yNCSzyJkUtRm3l7xhyljwTyp-yaEEB4yjAS6olthihwCjXKGIcWPEw9ZSV_nn4ME"
+                              />
+                            </div>
+                            <div class="ml-4">
+                              <div
+                                class="text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Quy định về Tuần tra Canh gác tại Khu Chung cư
+                              </div>
+                              <div
+                                class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                              >
+                                Cập nhật: 12/10/2023
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          >
+                            Nhiệm vụ
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          <input
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-12 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md text-center mx-auto"
+                            type="text"
+                            value="1"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                        >
+                          <span class="material-icons text-green-500 text-base"
+                            >check_circle</span
+                          >
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        >
+                          <div class="flex justify-end gap-3">
+                            <button
+                              class="text-gray-400 hover:text-primary transition-colors"
+                            >
+                              <span class="material-icons text-lg"
+                                >visibility</span
+                              >
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-blue-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">edit</span>
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      >
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          #12204
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <div
+                              class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-md text-gray-400"
+                            >
+                              <span class="material-icons">article</span>
+                            </div>
+                            <div class="ml-4">
+                              <div
+                                class="text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Quy trình Xử lý Khiếu nại Dân sự
+                              </div>
+                              <div
+                                class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                              >
+                                Cập nhật: 10/10/2023
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          >
+                            Hành chính
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          <input
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-12 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md text-center mx-auto"
+                            type="text"
+                            value="2"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                        >
+                          <span
+                            class="material-icons text-gray-300 dark:text-gray-600 text-base"
+                            >check_circle_outline</span
+                          >
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        >
+                          <div class="flex justify-end gap-3">
+                            <button
+                              class="text-gray-400 hover:text-primary transition-colors"
+                            >
+                              <span class="material-icons text-lg"
+                                >visibility</span
+                              >
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-blue-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">edit</span>
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      >
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          #12202
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <div
+                              class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-md text-gray-400"
+                            >
+                              <span class="material-icons">gavel</span>
+                            </div>
+                            <div class="ml-4">
+                              <div
+                                class="text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Hướng dẫn Đăng ký Nghĩa vụ Quân sự
+                              </div>
+                              <div
+                                class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                              >
+                                Cập nhật: 05/10/2023
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                          >
+                            Tuyên truyền
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          <input
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-12 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md text-center mx-auto"
+                            type="text"
+                            value="3"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                        >
+                          <span
+                            class="material-icons text-gray-300 dark:text-gray-600 text-base"
+                            >check_circle_outline</span
+                          >
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        >
+                          <div class="flex justify-end gap-3">
+                            <button
+                              class="text-gray-400 hover:text-primary transition-colors"
+                            >
+                              <span class="material-icons text-lg"
+                                >visibility</span
+                              >
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-blue-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">edit</span>
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      >
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          #12200
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <div
+                              class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-md text-gray-400"
+                            >
+                              <span class="material-icons">security</span>
+                            </div>
+                            <div class="ml-4">
+                              <div
+                                class="text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Bảo mật Thông tin Nội bộ
+                              </div>
+                              <div
+                                class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                              >
+                                Cập nhật: 01/10/2023
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                          >
+                            Bảo mật
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          <input
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-12 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md text-center mx-auto"
+                            type="text"
+                            value="4"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                        >
+                          <span
+                            class="material-icons text-gray-300 dark:text-gray-600 text-base"
+                            >check_circle_outline</span
+                          >
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        >
+                          <div class="flex justify-end gap-3">
+                            <button
+                              class="text-gray-400 hover:text-primary transition-colors"
+                            >
+                              <span class="material-icons text-lg"
+                                >visibility</span
+                              >
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-blue-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">edit</span>
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                      >
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400"
+                        >
+                          #12198
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="flex items-center">
+                            <div
+                              class="flex-shrink-0 h-10 w-10 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-md text-gray-400"
+                            >
+                              <span class="material-icons">local_shipping</span>
+                            </div>
+                            <div class="ml-4">
+                              <div
+                                class="text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Chính sách Vận chuyển Trang thiết bị
+                              </div>
+                              <div
+                                class="text-xs text-gray-500 dark:text-gray-400 mt-1"
+                              >
+                                Cập nhật: 28/09/2023
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                          <span
+                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          >
+                            Hậu cần
+                          </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                          <input
+                            class="shadow-sm focus:ring-primary focus:border-primary block w-12 sm:text-sm border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md text-center mx-auto"
+                            type="text"
+                            value="5"
+                          />
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500"
+                        >
+                          <span
+                            class="material-icons text-gray-300 dark:text-gray-600 text-base"
+                            >check_circle_outline</span
+                          >
+                        </td>
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                        >
+                          <div class="flex justify-end gap-3">
+                            <button
+                              class="text-gray-400 hover:text-primary transition-colors"
+                            >
+                              <span class="material-icons text-lg"
+                                >visibility</span
+                              >
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-blue-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">edit</span>
+                            </button>
+                            <button
+                              class="text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                              <span class="material-icons text-lg">delete</span>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-surface-light dark:bg-surface-dark px-4 py-3 flex items-center justify-between border-t border-border-light dark:border-border-dark sm:px-6"
+          >
+            <div class="flex-1 flex justify-between sm:hidden">
+              <a
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                href="#"
+              >
+                Previous
+              </a>
+              <a
+                class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                href="#"
+              >
+                Next
+              </a>
+            </div>
+            <div
+              class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+            >
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-300">
+                  Hiển thị <span class="font-medium">1</span> đến
+                  <span class="font-medium">5</span> trong số
+                  <span class="font-medium">50</span> kết quả
+                </p>
+              </div>
+              <div>
+                <nav
+                  aria-label="Pagination"
+                  class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                >
+                  <a
+                    class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    href="#"
+                  >
+                    <span class="sr-only">Previous</span>
+                    <span class="material-icons text-sm">chevron_left</span>
+                  </a>
+                  <a
+                    aria-current="page"
+                    class="z-10 bg-primary border-primary text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    href="#"
+                  >
+                    1
+                  </a>
+                  <a
+                    class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    href="#"
+                  >
+                    2
+                  </a>
+                  <a
+                    class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hidden md:inline-flex relative items-center px-4 py-2 border text-sm font-medium"
+                    href="#"
+                  >
+                    3
+                  </a>
+                  <span
+                    class="relative inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    ...
+                  </span>
+                  <a
+                    class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    href="#"
+                  >
+                    8
+                  </a>
+                  <a
+                    class="bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                    href="#"
+                  >
+                    9
+                  </a>
+                  <a
+                    class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-medium text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700"
+                    href="#"
+                  >
+                    <span class="sr-only">Next</span>
+                    <span class="material-icons text-sm">chevron_right</span>
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <button
+      class="fixed bottom-6 right-6 h-14 w-14 rounded-full bg-primary text-white shadow-lg flex items-center justify-center hover:bg-primary-hover focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800 transition-all transform hover:scale-110 z-50"
+    >
+      <span class="material-icons text-2xl">chat</span>
+    </button>
+    <footer
+      class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12"
+    >
+      <div
+        class="max-w-7xl mx-auto py-6 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8"
+      >
+        <div class="flex justify-center space-x-6 md:order-2">
+          <a
+            class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+            href="#"
+          >
+            <span class="sr-only">Facebook</span>
+            <svg
+              aria-hidden="true"
+              class="h-6 w-6"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0 md:order-1">
+          <p class="text-center text-base text-gray-400 dark:text-gray-500">
+            © 2023 Dân quân Phường Bình Phú. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

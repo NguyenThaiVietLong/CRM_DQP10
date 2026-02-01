@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tin Tức &amp; Sự Kiện - Dân Quân Tự Vệ Phường Bình Phú</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#546a2f", // Olive green - unified color scheme
+              secondary: "#ffb300", // Accent gold
+              "background-light": "#f3f4f6", // Gray-100
+              "background-dark": "#111827", // Gray-900
+              "surface-light": "#ffffff",
+              "surface-dark": "#1f2937", // Gray-800
+            },
+            fontFamily: {
+              display: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-display transition-colors duration-200"
+  >
+    <header class="bg-primary text-white shadow-lg sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary font-bold text-xl shadow-inner"
+          >
+            <span class="material-icons">shield</span>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold uppercase tracking-wider leading-none">
+              BCH Quân Sự
+            </h1>
+            <p
+              class="text-xs text-green-100 opacity-90 uppercase tracking-widest"
+            >
+              Phường Bình Phú
+            </p>
+          </div>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="index.html"
+            >Trang Chủ</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="introduction.html"
+            >Giới Thiệu</a
+          >
+          <a
+            class="text-secondary transition-colors py-2 border-b-2 border-secondary font-bold"
+            href="news.html"
+            >Tin Tức - Sự Kiện</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="docs.html"
+            >Văn Bản Chỉ Đạo</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="contact.html"
+            >Liên Hệ</a
+          >
+        </nav>
+        <div class="flex items-center space-x-4">
+          <button
+            class="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors focus:outline-none"
+          >
+            <span class="material-icons text-white text-sm">search</span>
+          </button>
+          <a
+            class="hidden sm:inline-block bg-secondary hover:bg-yellow-500 text-primary px-4 py-2 rounded font-bold text-sm transition-colors shadow-md"
+            href="admin_news.html"
+          >
+            Đăng Nhập
+          </a>
+          <button class="md:hidden text-white focus:outline-none">
+            <span class="material-icons">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <section class="relative bg-primary h-[220px] overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img
+          alt="Background"
+          class="w-full h-full object-cover opacity-20"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSiEWgfn3QUHRBvZNygt0BmtSitBCX4wu1ZQTOxRX2qrbB-zeAlzLroAG1J9T25zZruoiJDY9BdH0JhCWpzXbDikAlej8l2EjWDaZ_USrXVo4hun65OBH5I0dB1GxfhbI88vA9t_gU-3-OcFy00qttqUAwnHQTc02jKXehDcNJTsbYoFYSgBzl_YIzjFi1eIWx6wKcEXZM6-5GU9G8P3UP6xNcLZX11a_l51dsVzMGzgWNM07txNMAoN4d2fks3-59MD7RMxSZp5zt"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"
+        ></div>
+      </div>
+      <div
+        class="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center text-white"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-bold uppercase tracking-wide mb-3 border-l-4 border-secondary pl-4"
+        >
+          Tin Tức &amp; Sự Kiện
+        </h2>
+        <p
+          class="text-green-100 max-w-2xl pl-4 text-sm md:text-base opacity-90"
+        >
+          Cập nhật những thông tin mới nhất về hoạt động quân sự, quốc phòng và
+          các sự kiện quan trọng của lực lượng vũ trang phường Bình Phú.
+        </p>
+      </div>
+    </section>
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-16">
+          <section>
+            <div
+              class="flex items-center justify-between mb-8 border-b border-gray-200 dark:border-gray-700 pb-3"
+            >
+              <h3
+                class="text-2xl font-bold text-primary dark:text-green-400 flex items-center uppercase"
+              >
+                <span class="bg-primary text-white p-1 rounded mr-3 shadow-sm"
+                  ><span class="material-icons text-xl">article</span></span
+                >
+                Tin Tức Hoạt Động
+              </h3>
+              <div class="flex space-x-2">
+                <button class="text-gray-400 hover:text-primary">
+                  <span class="material-icons">grid_view</span>
+                </button>
+                <button class="text-primary">
+                  <span class="material-icons">view_list</span>
+                </button>
+              </div>
+            </div>
+            <div class="space-y-6">
+              <article
+                class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full sm:h-48"
+              >
+                <div class="sm:w-1/3 relative overflow-hidden">
+                  <img
+                    alt="Hội nghị"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrTTnD2c2NnjKeAbCM_-8mac_eunMKYIRbvKSum4N7kSAl-VjlAQ530oiUadVfXgUxiEgY6zWhqg6NsqSHmz6adL-uBOujeQBEXqJAK8JG_cfBbYeS7u2o5tewDaTJRj4MGkvdZEh-SOKiS4qbrdZ1GiXa-Wrp_NGXKTbX0VedhfgAwHZOcisixkiDmntMkqWSrhU9Pgue60XqLRi2k81sLTZw3vS5zf4S6R55J9Vrgu9smhcwnYFOQgVCSasj-RnPwfRncxk8tEAc"
+                  />
+                  <div
+                    class="absolute top-2 left-2 bg-secondary text-primary text-xs font-bold px-2 py-1 rounded shadow"
+                  >
+                    Mới
+                  </div>
+                </div>
+                <div class="p-5 sm:w-2/3 flex flex-col justify-between">
+                  <div>
+                    <div
+                      class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2 space-x-2"
+                    >
+                      <span class="flex items-center"
+                        ><span class="material-icons text-[14px] mr-1"
+                          >calendar_today</span
+                        >
+                        20/05/2024</span
+                      >
+                      <span>•</span>
+                      <span
+                        class="text-primary dark:text-green-400 font-medium uppercase text-[10px] tracking-wider border border-primary/20 px-1 rounded"
+                        >Tuyển quân</span
+                      >
+                    </div>
+                    <h4
+                      class="text-lg font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2"
+                    >
+                      <a href="#"
+                        >Hội nghị tổng kết công tác tuyển quân năm 2024 tại
+                        phường Bình Phú</a
+                      >
+                    </h4>
+                    <p
+                      class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2"
+                    >
+                      Hội đồng Nghĩa vụ quân sự phường tổ chức tổng kết, đánh
+                      giá kết quả tuyển chọn và gọi công dân nhập ngũ, rút kinh
+                      nghiệm cho năm tới.
+                    </p>
+                  </div>
+                  <div class="mt-3 flex justify-end">
+                    <a
+                      class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wider flex items-center hover:underline"
+                      href="#"
+                    >
+                      Xem chi tiết
+                      <span class="material-icons text-sm ml-1"
+                        >arrow_forward</span
+                      >
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full sm:h-48"
+              >
+                <div class="sm:w-1/3 relative overflow-hidden">
+                  <img
+                    alt="Huấn luyện"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqHUoXWceRsD8d7VROzM6A3KVXmKGnFStXoVsqMpKpm-g29mMl6jJmR4I50rXlK5CHqf_ElhLqeH_yq536hOpNmZNvd2ANWEANi685R69gJdKQ-WXwbTUsHCC3tLJEJ7PxaEXS3bA73qWCizfeqcJ41lYNk4OMah_lLVsyWqA_Obv-pw778JZ_6wvfp3auvqHocZMKWBDvRBqsdIRsrV9qXb3NVZdjISS_gbtBu7X9DJLZty_hFL_uTAiqLe_B05BBmEbvwpLkjqJZ"
+                  />
+                </div>
+                <div class="p-5 sm:w-2/3 flex flex-col justify-between">
+                  <div>
+                    <div
+                      class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2 space-x-2"
+                    >
+                      <span class="flex items-center"
+                        ><span class="material-icons text-[14px] mr-1"
+                          >calendar_today</span
+                        >
+                        18/05/2024</span
+                      >
+                      <span>•</span>
+                      <span
+                        class="text-primary dark:text-green-400 font-medium uppercase text-[10px] tracking-wider border border-primary/20 px-1 rounded"
+                        >Huấn luyện</span
+                      >
+                    </div>
+                    <h4
+                      class="text-lg font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2"
+                    >
+                      <a href="#"
+                        >Khai mạc huấn luyện dân quân tự vệ năm thứ nhất: Nâng
+                        cao bản lĩnh chính trị</a
+                      >
+                    </h4>
+                    <p
+                      class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2"
+                    >
+                      Tổ chức huấn luyện nhằm trang bị kiến thức quốc phòng, kỹ
+                      thuật chiến đấu bộ binh cho lực lượng dân quân nòng cốt
+                      mới kết nạp.
+                    </p>
+                  </div>
+                  <div class="mt-3 flex justify-end">
+                    <a
+                      class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wider flex items-center hover:underline"
+                      href="#"
+                    >
+                      Xem chi tiết
+                      <span class="material-icons text-sm ml-1"
+                        >arrow_forward</span
+                      >
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full sm:h-48"
+              >
+                <div class="sm:w-1/3 relative overflow-hidden">
+                  <img
+                    alt="Tuần tra"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4uH8iI2NA08jIq4Zk2oKr9flIV5jEhqfA01lpLDHkQThznxZFsSB3_7MWopPR0eUgaraeI49usGcdWWedTh0W9AnnLk7R_JUWh8vaSKFccHn5I3Dozg4HoK11PWywHyJ_xcG5UUxd0F5HP7TVoulj879y1o7cT5QfvA1rEoDyVfDvyea3bDUSCqf-G-eniF6HS4yKLQWK09fGM7FhkJp2s5Ume44NRWcRo8UWLH4t8RiiEmVAop74BjPPCE_MKB2P4Ooc_Bsh23zu"
+                  />
+                </div>
+                <div class="p-5 sm:w-2/3 flex flex-col justify-between">
+                  <div>
+                    <div
+                      class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2 space-x-2"
+                    >
+                      <span class="flex items-center"
+                        ><span class="material-icons text-[14px] mr-1"
+                          >calendar_today</span
+                        >
+                        15/05/2024</span
+                      >
+                      <span>•</span>
+                      <span
+                        class="text-primary dark:text-green-400 font-medium uppercase text-[10px] tracking-wider border border-primary/20 px-1 rounded"
+                        >An ninh</span
+                      >
+                    </div>
+                    <h4
+                      class="text-lg font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2"
+                    >
+                      <a href="#"
+                        >Tăng cường tuần tra, kiểm soát đảm bảo an ninh trật tự
+                        địa bàn dịp lễ</a
+                      >
+                    </h4>
+                    <p
+                      class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2"
+                    >
+                      Phối hợp chặt chẽ với lực lượng công an phường, dân quân
+                      tự vệ tổ chức các ca tuần tra đêm, đảm bảo bình yên khu
+                      phố.
+                    </p>
+                  </div>
+                  <div class="mt-3 flex justify-end">
+                    <a
+                      class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wider flex items-center hover:underline"
+                      href="#"
+                    >
+                      Xem chi tiết
+                      <span class="material-icons text-sm ml-1"
+                        >arrow_forward</span
+                      >
+                    </a>
+                  </div>
+                </div>
+              </article>
+              <article
+                class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full sm:h-48"
+              >
+                <div class="sm:w-1/3 relative overflow-hidden">
+                  <img
+                    alt="Dân vận"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuOG33UfsZWQ9XoVDUCY8nOkIO4DU6spQc0vNMUZfhgox9poT-zsqtMAuTyKAvHPEjzyHX-Uhoz_MQ_lkr6DG5dG0E_SawEPcbMVljB9lTdb8bBcqSRf4VX3bg0faHw0bFw_hhgJ7Vj35k9HvTmgTKRgrNLtPsfnCN0Ry_n7qMNrxso48XBOGkNFFhl01xMnSP0uElG6J3SxrEt3rRHcnr_EdS5jwatL5yB2Qsj53rPdJCjZRA155dMQhiwaAqN2VR07Auche6w--6"
+                  />
+                </div>
+                <div class="p-5 sm:w-2/3 flex flex-col justify-between">
+                  <div>
+                    <div
+                      class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-2 space-x-2"
+                    >
+                      <span class="flex items-center"
+                        ><span class="material-icons text-[14px] mr-1"
+                          >calendar_today</span
+                        >
+                        10/05/2024</span
+                      >
+                      <span>•</span>
+                      <span
+                        class="text-primary dark:text-green-400 font-medium uppercase text-[10px] tracking-wider border border-primary/20 px-1 rounded"
+                        >Dân vận</span
+                      >
+                    </div>
+                    <h4
+                      class="text-lg font-bold mb-2 group-hover:text-primary dark:group-hover:text-secondary transition-colors line-clamp-2"
+                    >
+                      <a href="#"
+                        >Ra quân "Ngày Chủ nhật xanh": Dân quân phường chung tay
+                        bảo vệ môi trường</a
+                      >
+                    </h4>
+                    <p
+                      class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2"
+                    >
+                      Lực lượng dân quân phường đã tham gia dọn dẹp vệ sinh, xóa
+                      bảng quảng cáo sai quy định và khơi thông cống rãnh tại
+                      các tuyến hẻm.
+                    </p>
+                  </div>
+                  <div class="mt-3 flex justify-end">
+                    <a
+                      class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wider flex items-center hover:underline"
+                      href="#"
+                    >
+                      Xem chi tiết
+                      <span class="material-icons text-sm ml-1"
+                        >arrow_forward</span
+                      >
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="mt-8 flex justify-center">
+              <nav
+                aria-label="Pagination"
+                class="inline-flex rounded-md shadow-sm -space-x-px"
+              >
+                <a
+                  class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  href="#"
+                >
+                  <span class="material-icons text-sm">chevron_left</span>
+                </a>
+                <a
+                  aria-current="page"
+                  class="z-10 bg-primary border-primary text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  href="#"
+                  >1</a
+                >
+                <a
+                  class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  href="#"
+                  >2</a
+                >
+                <a
+                  class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  href="#"
+                  >3</a
+                >
+                <a
+                  class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  href="#"
+                >
+                  <span class="material-icons text-sm">chevron_right</span>
+                </a>
+              </nav>
+            </div>
+          </section>
+          <section>
+            <div
+              class="flex items-center justify-between mb-8 border-b border-gray-200 dark:border-gray-700 pb-3"
+            >
+              <h3
+                class="text-2xl font-bold text-primary dark:text-green-400 flex items-center uppercase"
+              >
+                <span
+                  class="bg-secondary text-primary p-1 rounded mr-3 shadow-sm"
+                  ><span class="material-icons text-xl"
+                    >event_available</span
+                  ></span
+                >
+                Sự Kiện Quân Sự
+              </h3>
+              <div class="text-sm">
+                <span class="text-gray-500 mr-2">Lọc theo:</span>
+                <select
+                  class="border-gray-300 rounded text-sm py-1 pl-2 pr-6 bg-white focus:ring-primary focus:border-primary"
+                >
+                  <option>Tất cả</option>
+                  <option>Sắp tới</option>
+                  <option>Đã qua</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 hover:border-secondary hover:shadow-md transition-all group relative overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 right-0 bg-secondary text-primary text-[10px] font-bold px-2 py-1 rounded-bl uppercase tracking-wider"
+                >
+                  Sắp diễn ra
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="flex-shrink-0 text-center bg-gray-100 dark:bg-gray-700 rounded-lg p-2 min-w-[70px] border border-gray-200 dark:border-gray-600 group-hover:bg-primary group-hover:text-white transition-colors"
+                  >
+                    <span
+                      class="block text-xs font-bold uppercase tracking-wide opacity-80"
+                      >Tháng 6</span
+                    >
+                    <span class="block text-2xl font-bold leading-none my-1"
+                      >25</span
+                    >
+                    <span class="block text-xs font-medium opacity-80"
+                      >Thứ 3</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <h4
+                      class="font-bold text-lg leading-tight mb-2 group-hover:text-primary dark:group-hover:text-secondary"
+                    >
+                      <a href="#">Hội thao bắn súng quân dụng DQTV</a>
+                    </h4>
+                    <div
+                      class="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3"
+                    >
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5 text-gray-400"
+                          >schedule</span
+                        >
+                        07:00 - 11:00
+                      </div>
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5 text-gray-400"
+                          >place</span
+                        >
+                        Trường bắn Củ Chi
+                      </div>
+                    </div>
+                    <a
+                      class="inline-block text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded hover:bg-primary hover:text-white transition-colors"
+                      href="#"
+                      >Chi tiết sự kiện</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 hover:border-secondary hover:shadow-md transition-all group relative overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl uppercase tracking-wider"
+                >
+                  Quan trọng
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="flex-shrink-0 text-center bg-gray-100 dark:bg-gray-700 rounded-lg p-2 min-w-[70px] border border-gray-200 dark:border-gray-600 group-hover:bg-primary group-hover:text-white transition-colors"
+                  >
+                    <span
+                      class="block text-xs font-bold uppercase tracking-wide opacity-80"
+                      >Tháng 6</span
+                    >
+                    <span class="block text-2xl font-bold leading-none my-1"
+                      >28</span
+                    >
+                    <span class="block text-xs font-medium opacity-80"
+                      >Thứ 6</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <h4
+                      class="font-bold text-lg leading-tight mb-2 group-hover:text-primary dark:group-hover:text-secondary"
+                    >
+                      <a href="#">Họp giao ban BCHQS Phường</a>
+                    </h4>
+                    <div
+                      class="space-y-1 text-sm text-gray-600 dark:text-gray-400 mb-3"
+                    >
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5 text-gray-400"
+                          >schedule</span
+                        >
+                        14:00 - 16:00
+                      </div>
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5 text-gray-400"
+                          >place</span
+                        >
+                        Phòng họp UBND Phường
+                      </div>
+                    </div>
+                    <a
+                      class="inline-block text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded hover:bg-primary hover:text-white transition-colors"
+                      href="#"
+                      >Chi tiết sự kiện</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 opacity-75 hover:opacity-100 hover:border-gray-300 transition-all group relative overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 right-0 bg-gray-400 text-white text-[10px] font-bold px-2 py-1 rounded-bl uppercase tracking-wider"
+                >
+                  Đã diễn ra
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="flex-shrink-0 text-center bg-gray-100 dark:bg-gray-800 rounded-lg p-2 min-w-[70px] border border-gray-200 dark:border-gray-600"
+                  >
+                    <span
+                      class="block text-xs font-bold uppercase tracking-wide opacity-80"
+                      >Tháng 5</span
+                    >
+                    <span
+                      class="block text-2xl font-bold leading-none my-1 text-gray-500"
+                      >22</span
+                    >
+                    <span class="block text-xs font-medium opacity-80"
+                      >Thứ 4</span
+                    >
+                  </div>
+                  <div class="flex-1">
+                    <h4
+                      class="font-bold text-lg leading-tight mb-2 group-hover:text-primary dark:group-hover:text-secondary text-gray-600 dark:text-gray-300"
+                    >
+                      <a href="#">Kiểm tra trang bị, vũ khí định kỳ</a>
+                    </h4>
+                    <div
+                      class="space-y-1 text-sm text-gray-500 dark:text-gray-500 mb-3"
+                    >
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5">schedule</span>
+                        08:00 - 11:30
+                      </div>
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5">place</span>
+                        Kho vũ khí
+                      </div>
+                    </div>
+                    <a
+                      class="inline-block text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded hover:bg-gray-200 transition-colors"
+                      href="#"
+                      >Xem báo cáo</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 opacity-75 hover:opacity-100 hover:border-gray-300 transition-all group relative overflow-hidden"
+              >
+                <div
+                  class="absolute top-0 right-0 bg-gray-400 text-white text-[10px] font-bold px-2 py-1 rounded-bl uppercase tracking-wider"
+                >
+                  Đã diễn ra
+                </div>
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="flex-shrink-0 text-center bg-gray-100 dark:bg-gray-800 rounded-lg p-2 min-w-[70px] border border-gray-200 dark:border-gray-600"
+                  >
+                    <span
+                      class="block text-xs font-bold uppercase tracking-wide opacity-80"
+                      >Tháng 5</span
+                    >
+                    <span
+                      class="block text-2xl font-bold leading-none my-1 text-gray-500"
+                      >19</span
+                    >
+                    <span class="block text-xs font-medium opacity-80">CN</span>
+                  </div>
+                  <div class="flex-1">
+                    <h4
+                      class="font-bold text-lg leading-tight mb-2 group-hover:text-primary dark:group-hover:text-secondary text-gray-600 dark:text-gray-300"
+                    >
+                      <a href="#">Lễ kỷ niệm ngày sinh Chủ tịch Hồ Chí Minh</a>
+                    </h4>
+                    <div
+                      class="space-y-1 text-sm text-gray-500 dark:text-gray-500 mb-3"
+                    >
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5">schedule</span>
+                        07:00 - 10:30
+                      </div>
+                      <div class="flex items-center">
+                        <span class="material-icons text-sm w-5">place</span>
+                        Hội trường UBND
+                      </div>
+                    </div>
+                    <a
+                      class="inline-block text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1.5 rounded hover:bg-gray-200 transition-colors"
+                      href="#"
+                      >Xem hình ảnh</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-8 flex justify-center">
+              <nav
+                aria-label="Pagination"
+                class="inline-flex rounded-md shadow-sm -space-x-px"
+              >
+                <a
+                  class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  href="#"
+                >
+                  <span class="material-icons text-sm">chevron_left</span>
+                </a>
+                <a
+                  aria-current="page"
+                  class="z-10 bg-primary border-primary text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+                  href="#"
+                  >1</a
+                >
+                <a
+                  class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  href="#"
+                >
+                  <span class="material-icons text-sm">chevron_right</span>
+                </a>
+              </nav>
+            </div>
+          </section>
+        </div>
+        <aside class="space-y-8">
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+          >
+            <h4
+              class="font-bold text-lg mb-4 text-primary dark:text-green-400 border-l-4 border-secondary pl-2"
+            >
+              Tìm kiếm tin tức
+            </h4>
+            <div class="relative">
+              <input
+                class="w-full pl-10 pr-4 py-3 text-sm border-gray-200 rounded-lg focus:ring-primary focus:border-primary bg-gray-50 dark:bg-gray-900 dark:border-gray-700"
+                placeholder="Nhập từ khóa..."
+                type="text"
+              />
+              <span class="material-icons absolute left-3 top-3 text-gray-400"
+                >search</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden"
+          >
+            <div class="p-4 bg-primary text-white font-bold flex items-center">
+              <span class="material-icons mr-2 text-sm">category</span> Danh Mục
+            </div>
+            <ul class="divide-y divide-gray-100 dark:divide-gray-700 text-sm">
+              <li>
+                <a
+                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                  href="#"
+                >
+                  <span class="group-hover:text-primary font-medium"
+                    >Hoạt động huấn luyện</span
+                  >
+                  <span
+                    class="bg-gray-100 dark:bg-gray-800 text-xs px-2 py-1 rounded-full text-gray-500"
+                    >12</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                  href="#"
+                >
+                  <span class="group-hover:text-primary font-medium"
+                    >Công tác Đảng - Chính trị</span
+                  >
+                  <span
+                    class="bg-gray-100 dark:bg-gray-800 text-xs px-2 py-1 rounded-full text-gray-500"
+                    >08</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                  href="#"
+                >
+                  <span class="group-hover:text-primary font-medium"
+                    >Hậu cần - Kỹ thuật</span
+                  >
+                  <span
+                    class="bg-gray-100 dark:bg-gray-800 text-xs px-2 py-1 rounded-full text-gray-500"
+                    >05</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                  href="#"
+                >
+                  <span class="group-hover:text-primary font-medium"
+                    >An ninh trật tự</span
+                  >
+                  <span
+                    class="bg-gray-100 dark:bg-gray-800 text-xs px-2 py-1 rounded-full text-gray-500"
+                    >15</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center p-3 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
+                  href="#"
+                >
+                  <span class="group-hover:text-primary font-medium"
+                    >Tuyển quân</span
+                  >
+                  <span
+                    class="bg-gray-100 dark:bg-gray-800 text-xs px-2 py-1 rounded-full text-gray-500"
+                    >03</span
+                  >
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 p-6"
+          >
+            <h4
+              class="font-bold text-lg mb-4 text-primary dark:text-green-400 border-l-4 border-secondary pl-2"
+            >
+              Tin xem nhiều
+            </h4>
+            <div class="space-y-4">
+              <div class="flex gap-3 items-start">
+                <span
+                  class="text-3xl font-bold text-gray-200 dark:text-gray-700 leading-none"
+                  >01</span
+                >
+                <div>
+                  <h5
+                    class="text-sm font-bold hover:text-primary cursor-pointer line-clamp-2 leading-snug"
+                  >
+                    <a href="#">Hướng dẫn đăng ký NVQS trực tuyến năm 2024</a>
+                  </h5>
+                  <span class="text-xs text-gray-400 mt-1 block"
+                    >3.4k lượt xem</span
+                  >
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <span
+                  class="text-3xl font-bold text-gray-200 dark:text-gray-700 leading-none"
+                  >02</span
+                >
+                <div>
+                  <h5
+                    class="text-sm font-bold hover:text-primary cursor-pointer line-clamp-2 leading-snug"
+                  >
+                    <a href="#">Chế độ chính sách mới cho dân quân tự vệ</a>
+                  </h5>
+                  <span class="text-xs text-gray-400 mt-1 block"
+                    >2.8k lượt xem</span
+                  >
+                </div>
+              </div>
+              <div class="flex gap-3 items-start">
+                <span
+                  class="text-3xl font-bold text-gray-200 dark:text-gray-700 leading-none"
+                  >03</span
+                >
+                <div>
+                  <h5
+                    class="text-sm font-bold hover:text-primary cursor-pointer line-clamp-2 leading-snug"
+                  >
+                    <a href="#">Lịch trực chiến đấu cao điểm tháng 6</a>
+                  </h5>
+                  <span class="text-xs text-gray-400 mt-1 block"
+                    >1.5k lượt xem</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative rounded-lg overflow-hidden h-40 group cursor-pointer shadow-md"
+          >
+            <img
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSiEWgfn3QUHRBvZNygt0BmtSitBCX4wu1ZQTOxRX2qrbB-zeAlzLroAG1J9T25zZruoiJDY9BdH0JhCWpzXbDikAlej8l2EjWDaZ_USrXVo4hun65OBH5I0dB1GxfhbI88vA9t_gU-3-OcFy00qttqUAwnHQTc02jKXehDcNJTsbYoFYSgBzl_YIzjFi1eIWx6wKcEXZM6-5GU9G8P3UP6xNcLZX11a_l51dsVzMGzgWNM07txNMAoN4d2fks3-59MD7RMxSZp5zt"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-90"
+            ></div>
+            <div class="absolute bottom-0 left-0 p-4 text-white">
+              <h4 class="font-bold text-lg mb-1">Gửi câu hỏi?</h4>
+              <p class="text-xs text-green-100 mb-3">
+                Ban chỉ huy luôn sẵn sàng giải đáp thắc mắc của người dân.
+              </p>
+              <span
+                class="inline-block bg-secondary text-primary text-xs font-bold px-3 py-1.5 rounded hover:bg-white hover:text-primary transition-colors"
+                >Liên hệ ngay</span
+              >
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800">
+      <div
+        class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm"
+      >
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div
+              class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"
+            >
+              <span class="material-icons text-sm">shield</span>
+            </div>
+            <h4 class="text-white font-bold uppercase">
+              BCH Quân Sự P. Bình Phú
+            </h4>
+          </div>
+          <p class="mb-4">
+            Cơ quan thường trực quốc phòng địa phương. Chịu trách nhiệm tham mưu
+            cho Đảng ủy, UBND phường về công tác quốc phòng, quân sự địa phương.
+          </p>
+          <div class="flex space-x-4">
+            <a class="text-gray-400 hover:text-white" href="#"
+              ><i class="material-icons">facebook</i></a
+            >
+            <a class="text-gray-400 hover:text-white" href="#"
+              ><i class="material-icons">email</i></a
+            >
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold uppercase mb-4">Danh mục</h4>
+          <ul class="space-y-2">
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Trang chủ</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Giới thiệu tổ chức</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Tin tức hoạt động</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Văn bản chỉ đạo</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Hỏi đáp pháp luật</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold uppercase mb-4">Liên hệ</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="material-icons text-sm mr-2 mt-1">location_on</span>
+              <span
+                >Số 123 Đường Bình Phú, Phường 11, Quận 6, TP. Hồ Chí Minh</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="material-icons text-sm mr-2">phone</span>
+              <span>(028) 3xxx xxxx</span>
+            </li>
+            <li class="flex items-center">
+              <span class="material-icons text-sm mr-2">email</span>
+              <span>qsbinhphu@example.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="container mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center text-xs"
+      >
+        <p>© 2024 Ban Chỉ Huy Quân Sự Phường Bình Phú. All rights reserved.</p>
+      </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+      <button
+        class="bg-primary hover:bg-green-800 text-white p-4 rounded-full shadow-lg transition-transform transform hover:scale-110 flex items-center justify-center relative group"
+      >
+        <span class="material-icons text-2xl">chat</span>
+        <span class="absolute right-0 top-0 -mt-1 -mr-1 flex h-3 w-3">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-3 w-3 bg-secondary"
+          ></span>
+        </span>
+        <div
+          class="absolute bottom-full right-0 mb-3 w-48 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-xl text-gray-800 dark:text-gray-200 text-sm hidden group-hover:block transition-opacity opacity-0 group-hover:opacity-100"
+        >
+          <div class="font-bold mb-1">Hỗ trợ trực tuyến</div>
+          <div class="text-xs">
+            Chat với cán bộ trực ban để được giải đáp thắc mắc.
+          </div>
+          <div
+            class="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-gray-800"
+          ></div>
+        </div>
+      </button>
+    </div>
+  </body>
+</html>

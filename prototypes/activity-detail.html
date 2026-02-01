@@ -66,10 +66,17 @@
               ></span>
             </div>
             <div class="flex-1 min-w-0">
-              <p class="text-sm font-bold text-gray-900 truncate">
-                Nguyễn Văn Quang
+              <p
+                class="text-sm font-bold text-gray-900 truncate"
+                x-text="currentUser.fullName || 'Guest'"
+              ></p>
+              <p class="text-xs text-gray-600">
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-medium"
+                  :class="{'bg-blue-100 text-blue-700': currentUser.role === 'dqtt', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
+                  x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"
+                ></span>
               </p>
-              <p class="text-xs text-gray-600">DQTT</p>
             </div>
           </div>
         </div>
@@ -82,13 +89,80 @@
             <span class="material-symbols-outlined text-gray-600">home</span>
             <p class="text-sm font-medium text-gray-600">Trang chủ</p>
           </a>
-          <a
-            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-olive/10 text-olive"
-            href="activity-list.html"
-          >
-            <span class="material-symbols-outlined">event</span>
-            <p class="text-sm font-bold">Hoạt động</p>
-          </a>
+          <!-- Dashboard Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600"
+                >assessment</span
+              >
+              <p class="text-sm font-bold text-gray-700">Dashboard</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-tong-hop.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tổng hợp</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-facebook.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Facebook</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-kho.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Kho</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-luc-luong.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lực lượng</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hoạt động Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-olive">
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >event</span
+              >
+              <p class="text-sm font-bold">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-olive/30 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-olive"></span>
+                <p class="text-sm font-bold">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch trực</p>
+              </a>
+            </div>
+          </div>
 
           <!-- Nhân sự with submenu -->
           <div>
@@ -153,6 +227,15 @@
           >
             <span class="material-symbols-outlined text-gray-600">folder</span>
             <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="CMS/index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >language</span
+            >
+            <p class="text-sm font-medium text-gray-600">Trang thông tin</p>
           </a>
         </nav>
       </aside>
@@ -559,7 +642,7 @@
           activeTab: "tasks",
           activity: null,
           tasks: [],
-          currentUser: null,
+          currentUser: { fullName: "Guest", role: null, team: null },
 
           init() {
             // Check authentication

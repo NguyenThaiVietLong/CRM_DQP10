@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>CMS Quản Lý Tin Tức - Dân Quân Phường Bình Phú</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#546a2f", // Olive green - unified color
+              "primary-hover": "#3d4f22",
+              "background-light": "#f3f4f6", // Light gray background
+              "background-dark": "#111827", // Dark gray background
+              "surface-light": "#ffffff",
+              "surface-dark": "#1f2937",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
+              "text-light": "#1f2937",
+              "text-dark": "#f9fafb",
+              "text-muted-light": "#6b7280",
+              "text-muted-dark": "#9ca3af",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.375rem",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-200"
+  >
+    <nav
+      class="bg-surface-light dark:bg-surface-dark border-b border-border-light dark:border-border-dark fixed w-full z-30 top-0 transition-colors duration-200"
+    >
+      <div class="px-6 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-4 w-64">
+            <button
+              class="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+            >
+              <span class="material-icons-outlined">menu</span>
+            </button>
+            <a
+              class="text-xl font-bold text-primary flex items-center gap-2"
+              href="#"
+            >
+              <span class="material-icons text-3xl">security</span>
+              <span>DQ Bình Phú</span>
+            </a>
+          </div>
+          <div class="flex-1 px-8 hidden md:block">
+            <p
+              class="text-sm text-text-muted-light dark:text-text-muted-dark italic"
+            >
+              Chúc bạn một ngày làm việc thật vui vẻ, hiệu quả và tràn đầy năng
+              lượng! 😊✨
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="relative hidden md:block">
+              <span
+                class="absolute inset-y-0 left-0 pl-3 flex items-center text-text-muted-light dark:text-text-muted-dark"
+              >
+                <span class="material-icons-outlined text-xl">search</span>
+              </span>
+              <input
+                class="pl-10 pr-4 py-2 border border-border-light dark:border-border-dark rounded-full bg-background-light dark:bg-background-dark text-sm focus:outline-none focus:ring-2 focus:ring-primary w-64 transition-colors"
+                placeholder="Tìm kiếm..."
+                type="text"
+              />
+            </div>
+            <button
+              class="p-2 text-text-muted-light dark:text-text-muted-dark hover:bg-background-light dark:hover:bg-gray-700 rounded-full transition-colors relative"
+            >
+              <span class="material-icons-outlined">notifications</span>
+              <span
+                class="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"
+              ></span>
+            </button>
+            <button
+              class="p-2 text-text-muted-light dark:text-text-muted-dark hover:bg-background-light dark:hover:bg-gray-700 rounded-full transition-colors"
+              onclick="document.documentElement.classList.toggle('dark')"
+            >
+              <span class="material-icons-outlined dark:hidden">dark_mode</span>
+              <span class="material-icons-outlined hidden dark:block"
+                >light_mode</span
+              >
+            </button>
+            <div class="flex items-center gap-2 ml-2 cursor-pointer">
+              <img
+                alt="User Avatar"
+                class="h-8 w-8 rounded-full border border-border-light dark:border-border-dark"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbmq1lA16cBmVDOQbQCF3J1HiwokFwy4ckpH2RUC0dMkqFg-CSUPSEqH37r13oBiGv2IdZXcLGzPtYLUQG9LKNnY6BjiD539WT_6PS0pVpqHEbBAGQXvGTpEroQicfgEDJa0qumIywEyZIjy5nzj3JWzcWRR9eUrOs-4_8iJwNftX6bJAdmOsNNy0nrLcFena_5Fr6xeYl9LJ2mOInHpNmI51iLuReYULh4ZNptPSn9j-REVoYPBu87v7VOZdo6IwoBdjfhoLSdIxG"
+              />
+              <span class="text-sm font-medium hidden md:block">Admin</span>
+              <span class="material-icons-outlined text-sm hidden md:block"
+                >expand_more</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <aside
+      class="fixed left-0 top-0 pt-16 h-full w-64 bg-surface-light dark:bg-surface-dark border-r border-border-light dark:border-border-dark z-20 hidden lg:block transition-colors duration-200 overflow-y-auto"
+    >
+      <div class="p-4 space-y-1">
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg"
+          href="admin_news.html"
+        >
+          <span class="material-icons-outlined">article</span>
+          <span class="font-medium">Tin tức</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-text-muted-light dark:text-text-muted-dark hover:bg-background-light dark:hover:bg-gray-800 hover:text-text-light dark:hover:text-text-dark rounded-lg transition-colors"
+          href="admin_docs.html"
+        >
+          <span class="material-icons-outlined">gavel</span>
+          <span class="font-medium">Văn bản pháp luật</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-text-muted-light dark:text-text-muted-dark hover:bg-background-light dark:hover:bg-gray-800 hover:text-text-light dark:hover:text-text-dark rounded-lg transition-colors"
+          href="admin_slide.html"
+        >
+          <span class="material-icons-outlined">slideshow</span>
+          <span class="font-medium">Slide ảnh</span>
+        </a>
+        <div
+          class="mt-8 px-4 py-2 text-xs font-semibold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider"
+        >
+          Hệ thống
+        </div>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-text-muted-light dark:text-text-muted-dark hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors"
+          href="index.html"
+        >
+          <span class="material-icons-outlined">logout</span>
+          <span class="font-medium">Đăng xuất</span>
+        </a>
+      </div>
+    </aside>
+    <main class="lg:ml-64 pt-16 min-h-screen">
+      <div class="p-6 md:p-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4"
+        >
+          <div>
+            <h1
+              class="text-2xl font-bold text-text-light dark:text-text-dark mb-1"
+            >
+              Quản lý Tin Tức
+            </h1>
+            <nav
+              aria-label="Breadcrumb"
+              class="flex text-sm text-text-muted-light dark:text-text-muted-dark"
+            >
+              <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li class="inline-flex items-center">
+                  <a
+                    class="inline-flex items-center hover:text-primary dark:hover:text-primary transition-colors"
+                    href="#"
+                  >
+                    <span class="material-icons-outlined text-lg mr-1"
+                      >home</span
+                    >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <div class="flex items-center">
+                    <span class="material-icons-outlined text-lg"
+                      >chevron_right</span
+                    >
+                    <a
+                      class="ml-1 md:ml-2 hover:text-primary dark:hover:text-primary transition-colors"
+                      href="#"
+                      >Tin tức</a
+                    >
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div class="flex items-center">
+                    <span class="material-icons-outlined text-lg"
+                      >chevron_right</span
+                    >
+                    <span
+                      class="ml-1 md:ml-2 text-text-light dark:text-text-dark font-medium"
+                      >Danh sách</span
+                    >
+                  </div>
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div
+          class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm border border-border-light dark:border-border-dark transition-colors duration-200"
+        >
+          <div
+            class="p-5 border-b border-border-light dark:border-border-dark flex flex-col sm:flex-row justify-between items-center gap-4"
+          >
+            <div
+              class="flex items-center gap-2 text-sm text-text-muted-light dark:text-text-muted-dark"
+            >
+              <span>Show</span>
+              <select
+                class="form-select block w-20 px-3 py-1.5 text-base font-normal text-text-light dark:text-text-dark bg-background-light dark:bg-gray-800 border border-border-light dark:border-border-dark rounded transition ease-in-out m-0 focus:text-text-light dark:focus:text-text-dark focus:bg-surface-light dark:focus:bg-gray-800 focus:border-primary focus:outline-none"
+              >
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+              </select>
+              <span>entries</span>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <span
+                class="text-sm text-text-muted-light dark:text-text-muted-dark"
+                >Search:</span
+              >
+              <input
+                class="form-input block w-full sm:w-64 px-3 py-1.5 text-base font-normal text-text-light dark:text-text-dark bg-background-light dark:bg-gray-800 border border-border-light dark:border-border-dark rounded transition ease-in-out m-0 focus:text-text-light dark:focus:text-text-dark focus:bg-surface-light dark:focus:bg-gray-800 focus:border-primary focus:outline-none"
+                placeholder=""
+                type="text"
+              />
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table
+              class="w-full text-sm text-left text-text-muted-light dark:text-text-muted-dark"
+            >
+              <thead
+                class="text-xs text-text-light dark:text-text-dark uppercase bg-background-light dark:bg-gray-800 border-b border-border-light dark:border-border-dark"
+              >
+                <tr>
+                  <th
+                    class="px-6 py-4 font-semibold text-center w-20"
+                    scope="col"
+                  >
+                    Id
+                  </th>
+                  <th class="px-6 py-4 font-semibold" scope="col">Bài viết</th>
+                  <th class="px-6 py-4 font-semibold" scope="col">
+                    Chuyên mục
+                  </th>
+                  <th
+                    class="px-6 py-4 font-semibold text-center w-24"
+                    scope="col"
+                  >
+                    Thứ tự
+                  </th>
+                  <th
+                    class="px-6 py-4 font-semibold text-center w-24"
+                    scope="col"
+                  >
+                    Nổi bật
+                  </th>
+                  <th
+                    class="px-6 py-4 font-semibold text-center w-24"
+                    scope="col"
+                  >
+                    Hiển thị
+                  </th>
+                  <th
+                    class="px-6 py-4 font-semibold text-center w-32"
+                    scope="col"
+                  >
+                    Thao tác
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="divide-y divide-border-light dark:divide-border-dark"
+              >
+                <tr
+                  class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <td class="px-6 py-4 text-center">12238</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex-shrink-0 h-10 w-16 bg-gray-200 dark:bg-gray-700 rounded overflow-hidden"
+                      >
+                        <img
+                          alt="Construction site"
+                          class="h-full w-full object-cover"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDez35ECgzMgfDtENQtGiGUb7OPRU05n-Svqkv_CyhhR_zvdPQTJ_HkZV4mh6geoNtLpdYPeXNB58yB5WJHI_eVOuCGgzP9kfLtUHTxD7iVtpC1H8Ysx0vApFLG8kb3OT2Mj8_FY8E6DZmDlopskvkYeu9ebApVy-j0zb92g0vZ8Yz1mrZWGFDBl45lJZVP6topYtqz-BUILXfv3M4lb4goJqzbPx0T5IsdO8wL81cmVERqNhNh3oaqIjwOa8k6JDAcUquHkOrMWxT"
+                        />
+                      </div>
+                      <div
+                        class="font-medium text-text-light dark:text-text-dark"
+                      >
+                        Huấn luyện dân quân tự vệ năm 2024
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">Hoạt động</td>
+                  <td class="px-6 py-4 text-center">
+                    <input
+                      class="w-16 px-2 py-1 text-center text-xs border border-border-light dark:border-border-dark rounded bg-transparent focus:ring-1 focus:ring-primary focus:border-primary"
+                      type="number"
+                      value="1"
+                    />
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="text-yellow-600 hover:text-yellow-700 dark:text-yellow-500 dark:hover:text-yellow-400 p-1"
+                        title="View"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400 p-1"
+                        title="Edit"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 p-1"
+                        title="Delete"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >delete</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <td class="px-6 py-4 text-center">12204</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex-shrink-0 h-10 w-16 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-text-muted-light dark:text-text-muted-dark border border-border-light dark:border-border-dark"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >image_not_supported</span
+                        >
+                      </div>
+                      <div
+                        class="font-medium text-text-light dark:text-text-dark"
+                      >
+                        Hội nghị tổng kết công tác QP-QS địa phương
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">Tin tức</td>
+                  <td class="px-6 py-4 text-center">
+                    <input
+                      class="w-16 px-2 py-1 text-center text-xs border border-border-light dark:border-border-dark rounded bg-transparent focus:ring-1 focus:ring-primary focus:border-primary"
+                      type="number"
+                      value="1"
+                    />
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="text-yellow-600 hover:text-yellow-700 dark:text-yellow-500 dark:hover:text-yellow-400 p-1"
+                        title="View"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400 p-1"
+                        title="Edit"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 p-1"
+                        title="Delete"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >delete</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <td class="px-6 py-4 text-center">12202</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex-shrink-0 h-10 w-16 bg-gray-200 dark:bg-gray-700 rounded overflow-hidden"
+                      >
+                        <img
+                          alt="Meeting room"
+                          class="h-full w-full object-cover"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5ys3FwycGU4GWwHvot7poFYuEUwdlZ-8JBEyBj-0KOdWbimp4x3jKaP2-w-bUQu5c74rJSCWDeOLuA4XHFnLhl1fgwLxrx0lPSBLzeuQ_7C16TIFmxBeC6OLsBjiaoHM5eqJGyEKWNGmbMkO7DnCo-42ofhGak6lQUuXPuhNz50NmIykYz9viID_0B1T7pB-CRVYEKuswxRZlMjTDaUjx04x9emrWH-3hUOTc9SrsQCbWrwdl0kG9--AdZh8ENic5rBTN43-4n0He"
+                        />
+                      </div>
+                      <div
+                        class="font-medium text-text-light dark:text-text-dark"
+                      >
+                        Kế hoạch tuyển quân năm 2025
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">Thông báo</td>
+                  <td class="px-6 py-4 text-center">
+                    <input
+                      class="w-16 px-2 py-1 text-center text-xs border border-border-light dark:border-border-dark rounded bg-transparent focus:ring-1 focus:ring-primary focus:border-primary"
+                      type="number"
+                      value="2"
+                    />
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="text-yellow-600 hover:text-yellow-700 dark:text-yellow-500 dark:hover:text-yellow-400 p-1"
+                        title="View"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400 p-1"
+                        title="Edit"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 p-1"
+                        title="Delete"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >delete</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <td class="px-6 py-4 text-center">12200</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex-shrink-0 h-10 w-16 bg-gray-200 dark:bg-gray-700 rounded flex items-center justify-center text-text-muted-light dark:text-text-muted-dark border border-border-light dark:border-border-dark"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >image_not_supported</span
+                        >
+                      </div>
+                      <div
+                        class="font-medium text-text-light dark:text-text-dark"
+                      >
+                        Phổ biến pháp luật Dân quân tự vệ
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">Văn bản pháp quy</td>
+                  <td class="px-6 py-4 text-center">
+                    <input
+                      class="w-16 px-2 py-1 text-center text-xs border border-border-light dark:border-border-dark rounded bg-transparent focus:ring-1 focus:ring-primary focus:border-primary"
+                      type="number"
+                      value="1"
+                    />
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="text-yellow-600 hover:text-yellow-700 dark:text-yellow-500 dark:hover:text-yellow-400 p-1"
+                        title="View"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400 p-1"
+                        title="Edit"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 p-1"
+                        title="Delete"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >delete</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <td class="px-6 py-4 text-center">12198</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="flex-shrink-0 h-10 w-16 bg-gray-200 dark:bg-gray-700 rounded overflow-hidden"
+                      >
+                        <img
+                          alt="Planning document"
+                          class="h-full w-full object-cover"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSY-qO5NJHgNttY_g8_2wgNQhKtOAfygLx4BkOC0T_HYquRG4fMtd4jpVcPIygqpow03uJH5rbdm7iZ3MIw-JJv7TULQ70ScymLcQ0_hYGZI9u3NQxd6hxOiZp-q9C88KWcMDoE8EOi27k6QAVpVWRoLaputp1fydWH2K6Ax2ZJB0_TMTAUUibJUKCY1dlqrCvKfIyRgYaMo9gWxTqLjRLggnvejj4almPRXBOOdF7ua7ML-eniqvAi6L0-fG3Lgs1shrhtClCYvQR"
+                        />
+                      </div>
+                      <div
+                        class="font-medium text-text-light dark:text-text-dark"
+                      >
+                        Chi trả phụ cấp cho lực lượng dân quân thường trực
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4">Hoạt động</td>
+                  <td class="px-6 py-4 text-center">
+                    <input
+                      class="w-16 px-2 py-1 text-center text-xs border border-border-light dark:border-border-dark rounded bg-transparent focus:ring-1 focus:ring-primary focus:border-primary"
+                      type="number"
+                      value="3"
+                    />
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex justify-center">
+                      <input
+                        checked=""
+                        class="h-4 w-4 text-primary border-border-light dark:border-border-dark rounded focus:ring-primary bg-transparent"
+                        type="checkbox"
+                      />
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <button
+                        class="text-yellow-600 hover:text-yellow-700 dark:text-yellow-500 dark:hover:text-yellow-400 p-1"
+                        title="View"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400 p-1"
+                        title="Edit"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="text-red-600 hover:text-red-700 dark:text-red-500 dark:hover:text-red-400 p-1"
+                        title="Delete"
+                      >
+                        <span class="material-icons-outlined text-lg"
+                          >delete</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div
+            class="p-4 border-t border-border-light dark:border-border-dark flex flex-col md:flex-row justify-between items-center gap-4"
+          >
+            <div
+              class="text-sm text-text-muted-light dark:text-text-muted-dark"
+            >
+              Showing 1 to 5 of 5 entries
+            </div>
+            <nav aria-label="Page navigation example">
+              <ul class="inline-flex -space-x-px text-sm">
+                <li>
+                  <a
+                    class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-text-muted-light bg-surface-light border border-border-light rounded-l-lg hover:bg-gray-100 hover:text-text-light dark:bg-gray-800 dark:border-border-dark dark:text-text-muted-dark dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="#"
+                    >Previous</a
+                  >
+                </li>
+                <li>
+                  <a
+                    aria-current="page"
+                    class="flex items-center justify-center px-3 h-8 text-white border border-primary bg-primary hover:bg-primary-hover dark:border-primary dark:bg-primary dark:hover:bg-primary-hover"
+                    href="#"
+                    >1</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-text-muted-light bg-surface-light border border-border-light hover:bg-gray-100 hover:text-text-light dark:bg-gray-800 dark:border-border-dark dark:text-text-muted-dark dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="#"
+                    >2</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="flex items-center justify-center px-3 h-8 leading-tight text-text-muted-light bg-surface-light border border-border-light rounded-r-lg hover:bg-gray-100 hover:text-text-light dark:bg-gray-800 dark:border-border-dark dark:text-text-muted-dark dark:hover:bg-gray-700 dark:hover:text-white"
+                    href="#"
+                    >Next</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </main>
+    <button
+      class="fixed bottom-8 right-8 bg-primary hover:bg-primary-hover text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-200 z-50 flex items-center justify-center"
+    >
+      <span class="material-icons text-2xl">add</span>
+    </button>
+  </body>
+</html>

@@ -1,1004 +1,1432 @@
 <!doctype html>
 <html class="light" lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 4: Quản Lý Tài Liệu - BAN CHQS PHƯỜNG BÌNH PHÚ</title>
 
-<head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Module 4: Quản Lý Tài Liệu - BAN CHQS PHƯỜNG BÌNH PHÚ</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
-    rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Alpine.js -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="notification-system.js"></script>
 
-  <!-- Alpine.js -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="notification-system.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            primary: "#556B2F",
-            "primary-dark": "#4a5d28",
-            olive: "#556B2F",
-            "background-light": "#f7f7f6",
-            "background-dark": "#1a1d15",
-            "text-main": "#0f172a",
-            "text-secondary": "#64748b",
-            "border-light": "#e2e8f0",
-          },
-          fontFamily: {
-            display: ["Inter", "sans-serif"],
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#556B2F",
+              "primary-dark": "#4a5d28",
+              olive: "#556B2F",
+              "background-light": "#f7f7f6",
+              "background-dark": "#1a1d15",
+              "text-main": "#0f172a",
+              "text-secondary": "#64748b",
+              "border-light": "#e2e8f0",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
           },
         },
-      },
-    };
-  </script>
+      };
+    </script>
 
-  <style>
-    body {
-      font-family: "Inter", sans-serif;
-    }
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
 
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background-color: #cbd5e1;
-      border-radius: 20px;
-    }
+      ::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 20px;
+      }
 
-    [x-cloak] {
-      display: none !important;
-    }
-  </style>
-</head>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </head>
 
-<body class="bg-background-light dark:bg-background-dark text-text-main font-display" x-data="documentApp()">
-  <div class="flex h-screen w-full overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full">
-      <div class="flex gap-3 px-2 py-2 mb-4">
-        <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
-        <div class="flex flex-col justify-center">
-          <h1 class="text-gray-900 text-base font-bold">
-            BAN CHQS PHƯỜNG BÌNH PHÚ
-          </h1>
-          <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
-        </div>
-      </div>
-
-      <!-- User Profile -->
-      <div class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20">
-        <div class="flex items-center gap-2">
-          <div class="relative">
-            <div class="size-10 rounded-full bg-olive/20 flex items-center justify-center">
-              <span class="material-symbols-outlined text-olive text-2xl">account_circle</span>
-            </div>
-            <span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"></span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-bold text-gray-900 truncate">
-              Administrator
-            </p>
-            <p class="text-xs text-gray-600">
-              <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-700">
-                Admin
-              </span>
-            </p>
+  <body
+    class="bg-background-light dark:bg-background-dark text-text-main font-display"
+    x-data="documentApp()"
+  >
+    <div class="flex h-screen w-full overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">
+              BAN CHQS PHƯỜNG BÌNH PHÚ
+            </h1>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
           </div>
         </div>
-      </div>
 
-      <nav class="flex flex-col gap-2">
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors" href="index.html">
-          <span class="material-symbols-outlined text-gray-600">home</span>
-          <p class="text-sm font-medium text-gray-600">Trang chủ</p>
-        </a>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="dashboard-tong-hop.html">
-          <span class="material-symbols-outlined text-gray-600">assessment</span>
-          <p class="text-sm font-medium text-gray-600">Dashboard</p>
-        </a>
-        <div>
-          <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
-            <span class="material-symbols-outlined text-gray-600">event</span>
-            <p class="text-sm font-bold text-gray-700">Hoạt động</p>
-          </div>
-          <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="activity-list.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Danh sách</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="activity-calendar.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Lịch</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="module-lich-truc.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Lịch trực</p>
-            </a>
-          </div>
-        </div>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="module2-personnel-complete.html">
-          <span class="material-symbols-outlined text-gray-600">group</span>
-          <p class="text-sm font-medium text-gray-600">Nhân sự</p>
-        </a>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="module3-inventory-complete.html">
-          <span class="material-symbols-outlined text-gray-600">inventory_2</span>
-          <p class="text-sm font-medium text-gray-600">Kho</p>
-        </a>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-olive/10 text-olive"
-          href="module4-documents-complete.html">
-          <span class="material-symbols-outlined" style="font-variation-settings: &quot;FILL&quot; 1">folder</span>
-          <p class="text-sm font-bold">Tài liệu</p>
-        </a>
-      </nav>
-
-      <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
-        <a @click.prevent="logout()" href="#"
-          class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer">
-          <span class="material-symbols-outlined text-xl">logout</span>
-          <span>Đăng xuất</span>
-        </a>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col h-full overflow-hidden">
-      <!-- Header -->
-      <header class="flex items-center justify-between border-b border-border-light bg-white px-8 py-3">
-        <h2 class="text-text-main text-lg font-bold">Quản Lý Tài Liệu</h2>
-        <div class="flex items-center gap-4">
-          <input
-            class="hidden md:block w-64 px-4 h-10 rounded-lg border border-border-light placeholder:text-text-secondary"
-            placeholder="Tìm kiếm tài liệu..." />
-          <!-- Notification Bell System -->
-          <div x-data="notificationBell" class="relative">
-            <button @click="toggleDropdown()" class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-              :class="{'bg-gray-100': isOpen}">
-              <span class="material-symbols-outlined">notifications</span>
-              <span x-show="unreadCount > 0" class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
-              <span x-show="unreadCount > 0" x-text="unreadCount"
-                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"></span>
-            </button>
-            <div x-show="isOpen" @click.away="isOpen = false"
-              class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
-              style="display: none" x-cloak>
-              <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-                <h3 class="text-sm font-bold text-gray-900">
-                  Thông báo nhiệm vụ
-                </h3>
-                <span class="text-xs text-gray-500" x-text="notifications.length + ' nhiệm vụ'"></span>
+        <!-- User Profile -->
+        <div
+          class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20"
+        >
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <div
+                class="size-10 rounded-full bg-olive/20 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-olive text-2xl"
+                  >account_circle</span
+                >
               </div>
-              <div class="max-h-96 overflow-y-auto">
-                <template x-if="notifications.length === 0">
-                  <div class="p-8 text-center">
-                    <span class="material-symbols-outlined text-4xl text-gray-300">notifications_off</span>
-                    <p class="text-sm text-gray-500 mt-2">
-                      Không có thông báo mới
-                    </p>
-                  </div>
-                </template>
-                <div class="divide-y divide-gray-100">
-                  <template x-for="notif in notifications" :key="notif.id">
-                    <div class="p-4 hover:bg-gray-50 transition-colors">
-                      <div class="flex items-start gap-3">
-                        <div class="bg-yellow-100 rounded-lg p-2 flex-shrink-0">
-                          <span class="material-symbols-outlined text-yellow-600 text-xl">assignment</span>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                          <p class="text-sm font-semibold text-gray-900 mb-1" x-text="notif.taskName"></p>
-                          <div class="space-y-1 mb-2">
-                            <p class="text-xs text-gray-600 flex items-center gap-1">
-                              <span class="material-symbols-outlined text-[14px]">location_on</span>
-                              <span x-text="notif.location"></span>
-                            </p>
-                            <p class="text-xs text-gray-600 flex items-center gap-1">
-                              <span class="material-symbols-outlined text-[14px]">schedule</span>
-                              <span>Thời hạn:
-                                <span x-text="notif.deadline"></span></span>
-                            </p>
+              <span
+                class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"
+              ></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-bold text-gray-900 truncate">
+                Administrator
+              </p>
+              <p class="text-xs text-gray-600">
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-700"
+                >
+                  Admin
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <!-- Dashboard Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600"
+                >assessment</span
+              >
+              <p class="text-sm font-bold text-gray-700">Dashboard</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-tong-hop.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tổng hợp</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-facebook.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Facebook</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-kho.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Kho</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-luc-luong.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lực lượng</p>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">event</span>
+              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch trực</p>
+              </a>
+            </div>
+          </div>
+          <!-- Nhân sự Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">group</span>
+              <p class="text-sm font-bold text-gray-700">Nhân sự</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-tuoi17.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tuổi 17</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-nguon.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Nguồn</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-qndb.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Quân nhân dự bị</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-dqtt.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">DQTT</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-dqcd.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">DQCĐ</p>
+              </a>
+            </div>
+          </div>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >inventory_2</span
+            >
+            <p class="text-sm font-medium text-gray-600">Kho</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg bg-olive/10 text-olive"
+            href="module4-documents-complete.html"
+          >
+            <span
+              class="material-symbols-outlined"
+              style="font-variation-settings: &quot;FILL&quot; 1"
+              >folder</span
+            >
+            <p class="text-sm font-bold">Tài liệu</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="CMS/index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >language</span
+            >
+            <p class="text-sm font-medium text-gray-600">Trang thông tin</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            @click.prevent="logout()"
+            href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <!-- Header -->
+        <header
+          class="flex items-center justify-between border-b border-border-light bg-white px-8 py-3"
+        >
+          <h2 class="text-text-main text-lg font-bold">Quản Lý Tài Liệu</h2>
+          <div class="flex items-center gap-4">
+            <input
+              class="hidden md:block w-64 px-4 h-10 rounded-lg border border-border-light placeholder:text-text-secondary"
+              placeholder="Tìm kiếm tài liệu..."
+            />
+            <!-- Notification Bell System -->
+            <div x-data="notificationBell" class="relative">
+              <button
+                @click="toggleDropdown()"
+                class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                :class="{'bg-gray-100': isOpen}"
+              >
+                <span class="material-symbols-outlined">notifications</span>
+                <span
+                  x-show="unreadCount > 0"
+                  class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"
+                ></span>
+                <span
+                  x-show="unreadCount > 0"
+                  x-text="unreadCount"
+                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"
+                ></span>
+              </button>
+              <div
+                x-show="isOpen"
+                @click.away="isOpen = false"
+                class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
+                style="display: none"
+                x-cloak
+              >
+                <div
+                  class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
+                >
+                  <h3 class="text-sm font-bold text-gray-900">
+                    Thông báo nhiệm vụ
+                  </h3>
+                  <span
+                    class="text-xs text-gray-500"
+                    x-text="notifications.length + ' nhiệm vụ'"
+                  ></span>
+                </div>
+                <div class="max-h-96 overflow-y-auto">
+                  <template x-if="notifications.length === 0">
+                    <div class="p-8 text-center">
+                      <span
+                        class="material-symbols-outlined text-4xl text-gray-300"
+                        >notifications_off</span
+                      >
+                      <p class="text-sm text-gray-500 mt-2">
+                        Không có thông báo mới
+                      </p>
+                    </div>
+                  </template>
+                  <div class="divide-y divide-gray-100">
+                    <template x-for="notif in notifications" :key="notif.id">
+                      <div class="p-4 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start gap-3">
+                          <div
+                            class="bg-yellow-100 rounded-lg p-2 flex-shrink-0"
+                          >
+                            <span
+                              class="material-symbols-outlined text-yellow-600 text-xl"
+                              >assignment</span
+                            >
                           </div>
-                          <div class="flex gap-2">
-                            <a :href="'activity-detail.html?id=' + notif.activityId"
-                              class="text-xs text-olive hover:underline font-medium">Xem chi tiết</a>
-                            <button @click="confirmRead(notif.id)"
-                              class="text-xs text-blue-600 hover:underline font-medium">
-                              Xác nhận đã đọc
-                            </button>
+                          <div class="flex-1 min-w-0">
+                            <p
+                              class="text-sm font-semibold text-gray-900 mb-1"
+                              x-text="notif.taskName"
+                            ></p>
+                            <div class="space-y-1 mb-2">
+                              <p
+                                class="text-xs text-gray-600 flex items-center gap-1"
+                              >
+                                <span
+                                  class="material-symbols-outlined text-[14px]"
+                                  >location_on</span
+                                >
+                                <span x-text="notif.location"></span>
+                              </p>
+                              <p
+                                class="text-xs text-gray-600 flex items-center gap-1"
+                              >
+                                <span
+                                  class="material-symbols-outlined text-[14px]"
+                                  >schedule</span
+                                >
+                                <span
+                                  >Thời hạn:
+                                  <span x-text="notif.deadline"></span
+                                ></span>
+                              </p>
+                            </div>
+                            <div class="flex gap-2">
+                              <a
+                                :href="'activity-detail.html?id=' + notif.activityId"
+                                class="text-xs text-olive hover:underline font-medium"
+                                >Xem chi tiết</a
+                              >
+                              <button
+                                @click="confirmRead(notif.id)"
+                                class="text-xs text-blue-600 hover:underline font-medium"
+                              >
+                                Xác nhận đã đọc
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </template>
+                    </template>
+                  </div>
                 </div>
-              </div>
-              <div x-show="notifications.length > 0" class="px-4 py-3 border-t border-gray-200 bg-gray-50">
-                <button @click="markAllRead()"
-                  class="text-xs text-olive hover:underline font-medium w-full text-center">
-                  Đánh dấu tất cả đã đọc
-                </button>
+                <div
+                  x-show="notifications.length > 0"
+                  class="px-4 py-3 border-t border-gray-200 bg-gray-50"
+                >
+                  <button
+                    @click="markAllRead()"
+                    class="text-xs text-olive hover:underline font-medium w-full text-center"
+                  >
+                    Đánh dấu tất cả đã đọc
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <!-- Sub Navigation -->
-      <nav class="bg-olive rounded-lg p-2 mx-6 mt-6 shadow-md">
-        <div class="flex items-center space-x-2 overflow-x-auto">
-          <button @click="currentView = 'documents'"
-            :class="currentView === 'documents' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
-            class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
-            Tài liệu
-          </button>
-          <button @click="currentView = 'folders'"
-            :class="currentView === 'folders' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
-            class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
-            Danh mục
-          </button>
-          <button @click="currentView = 'add'"
-            :class="currentView === 'add' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
-            class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors">
-            Thêm tài liệu
-          </button>
-        </div>
-      </nav>
-
-      <!-- Content Area -->
-      <div class="flex-1 overflow-y-auto p-6">
-        <!-- DOCUMENTS LIST VIEW -->
-        <div x-show="currentView === 'documents'" x-cloak>
-          <div class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-black text-text-main">
-              Danh Sách Tài Liệu
-            </h1>
-            <div class="flex gap-3">
-              <button class="flex items-center gap-2 px-4 py-2 border border-border-light rounded-lg hover:bg-gray-50">
-                <span class="material-symbols-outlined text-[18px]">history</span>
-                Lịch sử xóa
-              </button>
-              <button @click="currentView = 'add'"
-                class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg">
-                <span class="material-symbols-outlined text-[20px]">add</span>
-                Thêm mới
-              </button>
-            </div>
+        <!-- Sub Navigation -->
+        <nav class="bg-olive rounded-lg p-2 mx-6 mt-6 shadow-md">
+          <div class="flex items-center space-x-2 overflow-x-auto">
+            <button
+              @click="currentView = 'documents'"
+              :class="currentView === 'documents' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Tài liệu
+            </button>
+            <button
+              @click="currentView = 'folders'"
+              :class="currentView === 'folders' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Danh mục
+            </button>
+            <button
+              @click="currentView = 'add'"
+              :class="currentView === 'add' ? 'bg-white/20 text-white font-bold' : 'text-white/80 hover:bg-white/10'"
+              class="px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors"
+            >
+              Thêm tài liệu
+            </button>
           </div>
+        </nav>
 
-          <!-- Filters -->
-          <div class="bg-white rounded-xl p-4 mb-6 flex gap-4">
-            <select class="px-4 h-11 rounded-lg border border-border-light">
-              <option>Danh mục</option>
-              <option>THAM MƯU</option>
-              <option>CHÍNH TRỊ</option>
-              <option>HẬU CẦN-KỸ THUẬT</option>
-              <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
-              <option>VĂN PHÒNG</option>
-            </select>
-            <select class="px-4 h-11 rounded-lg border border-border-light">
-              <option>Loại tài liệu</option>
-              <option>Kế hoạch</option>
-              <option>Giáo án</option>
-              <option>Biên bản</option>
-              <option>Báo cáo</option>
-              <option>Tờ trình</option>
-            </select>
-          </div>
-
-          <!-- Table -->
-          <div class="bg-white rounded-xl border border-border-light overflow-hidden">
-            <table class="w-full">
-              <thead class="bg-gray-50 border-b border-border-light">
-                <tr>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Tên tài liệu
-                  </th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Loại
-                  </th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Ngày tạo
-                  </th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Người tạo
-                  </th>
-                  <th class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Tập tin
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border-light">
-                <template x-for="doc in documents" :key="doc.id">
-                  <tr class="hover:bg-gray-50">
-                    <td class="px-4 py-4 text-sm font-semibold text-text-main" x-text="doc.name"></td>
-                    <td class="px-4 py-4 text-sm text-text-secondary" x-text="doc.type"></td>
-                    <td class="px-4 py-4 text-sm text-text-secondary" x-text="doc.date"></td>
-                    <td class="px-4 py-4 text-sm text-text-secondary" x-text="doc.creator"></td>
-                    <td class="px-4 py-4">
-                      <span class="bg-teal-100 text-teal-600 text-xs font-medium px-2.5 py-1 rounded-full"
-                        x-text="doc.files + ' Tập tin'"></span>
-                    </td>
-                  </tr>
-                </template>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- FOLDERS VIEW -->
-        <div x-show="currentView === 'folders'" x-cloak>
-          <!-- Header with Breadcrumb and Actions -->
-          <div class="mb-6">
-            <!-- Breadcrumb Navigation -->
-            <nav class="flex items-center gap-2 mb-4">
-              <a @click="currentFolder = null" href="#"
-                class="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-olive transition-colors">
-                <span class="material-symbols-outlined text-[18px]">folder</span>
-                <span>Tài liệu của tôi</span>
-              </a>
-              <template x-if="currentFolder">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-gray-400 text-[16px]">chevron_right</span>
-                  <span class="text-sm font-bold text-olive" x-text="currentFolder.name"></span>
-                </div>
-              </template>
-            </nav>
-
-            <!-- Toolbar -->
-            <div class="flex items-center justify-between">
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <!-- DOCUMENTS LIST VIEW -->
+          <div x-show="currentView === 'documents'" x-cloak>
+            <div class="flex justify-between items-center mb-6">
               <h1 class="text-3xl font-black text-text-main">
-                <span x-text="currentFolder ? currentFolder.name : 'Danh Mục Tài Liệu'"></span>
+                Danh Sách Tài Liệu
               </h1>
-              <div class="flex items-center gap-3">
-                <!-- View Toggle -->
-                <div class="flex bg-white border border-border-light rounded-lg p-1">
-                  <button @click="viewMode = 'grid'"
-                    :class="viewMode === 'grid' ? 'bg-olive/10 text-olive' : 'text-gray-600'"
-                    class="p-2 rounded-md transition-colors" title="Dạng lưới">
-                    <span class="material-symbols-outlined text-[20px]">grid_view</span>
-                  </button>
-                  <button @click="viewMode = 'list'"
-                    :class="viewMode === 'list' ? 'bg-olive/10 text-olive' : 'text-gray-600'"
-                    class="p-2 rounded-md transition-colors" title="Dạng danh sách">
-                    <span class="material-symbols-outlined text-[20px]">view_list</span>
-                  </button>
-                </div>
-
-                <!-- New Folder Button -->
-                <button @click="showNewFolderDialog = true"
-                  class="flex items-center gap-2 bg-white border border-border-light hover:bg-gray-50 text-gray-700 px-4 py-2.5 rounded-lg font-medium text-sm transition-colors">
-                  <span class="material-symbols-outlined text-[20px]">create_new_folder</span>
-                  Tạo thư mục
+              <div class="flex gap-3">
+                <button
+                  class="flex items-center gap-2 px-4 py-2 border border-border-light rounded-lg hover:bg-gray-50"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >history</span
+                  >
+                  Lịch sử xóa
                 </button>
-
-                <!-- Upload Button -->
-                <input type="file" id="fileUpload" @change="handleFileSelect($event)"
-                  accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip" multiple class="hidden" />
-                <button @click="document.getElementById('fileUpload').click()"
-                  class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg">
-                  <span class="material-symbols-outlined text-[20px]">upload</span>
-                  Tải lên
+                <button
+                  @click="currentView = 'add'"
+                  class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg"
+                >
+                  <span class="material-symbols-outlined text-[20px]">add</span>
+                  Thêm mới
                 </button>
               </div>
             </div>
+
+            <!-- Filters -->
+            <div class="bg-white rounded-xl p-4 mb-6 flex gap-4">
+              <select class="px-4 h-11 rounded-lg border border-border-light">
+                <option>Danh mục</option>
+                <option>THAM MƯU</option>
+                <option>CHÍNH TRỊ</option>
+                <option>HẬU CẦN-KỸ THUẬT</option>
+                <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
+                <option>VĂN PHÒNG</option>
+              </select>
+              <select class="px-4 h-11 rounded-lg border border-border-light">
+                <option>Loại tài liệu</option>
+                <option>Kế hoạch</option>
+                <option>Giáo án</option>
+                <option>Biên bản</option>
+                <option>Báo cáo</option>
+                <option>Tờ trình</option>
+              </select>
+            </div>
+
+            <!-- Table -->
+            <div
+              class="bg-white rounded-xl border border-border-light overflow-hidden"
+            >
+              <table class="w-full">
+                <thead class="bg-gray-50 border-b border-border-light">
+                  <tr>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Tên tài liệu
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Loại
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Ngày tạo
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Người tạo
+                    </th>
+                    <th
+                      class="px-4 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Tập tin
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-border-light">
+                  <template x-for="doc in documents" :key="doc.id">
+                    <tr class="hover:bg-gray-50">
+                      <td
+                        class="px-4 py-4 text-sm font-semibold text-text-main"
+                        x-text="doc.name"
+                      ></td>
+                      <td
+                        class="px-4 py-4 text-sm text-text-secondary"
+                        x-text="doc.type"
+                      ></td>
+                      <td
+                        class="px-4 py-4 text-sm text-text-secondary"
+                        x-text="doc.date"
+                      ></td>
+                      <td
+                        class="px-4 py-4 text-sm text-text-secondary"
+                        x-text="doc.creator"
+                      ></td>
+                      <td class="px-4 py-4">
+                        <span
+                          class="bg-teal-100 text-teal-600 text-xs font-medium px-2.5 py-1 rounded-full"
+                          x-text="doc.files + ' Tập tin'"
+                        ></span>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
+            </div>
           </div>
 
-          <!-- Upload Drop Zone (shown when uploading) -->
-          <div x-show="uploadedFiles.length > 0" class="mb-6">
-            <div class="bg-white rounded-xl border border-border-light p-4">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-sm font-bold text-text-main">
-                  Tập tin đã chọn
-                </h3>
-                <button @click="uploadedFiles = []" class="text-xs text-gray-500 hover:text-red-500">
-                  Xóa tất cả
-                </button>
-              </div>
-              <div class="space-y-2">
-                <template x-for="(file, index) in uploadedFiles" :key="index">
+          <!-- FOLDERS VIEW -->
+          <div x-show="currentView === 'folders'" x-cloak>
+            <!-- Header with Breadcrumb and Actions -->
+            <div class="mb-6">
+              <!-- Breadcrumb Navigation -->
+              <nav class="flex items-center gap-2 mb-4">
+                <a
+                  @click="currentFolder = null"
+                  href="#"
+                  class="flex items-center gap-1 text-sm font-medium text-gray-600 hover:text-olive transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >folder</span
+                  >
+                  <span>Tài liệu của tôi</span>
+                </a>
+                <template x-if="currentFolder">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-gray-400 text-[16px]"
+                      >chevron_right</span
+                    >
+                    <span
+                      class="text-sm font-bold text-olive"
+                      x-text="currentFolder.name"
+                    ></span>
+                  </div>
+                </template>
+              </nav>
+
+              <!-- Toolbar -->
+              <div class="flex items-center justify-between">
+                <h1 class="text-3xl font-black text-text-main">
+                  <span
+                    x-text="currentFolder ? currentFolder.name : 'Danh Mục Tài Liệu'"
+                  ></span>
+                </h1>
+                <div class="flex items-center gap-3">
+                  <!-- View Toggle -->
                   <div
-                    class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div class="flex items-center gap-3">
-                      <span class="material-symbols-outlined text-2xl" :class="{
+                    class="flex bg-white border border-border-light rounded-lg p-1"
+                  >
+                    <button
+                      @click="viewMode = 'grid'"
+                      :class="viewMode === 'grid' ? 'bg-olive/10 text-olive' : 'text-gray-600'"
+                      class="p-2 rounded-md transition-colors"
+                      title="Dạng lưới"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >grid_view</span
+                      >
+                    </button>
+                    <button
+                      @click="viewMode = 'list'"
+                      :class="viewMode === 'list' ? 'bg-olive/10 text-olive' : 'text-gray-600'"
+                      class="p-2 rounded-md transition-colors"
+                      title="Dạng danh sách"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >view_list</span
+                      >
+                    </button>
+                  </div>
+
+                  <!-- New Folder Button -->
+                  <button
+                    @click="showNewFolderDialog = true"
+                    class="flex items-center gap-2 bg-white border border-border-light hover:bg-gray-50 text-gray-700 px-4 py-2.5 rounded-lg font-medium text-sm transition-colors"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >create_new_folder</span
+                    >
+                    Tạo thư mục
+                  </button>
+
+                  <!-- Upload Button -->
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    @change="handleFileSelect($event)"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+                    multiple
+                    class="hidden"
+                  />
+                  <button
+                    @click="document.getElementById('fileUpload').click()"
+                    class="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg"
+                  >
+                    <span class="material-symbols-outlined text-[20px]"
+                      >upload</span
+                    >
+                    Tải lên
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload Drop Zone (shown when uploading) -->
+            <div x-show="uploadedFiles.length > 0" class="mb-6">
+              <div class="bg-white rounded-xl border border-border-light p-4">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-sm font-bold text-text-main">
+                    Tập tin đã chọn
+                  </h3>
+                  <button
+                    @click="uploadedFiles = []"
+                    class="text-xs text-gray-500 hover:text-red-500"
+                  >
+                    Xóa tất cả
+                  </button>
+                </div>
+                <div class="space-y-2">
+                  <template x-for="(file, index) in uploadedFiles" :key="index">
+                    <div
+                      class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                    >
+                      <div class="flex items-center gap-3">
+                        <span
+                          class="material-symbols-outlined text-2xl"
+                          :class="{
                             'text-red-500': file.extension === 'pdf',
                             'text-blue-500': ['doc', 'docx'].includes(file.extension),
                             'text-green-500': ['xls', 'xlsx'].includes(file.extension),
                             'text-orange-500': ['ppt', 'pptx'].includes(file.extension),
                             'text-purple-500': file.extension === 'zip',
                             'text-gray-400': !['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip'].includes(file.extension)
-                          }" x-text="file.extension === 'pdf' ? 'picture_as_pdf' : 
+                          }"
+                          x-text="file.extension === 'pdf' ? 'picture_as_pdf' : 
                                   ['doc', 'docx'].includes(file.extension) ? 'description' : 
                                   ['xls', 'xlsx'].includes(file.extension) ? 'table_chart' : 
                                   ['ppt', 'pptx'].includes(file.extension) ? 'slideshow' :
-                                  file.extension === 'zip' ? 'folder_zip' : 'insert_drive_file'"></span>
-                      <div>
-                        <p class="text-sm font-medium text-text-main" x-text="file.name"></p>
-                        <p class="text-xs text-text-secondary">
-                          <span x-text="file.size"></span> •
-                          <span class="uppercase font-bold" x-text="file.extension"></span>
-                        </p>
+                                  file.extension === 'zip' ? 'folder_zip' : 'insert_drive_file'"
+                        ></span>
+                        <div>
+                          <p
+                            class="text-sm font-medium text-text-main"
+                            x-text="file.name"
+                          ></p>
+                          <p class="text-xs text-text-secondary">
+                            <span x-text="file.size"></span> •
+                            <span
+                              class="uppercase font-bold"
+                              x-text="file.extension"
+                            ></span>
+                          </p>
+                        </div>
                       </div>
+                      <button
+                        @click="removeFile(index)"
+                        class="text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >close</span
+                        >
+                      </button>
                     </div>
-                    <button @click="removeFile(index)" class="text-gray-400 hover:text-red-500 transition-colors">
-                      <span class="material-symbols-outlined text-[20px]">close</span>
-                    </button>
-                  </div>
-                </template>
+                  </template>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Grid View -->
-          <div x-show="viewMode === 'grid'" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            <!-- Folders -->
-            <template x-for="folder in (currentFolder ? currentFolder.subfolders : folders)" :key="folder.id">
-              <div @click="openFolder(folder)"
-                class="group bg-white border border-border-light rounded-xl p-4 hover:shadow-lg hover:border-olive/30 transition-all cursor-pointer">
-                <div class="flex flex-col items-center gap-3">
-                  <div class="relative">
-                    <span
-                      class="material-symbols-outlined text-6xl text-olive group-hover:scale-110 transition-transform">
-                      folder
-                    </span>
-                    <div class="absolute -bottom-1 -right-1 bg-olive/10 rounded-full px-2 py-0.5">
-                      <span class="text-xs font-bold text-olive" x-text="folder.count"></span>
+            <!-- Grid View -->
+            <div
+              x-show="viewMode === 'grid'"
+              class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+            >
+              <!-- Folders -->
+              <template
+                x-for="folder in (currentFolder ? currentFolder.subfolders : folders)"
+                :key="folder.id"
+              >
+                <div
+                  @click="openFolder(folder)"
+                  class="group bg-white border border-border-light rounded-xl p-4 hover:shadow-lg hover:border-olive/30 transition-all cursor-pointer"
+                >
+                  <div class="flex flex-col items-center gap-3">
+                    <div class="relative">
+                      <span
+                        class="material-symbols-outlined text-6xl text-olive group-hover:scale-110 transition-transform"
+                      >
+                        folder
+                      </span>
+                      <div
+                        class="absolute -bottom-1 -right-1 bg-olive/10 rounded-full px-2 py-0.5"
+                      >
+                        <span
+                          class="text-xs font-bold text-olive"
+                          x-text="folder.count"
+                        ></span>
+                      </div>
+                    </div>
+                    <div class="text-center w-full">
+                      <p
+                        class="text-sm font-bold text-text-main truncate"
+                        x-text="folder.name"
+                      ></p>
+                      <p
+                        class="text-xs text-text-secondary mt-1"
+                        x-text="folder.count + ' mục'"
+                      ></p>
                     </div>
                   </div>
-                  <div class="text-center w-full">
-                    <p class="text-sm font-bold text-text-main truncate" x-text="folder.name"></p>
-                    <p class="text-xs text-text-secondary mt-1" x-text="folder.count + ' mục'"></p>
+                  <!-- Options Menu -->
+                  <div
+                    class="mt-3 pt-3 border-t border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <button
+                      class="w-full flex items-center justify-center gap-1 text-xs text-gray-600 hover:text-olive"
+                    >
+                      <span class="material-symbols-outlined text-[16px]"
+                        >more_horiz</span
+                      >
+                    </button>
                   </div>
                 </div>
-                <!-- Options Menu -->
-                <div class="mt-3 pt-3 border-t border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button class="w-full flex items-center justify-center gap-1 text-xs text-gray-600 hover:text-olive">
-                    <span class="material-symbols-outlined text-[16px]">more_horiz</span>
-                  </button>
-                </div>
-              </div>
-            </template>
+              </template>
 
-            <!-- Files (shown when inside a folder) -->
-            <template x-if="currentFolder" x-for="file in currentFolder.files" :key="file.id">
-              <div
-                class="group bg-white border border-border-light rounded-xl overflow-hidden hover:shadow-lg hover:border-olive/30 transition-all cursor-pointer">
-                <!-- File Preview -->
+              <!-- Files (shown when inside a folder) -->
+              <template
+                x-if="currentFolder"
+                x-for="file in currentFolder.files"
+                :key="file.id"
+              >
                 <div
-                  class="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center relative">
-                  <span class="material-symbols-outlined text-5xl" :class="{
+                  class="group bg-white border border-border-light rounded-xl overflow-hidden hover:shadow-lg hover:border-olive/30 transition-all cursor-pointer"
+                >
+                  <!-- File Preview -->
+                  <div
+                    class="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center relative"
+                  >
+                    <span
+                      class="material-symbols-outlined text-5xl"
+                      :class="{
                         'text-red-500': file.type === 'pdf',
                         'text-blue-500': file.type === 'doc' || file.type === 'docx',
                         'text-green-500': file.type === 'xls' || file.type === 'xlsx',
                         'text-orange-500': file.type === 'ppt',
                         'text-gray-400': !['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt'].includes(file.type)
                       }"
-                    x-text="file.type === 'pdf' ? 'picture_as_pdf' : (file.type === 'doc' || file.type === 'docx') ? 'description' : (file.type === 'xls' || file.type === 'xlsx') ? 'table_chart' : (file.type === 'ppt') ? 'slideshow' : 'insert_drive_file'"></span>
-                  <!-- File Type Badge -->
-                  <div class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded px-2 py-1">
-                    <span class="text-xs font-bold uppercase" x-text="file.type"></span>
+                      x-text="file.type === 'pdf' ? 'picture_as_pdf' : (file.type === 'doc' || file.type === 'docx') ? 'description' : (file.type === 'xls' || file.type === 'xlsx') ? 'table_chart' : (file.type === 'ppt') ? 'slideshow' : 'insert_drive_file'"
+                    ></span>
+                    <!-- File Type Badge -->
+                    <div
+                      class="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded px-2 py-1"
+                    >
+                      <span
+                        class="text-xs font-bold uppercase"
+                        x-text="file.type"
+                      ></span>
+                    </div>
+                  </div>
+                  <!-- File Info -->
+                  <div class="p-3">
+                    <p
+                      class="text-sm font-bold text-text-main truncate mb-1"
+                      x-text="file.name"
+                    ></p>
+                    <p
+                      class="text-xs text-text-secondary"
+                      x-text="file.size"
+                    ></p>
                   </div>
                 </div>
-                <!-- File Info -->
-                <div class="p-3">
-                  <p class="text-sm font-bold text-text-main truncate mb-1" x-text="file.name"></p>
-                  <p class="text-xs text-text-secondary" x-text="file.size"></p>
-                </div>
-              </div>
-            </template>
-          </div>
+              </template>
+            </div>
 
-          <!-- List View -->
-          <div x-show="viewMode === 'list'" class="bg-white rounded-xl border border-border-light overflow-hidden">
-            <table class="w-full">
-              <thead class="bg-gray-50 border-b border-border-light">
-                <tr>
-                  <th class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Tên
-                  </th>
-                  <th class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Người sở hữu
-                  </th>
-                  <th class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Chỉnh sửa lần cuối
-                  </th>
-                  <th class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary">
-                    Kích thước
-                  </th>
-                  <th class="px-6 py-3 text-right text-xs font-bold uppercase text-text-secondary">
-                    Thao tác
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-border-light">
-                <!-- Folders -->
-                <template x-for="folder in (currentFolder ? currentFolder.subfolders : folders)" :key="folder.id">
-                  <tr @click="openFolder(folder)" class="hover:bg-gray-50 cursor-pointer group">
-                    <td class="px-6 py-4">
-                      <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-olive text-2xl">folder</span>
-                        <span class="text-sm font-bold text-text-main" x-text="folder.name"></span>
-                      </div>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="folder.owner || 'Tôi'"></span>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="folder.modified || '—'"></span>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="folder.count + ' mục'"></span>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <button class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="material-symbols-outlined text-gray-600 hover:text-olive">more_vert</span>
-                      </button>
-                    </td>
+            <!-- List View -->
+            <div
+              x-show="viewMode === 'list'"
+              class="bg-white rounded-xl border border-border-light overflow-hidden"
+            >
+              <table class="w-full">
+                <thead class="bg-gray-50 border-b border-border-light">
+                  <tr>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Tên
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Người sở hữu
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Chỉnh sửa lần cuối
+                    </th>
+                    <th
+                      class="px-6 py-3 text-left text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Kích thước
+                    </th>
+                    <th
+                      class="px-6 py-3 text-right text-xs font-bold uppercase text-text-secondary"
+                    >
+                      Thao tác
+                    </th>
                   </tr>
-                </template>
+                </thead>
+                <tbody class="divide-y divide-border-light">
+                  <!-- Folders -->
+                  <template
+                    x-for="folder in (currentFolder ? currentFolder.subfolders : folders)"
+                    :key="folder.id"
+                  >
+                    <tr
+                      @click="openFolder(folder)"
+                      class="hover:bg-gray-50 cursor-pointer group"
+                    >
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                          <span
+                            class="material-symbols-outlined text-olive text-2xl"
+                            >folder</span
+                          >
+                          <span
+                            class="text-sm font-bold text-text-main"
+                            x-text="folder.name"
+                          ></span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="folder.owner || 'Tôi'"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="folder.modified || '—'"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="folder.count + ' mục'"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4 text-right">
+                        <button
+                          class="opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <span
+                            class="material-symbols-outlined text-gray-600 hover:text-olive"
+                            >more_vert</span
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                  </template>
 
-                <!-- Files -->
-                <template x-if="currentFolder" x-for="file in currentFolder.files" :key="file.id">
-                  <tr class="hover:bg-gray-50 cursor-pointer group">
-                    <td class="px-6 py-4">
-                      <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-2xl" :class="{
+                  <!-- Files -->
+                  <template
+                    x-if="currentFolder"
+                    x-for="file in currentFolder.files"
+                    :key="file.id"
+                  >
+                    <tr class="hover:bg-gray-50 cursor-pointer group">
+                      <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                          <span
+                            class="material-symbols-outlined text-2xl"
+                            :class="{
                               'text-red-500': file.type === 'pdf',
                               'text-blue-500': file.type === 'doc' || file.type === 'docx',
                               'text-green-500': file.type === 'xls' || file.type === 'xlsx',
                               'text-orange-500': file.type === 'ppt',
                               'text-gray-400': !['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt'].includes(file.type)
                             }"
-                          x-text="file.type === 'pdf' ? 'picture_as_pdf' : (file.type === 'doc' || file.type === 'docx') ? 'description' : (file.type === 'xls' || file.type === 'xlsx') ? 'table_chart' : (file.type === 'ppt') ? 'slideshow' : 'insert_drive_file'"></span>
-                        <span class="text-sm font-medium text-text-main" x-text="file.name"></span>
-                      </div>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="file.owner || 'Tôi'"></span>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="file.modified"></span>
-                    </td>
-                    <td class="px-6 py-4">
-                      <span class="text-sm text-text-secondary" x-text="file.size"></span>
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                      <button class="opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="material-symbols-outlined text-gray-600 hover:text-olive">more_vert</span>
-                      </button>
-                    </td>
-                  </tr>
-                </template>
-              </tbody>
-            </table>
+                            x-text="file.type === 'pdf' ? 'picture_as_pdf' : (file.type === 'doc' || file.type === 'docx') ? 'description' : (file.type === 'xls' || file.type === 'xlsx') ? 'table_chart' : (file.type === 'ppt') ? 'slideshow' : 'insert_drive_file'"
+                          ></span>
+                          <span
+                            class="text-sm font-medium text-text-main"
+                            x-text="file.name"
+                          ></span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="file.owner || 'Tôi'"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="file.modified"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="text-sm text-text-secondary"
+                          x-text="file.size"
+                        ></span>
+                      </td>
+                      <td class="px-6 py-4 text-right">
+                        <button
+                          class="opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <span
+                            class="material-symbols-outlined text-gray-600 hover:text-olive"
+                            >more_vert</span
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                  </template>
+                </tbody>
+              </table>
 
-            <!-- Empty State -->
-            <template
-              x-if="currentFolder && (!currentFolder.files || currentFolder.files.length === 0) && (!currentFolder.subfolders || currentFolder.subfolders.length === 0)">
-              <div class="py-16 text-center">
-                <span class="material-symbols-outlined text-6xl text-gray-300 mb-4">folder_open</span>
-                <p class="text-text-secondary">Thư mục trống</p>
-                <button @click="showUploadDialog = true"
-                  class="mt-4 text-sm text-olive hover:text-olive/80 font-medium">
-                  Tải lên tập tin đầu tiên
-                </button>
-              </div>
-            </template>
+              <!-- Empty State -->
+              <template
+                x-if="currentFolder && (!currentFolder.files || currentFolder.files.length === 0) && (!currentFolder.subfolders || currentFolder.subfolders.length === 0)"
+              >
+                <div class="py-16 text-center">
+                  <span
+                    class="material-symbols-outlined text-6xl text-gray-300 mb-4"
+                    >folder_open</span
+                  >
+                  <p class="text-text-secondary">Thư mục trống</p>
+                  <button
+                    @click="showUploadDialog = true"
+                    class="mt-4 text-sm text-olive hover:text-olive/80 font-medium"
+                  >
+                    Tải lên tập tin đầu tiên
+                  </button>
+                </div>
+              </template>
+            </div>
           </div>
-        </div>
 
-        <!-- ADD DOCUMENT VIEW -->
-        <div x-show="currentView === 'add'" x-cloak>
-          <div class="max-w-4xl mx-auto">
-            <h1 class="text-3xl font-black text-text-main mb-6">
-              Thêm Tài Liệu Mới
-            </h1>
+          <!-- ADD DOCUMENT VIEW -->
+          <div x-show="currentView === 'add'" x-cloak>
+            <div class="max-w-4xl mx-auto">
+              <h1 class="text-3xl font-black text-text-main mb-6">
+                Thêm Tài Liệu Mới
+              </h1>
 
-            <div class="bg-white rounded-xl border border-border-light overflow-hidden">
-              <div class="p-8 space-y-6">
-                <!-- Form Fields -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-medium text-text-main mb-2">Danh mục <span
-                        class="text-red-500">*</span></label>
-                    <select
-                      class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary">
-                      <option>Chọn danh mục</option>
-                      <option>THAM MƯU</option>
-                      <option>CHÍNH TRỊ</option>
-                      <option>HẬU CẦN-KỸ THUẬT</option>
-                      <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
-                      <option>VĂN PHÒNG</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label class="block text-sm font-medium text-text-main mb-2">Loại tài liệu
-                      <span class="text-red-500">*</span></label>
-                    <select
-                      class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary">
-                      <option>Chọn loại</option>
-                      <option>Kế hoạch</option>
-                      <option>Giáo án</option>
-                      <option>Biên bản</option>
-                      <option>Báo cáo</option>
-                      <option>Tờ trình</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label class="block text-sm font-medium text-text-main mb-2">Thuộc tổ</label>
-                    <select
-                      class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary">
-                      <option>Chọn tổ</option>
-                      <option>THAM MƯU</option>
-                      <option>CHÍNH TRỊ</option>
-                      <option>HẬU CẦN-KỸ THUẬT</option>
-                      <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
-                      <option>VĂN PHÒNG</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label class="block text-sm font-medium text-text-main mb-2">Nơi lưu trữ</label>
-                    <select
-                      class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary">
-                      <option>Chọn nơi lưu trữ</option>
-                      <option>THAM MƯU</option>
-                      <option>CHÍNH TRỊ</option>
-                      <option>HẬU CẦN-KỸ THUẬT</option>
-                      <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
-                      <option>VĂN PHÒNG</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- File Upload -->
-                <div>
-                  <label class="block text-sm font-medium text-text-main mb-2">Tập tin đính kèm</label>
-                  <div
-                    class="border-2 border-dashed border-border-light rounded-lg p-8 text-center hover:border-primary/50 transition-colors cursor-pointer">
-                    <span class="material-symbols-outlined text-5xl text-gray-400 mb-2">cloud_upload</span>
-                    <p class="text-sm text-text-secondary">
-                      <span class="font-semibold text-primary">Nhấn để tải lên</span>
-                      hoặc kéo và thả
-                    </p>
-                    <p class="text-xs text-text-secondary mt-1">
-                      PDF, DOC, DOCX, XLS, XLSX (tối đa 10MB)
-                    </p>
-                  </div>
-                </div>
-
-                <!-- Sample Files -->
-                <div class="space-y-3">
-                  <div class="flex items-center justify-between p-3 bg-gray-50 rounded-md">
-                    <div class="flex items-center gap-3">
-                      <span class="material-symbols-outlined text-primary">description</span>
-                      <input class="flex-1 bg-transparent border-none text-sm" type="text"
-                        value="Báo cáo tháng 12.docx" />
+              <div
+                class="bg-white rounded-xl border border-border-light overflow-hidden"
+              >
+                <div class="p-8 space-y-6">
+                  <!-- Form Fields -->
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-text-main mb-2"
+                        >Danh mục <span class="text-red-500">*</span></label
+                      >
+                      <select
+                        class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      >
+                        <option>Chọn danh mục</option>
+                        <option>THAM MƯU</option>
+                        <option>CHÍNH TRỊ</option>
+                        <option>HẬU CẦN-KỸ THUẬT</option>
+                        <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
+                        <option>VĂN PHÒNG</option>
+                      </select>
                     </div>
-                    <button class="text-red-500 hover:text-red-700">
-                      <span class="material-symbols-outlined">close</span>
-                    </button>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-text-main mb-2"
+                        >Loại tài liệu
+                        <span class="text-red-500">*</span></label
+                      >
+                      <select
+                        class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      >
+                        <option>Chọn loại</option>
+                        <option>Kế hoạch</option>
+                        <option>Giáo án</option>
+                        <option>Biên bản</option>
+                        <option>Báo cáo</option>
+                        <option>Tờ trình</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-text-main mb-2"
+                        >Thuộc tổ</label
+                      >
+                      <select
+                        class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      >
+                        <option>Chọn tổ</option>
+                        <option>THAM MƯU</option>
+                        <option>CHÍNH TRỊ</option>
+                        <option>HẬU CẦN-KỸ THUẬT</option>
+                        <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
+                        <option>VĂN PHÒNG</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label
+                        class="block text-sm font-medium text-text-main mb-2"
+                        >Nơi lưu trữ</label
+                      >
+                      <select
+                        class="w-full px-4 py-3 rounded-lg border border-border-light focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                      >
+                        <option>Chọn nơi lưu trữ</option>
+                        <option>THAM MƯU</option>
+                        <option>CHÍNH TRỊ</option>
+                        <option>HẬU CẦN-KỸ THUẬT</option>
+                        <option>ĐỘNG VIÊN-TUYỂN QUÂN</option>
+                        <option>VĂN PHÒNG</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- File Upload -->
+                  <div>
+                    <label class="block text-sm font-medium text-text-main mb-2"
+                      >Tập tin đính kèm</label
+                    >
+                    <div
+                      class="border-2 border-dashed border-border-light rounded-lg p-8 text-center hover:border-primary/50 transition-colors cursor-pointer"
+                    >
+                      <span
+                        class="material-symbols-outlined text-5xl text-gray-400 mb-2"
+                        >cloud_upload</span
+                      >
+                      <p class="text-sm text-text-secondary">
+                        <span class="font-semibold text-primary"
+                          >Nhấn để tải lên</span
+                        >
+                        hoặc kéo và thả
+                      </p>
+                      <p class="text-xs text-text-secondary mt-1">
+                        PDF, DOC, DOCX, XLS, XLSX (tối đa 10MB)
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Sample Files -->
+                  <div class="space-y-3">
+                    <div
+                      class="flex items-center justify-between p-3 bg-gray-50 rounded-md"
+                    >
+                      <div class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary"
+                          >description</span
+                        >
+                        <input
+                          class="flex-1 bg-transparent border-none text-sm"
+                          type="text"
+                          value="Báo cáo tháng 12.docx"
+                        />
+                      </div>
+                      <button class="text-red-500 hover:text-red-700">
+                        <span class="material-symbols-outlined">close</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Form Actions -->
-              <div class="p-6 flex justify-end items-center gap-4 border-t border-border-light bg-gray-50">
-                <button @click="currentView = 'documents'"
-                  class="px-6 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-gray-100">
-                  Hủy bỏ
-                </button>
-                <button
-                  class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-sm">
-                  <span class="material-symbols-outlined text-[18px]">check</span>
-                  Tạo tài liệu
-                </button>
+                <!-- Form Actions -->
+                <div
+                  class="p-6 flex justify-end items-center gap-4 border-t border-border-light bg-gray-50"
+                >
+                  <button
+                    @click="currentView = 'documents'"
+                    class="px-6 py-2.5 rounded-lg text-sm font-medium text-text-secondary hover:bg-gray-100"
+                  >
+                    Hủy bỏ
+                  </button>
+                  <button
+                    class="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white text-sm font-bold shadow-sm"
+                  >
+                    <span class="material-symbols-outlined text-[18px]"
+                      >check</span
+                    >
+                    Tạo tài liệu
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-  </div>
+      </main>
+    </div>
 
-  <script>
-    function documentApp() {
-      return {
-        currentView: "documents",
-        currentFolder: null,
-        viewMode: "grid", // 'grid' or 'list'
-        showUploadDialog: false,
-        showNewFolderDialog: false,
-        isDragging: false,
-        uploadedFiles: [],
+    <script>
+      function documentApp() {
+        return {
+          currentView: "documents",
+          currentFolder: null,
+          viewMode: "grid", // 'grid' or 'list'
+          showUploadDialog: false,
+          showNewFolderDialog: false,
+          isDragging: false,
+          uploadedFiles: [],
 
-        documents: [
-          {
-            id: 1,
-            name: "Kế hoạch Hành quân rèn luyện tháng 02 năm 2026",
-            type: "Kế hoạch",
-            date: "15/01/2026",
-            creator: "Nguyễn Thanh Nhân",
-            files: 6,
-          },
-          {
-            id: 2,
-            name: "Giáo án huấn luyện. Bài: Chào, chào báo cáo",
-            type: "Giáo án",
-            date: "20/01/2026",
-            creator: "Nguyễn Thanh Nhân",
-            files: 3,
-          },
-          {
-            id: 3,
-            name: "Giáo án huấn luyện. Bài: Động tác trao, nhận thưởng",
-            type: "Giáo án",
-            date: "21/01/2026",
-            creator: "Nguyễn Thanh Nhân",
-            files: 8,
-          },
-          {
-            id: 4,
-            name: "Biên bản họp",
-            type: "Biên bản",
-            date: "22/01/2026",
-            creator: "Thái Thanh Phong",
-            files: 2,
-          },
-        ],
+          documents: [
+            {
+              id: 1,
+              name: "Kế hoạch Hành quân rèn luyện tháng 02 năm 2026",
+              type: "Kế hoạch",
+              date: "15/01/2026",
+              creator: "Nguyễn Thanh Nhân",
+              files: 6,
+            },
+            {
+              id: 2,
+              name: "Giáo án huấn luyện. Bài: Chào, chào báo cáo",
+              type: "Giáo án",
+              date: "20/01/2026",
+              creator: "Nguyễn Thanh Nhân",
+              files: 3,
+            },
+            {
+              id: 3,
+              name: "Giáo án huấn luyện. Bài: Động tác trao, nhận thưởng",
+              type: "Giáo án",
+              date: "21/01/2026",
+              creator: "Nguyễn Thanh Nhân",
+              files: 8,
+            },
+            {
+              id: 4,
+              name: "Biên bản họp",
+              type: "Biên bản",
+              date: "22/01/2026",
+              creator: "Thái Thanh Phong",
+              files: 2,
+            },
+          ],
 
-        folders: [
-          {
-            id: 1,
-            name: "THAM MƯU",
-            count: 45,
-            owner: "Tôi",
-            modified: "15/01/2026",
-            subfolders: [
-              {
-                id: 11,
-                name: "Giáo án huấn luyện",
-                count: 12,
-                owner: "Tôi",
-                modified: "10/01/2026",
-                subfolders: [],
-                files: [
-                  {
-                    id: 101,
-                    name: "Giáo án Huấn luyện. Bài: Động tác trao, nhận thưởng..pdf",
-                    type: "pdf",
-                    size: "2.3 MB",
-                    owner: "Tôi",
-                    modified: "10/01/2026",
-                  },
-                  {
-                    id: 102,
-                    name: "Giáo án Huấn luyện. Bài: Chào, chào báo cáo.docx",
-                    type: "docx",
-                    size: "1.8 MB",
-                    owner: "Tôi",
-                    modified: "09/01/2026",
-                  },
-                ],
-              },
-              {
-                id: 12,
-                name: "Kế hoạch huấn luyện ",
-                count: 8,
-                owner: "Tôi",
-                modified: "12/01/2026",
-                subfolders: [],
-                files: [
-                  {
-                    id: 103,
-                    name: "Kế hoạch Hành quân rèn luyện tháng 01 năm 2026.pdf",
-                    type: "pdf",
-                    size: "3.5 MB",
-                    owner: "Tôi",
-                    modified: "12/01/2026",
-                  },
-                ],
-              },
-            ],
-            files: [],
-          },
-          {
-            id: 2,
-            name: "CHÍNH TRỊ",
-            count: 32,
-            owner: "Tôi",
-            modified: "18/01/2026",
-            subfolders: [
-              {
-                id: 21,
-                name: "Báo cáo tháng",
-                count: 12,
-                owner: "Tôi",
-                modified: "18/01/2026",
-                subfolders: [],
-                files: [
-                  {
-                    id: 201,
-                    name: "Báo cáo tháng 1-2026.xlsx",
-                    type: "xlsx",
-                    size: "4.2 MB",
-                    owner: "Tôi",
-                    modified: "18/01/2026",
-                  },
-                ],
-              },
-            ],
-            files: [],
-          },
-          {
-            id: 3,
-            name: "HẬU CẦN-KỸ THUẬT",
-            count: 28,
-            owner: "Tôi",
-            modified: "14/01/2026",
-            subfolders: [],
-            files: [
-              {
-                id: 301,
-                name: "Sổ chấm cơm.pdf",
-                type: "pdf",
-                size: "5.1 MB",
-                owner: "Tôi",
-                modified: "14/01/2026",
-              },
-              {
-                id: 302,
-                name: "Báo cáo.docx",
-                type: "docx",
-                size: "890 KB",
-                owner: "Tôi",
-                modified: "13/01/2026",
-              },
-            ],
-          },
-          {
-            id: 4,
-            name: "ĐỘNG VIÊN-TUYỂN QUÂN",
-            count: 15,
-            owner: "Tôi",
-            modified: "20/01/2026",
-            subfolders: [
-              {
-                id: 41,
-                name: "Kế hoạch",
-                count: 5,
-                owner: "Tôi",
-                modified: "20/01/2026",
-                subfolders: [],
-                files: [
-                  {
-                    id: 401,
-                    name: "Kế hoạch tổ chức khám sức khỏe nvqs năm 2026.pdf",
-                    type: "pdf",
-                    size: "12.5 MB",
-                    owner: "Tôi",
-                    modified: "20/01/2026",
-                  },
-                ],
-              },
-            ],
-            files: [],
-          },
-          {
-            id: 5,
-            name: "VĂN PHÒNG",
-            count: 22,
-            owner: "Tôi",
-            modified: "16/01/2026",
-            subfolders: [
-              {
-                id: 51,
-                name: "Lưu trữ công văn",
-                count: 10,
-                owner: "Tôi",
-                modified: "16/01/2026",
-                subfolders: [],
-                files: [
-                  {
-                    id: 501,
-                    name: "Kế hoạch báo cáo.pdf",
-                    type: "pdf",
-                    size: "8.3 MB",
-                    owner: "Tôi",
-                    modified: "16/01/2026",
-                  },
-                  {
-                    id: 502,
-                    name: "Tờ trình.pdf",
-                    type: "pdf",
-                    size: "6.7 MB",
-                    owner: "Tôi",
-                    modified: "15/01/2026",
-                  },
-                ],
-              },
-            ],
-            files: [],
-          },
-        ],
+          folders: [
+            {
+              id: 1,
+              name: "THAM MƯU",
+              count: 45,
+              owner: "Tôi",
+              modified: "15/01/2026",
+              subfolders: [
+                {
+                  id: 11,
+                  name: "Giáo án huấn luyện",
+                  count: 12,
+                  owner: "Tôi",
+                  modified: "10/01/2026",
+                  subfolders: [],
+                  files: [
+                    {
+                      id: 101,
+                      name: "Giáo án Huấn luyện. Bài: Động tác trao, nhận thưởng..pdf",
+                      type: "pdf",
+                      size: "2.3 MB",
+                      owner: "Tôi",
+                      modified: "10/01/2026",
+                    },
+                    {
+                      id: 102,
+                      name: "Giáo án Huấn luyện. Bài: Chào, chào báo cáo.docx",
+                      type: "docx",
+                      size: "1.8 MB",
+                      owner: "Tôi",
+                      modified: "09/01/2026",
+                    },
+                  ],
+                },
+                {
+                  id: 12,
+                  name: "Kế hoạch huấn luyện ",
+                  count: 8,
+                  owner: "Tôi",
+                  modified: "12/01/2026",
+                  subfolders: [],
+                  files: [
+                    {
+                      id: 103,
+                      name: "Kế hoạch Hành quân rèn luyện tháng 01 năm 2026.pdf",
+                      type: "pdf",
+                      size: "3.5 MB",
+                      owner: "Tôi",
+                      modified: "12/01/2026",
+                    },
+                  ],
+                },
+              ],
+              files: [],
+            },
+            {
+              id: 2,
+              name: "CHÍNH TRỊ",
+              count: 32,
+              owner: "Tôi",
+              modified: "18/01/2026",
+              subfolders: [
+                {
+                  id: 21,
+                  name: "Báo cáo tháng",
+                  count: 12,
+                  owner: "Tôi",
+                  modified: "18/01/2026",
+                  subfolders: [],
+                  files: [
+                    {
+                      id: 201,
+                      name: "Báo cáo tháng 1-2026.xlsx",
+                      type: "xlsx",
+                      size: "4.2 MB",
+                      owner: "Tôi",
+                      modified: "18/01/2026",
+                    },
+                  ],
+                },
+              ],
+              files: [],
+            },
+            {
+              id: 3,
+              name: "HẬU CẦN-KỸ THUẬT",
+              count: 28,
+              owner: "Tôi",
+              modified: "14/01/2026",
+              subfolders: [],
+              files: [
+                {
+                  id: 301,
+                  name: "Sổ chấm cơm.pdf",
+                  type: "pdf",
+                  size: "5.1 MB",
+                  owner: "Tôi",
+                  modified: "14/01/2026",
+                },
+                {
+                  id: 302,
+                  name: "Báo cáo.docx",
+                  type: "docx",
+                  size: "890 KB",
+                  owner: "Tôi",
+                  modified: "13/01/2026",
+                },
+              ],
+            },
+            {
+              id: 4,
+              name: "ĐỘNG VIÊN-TUYỂN QUÂN",
+              count: 15,
+              owner: "Tôi",
+              modified: "20/01/2026",
+              subfolders: [
+                {
+                  id: 41,
+                  name: "Kế hoạch",
+                  count: 5,
+                  owner: "Tôi",
+                  modified: "20/01/2026",
+                  subfolders: [],
+                  files: [
+                    {
+                      id: 401,
+                      name: "Kế hoạch tổ chức khám sức khỏe nvqs năm 2026.pdf",
+                      type: "pdf",
+                      size: "12.5 MB",
+                      owner: "Tôi",
+                      modified: "20/01/2026",
+                    },
+                  ],
+                },
+              ],
+              files: [],
+            },
+            {
+              id: 5,
+              name: "VĂN PHÒNG",
+              count: 22,
+              owner: "Tôi",
+              modified: "16/01/2026",
+              subfolders: [
+                {
+                  id: 51,
+                  name: "Lưu trữ công văn",
+                  count: 10,
+                  owner: "Tôi",
+                  modified: "16/01/2026",
+                  subfolders: [],
+                  files: [
+                    {
+                      id: 501,
+                      name: "Kế hoạch báo cáo.pdf",
+                      type: "pdf",
+                      size: "8.3 MB",
+                      owner: "Tôi",
+                      modified: "16/01/2026",
+                    },
+                    {
+                      id: 502,
+                      name: "Tờ trình.pdf",
+                      type: "pdf",
+                      size: "6.7 MB",
+                      owner: "Tôi",
+                      modified: "15/01/2026",
+                    },
+                  ],
+                },
+              ],
+              files: [],
+            },
+          ],
 
-        // Navigate into a folder
-        openFolder(folder) {
-          this.currentFolder = folder;
-        },
+          // Navigate into a folder
+          openFolder(folder) {
+            this.currentFolder = folder;
+          },
 
-        // Handle file selection from input
-        handleFileSelect(event) {
-          const files = event.target.files;
-          if (files && files.length > 0) {
-            Array.from(files).forEach((file) => {
-              const extension = file.name.split(".").pop().toLowerCase();
-              this.uploadedFiles.push({
-                name: file.name,
-                size: this.formatFileSize(file.size),
-                extension: extension,
-                rawSize: file.size,
+          // Handle file selection from input
+          handleFileSelect(event) {
+            const files = event.target.files;
+            if (files && files.length > 0) {
+              Array.from(files).forEach((file) => {
+                const extension = file.name.split(".").pop().toLowerCase();
+                this.uploadedFiles.push({
+                  name: file.name,
+                  size: this.formatFileSize(file.size),
+                  extension: extension,
+                  rawSize: file.size,
+                });
               });
-            });
-          }
-          // Reset input
-          event.target.value = "";
-        },
+            }
+            // Reset input
+            event.target.value = "";
+          },
 
-        // Remove a file from uploaded list
-        removeFile(index) {
-          this.uploadedFiles.splice(index, 1);
-        },
+          // Remove a file from uploaded list
+          removeFile(index) {
+            this.uploadedFiles.splice(index, 1);
+          },
 
-        // Format file size
-        formatFileSize(bytes) {
-          if (bytes === 0) return "0 Bytes";
-          const k = 1024;
-          const sizes = ["Bytes", "KB", "MB", "GB"];
-          const i = Math.floor(Math.log(bytes) / Math.log(k));
-          return (
-            Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i]
-          );
-        },
+          // Format file size
+          formatFileSize(bytes) {
+            if (bytes === 0) return "0 Bytes";
+            const k = 1024;
+            const sizes = ["Bytes", "KB", "MB", "GB"];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return (
+              Math.round((bytes / Math.pow(k, i)) * 100) / 100 + " " + sizes[i]
+            );
+          },
 
-        // Handle file drop (UI only)
-        handleFileDrop(event) {
-          console.log("Files dropped:", event.dataTransfer.files);
-          this.isDragging = false;
-          // In a real application, handle file upload here
-          alert(
-            "Tính năng tải lên sẽ được phát triển trong phiên bản tiếp theo!",
-          );
-        },
+          // Handle file drop (UI only)
+          handleFileDrop(event) {
+            console.log("Files dropped:", event.dataTransfer.files);
+            this.isDragging = false;
+            // In a real application, handle file upload here
+            alert(
+              "Tính năng tải lên sẽ được phát triển trong phiên bản tiếp theo!",
+            );
+          },
 
-        logout() {
-          if (confirm("Bạn có chắc muốn đăng xuất?")) {
-            window.location.href = "index.html";
-          }
-        },
-      };
-    }
-  </script>
-</body>
-
+          logout() {
+            if (confirm("Bạn có chắc muốn đăng xuất?")) {
+              window.location.href = "index.html";
+            }
+          },
+        };
+      }
+    </script>
+  </body>
 </html>

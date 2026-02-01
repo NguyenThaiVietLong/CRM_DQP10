@@ -1,763 +1,1054 @@
 <!doctype html>
 <html lang="vi">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lịch Trực Dân Quân - Phường đội Bình Phú</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script src="notification-system.js"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { olive: "#556B2F" },
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch Trực Dân Quân - Phường đội Bình Phú</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="notification-system.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { olive: "#556B2F" },
+          },
         },
-      },
-    };
-  </script>
-  <style>
-    [x-cloak] {
-      display: none !important;
-    }
+      };
+    </script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
 
-    .material-symbols-outlined {
-      font-variation-settings:
-        "FILL" 0,
-        "wght" 400,
-        "GRAD" 0,
-        "opsz" 24;
-    }
-  </style>
-</head>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
 
-<body class="bg-gray-50 font-sans antialiased" x-data="dutySchedule()" x-init="init()">
-  <div class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full">
-      <div class="flex gap-3 px-2 py-2 mb-4">
-        <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
-        <div class="flex flex-col justify-center">
-          <h1 class="text-gray-900 text-base font-bold">
-            BAN CHQS PHƯỜNG BÌNH PHÚ
-          </h1>
-          <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
-        </div>
-      </div>
-
-      <!-- User Profile -->
-      <div class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20">
-        <div class="flex items-center gap-2">
-          <div class="relative">
-            <div class="size-10 rounded-full bg-olive/20 flex items-center justify-center">
-              <span class="material-symbols-outlined text-olive text-2xl">account_circle</span>
-            </div>
-            <span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"></span>
-          </div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-bold text-gray-900 truncate" x-text="currentUser.fullName || 'Guest'"></p>
-            <p class="text-xs text-gray-600">
-              <span class="px-2 py-0.5 rounded-full text-xs font-medium"
-                :class="{'bg-blue-100 text-blue-700': currentUser.role === 'dqtt', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
-                x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"></span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <nav class="flex flex-col gap-2">
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors" href="index.html">
-          <span class="material-symbols-outlined text-gray-600">home</span>
-          <p class="text-sm font-medium text-gray-600">Trang chủ</p>
-        </a>
-        <a x-show="currentUser.role === 'admin'"
-          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="dashboard-tong-hop.html">
-          <span class="material-symbols-outlined text-gray-600">assessment</span>
-          <p class="text-sm font-medium text-gray-600">Dashboard</p>
-        </a>
-
-        <!-- Hoạt động Submenu -->
-        <div>
-          <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
-            <span class="material-symbols-outlined text-gray-600">event</span>
-            <p class="text-sm font-bold text-gray-700">Hoạt động</p>
-          </div>
-          <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="activity-list.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Danh sách</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="activity-calendar.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Lịch</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
-              href="module-lich-truc.html">
-              <span class="size-1.5 rounded-full bg-olive"></span>
-              <p class="text-sm font-bold">Lịch trực</p>
-            </a>
-          </div>
-        </div>
-        <!-- Nhân sự with submenu -->
-        <div>
-          <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
-            <span class="material-symbols-outlined text-gray-600">group</span>
-            <p class="text-sm font-bold text-gray-700">Nhân sự</p>
-          </div>
-          <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="personnel-tuoi17.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Tuổi 17</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="personnel-nguon.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Nguồn</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="personnel-qndb.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">Quân nhân dự bị</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="personnel-dqtt.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">DQTT</p>
-            </a>
-            <a class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
-              href="personnel-dqcd.html">
-              <span class="size-1.5 rounded-full bg-gray-400"></span>
-              <p class="text-sm font-medium">DQCĐ</p>
-            </a>
-          </div>
-        </div>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="module3-inventory-complete.html">
-          <span class="material-symbols-outlined text-gray-600">inventory_2</span>
-          <p class="text-sm font-medium text-gray-600">Kho</p>
-        </a>
-        <a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-          href="module4-documents-complete.html">
-          <span class="material-symbols-outlined text-gray-600">folder</span>
-          <p class="text-sm font-medium text-gray-600">Tài liệu</p>
-        </a>
-      </nav>
-
-      <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
-        <a @click.prevent="logout()" href="#"
-          class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer">
-          <span class="material-symbols-outlined text-xl">logout</span>
-          <span>Đăng xuất</span>
-        </a>
-      </div>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 flex flex-col overflow-hidden">
-      <!-- Header -->
-      <header class="bg-white border-b border-gray-200 px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-2xl font-bold text-gray-900">
-              Lịch Trực Dân Quân
+  <body
+    class="bg-gray-50 font-sans antialiased"
+    x-data="dutySchedule()"
+    x-init="init()"
+  >
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <aside
+        class="w-64 flex-shrink-0 bg-white border-r border-gray-200 flex flex-col p-4 hidden md:flex h-full"
+      >
+        <div class="flex gap-3 px-2 py-2 mb-4">
+          <img src="logo-dqtv.png" alt="Logo" class="size-10 object-contain" />
+          <div class="flex flex-col justify-center">
+            <h1 class="text-gray-900 text-base font-bold">
+              BAN CHQS PHƯỜNG BÌNH PHÚ
             </h1>
-            <p class="text-sm text-gray-500 mt-1">
-              Quản lý lịch trực tuần cho các tổ dân quân
-            </p>
+            <p class="text-gray-500 text-xs">Hệ thống quản lý</p>
           </div>
-          <div class="flex items-center gap-3">
-            <!-- Notification Bell System -->
-            <div x-data="notificationBell" class="relative">
-              <button @click="toggleDropdown()" class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                :class="{'bg-gray-100': isOpen}">
-                <span class="material-symbols-outlined">notifications</span>
-                <span x-show="unreadCount > 0" class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"></span>
-                <span x-show="unreadCount > 0" x-text="unreadCount"
-                  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"></span>
-              </button>
-              <div x-show="isOpen" @click.away="isOpen = false"
-                class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
-                style="display: none" x-cloak>
-                <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
-                  <h3 class="text-sm font-bold text-gray-900">
-                    Thông báo nhiệm vụ
-                  </h3>
-                  <span class="text-xs text-gray-500" x-text="notifications.length + ' nhiệm vụ'"></span>
-                </div>
-                <div class="max-h-96 overflow-y-auto">
-                  <template x-if="notifications.length === 0">
-                    <div class="p-8 text-center">
-                      <span class="material-symbols-outlined text-4xl text-gray-300">notifications_off</span>
-                      <p class="text-sm text-gray-500 mt-2">
-                        Không có thông báo mới
-                      </p>
-                    </div>
-                  </template>
-                  <div class="divide-y divide-gray-100">
-                    <template x-for="notif in notifications" :key="notif.id">
-                      <div class="p-4 hover:bg-gray-50 transition-colors">
-                        <div class="flex items-start gap-3">
-                          <div class="bg-yellow-100 rounded-lg p-2 flex-shrink-0">
-                            <span class="material-symbols-outlined text-yellow-600 text-xl">assignment</span>
-                          </div>
-                          <div class="flex-1 min-w-0">
-                            <p class="text-sm font-semibold text-gray-900 mb-1" x-text="notif.taskName"></p>
-                            <div class="space-y-1 mb-2">
-                              <p class="text-xs text-gray-600 flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">location_on</span>
-                                <span x-text="notif.location"></span>
-                              </p>
-                              <p class="text-xs text-gray-600 flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">schedule</span>
-                                <span>Thời hạn:
-                                  <span x-text="notif.deadline"></span></span>
-                              </p>
+        </div>
+
+        <!-- User Profile -->
+        <div
+          class="mb-4 p-3 bg-gradient-to-r from-olive/10 to-olive/5 rounded-lg border border-olive/20"
+        >
+          <div class="flex items-center gap-2">
+            <div class="relative">
+              <div
+                class="size-10 rounded-full bg-olive/20 flex items-center justify-center"
+              >
+                <span class="material-symbols-outlined text-olive text-2xl"
+                  >account_circle</span
+                >
+              </div>
+              <span
+                class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white rounded-full"
+              ></span>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p
+                class="text-sm font-bold text-gray-900 truncate"
+                x-text="currentUser.fullName || 'Guest'"
+              ></p>
+              <p class="text-xs text-gray-600">
+                <span
+                  class="px-2 py-0.5 rounded-full text-xs font-medium"
+                  :class="{'bg-blue-100 text-blue-700': currentUser.role === 'dqtt', 'bg-orange-100 text-orange-700': currentUser.role === 'admin'}"
+                  x-text="currentUser.role === 'admin' ? 'Admin' : (currentUser.team || 'DQTT')"
+                ></span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex flex-col gap-2">
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">home</span>
+            <p class="text-sm font-medium text-gray-600">Trang chủ</p>
+          </a>
+          <!-- Dashboard Submenu -->
+          <div x-show="currentUser.role === 'admin'">
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600"
+                >assessment</span
+              >
+              <p class="text-sm font-bold text-gray-700">Dashboard</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-tong-hop.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tổng hợp</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-facebook.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Facebook</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-kho.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Kho</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="dashboard-luc-luong.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lực lượng</p>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hoạt động Submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">event</span>
+              <p class="text-sm font-bold text-gray-700">Hoạt động</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-list.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Danh sách</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="activity-calendar.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Lịch</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-olive/10 text-olive"
+                href="module-lich-truc.html"
+              >
+                <span class="size-1.5 rounded-full bg-olive"></span>
+                <p class="text-sm font-bold">Lịch trực</p>
+              </a>
+            </div>
+          </div>
+          <!-- Nhân sự with submenu -->
+          <div>
+            <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
+              <span class="material-symbols-outlined text-gray-600">group</span>
+              <p class="text-sm font-bold text-gray-700">Nhân sự</p>
+            </div>
+            <div class="ml-6 space-y-1 border-l-2 border-gray-200 pl-3">
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-tuoi17.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Tuổi 17</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-nguon.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Nguồn</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-qndb.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">Quân nhân dự bị</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-dqtt.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">DQTT</p>
+              </a>
+              <a
+                class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-gray-50 text-gray-600"
+                href="personnel-dqcd.html"
+              >
+                <span class="size-1.5 rounded-full bg-gray-400"></span>
+                <p class="text-sm font-medium">DQCĐ</p>
+              </a>
+            </div>
+          </div>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module3-inventory-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >inventory_2</span
+            >
+            <p class="text-sm font-medium text-gray-600">Kho</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="module4-documents-complete.html"
+          >
+            <span class="material-symbols-outlined text-gray-600">folder</span>
+            <p class="text-sm font-medium text-gray-600">Tài liệu</p>
+          </a>
+          <a
+            class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            href="CMS/index.html"
+          >
+            <span class="material-symbols-outlined text-gray-600"
+              >language</span
+            >
+            <p class="text-sm font-medium text-gray-600">Trang thông tin</p>
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-4 border-t border-gray-200 space-y-2">
+          <a
+            @click.prevent="logout()"
+            href="#"
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-bold bg-olive text-white hover:bg-olive/90 transition-colors justify-center cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-xl">logout</span>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header class="bg-white border-b border-gray-200 px-6 py-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h1 class="text-2xl font-bold text-gray-900">
+                Lịch Trực Dân Quân
+              </h1>
+              <p class="text-sm text-gray-500 mt-1">
+                Quản lý lịch trực tuần cho các tổ dân quân
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <!-- Notification Bell System -->
+              <div x-data="notificationBell" class="relative">
+                <button
+                  @click="toggleDropdown()"
+                  class="relative p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  :class="{'bg-gray-100': isOpen}"
+                >
+                  <span class="material-symbols-outlined">notifications</span>
+                  <span
+                    x-show="unreadCount > 0"
+                    class="absolute top-2 right-2 size-2 bg-red-500 rounded-full"
+                  ></span>
+                  <span
+                    x-show="unreadCount > 0"
+                    x-text="unreadCount"
+                    class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] text-center"
+                  ></span>
+                </button>
+                <div
+                  x-show="isOpen"
+                  @click.away="isOpen = false"
+                  class="absolute right-0 mt-2 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 z-50"
+                  style="display: none"
+                  x-cloak
+                >
+                  <div
+                    class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
+                  >
+                    <h3 class="text-sm font-bold text-gray-900">
+                      Thông báo nhiệm vụ
+                    </h3>
+                    <span
+                      class="text-xs text-gray-500"
+                      x-text="notifications.length + ' nhiệm vụ'"
+                    ></span>
+                  </div>
+                  <div class="max-h-96 overflow-y-auto">
+                    <template x-if="notifications.length === 0">
+                      <div class="p-8 text-center">
+                        <span
+                          class="material-symbols-outlined text-4xl text-gray-300"
+                          >notifications_off</span
+                        >
+                        <p class="text-sm text-gray-500 mt-2">
+                          Không có thông báo mới
+                        </p>
+                      </div>
+                    </template>
+                    <div class="divide-y divide-gray-100">
+                      <template x-for="notif in notifications" :key="notif.id">
+                        <div class="p-4 hover:bg-gray-50 transition-colors">
+                          <div class="flex items-start gap-3">
+                            <div
+                              class="bg-yellow-100 rounded-lg p-2 flex-shrink-0"
+                            >
+                              <span
+                                class="material-symbols-outlined text-yellow-600 text-xl"
+                                >assignment</span
+                              >
                             </div>
-                            <div class="flex gap-2">
-                              <a :href="'activity-detail.html?id=' + notif.activityId"
-                                class="text-xs text-olive hover:underline font-medium">Xem chi tiết</a>
-                              <button @click="confirmRead(notif.id)"
-                                class="text-xs text-blue-600 hover:underline font-medium">
-                                Xác nhận đã đọc
-                              </button>
+                            <div class="flex-1 min-w-0">
+                              <p
+                                class="text-sm font-semibold text-gray-900 mb-1"
+                                x-text="notif.taskName"
+                              ></p>
+                              <div class="space-y-1 mb-2">
+                                <p
+                                  class="text-xs text-gray-600 flex items-center gap-1"
+                                >
+                                  <span
+                                    class="material-symbols-outlined text-[14px]"
+                                    >location_on</span
+                                  >
+                                  <span x-text="notif.location"></span>
+                                </p>
+                                <p
+                                  class="text-xs text-gray-600 flex items-center gap-1"
+                                >
+                                  <span
+                                    class="material-symbols-outlined text-[14px]"
+                                    >schedule</span
+                                  >
+                                  <span
+                                    >Thời hạn:
+                                    <span x-text="notif.deadline"></span
+                                  ></span>
+                                </p>
+                              </div>
+                              <div class="flex gap-2">
+                                <a
+                                  :href="'activity-detail.html?id=' + notif.activityId"
+                                  class="text-xs text-olive hover:underline font-medium"
+                                  >Xem chi tiết</a
+                                >
+                                <button
+                                  @click="confirmRead(notif.id)"
+                                  class="text-xs text-blue-600 hover:underline font-medium"
+                                >
+                                  Xác nhận đã đọc
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </template>
+                      </template>
+                    </div>
+                  </div>
+                  <div
+                    x-show="notifications.length > 0"
+                    class="px-4 py-3 border-t border-gray-200 bg-gray-50"
+                  >
+                    <button
+                      @click="markAllRead()"
+                      class="text-xs text-olive hover:underline font-medium w-full text-center"
+                    >
+                      Đánh dấu tất cả đã đọc
+                    </button>
                   </div>
                 </div>
-                <div x-show="notifications.length > 0" class="px-4 py-3 border-t border-gray-200 bg-gray-50">
-                  <button @click="markAllRead()"
-                    class="text-xs text-olive hover:underline font-medium w-full text-center">
-                    Đánh dấu tất cả đã đọc
-                  </button>
-                </div>
               </div>
-            </div>
 
-            <!-- Week Navigation -->
-            <button @click="previousWeek()" class="p-2 hover:bg-gray-100 rounded-lg">
-              <span class="material-symbols-outlined">chevron_left</span>
-            </button>
-            <div class="text-center min-w-[200px]">
-              <p class="text-lg font-bold text-gray-900" x-text="currentWeekText"></p>
+              <!-- Week Navigation -->
+              <button
+                @click="previousWeek()"
+                class="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <span class="material-symbols-outlined">chevron_left</span>
+              </button>
+              <div class="text-center min-w-[200px]">
+                <p
+                  class="text-lg font-bold text-gray-900"
+                  x-text="currentWeekText"
+                ></p>
+              </div>
+              <button
+                @click="nextWeek()"
+                class="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <span class="material-symbols-outlined">chevron_right</span>
+              </button>
+              <button
+                x-show="currentUser.role === 'admin'"
+                @click="saveSchedule()"
+                class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 text-sm font-semibold flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-lg">save</span>
+                <span>Lưu lịch</span>
+              </button>
+              <button
+                @click="exportExcel()"
+                class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-semibold flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-lg">download</span>
+                <span>Xuất Excel</span>
+              </button>
             </div>
-            <button @click="nextWeek()" class="p-2 hover:bg-gray-100 rounded-lg">
-              <span class="material-symbols-outlined">chevron_right</span>
-            </button>
-            <button x-show="currentUser.role === 'admin'" @click="saveSchedule()"
-              class="px-4 py-2 bg-olive text-white rounded-lg hover:bg-olive/90 text-sm font-semibold flex items-center gap-2">
-              <span class="material-symbols-outlined text-lg">save</span>
-              <span>Lưu lịch</span>
-            </button>
-            <button @click="exportExcel()"
-              class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm font-semibold flex items-center gap-2">
-              <span class="material-symbols-outlined text-lg">download</span>
-              <span>Xuất Excel</span>
-            </button>
+          </div>
+        </header>
+
+        <!-- Schedule Table -->
+        <div class="flex-1 overflow-auto p-6">
+          <div
+            class="bg-white rounded-lg border border-gray-200 overflow-x-auto"
+          >
+            <table class="w-full">
+              <thead class="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th
+                    class="px-4 py-3 text-left text-sm font-bold text-gray-700 sticky left-0 bg-gray-50 z-10 min-w-[120px]"
+                  >
+                    Thứ/Ngày
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    Trực chỉ huy
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    Trực ban
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    Trực công văn
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    Trực nội vụ
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    Trực cơm
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[200px]"
+                  >
+                    Trực trụ sở HĐND - UBND; Đảng ủy
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    DQTT phụ trách A
+                  </th>
+                  <th
+                    class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]"
+                  >
+                    DQCD Trực - Tuần tra
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <template x-for="(day, idx) in weekDays" :key="day.date">
+                  <tr class="border-b border-gray-200 hover:bg-gray-50">
+                    <!-- Day column (sticky) -->
+                    <td
+                      class="px-4 py-3 font-semibold text-gray-700 bg-gray-50 sticky left-0 z-10"
+                    >
+                      <div x-text="day.dayName"></div>
+                      <div
+                        class="text-xs font-normal text-gray-500"
+                        x-text="day.dateStr"
+                      ></div>
+                    </td>
+
+                    <!-- Trực chỉ huy -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucChiHuy')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucChiHuy"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucChiHuy'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Trực ban -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucBan')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucBan"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucBan'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Trực công văn -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucCongVan')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucCongVan"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucCongVan'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Trực nội vụ -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucNoiVu')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucNoiVu"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucNoiVu'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Trực cơm -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucCom')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucCom"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucCom'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- Trực trụ sở HĐND - UBND; Đảng ủy -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'trucTruSo')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.trucTruSo"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucTruSo'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- DQTT phụ trách A -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'dqttPhuTrach')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.dqttPhuTrach"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'dqttPhuTrach'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+
+                    <!-- DQCD Trực - Tuần tra -->
+                    <td class="px-4 py-3 text-center relative">
+                      <div
+                        @click="handleCellClick(idx, 'dqcdTruc')"
+                        :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
+                        x-text="day.dqcdTruc"
+                      ></div>
+                      <div
+                        x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'dqcdTruc'"
+                        @click.away="editingCell = null"
+                        class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
+                        x-cloak
+                      >
+                        <input
+                          x-model="searchQuery"
+                          type="text"
+                          placeholder="Tìm kiếm..."
+                          class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive"
+                        />
+                        <div class="max-h-60 overflow-y-auto">
+                          <template
+                            x-for="user in filteredUsers"
+                            :key="user.name"
+                          >
+                            <div
+                              @click="selectUser(user.name)"
+                              class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
+                              x-text="user.name + ' (' + user.team + ')'"
+                            ></div>
+                          </template>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Notes -->
+          <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <h3 class="font-bold text-blue-900 mb-2">📋 Hướng dẫn:</h3>
+            <ul class="text-sm text-blue-800 space-y-1">
+              <li>
+                <span x-show="currentUser.role === 'admin'"
+                  >• Click vào ô để chọn người trực từ danh sách</span
+                ><span x-show="currentUser.role !== 'admin'"
+                  >• Bạn đang ở chế độ xem (chỉ Admin mới có thể chỉnh
+                  sửa)</span
+                >
+              </li>
+              <li>• Trực chỉ huy luân phiên: Vũ → Tuấn → Quân → Phát</li>
+              <li>
+                • Các vị trí khác được gán ngẫu nhiên từ danh sách dân quân
+              </li>
+              <li x-show="currentUser.role === 'admin'">
+                • Nhấn "Lưu lịch" để lưu thay đổi
+              </li>
+              <li>• Nhấn "Xuất Excel" để tải file CSV</li>
+            </ul>
           </div>
         </div>
-      </header>
+      </main>
+    </div>
 
-      <!-- Schedule Table -->
-      <div class="flex-1 overflow-auto p-6">
-        <div class="bg-white rounded-lg border border-gray-200 overflow-x-auto">
-          <table class="w-full">
-            <thead class="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th
-                  class="px-4 py-3 text-left text-sm font-bold text-gray-700 sticky left-0 bg-gray-50 z-10 min-w-[120px]">
-                  Thứ/Ngày
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  Trực chỉ huy
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  Trực ban
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  Trực công văn
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  Trực nội vụ
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  Trực cơm
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[200px]">
-                  Trực trụ sở HĐND - UBND; Đảng ủy
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  DQTT phụ trách A
-                </th>
-                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 min-w-[150px]">
-                  DQCD Trực - Tuần tra
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <template x-for="(day, idx) in weekDays" :key="day.date">
-                <tr class="border-b border-gray-200 hover:bg-gray-50">
-                  <!-- Day column (sticky) -->
-                  <td class="px-4 py-3 font-semibold text-gray-700 bg-gray-50 sticky left-0 z-10">
-                    <div x-text="day.dayName"></div>
-                    <div class="text-xs font-normal text-gray-500" x-text="day.dateStr"></div>
-                  </td>
+    <script>
+      function dutySchedule() {
+        return {
+          currentUser: {},
+          currentWeekStart: null,
+          weekDays: [],
+          allUsers: [],
+          commanders: ["Vũ", "Tuấn", "Quân", "Phát"],
+          editingCell: null,
+          searchQuery: "",
 
-                  <!-- Trực chỉ huy -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucChiHuy')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucChiHuy"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucChiHuy'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
+          init() {
+            const session = localStorage.getItem("dqp10_session");
+            if (!session) {
+              window.location.href = "login.html";
+              return;
+            }
+            this.currentUser = JSON.parse(session);
+            this.loadUsers();
+            this.currentWeekStart = this.getMonday(new Date());
+            this.loadSchedule();
+          },
 
-                  <!-- Trực ban -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucBan')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucBan"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucBan'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
+          loadUsers() {
+            const stored = localStorage.getItem("dqp10_users");
+            if (stored) {
+              this.allUsers = JSON.parse(stored);
+            } else {
+              // If no users in localStorage, create default list and save it
+              this.allUsers = [
+                // Tổ 1
+                { name: "Ngô Trương Định", team: "Tổ 1" },
+                { name: "Ngô Hoài Bảo", team: "Tổ 1" },
+                { name: "Nguyễn Lý Minh Quang", team: "Tổ 1" },
+                { name: "Nguyễn Thành Tài", team: "Tổ 1" },
+                // Tổ 2
+                { name: "Lý Triệu An", team: "Tổ 2" },
+                { name: "Phạm Gia Bảo", team: "Tổ 2" },
+                { name: "Lâm Ngọc Huyền", team: "Tổ 2" },
+                { name: "Đoàn Quốc Đạt", team: "Tổ 2" },
+                { name: "Nguyễn Thanh Nhân", team: "Tổ 2" },
+                // Tổ 3
+                { name: "Phan Phong Phú", team: "Tổ 3" },
+                { name: "Trương Giang Minh Tùng", team: "Tổ 3" },
+                { name: "Lương Triệu Phát", team: "Tổ 3" },
+                { name: "Nguyễn Tấn Thuận", team: "Tổ 3" },
+                { name: "Nguyễn Ngọc Tiến", team: "Tổ 3" },
+                // Tổ 4
+                { name: "Lại Tu Trung", team: "Tổ 4" },
+                { name: "Kiều Gia Huy", team: "Tổ 4" },
+                { name: "Lâm Ngọc Yến", team: "Tổ 4" },
+                { name: "Trần Minh Hiếu", team: "Tổ 4" },
+                // Tổ 5
+                { name: "Võ Công Minh", team: "Tổ 5" },
+                { name: "Võ Trần Vinh", team: "Tổ 5" },
+                { name: "Nguyễn Đăng Đông", team: "Tổ 5" },
+                { name: "Lê Minh Hoàng", team: "Tổ 5" },
+                // Tổ 6
+                { name: "Trần Hoàng Phi", team: "Tổ 6" },
+                { name: "Lưu Vĩnh Cơ", team: "Tổ 6" },
+                { name: "Lê Hải Triều", team: "Tổ 6" },
+                { name: "Hoàng Phạm Thế Lộc", team: "Tổ 6" },
+                { name: "Vương Quý Thắng", team: "Tổ 6" },
+                // Tổ 7
+                { name: "La Gia Huy", team: "Tổ 7" },
+                { name: "Nguyễn Trung Kiên", team: "Tổ 7" },
+                { name: "Nguyễn Ngọc Sơn", team: "Tổ 7" },
+                { name: "Trần Anh Tuấn", team: "Tổ 7" },
+                // Tổ 8
+                { name: "Trương Tấn Khương", team: "Tổ 8" },
+                { name: "Nguyễn Ngô Hoàng Phương", team: "Tổ 8" },
+                { name: "Đặng Trung Hảo", team: "Tổ 8" },
+                { name: "Lê Gia Triết", team: "Tổ 8" },
+                // Tổ 9
+                { name: "Cao Thanh Long", team: "Tổ 9" },
+                { name: "Lê Huỳnh Ái Nhi", team: "Tổ 9" },
+                { name: "Nguyễn Anh Chiến", team: "Tổ 9" },
+                { name: "Hà Thanh Huy", team: "Tổ 9" },
+              ];
+              localStorage.setItem(
+                "dqp10_users",
+                JSON.stringify(this.allUsers),
+              );
+            }
+          },
 
-                  <!-- Trực công văn -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucCongVan')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucCongVan"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucCongVan'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
+          getMonday(date) {
+            const d = new Date(date);
+            const day = d.getDay();
+            const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+            return new Date(d.setDate(diff));
+          },
 
-                  <!-- Trực nội vụ -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucNoiVu')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucNoiVu"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucNoiVu'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
+          loadSchedule() {
+            const weekKey = this.getWeekKey();
+            const saved = localStorage.getItem(`dqp10_schedule_${weekKey}`);
 
-                  <!-- Trực cơm -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucCom')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucCom"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucCom'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
+            if (saved) {
+              this.weekDays = JSON.parse(saved);
+            } else {
+              this.generateSchedule();
+            }
+          },
 
-                  <!-- Trực trụ sở HĐND - UBND; Đảng ủy -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'trucTruSo')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.trucTruSo"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'trucTruSo'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
-
-                  <!-- DQTT phụ trách A -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'dqttPhuTrach')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.dqttPhuTrach"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'dqttPhuTrach'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
-
-                  <!-- DQCD Trực - Tuần tra -->
-                  <td class="px-4 py-3 text-center relative">
-                    <div @click="handleCellClick(idx, 'dqcdTruc')"
-                      :class="isEditable ? 'cursor-pointer hover:bg-gray-100 rounded p-2' : 'cursor-default p-2'"
-                      x-text="day.dqcdTruc"></div>
-                    <div x-show="editingCell && editingCell.dayIdx === idx && editingCell.field === 'dqcdTruc'"
-                      @click.away="editingCell = null"
-                      class="absolute z-50 bg-white border border-gray-300 rounded-lg shadow-xl p-3 w-64 mt-1 left-1/2 transform -translate-x-1/2"
-                      x-cloak>
-                      <input x-model="searchQuery" type="text" placeholder="Tìm kiếm..."
-                        class="w-full px-3 py-2 border border-gray-300 rounded-lg mb-2 text-sm focus:outline-none focus:ring-2 focus:ring-olive" />
-                      <div class="max-h-60 overflow-y-auto">
-                        <template x-for="user in filteredUsers" :key="user.name">
-                          <div @click="selectUser(user.name)"
-                            class="px-3 py-2 hover:bg-olive/10 cursor-pointer rounded text-sm"
-                            x-text="user.name + ' (' + user.team + ')'"></div>
-                        </template>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </template>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Notes -->
-        <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 class="font-bold text-blue-900 mb-2">📋 Hướng dẫn:</h3>
-          <ul class="text-sm text-blue-800 space-y-1">
-            <li>
-              <span x-show="currentUser.role === 'admin'">• Click vào ô để chọn người trực từ danh sách</span><span
-                x-show="currentUser.role !== 'admin'">• Bạn đang ở chế độ xem (chỉ Admin mới có thể chỉnh
-                sửa)</span>
-            </li>
-            <li>• Trực chỉ huy luân phiên: Vũ → Tuấn → Quân → Phát</li>
-            <li>
-              • Các vị trí khác được gán ngẫu nhiên từ danh sách dân quân
-            </li>
-            <li x-show="currentUser.role === 'admin'">
-              • Nhấn "Lưu lịch" để lưu thay đổi
-            </li>
-            <li>• Nhấn "Xuất Excel" để tải file CSV</li>
-          </ul>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <script>
-    function dutySchedule() {
-      return {
-        currentUser: {},
-        currentWeekStart: null,
-        weekDays: [],
-        allUsers: [],
-        commanders: ["Vũ", "Tuấn", "Quân", "Phát"],
-        editingCell: null,
-        searchQuery: "",
-
-        init() {
-          const session = localStorage.getItem("dqp10_session");
-          if (!session) {
-            window.location.href = "login.html";
-            return;
-          }
-          this.currentUser = JSON.parse(session);
-          this.loadUsers();
-          this.currentWeekStart = this.getMonday(new Date());
-          this.loadSchedule();
-        },
-
-        loadUsers() {
-          const stored = localStorage.getItem("dqp10_users");
-          if (stored) {
-            this.allUsers = JSON.parse(stored);
-          } else {
-            // If no users in localStorage, create default list and save it
-            this.allUsers = [
-              // Tổ 1
-              { name: "Ngô Trương Định", team: "Tổ 1" },
-              { name: "Ngô Hoài Bảo", team: "Tổ 1" },
-              { name: "Nguyễn Lý Minh Quang", team: "Tổ 1" },
-              { name: "Nguyễn Thành Tài", team: "Tổ 1" },
-              // Tổ 2
-              { name: "Lý Triệu An", team: "Tổ 2" },
-              { name: "Phạm Gia Bảo", team: "Tổ 2" },
-              { name: "Lâm Ngọc Huyền", team: "Tổ 2" },
-              { name: "Đoàn Quốc Đạt", team: "Tổ 2" },
-              { name: "Nguyễn Thanh Nhân", team: "Tổ 2" },
-              // Tổ 3
-              { name: "Phan Phong Phú", team: "Tổ 3" },
-              { name: "Trương Giang Minh Tùng", team: "Tổ 3" },
-              { name: "Lương Triệu Phát", team: "Tổ 3" },
-              { name: "Nguyễn Tấn Thuận", team: "Tổ 3" },
-              { name: "Nguyễn Ngọc Tiến", team: "Tổ 3" },
-              // Tổ 4
-              { name: "Lại Tu Trung", team: "Tổ 4" },
-              { name: "Kiều Gia Huy", team: "Tổ 4" },
-              { name: "Lâm Ngọc Yến", team: "Tổ 4" },
-              { name: "Trần Minh Hiếu", team: "Tổ 4" },
-              // Tổ 5
-              { name: "Võ Công Minh", team: "Tổ 5" },
-              { name: "Võ Trần Vinh", team: "Tổ 5" },
-              { name: "Nguyễn Đăng Đông", team: "Tổ 5" },
-              { name: "Lê Minh Hoàng", team: "Tổ 5" },
-              // Tổ 6
-              { name: "Trần Hoàng Phi", team: "Tổ 6" },
-              { name: "Lưu Vĩnh Cơ", team: "Tổ 6" },
-              { name: "Lê Hải Triều", team: "Tổ 6" },
-              { name: "Hoàng Phạm Thế Lộc", team: "Tổ 6" },
-              { name: "Vương Quý Thắng", team: "Tổ 6" },
-              // Tổ 7
-              { name: "La Gia Huy", team: "Tổ 7" },
-              { name: "Nguyễn Trung Kiên", team: "Tổ 7" },
-              { name: "Nguyễn Ngọc Sơn", team: "Tổ 7" },
-              { name: "Trần Anh Tuấn", team: "Tổ 7" },
-              // Tổ 8
-              { name: "Trương Tấn Khương", team: "Tổ 8" },
-              { name: "Nguyễn Ngô Hoàng Phương", team: "Tổ 8" },
-              { name: "Đặng Trung Hảo", team: "Tổ 8" },
-              { name: "Lê Gia Triết", team: "Tổ 8" },
-              // Tổ 9
-              { name: "Cao Thanh Long", team: "Tổ 9" },
-              { name: "Lê Huỳnh Ái Nhi", team: "Tổ 9" },
-              { name: "Nguyễn Anh Chiến", team: "Tổ 9" },
-              { name: "Hà Thanh Huy", team: "Tổ 9" },
+          generateSchedule() {
+            this.weekDays = [];
+            const dayNames = [
+              "Thứ 2",
+              "Thứ 3",
+              "Thứ 4",
+              "Thứ 5",
+              "Thứ 6",
+              "Thứ 7",
+              "Chủ nhật",
             ];
-            localStorage.setItem(
-              "dqp10_users",
-              JSON.stringify(this.allUsers),
+
+            // Calculate base day index from epoch for consistent rotation
+            const epochStart = new Date(2026, 0, 20); // 20/01/2026 (Monday)
+            const daysSinceEpoch = Math.floor(
+              (this.currentWeekStart - epochStart) / (1000 * 60 * 60 * 24),
             );
-          }
-        },
 
-        getMonday(date) {
-          const d = new Date(date);
-          const day = d.getDay();
-          const diff = d.getDate() - day + (day === 0 ? -6 : 1);
-          return new Date(d.setDate(diff));
-        },
+            for (let i = 0; i < 7; i++) {
+              const date = new Date(this.currentWeekStart);
+              date.setDate(date.getDate() + i);
 
-        loadSchedule() {
-          const weekKey = this.getWeekKey();
-          const saved = localStorage.getItem(`dqp10_schedule_${weekKey}`);
+              // Commander rotates DAILY (not weekly)
+              const absoluteDayIndex = daysSinceEpoch + i;
+              const commanderIdx = absoluteDayIndex % 4;
 
-          if (saved) {
-            this.weekDays = JSON.parse(saved);
-          } else {
-            this.generateSchedule();
-          }
-        },
+              // DQCD rotation: A1+A13, A2+A14, ..., A12+A24, then repeat
+              const dqcdIdx = absoluteDayIndex % 12; // 0-11
+              const dqcdFirst = `A${dqcdIdx + 1}`;
+              const dqcdSecond = `A${dqcdIdx + 13}`;
 
-        generateSchedule() {
-          this.weekDays = [];
-          const dayNames = [
-            "Thứ 2",
-            "Thứ 3",
-            "Thứ 4",
-            "Thứ 5",
-            "Thứ 6",
-            "Thứ 7",
-            "Chủ nhật",
-          ];
+              this.weekDays.push({
+                date: date.toISOString(),
+                dayName: dayNames[i],
+                dateStr: `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}`,
+                trucChiHuy: this.commanders[commanderIdx],
+                trucBan: this.getRandomUser(),
+                trucCongVan: this.getRandomUser(),
+                trucNoiVu: this.getRandomUser(),
+                trucCom: this.getRandomUser(),
+                trucTruSo: this.getRandomUser(),
+                dqttPhuTrach: this.getRandomUser(),
+                dqcdTruc: `${dqcdFirst}, ${dqcdSecond}`,
+              });
+            }
+          },
 
-          // Calculate base day index from epoch for consistent rotation
-          const epochStart = new Date(2026, 0, 20); // 20/01/2026 (Monday)
-          const daysSinceEpoch = Math.floor(
-            (this.currentWeekStart - epochStart) / (1000 * 60 * 60 * 24),
-          );
+          getWeekNumber(date) {
+            const d = new Date(date);
+            d.setHours(0, 0, 0, 0);
+            d.setDate(d.getDate() + 4 - (d.getDay() || 7));
+            const yearStart = new Date(d.getFullYear(), 0, 1);
+            return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+          },
 
-          for (let i = 0; i < 7; i++) {
-            const date = new Date(this.currentWeekStart);
-            date.setDate(date.getDate() + i);
+          getRandomUser() {
+            return this.allUsers[
+              Math.floor(Math.random() * this.allUsers.length)
+            ].name;
+          },
 
-            // Commander rotates DAILY (not weekly)
-            const absoluteDayIndex = daysSinceEpoch + i;
-            const commanderIdx = absoluteDayIndex % 4;
+          getWeekKey() {
+            return `${this.currentWeekStart.getFullYear()}-W${this.getWeekNumber(this.currentWeekStart)}`;
+          },
 
-            // DQCD rotation: A1+A13, A2+A14, ..., A12+A24, then repeat
-            const dqcdIdx = absoluteDayIndex % 12; // 0-11
-            const dqcdFirst = `A${dqcdIdx + 1}`;
-            const dqcdSecond = `A${dqcdIdx + 13}`;
+          get currentWeekText() {
+            const end = new Date(this.currentWeekStart);
+            end.setDate(end.getDate() + 6);
+            return `Tuần ${this.getWeekNumber(this.currentWeekStart)}: ${this.formatDate(this.currentWeekStart)} - ${this.formatDate(end)}`;
+          },
 
-            this.weekDays.push({
-              date: date.toISOString(),
-              dayName: dayNames[i],
-              dateStr: `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}`,
-              trucChiHuy: this.commanders[commanderIdx],
-              trucBan: this.getRandomUser(),
-              trucCongVan: this.getRandomUser(),
-              trucNoiVu: this.getRandomUser(),
-              trucCom: this.getRandomUser(),
-              trucTruSo: this.getRandomUser(),
-              dqttPhuTrach: this.getRandomUser(),
-              dqcdTruc: `${dqcdFirst}, ${dqcdSecond}`,
+          formatDate(date) {
+            return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
+          },
+
+          get isEditable() {
+            return this.currentUser.role === "admin";
+          },
+
+          get filteredUsers() {
+            if (!this.searchQuery) return this.allUsers;
+            return this.allUsers.filter((user) =>
+              user.name.toLowerCase().includes(this.searchQuery.toLowerCase()),
+            );
+          },
+
+          handleCellClick(dayIdx, field) {
+            if (!this.isEditable) return;
+            this.editingCell = { dayIdx, field };
+            this.searchQuery = "";
+          },
+
+          selectUser(userName) {
+            if (!this.editingCell) return;
+            const { dayIdx, field } = this.editingCell;
+            this.weekDays[dayIdx][field] = userName;
+            this.editingCell = null;
+            this.searchQuery = "";
+          },
+
+          saveSchedule() {
+            const weekKey = this.getWeekKey();
+            localStorage.setItem(
+              `dqp10_schedule_${weekKey}`,
+              JSON.stringify(this.weekDays),
+            );
+            alert("✅ Đã lưu lịch trực!");
+          },
+
+          previousWeek() {
+            this.currentWeekStart.setDate(this.currentWeekStart.getDate() - 7);
+            this.currentWeekStart = new Date(this.currentWeekStart);
+            this.loadSchedule();
+          },
+
+          nextWeek() {
+            this.currentWeekStart.setDate(this.currentWeekStart.getDate() + 7);
+            this.currentWeekStart = new Date(this.currentWeekStart);
+            this.loadSchedule();
+          },
+
+          exportExcel() {
+            let csv =
+              "Thứ/Ngày,Trực chỉ huy,Trực ban,Trực công văn,Trực nội vụ,Trực cơm,Trực trụ sở HĐND - UBND; Đảng ủy,DQTT phụ trách A,DQCD Trực - Tuần tra\n";
+
+            this.weekDays.forEach((day) => {
+              csv += `"${day.dayName} (${day.dateStr})","${day.trucChiHuy}","${day.trucBan}","${day.trucCongVan}","${day.trucNoiVu}","${day.trucCom}","${day.trucTruSo}","${day.dqttPhuTrach}","${day.dqcdTruc}"\n`;
             });
-          }
-        },
 
-        getWeekNumber(date) {
-          const d = new Date(date);
-          d.setHours(0, 0, 0, 0);
-          d.setDate(d.getDate() + 4 - (d.getDay() || 7));
-          const yearStart = new Date(d.getFullYear(), 0, 1);
-          return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-        },
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = `lich-truc-${this.getWeekKey()}.csv`;
+            link.click();
 
-        getRandomUser() {
-          return this.allUsers[
-            Math.floor(Math.random() * this.allUsers.length)
-          ].name;
-        },
+            alert("✅ Đã xuất file CSV!");
+          },
 
-        getWeekKey() {
-          return `${this.currentWeekStart.getFullYear()}-W${this.getWeekNumber(this.currentWeekStart)}`;
-        },
-
-        get currentWeekText() {
-          const end = new Date(this.currentWeekStart);
-          end.setDate(end.getDate() + 6);
-          return `Tuần ${this.getWeekNumber(this.currentWeekStart)}: ${this.formatDate(this.currentWeekStart)} - ${this.formatDate(end)}`;
-        },
-
-        formatDate(date) {
-          return `${String(date.getDate()).padStart(2, "0")}/${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
-        },
-
-        get isEditable() {
-          return this.currentUser.role === "admin";
-        },
-
-        get filteredUsers() {
-          if (!this.searchQuery) return this.allUsers;
-          return this.allUsers.filter((user) =>
-            user.name.toLowerCase().includes(this.searchQuery.toLowerCase()),
-          );
-        },
-
-        handleCellClick(dayIdx, field) {
-          if (!this.isEditable) return;
-          this.editingCell = { dayIdx, field };
-          this.searchQuery = "";
-        },
-
-        selectUser(userName) {
-          if (!this.editingCell) return;
-          const { dayIdx, field } = this.editingCell;
-          this.weekDays[dayIdx][field] = userName;
-          this.editingCell = null;
-          this.searchQuery = "";
-        },
-
-        saveSchedule() {
-          const weekKey = this.getWeekKey();
-          localStorage.setItem(
-            `dqp10_schedule_${weekKey}`,
-            JSON.stringify(this.weekDays),
-          );
-          alert("✅ Đã lưu lịch trực!");
-        },
-
-        previousWeek() {
-          this.currentWeekStart.setDate(this.currentWeekStart.getDate() - 7);
-          this.currentWeekStart = new Date(this.currentWeekStart);
-          this.loadSchedule();
-        },
-
-        nextWeek() {
-          this.currentWeekStart.setDate(this.currentWeekStart.getDate() + 7);
-          this.currentWeekStart = new Date(this.currentWeekStart);
-          this.loadSchedule();
-        },
-
-        exportExcel() {
-          let csv =
-            "Thứ/Ngày,Trực chỉ huy,Trực ban,Trực công văn,Trực nội vụ,Trực cơm,Trực trụ sở HĐND - UBND; Đảng ủy,DQTT phụ trách A,DQCD Trực - Tuần tra\n";
-
-          this.weekDays.forEach((day) => {
-            csv += `"${day.dayName} (${day.dateStr})","${day.trucChiHuy}","${day.trucBan}","${day.trucCongVan}","${day.trucNoiVu}","${day.trucCom}","${day.trucTruSo}","${day.dqttPhuTrach}","${day.dqcdTruc}"\n`;
-          });
-
-          const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = `lich-truc-${this.getWeekKey()}.csv`;
-          link.click();
-
-          alert("✅ Đã xuất file CSV!");
-        },
-
-        logout() {
-          localStorage.removeItem("dqp10_session");
-          window.location.href = "login.html";
-        },
-      };
-    }
-  </script>
-</body>
-
+          logout() {
+            localStorage.removeItem("dqp10_session");
+            window.location.href = "login.html";
+          },
+        };
+      }
+    </script>
+  </body>
 </html>

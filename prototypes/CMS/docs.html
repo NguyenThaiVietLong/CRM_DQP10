@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Văn Bản Chỉ Đạo - Dân Quân Tự Vệ Phường Bình Phú</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#546a2f", // Olive green - unified color scheme
+              secondary: "#ffb300", // Accent gold
+              "background-light": "#f3f4f6", // Gray-100
+              "background-dark": "#111827", // Gray-900
+              "surface-light": "#ffffff",
+              "surface-dark": "#1f2937", // Gray-800
+            },
+            fontFamily: {
+              display: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-display transition-colors duration-200 flex flex-col min-h-screen"
+  >
+    <header class="bg-primary text-white shadow-lg sticky top-0 z-50">
+      <div
+        class="container mx-auto px-4 py-3 flex justify-between items-center"
+      >
+        <div class="flex items-center space-x-3">
+          <div
+            class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary font-bold text-xl shadow-inner"
+          >
+            <span class="material-icons">shield</span>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold uppercase tracking-wider leading-none">
+              BCH Quân Sự
+            </h1>
+            <p
+              class="text-xs text-green-100 opacity-90 uppercase tracking-widest"
+            >
+              Phường Bình Phú
+            </p>
+          </div>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium">
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="index.html"
+            >Trang Chủ</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="introduction.html"
+            >Giới Thiệu</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="news.html"
+            >Tin Tức - Sự Kiện</a
+          >
+          <a
+            class="text-secondary py-2 border-b-2 border-secondary"
+            href="docs.html"
+            >Văn Bản Chỉ Đạo</a
+          >
+          <a
+            class="hover:text-secondary transition-colors py-2 border-b-2 border-transparent hover:border-secondary"
+            href="contact.html"
+            >Liên Hệ</a
+          >
+        </nav>
+        <div class="flex items-center space-x-4">
+          <button
+            class="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors focus:outline-none"
+          >
+            <span class="material-icons text-white text-sm">search</span>
+          </button>
+          <a
+            class="hidden sm:inline-block bg-secondary hover:bg-yellow-500 text-primary px-4 py-2 rounded font-bold text-sm transition-colors shadow-md"
+            href="admin_news.html"
+          >
+            Đăng Nhập
+          </a>
+          <button class="md:hidden text-white focus:outline-none">
+            <span class="material-icons">menu</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div
+      class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    >
+      <div class="container mx-auto px-4 py-8">
+        <div
+          class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+        >
+          <div>
+            <h2
+              class="text-3xl font-bold text-primary dark:text-green-400 uppercase"
+            >
+              Văn Bản Chỉ Đạo
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              Hệ thống văn bản pháp luật, hướng dẫn và chỉ thị
+            </p>
+          </div>
+          <nav
+            aria-label="Breadcrumb"
+            class="flex text-sm text-gray-500 dark:text-gray-400"
+          >
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+              <li class="inline-flex items-center">
+                <a
+                  class="inline-flex items-center hover:text-primary dark:hover:text-white"
+                  href="#"
+                >
+                  <span class="material-icons text-sm mr-2">home</span>
+                  Trang Chủ
+                </a>
+              </li>
+              <li>
+                <div class="flex items-center">
+                  <span class="material-icons text-sm mx-2">chevron_right</span>
+                  <span class="text-gray-800 dark:text-white font-medium"
+                    >Văn Bản</span
+                  >
+                </div>
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div class="container mx-auto px-4 py-8 flex-grow">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <aside class="lg:col-span-1 space-y-6">
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-md p-5 border-t-4 border-secondary"
+          >
+            <h3
+              class="font-bold text-lg text-primary dark:text-green-400 mb-4 flex items-center"
+            >
+              <span class="material-icons mr-2">filter_list</span> Tìm Kiếm
+              &amp; Lọc
+            </h3>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-1">Từ khóa</label>
+                <div class="relative">
+                  <input
+                    class="w-full rounded border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:ring-primary focus:border-primary pl-9"
+                    placeholder="Nhập tên, số hiệu..."
+                    type="text"
+                  />
+                  <span
+                    class="material-icons absolute left-2.5 top-2 text-gray-400 text-sm"
+                    >search</span
+                  >
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Loại văn bản</label
+                >
+                <select
+                  class="w-full rounded border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Tất cả</option>
+                  <option value="law">Luật</option>
+                  <option value="decree">Nghị định</option>
+                  <option value="circular">Thông tư</option>
+                  <option value="decision">Quyết định</option>
+                  <option value="plan">Kế hoạch</option>
+                  <option value="instruction">Hướng dẫn</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Năm ban hành</label
+                >
+                <select
+                  class="w-full rounded border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-sm focus:ring-primary focus:border-primary"
+                >
+                  <option value="">Tất cả</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">Trước 2021</option>
+                </select>
+              </div>
+              <button
+                class="w-full bg-primary hover:bg-green-800 text-white font-bold py-2 px-4 rounded transition-colors flex items-center justify-center"
+                type="button"
+              >
+                <span class="material-icons text-sm mr-2">search</span> Tìm kiếm
+              </button>
+            </form>
+          </div>
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm p-5 border border-gray-100 dark:border-gray-700"
+          >
+            <h3
+              class="font-bold text-gray-800 dark:text-white mb-3 text-sm uppercase tracking-wide"
+            >
+              Danh mục
+            </h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a
+                  class="flex justify-between items-center text-primary font-medium p-2 bg-primary/10 rounded"
+                  href="#"
+                >
+                  <span>Văn bản TW &amp; Chính phủ</span>
+                  <span
+                    class="bg-white text-primary text-xs px-2 py-0.5 rounded-full font-bold"
+                    >128</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors"
+                  href="#"
+                >
+                  <span>Văn bản Bộ Quốc phòng</span>
+                  <span
+                    class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-0.5 rounded-full"
+                    >45</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors"
+                  href="#"
+                >
+                  <span>Văn bản Quân khu</span>
+                  <span
+                    class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-0.5 rounded-full"
+                    >32</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex justify-between items-center text-gray-600 dark:text-gray-400 hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 p-2 rounded transition-colors"
+                  href="#"
+                >
+                  <span>Chỉ đạo địa phương</span>
+                  <span
+                    class="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-0.5 rounded-full"
+                    >86</span
+                  >
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden"
+          >
+            <div
+              class="p-3 bg-gray-50 dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center"
+            >
+              <h3 class="font-bold text-sm text-gray-800 dark:text-white">
+                Thông báo mới
+              </h3>
+              <a class="text-xs text-primary hover:underline" href="#"
+                >Xem tất cả</a
+              >
+            </div>
+            <div class="p-4 space-y-3">
+              <a class="block group" href="#">
+                <span class="text-xs text-secondary font-bold mb-1 block"
+                  >20/05/2024</span
+                >
+                <p
+                  class="text-sm text-gray-600 dark:text-gray-300 group-hover:text-primary line-clamp-2"
+                >
+                  Kế hoạch tổ chức huấn luyện dân quân tự vệ đợt 2 năm 2024
+                </p>
+              </a>
+              <div class="border-t border-gray-100 dark:border-gray-700"></div>
+              <a class="block group" href="#">
+                <span class="text-xs text-secondary font-bold mb-1 block"
+                  >18/05/2024</span
+                >
+                <p
+                  class="text-sm text-gray-600 dark:text-gray-300 group-hover:text-primary line-clamp-2"
+                >
+                  Lịch trực sẵn sàng chiến đấu tháng 6/2024
+                </p>
+              </a>
+            </div>
+          </div>
+        </aside>
+        <main class="lg:col-span-3">
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-sm text-gray-500 dark:text-gray-400"
+              >Hiển thị
+              <span class="font-bold text-gray-800 dark:text-white">1-6</span>
+              trong
+              <span class="font-bold text-gray-800 dark:text-white">42</span>
+              văn bản</span
+            >
+            <div class="flex items-center space-x-2">
+              <label class="text-sm text-gray-500 hidden sm:inline-block"
+                >Sắp xếp:</label
+              >
+              <select
+                class="text-sm border-gray-300 dark:border-gray-600 rounded py-1 pl-2 pr-8 bg-white dark:bg-gray-800 focus:ring-primary focus:border-primary"
+              >
+                <option>Mới nhất</option>
+                <option>Cũ nhất</option>
+                <option>Tải nhiều nhất</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div
+              class="bg-surface-light dark:bg-surface-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-primary/30 transition-all group"
+            >
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-12 h-14 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform"
+                  >
+                    <span class="material-icons text-3xl">picture_as_pdf</span>
+                  </div>
+                </div>
+                <div class="flex-grow">
+                  <div
+                    class="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2"
+                  >
+                    <h3
+                      class="font-bold text-lg text-primary dark:text-green-400 leading-tight group-hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      <a href="#">Luật Dân quân tự vệ năm 2019</a>
+                    </h3>
+                    <span
+                      class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded font-medium whitespace-nowrap self-start"
+                      >Hiệu lực</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 dark:text-gray-400 mb-3"
+                  >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1">tag</span>
+                      Số hiệu: 48/2019/QH14</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >calendar_today</span
+                      >
+                      Ban hành: 22/11/2019</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >business</span
+                      >
+                      Cơ quan: Quốc hội</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3"
+                  >
+                    Quy định về nghĩa vụ tham gia Dân quân tự vệ; vị trí, chức
+                    năng, nhiệm vụ, nguyên tắc, tổ chức, hoạt động, chế độ,
+                    chính sách và trách nhiệm của cơ quan, tổ chức, cá nhân đối
+                    với Dân quân tự vệ.
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="flex items-center text-xs font-bold text-white bg-primary hover:bg-green-800 px-3 py-1.5 rounded transition-colors shadow-sm"
+                    >
+                      <span class="material-icons text-sm mr-1">download</span>
+                      Tải về (2.4 MB)
+                    </button>
+                    <button
+                      class="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white px-2 py-1.5 rounded transition-colors"
+                    >
+                      <span class="material-icons text-sm mr-1"
+                        >visibility</span
+                      >
+                      Xem trước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-light dark:bg-surface-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-primary/30 transition-all group"
+            >
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-12 h-14 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/50 rounded flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform"
+                  >
+                    <span class="material-icons text-3xl">description</span>
+                  </div>
+                </div>
+                <div class="flex-grow">
+                  <div
+                    class="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2"
+                  >
+                    <h3
+                      class="font-bold text-lg text-primary dark:text-green-400 leading-tight group-hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      <a href="#"
+                        >Nghị định 72/2020/NĐ-CP quy định chi tiết một số điều
+                        của Luật Dân quân tự vệ</a
+                      >
+                    </h3>
+                    <span
+                      class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded font-medium whitespace-nowrap self-start"
+                      >Hiệu lực</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 dark:text-gray-400 mb-3"
+                  >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1">tag</span>
+                      Số hiệu: 72/2020/NĐ-CP</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >calendar_today</span
+                      >
+                      Ban hành: 30/06/2020</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >business</span
+                      >
+                      Cơ quan: Chính phủ</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3"
+                  >
+                    Quy định chi tiết về tổ chức xây dựng lực lượng, huấn luyện,
+                    hoạt động và chế độ chính sách đối với Dân quân tự vệ.
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="flex items-center text-xs font-bold text-white bg-primary hover:bg-green-800 px-3 py-1.5 rounded transition-colors shadow-sm"
+                    >
+                      <span class="material-icons text-sm mr-1">download</span>
+                      Tải về (1.8 MB)
+                    </button>
+                    <button
+                      class="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white px-2 py-1.5 rounded transition-colors"
+                    >
+                      <span class="material-icons text-sm mr-1"
+                        >visibility</span
+                      >
+                      Xem trước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-light dark:bg-surface-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-primary/30 transition-all group"
+            >
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-12 h-14 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform"
+                  >
+                    <span class="material-icons text-3xl">picture_as_pdf</span>
+                  </div>
+                </div>
+                <div class="flex-grow">
+                  <div
+                    class="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2"
+                  >
+                    <h3
+                      class="font-bold text-lg text-primary dark:text-green-400 leading-tight group-hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      <a href="#"
+                        >Thông tư 77/2020/TT-BQP quy định một số điều của Luật
+                        Dân quân tự vệ về tổ chức xây dựng lực lượng</a
+                      >
+                    </h3>
+                    <span
+                      class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded font-medium whitespace-nowrap self-start"
+                      >Hiệu lực</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 dark:text-gray-400 mb-3"
+                  >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1">tag</span>
+                      Số hiệu: 77/2020/TT-BQP</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >calendar_today</span
+                      >
+                      Ban hành: 23/06/2020</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >business</span
+                      >
+                      Cơ quan: Bộ Quốc phòng</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3"
+                  >
+                    Hướng dẫn chi tiết việc thành lập, giải thể đơn vị Dân quân
+                    tự vệ; Ban chỉ huy quân sự cơ quan, tổ chức.
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="flex items-center text-xs font-bold text-white bg-primary hover:bg-green-800 px-3 py-1.5 rounded transition-colors shadow-sm"
+                    >
+                      <span class="material-icons text-sm mr-1">download</span>
+                      Tải về (520 KB)
+                    </button>
+                    <button
+                      class="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white px-2 py-1.5 rounded transition-colors"
+                    >
+                      <span class="material-icons text-sm mr-1"
+                        >visibility</span
+                      >
+                      Xem trước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-light dark:bg-surface-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-primary/30 transition-all group"
+            >
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-12 h-14 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-900/50 rounded flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform"
+                  >
+                    <span class="material-icons text-3xl">description</span>
+                  </div>
+                </div>
+                <div class="flex-grow">
+                  <div
+                    class="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2"
+                  >
+                    <h3
+                      class="font-bold text-lg text-primary dark:text-green-400 leading-tight group-hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      <a href="#"
+                        >Kế hoạch 112/KH-UBND về Công tác Quốc phòng, Quân sự
+                        địa phương năm 2024</a
+                      >
+                    </h3>
+                    <span
+                      class="bg-secondary/10 text-secondary border border-secondary/20 text-xs px-2 py-1 rounded font-medium whitespace-nowrap self-start"
+                      >Mới</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 dark:text-gray-400 mb-3"
+                  >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1">tag</span>
+                      Số hiệu: 112/KH-UBND</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >calendar_today</span
+                      >
+                      Ban hành: 15/01/2024</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >business</span
+                      >
+                      Cơ quan: UBND Phường Bình Phú</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3"
+                  >
+                    Triển khai nhiệm vụ quốc phòng, quân sự địa phương năm 2024,
+                    trọng tâm là công tác tuyển quân và huấn luyện sẵn sàng
+                    chiến đấu.
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="flex items-center text-xs font-bold text-white bg-primary hover:bg-green-800 px-3 py-1.5 rounded transition-colors shadow-sm"
+                    >
+                      <span class="material-icons text-sm mr-1">download</span>
+                      Tải về (1.2 MB)
+                    </button>
+                    <button
+                      class="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white px-2 py-1.5 rounded transition-colors"
+                    >
+                      <span class="material-icons text-sm mr-1"
+                        >visibility</span
+                      >
+                      Xem trước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bg-surface-light dark:bg-surface-dark rounded-lg p-5 shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md hover:border-primary/30 transition-all group"
+            >
+              <div class="flex flex-col sm:flex-row gap-4">
+                <div class="shrink-0">
+                  <div
+                    class="w-12 h-14 bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded flex items-center justify-center text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform"
+                  >
+                    <span class="material-icons text-3xl">picture_as_pdf</span>
+                  </div>
+                </div>
+                <div class="flex-grow">
+                  <div
+                    class="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2"
+                  >
+                    <h3
+                      class="font-bold text-lg text-primary dark:text-green-400 leading-tight group-hover:text-secondary transition-colors cursor-pointer"
+                    >
+                      <a href="#"
+                        >Quyết định 45/QĐ-BCH về việc điều động lực lượng dân
+                        quân tham gia trực cao điểm</a
+                      >
+                    </h3>
+                    <span
+                      class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded font-medium whitespace-nowrap self-start"
+                      >Hết hiệu lực</span
+                    >
+                  </div>
+                  <div
+                    class="flex flex-wrap gap-y-2 gap-x-4 text-xs text-gray-500 dark:text-gray-400 mb-3"
+                  >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1">tag</span>
+                      Số hiệu: 45/QĐ-BCH</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >calendar_today</span
+                      >
+                      Ban hành: 25/04/2024</span
+                    >
+                    <span class="flex items-center"
+                      ><span class="material-icons text-[14px] mr-1"
+                        >business</span
+                      >
+                      Cơ quan: BCH Quân sự Phường</span
+                    >
+                  </div>
+                  <p
+                    class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 mb-3"
+                  >
+                    Điều động 2 tiểu đội dân quân cơ động tham gia trực sẵn sàng
+                    chiến đấu dịp lễ 30/4 và 1/5.
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <button
+                      class="flex items-center text-xs font-bold text-white bg-primary hover:bg-green-800 px-3 py-1.5 rounded transition-colors shadow-sm"
+                    >
+                      <span class="material-icons text-sm mr-1">download</span>
+                      Tải về (450 KB)
+                    </button>
+                    <button
+                      class="flex items-center text-xs font-medium text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-white px-2 py-1.5 rounded transition-colors"
+                    >
+                      <span class="material-icons text-sm mr-1"
+                        >visibility</span
+                      >
+                      Xem trước
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10 flex justify-center">
+            <nav aria-label="Pagination" class="flex items-center space-x-1">
+              <button
+                class="px-3 py-2 rounded border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+              >
+                <span class="sr-only">Previous</span>
+                <span class="material-icons text-sm">chevron_left</span>
+              </button>
+              <button
+                class="px-3 py-2 rounded border border-primary bg-primary text-white font-medium shadow-sm"
+              >
+                1
+              </button>
+              <button
+                class="px-3 py-2 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:text-primary transition"
+              >
+                2
+              </button>
+              <button
+                class="px-3 py-2 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:text-primary transition"
+              >
+                3
+              </button>
+              <span class="px-3 py-2 text-gray-500">...</span>
+              <button
+                class="px-3 py-2 rounded border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 hover:text-primary transition"
+              >
+                8
+              </button>
+              <button
+                class="px-3 py-2 rounded border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
+              >
+                <span class="sr-only">Next</span>
+                <span class="material-icons text-sm">chevron_right</span>
+              </button>
+            </nav>
+          </div>
+        </main>
+      </div>
+    </div>
+    <footer
+      class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800 mt-12"
+    >
+      <div
+        class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm"
+      >
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <div
+              class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center text-white"
+            >
+              <span class="material-icons text-sm">shield</span>
+            </div>
+            <h4 class="text-white font-bold uppercase">
+              BCH Quân Sự P. Bình Phú
+            </h4>
+          </div>
+          <p class="mb-4">
+            Cơ quan thường trực quốc phòng địa phương. Chịu trách nhiệm tham mưu
+            cho Đảng ủy, UBND phường về công tác quốc phòng, quân sự địa phương.
+          </p>
+          <div class="flex space-x-4">
+            <a class="text-gray-400 hover:text-white" href="#"
+              ><i class="material-icons">facebook</i></a
+            >
+            <a class="text-gray-400 hover:text-white" href="#"
+              ><i class="material-icons">email</i></a
+            >
+          </div>
+        </div>
+        <div>
+          <h4 class="text-white font-bold uppercase mb-4">Danh mục</h4>
+          <ul class="space-y-2">
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Trang chủ</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Giới thiệu tổ chức</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Tin tức hoạt động</a
+              >
+            </li>
+            <li>
+              <a class="text-secondary transition-colors" href="#"
+                >Văn bản chỉ đạo</a
+              >
+            </li>
+            <li>
+              <a class="hover:text-secondary transition-colors" href="#"
+                >Hỏi đáp pháp luật</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold uppercase mb-4">Liên hệ</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="material-icons text-sm mr-2 mt-1">location_on</span>
+              <span
+                >Số 123 Đường Bình Phú, Phường 11, Quận 6, TP. Hồ Chí Minh</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="material-icons text-sm mr-2">phone</span>
+              <span>(028) 3xxx xxxx</span>
+            </li>
+            <li class="flex items-center">
+              <span class="material-icons text-sm mr-2">email</span>
+              <span>qsbinhphu@example.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div
+        class="container mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center text-xs"
+      >
+        <p>© 2024 Ban Chỉ Huy Quân Sự Phường Bình Phú. All rights reserved.</p>
+      </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+      <button
+        class="bg-primary hover:bg-green-800 text-white p-4 rounded-full shadow-lg transition-transform transform hover:scale-110 flex items-center justify-center relative group"
+      >
+        <span class="material-icons text-2xl">chat</span>
+        <span class="absolute right-0 top-0 -mt-1 -mr-1 flex h-3 w-3">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-3 w-3 bg-secondary"
+          ></span>
+        </span>
+        <div
+          class="absolute bottom-full right-0 mb-3 w-48 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-xl text-gray-800 dark:text-gray-200 text-sm hidden group-hover:block transition-opacity opacity-0 group-hover:opacity-100"
+        >
+          <div class="font-bold mb-1">Hỗ trợ trực tuyến</div>
+          <div class="text-xs">
+            Chat với cán bộ trực ban để được giải đáp thắc mắc.
+          </div>
+          <div
+            class="absolute top-full right-4 -mt-1 border-4 border-transparent border-t-white dark:border-t-gray-800"
+          ></div>
+        </div>
+      </button>
+    </div>
+  </body>
+</html>
