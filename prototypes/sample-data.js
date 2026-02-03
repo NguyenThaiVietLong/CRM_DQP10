@@ -1,4 +1,4 @@
-// Sample Activity Data Initializer for CRM Dân Quân P10
+// Sample Activity Data Initializer for CRM Dân Quân Phường Bình Phú
 // Updated with 39 real user names distributed across 9 teams
 
 // User Database - 39 members distributed across 9 teams
@@ -72,7 +72,7 @@ const sampleActivities = [
     startDate: "05/01/2026",
     endDate: "25/01/2026",
     documentNumber: "456/CV-BCH",
-    location: "Sân tập Phường 10",
+    location: "Sân tập Phường Bình Phú",
     attachedFiles: ["Tài liệu công văn.pdf"],
     tasks: [
       {
@@ -183,7 +183,7 @@ const sampleActivities = [
     startDate: "06/01/2026",
     endDate: "10/01/2026",
     documentNumber: "789/QĐ-BCH",
-    location: "Kho vũ khí P10",
+    location: "Kho vũ khí Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -223,7 +223,7 @@ const sampleActivities = [
     startDate: "12/01/2026",
     endDate: "14/01/2026",
     documentNumber: "012/QĐ-TT",
-    location: "Hội trường UBND P10",
+    location: "Hội trường UBND Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -266,7 +266,7 @@ const sampleActivities = [
     startDate: "16/01/2026",
     endDate: "18/01/2026",
     documentNumber: "016/CV-HC",
-    location: "Kho hậu cần P10",
+    location: "Kho hậu cần Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -309,7 +309,7 @@ const sampleActivities = [
     startDate: "19/01/2026",
     endDate: "21/01/2026",
     documentNumber: "019/QĐ-PTDS",
-    location: "Khu vực trung tâm P10",
+    location: "Khu vực trung tâm Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -361,7 +361,7 @@ const sampleActivities = [
     startDate: "15/01/2026",
     endDate: "20/01/2026",
     documentNumber: "150/CV-BD",
-    location: "Kho thiết bị P10",
+    location: "Kho thiết bị Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -400,7 +400,7 @@ const sampleActivities = [
     startDate: "22/01/2026",
     endDate: "25/01/2026",
     documentNumber: "220/QĐ-HL",
-    location: "Trung tâm Y tế P10",
+    location: "Trung tâm Y tế Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -451,7 +451,7 @@ const sampleActivities = [
     startDate: "26/01/2026",
     endDate: "28/01/2026",
     documentNumber: "010/CV-TKNN",
-    location: "Khu vực ven kênh Phường 10",
+    location: "Khu vực ven kênh Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -503,7 +503,7 @@ const sampleActivities = [
     startDate: "15/01/2026",
     endDate: "20/01/2026",
     documentNumber: "015/QĐ-PCCC",
-    location: "Khu vực Phường 10",
+    location: "Khu vực Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -555,7 +555,7 @@ const sampleActivities = [
     startDate: "28/01/2026",
     endDate: "30/01/2026",
     documentNumber: "028/BB-TK",
-    location: "Phòng họp UBND P10",
+    location: "Phòng họp UBND Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -616,7 +616,7 @@ const sampleActivities = [
     startDate: "22/01/2026",
     endDate: "24/01/2026",
     documentNumber: "022/CV-ANTT",
-    location: "Toàn bộ khu vực P10",
+    location: "Toàn bộ khu vực Phường Bình Phú",
     attachedFiles: [],
     tasks: [
       {
@@ -658,6 +658,714 @@ const sampleActivities = [
     ],
     createdBy: "admin",
     createdAt: "2026-01-21T14:00:00Z"
+  },
+  // ========== FEBRUARY 2026 ACTIVITIES ==========
+  {
+    id: 13,
+    name: "Huấn luyện chiến thuật tháng 02",
+    workType: "kehoach",
+    workGroup: "HUANLUYEN",
+    department: "2",
+    startDate: "03/02/2026",
+    endDate: "07/02/2026",
+    documentNumber: "203/QĐ-HL",
+    location: "Sân tập Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập kế hoạch huấn luyện chi tiết",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "03/02/2026",
+        reportFields: [{ name: "Nội dung kế hoạch" }],
+        notes: "Tham mưu BCH phê duyệt",
+        completed: false
+      },
+      {
+        title: "Chuẩn bị trang thiết bị huấn luyện",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "04/02/2026",
+        reportFields: [{ name: "Danh sách thiết bị" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-01T08:00:00Z"
+  },
+  {
+    id: 14,
+    name: "Kiểm tra công tác sẵn sàng chiến đấu",
+    workType: "kehoach",
+    workGroup: "KTTC",
+    department: "3",
+    startDate: "05/02/2026",
+    endDate: "08/02/2026",
+    documentNumber: "205/CV-SSCD",
+    location: "Kho vũ khí Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Kiểm tra vũ khí trang bị",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "05/02/2026",
+        reportFields: [{ name: "Số lượng tốt" }, { name: "Số lượng cần sửa chữa" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Báo cáo tổng hợp tình trạng",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "08/02/2026",
+        reportFields: [{ name: "Báo cáo" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-03T09:00:00Z"
+  },
+  {
+    id: 15,
+    name: "Tập huấn công tác dân vận",
+    workType: "kehoach",
+    workGroup: "CHINHTR",
+    department: "1",
+    startDate: "10/02/2026",
+    endDate: "12/02/2026",
+    documentNumber: "210/QĐ-DV",
+    location: "Hội trường UBND Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị tài liệu tập huấn",
+        team: "Tổ 1",
+        assignees: "Ngô Trương Định",
+        dueDate: "10/02/2026",
+        reportFields: [{ name: "Số tài liệu" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tổ chức lớp tập huấn",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "11/02/2026",
+        reportFields: [{ name: "Số người tham dự" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-05T10:00:00Z"
+  },
+  {
+    id: 16,
+    name: "Diễn tập phòng chống bão lụt",
+    workType: "kehoach",
+    workGroup: "DIEUDONGG",
+    department: "2",
+    startDate: "12/02/2026",
+    endDate: "15/02/2026",
+    documentNumber: "212/QĐ-PCBL",
+    location: "Khu vực ven kênh Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập kịch bản diễn tập",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "12/02/2026",
+        reportFields: [{ name: "Kịch bản" }],
+        notes: "Phối hợp UBND",
+        completed: false
+      },
+      {
+        title: "Chuẩn bị phương tiện cứu hộ",
+        team: "Tổ 2",
+        assignees: "Lý Triệu An",
+        dueDate: "13/02/2026",
+        reportFields: [{ name: "Số xuồng" }, { name: "Số phao" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tổ chức diễn tập thực tế",
+        team: "Tổ 3",
+        assignees: "Trương Giang Minh Tùng",
+        dueDate: "14/02/2026",
+        reportFields: [{ name: "Thời gian hoàn thành" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-08T08:30:00Z"
+  },
+  {
+    id: 17,
+    name: "Họp giao ban đầu tháng 02",
+    workType: "kehoach",
+    workGroup: "VANPHONG",
+    department: "1",
+    startDate: "02/02/2026",
+    endDate: "02/02/2026",
+    documentNumber: "202/TB-GB",
+    location: "Phòng họp BCH",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị nội dung họp",
+        team: "Tổ 1",
+        assignees: "Nguyễn Lý Minh Quang",
+        dueDate: "02/02/2026",
+        reportFields: [{ name: "Nội dung" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-01-30T14:00:00Z"
+  },
+  {
+    id: 18,
+    name: "Bảo dưỡng kho trang thiết bị",
+    workType: "kehoach",
+    workGroup: "KTTC",
+    department: "3",
+    startDate: "16/02/2026",
+    endDate: "18/02/2026",
+    documentNumber: "216/CV-BD",
+    location: "Kho thiết bị Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Vệ sinh kho",
+        team: "Tổ 3",
+        assignees: "Lương Triệu Phát",
+        dueDate: "16/02/2026",
+        reportFields: [{ name: "Diện tích vệ sinh (m2)" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Kiểm kê và sắp xếp",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "17/02/2026",
+        reportFields: [{ name: "Số vật tư kiểm kê" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-12T09:00:00Z"
+  },
+  {
+    id: 19,
+    name: "Huấn luyện bắn súng thực hành",
+    workType: "kehoach",
+    workGroup: "HUANLUYEN",
+    department: "2",
+    startDate: "18/02/2026",
+    endDate: "20/02/2026",
+    documentNumber: "218/QĐ-BS",
+    location: "Trường bắn Củ Chi",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Đăng ký lịch với trường bắn",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "15/02/2026",
+        reportFields: [{ name: "Số giờ đăng ký" }],
+        notes: "Liên hệ trước 3 ngày",
+        completed: false
+      },
+      {
+        title: "Chuẩn bị đạn và súng",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "17/02/2026",
+        reportFields: [{ name: "Số viên đạn" }, { name: "Số khẩu súng" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Tổ chức huấn luyện",
+        team: "Tổ 2",
+        assignees: "Phạm Gia Bảo",
+        dueDate: "19/02/2026",
+        reportFields: [{ name: "Số người tham gia" }, { name: "Điểm trung bình" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-10T10:00:00Z"
+  },
+  {
+    id: 20,
+    name: "Tuần tra an ninh khu vực trọng điểm",
+    workType: "dotxuat",
+    workGroup: "DIEUDONGG",
+    department: "1",
+    startDate: "08/02/2026",
+    endDate: "10/02/2026",
+    documentNumber: "208/CV-TT",
+    location: "Các khu vực trọng điểm Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập lịch tuần tra",
+        team: "Tổ 1",
+        assignees: "Ngô Hoài Bảo",
+        dueDate: "08/02/2026",
+        reportFields: [{ name: "Lịch tuần tra" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tuần tra khu vực chợ",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "09/02/2026",
+        reportFields: [{ name: "Tình hình" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-06T08:00:00Z"
+  },
+  {
+    id: 21,
+    name: "Tổ chức lễ kỷ niệm ngày thành lập LLVTND",
+    workType: "kehoach",
+    workGroup: "CHINHTR",
+    department: "1",
+    startDate: "22/02/2026",
+    endDate: "22/02/2026",
+    documentNumber: "222/QĐ-LLVT",
+    location: "Hội trường UBND Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị kịch bản chương trình",
+        team: "Tổ 1",
+        assignees: "Nguyễn Thành Tài",
+        dueDate: "20/02/2026",
+        reportFields: [{ name: "Kịch bản" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Trang trí hội trường",
+        team: "Tổ 2",
+        assignees: "Lâm Ngọc Huyền",
+        dueDate: "21/02/2026",
+        reportFields: [{ name: "Hoàn thành %" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-15T09:00:00Z"
+  },
+  {
+    id: 22,
+    name: "Kiểm tra sức khỏe định kỳ",
+    workType: "kehoach",
+    workGroup: "VANPHONG",
+    department: "2",
+    startDate: "24/02/2026",
+    endDate: "26/02/2026",
+    documentNumber: "224/CV-SK",
+    location: "Trung tâm Y tế Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập danh sách khám",
+        team: "Tổ 2",
+        assignees: "Đoàn Quốc Đạt",
+        dueDate: "23/02/2026",
+        reportFields: [{ name: "Số người" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tổ chức khám sức khỏe",
+        team: "Tổ 3",
+        assignees: "Nguyễn Tấn Thuận",
+        dueDate: "25/02/2026",
+        reportFields: [{ name: "Số người đã khám" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-18T10:00:00Z"
+  },
+  {
+    id: 23,
+    name: "Họp tổng kết công tác tháng 02",
+    workType: "kehoach",
+    workGroup: "VANPHONG",
+    department: "1",
+    startDate: "27/02/2026",
+    endDate: "28/02/2026",
+    documentNumber: "227/BB-TK",
+    location: "Phòng họp UBND Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Thu thập báo cáo các tổ",
+        team: "Tổ 1",
+        assignees: "Ngô Trương Định",
+        dueDate: "26/02/2026",
+        reportFields: [{ name: "Số báo cáo" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Biên tập báo cáo tổng hợp",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "27/02/2026",
+        reportFields: [{ name: "Báo cáo" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Tổ chức họp tổng kết",
+        team: "Tổ 1",
+        assignees: "Nguyễn Lý Minh Quang",
+        dueDate: "28/02/2026",
+        reportFields: [{ name: "Số người tham dự" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-20T14:00:00Z"
+  },
+  {
+    id: 24,
+    name: "Diễn tập phối hợp liên ngành",
+    workType: "kehoach",
+    workGroup: "DIEUDONGG",
+    department: "3",
+    startDate: "06/02/2026",
+    endDate: "08/02/2026",
+    documentNumber: "206/QĐ-LN",
+    location: "Khu vực trung tâm Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Liên hệ các đơn vị phối hợp",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "05/02/2026",
+        reportFields: [{ name: "Số đơn vị" }],
+        notes: "Công an, PCCC, Y tế",
+        completed: false
+      },
+      {
+        title: "Tổ chức diễn tập",
+        team: "Tổ 3",
+        assignees: "Nguyễn Ngọc Tiến",
+        dueDate: "07/02/2026",
+        reportFields: [{ name: "Thời gian" }, { name: "Kết quả" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-02T09:00:00Z"
+  },
+  {
+    id: 25,
+    name: "Tập huấn sử dụng trang thiết bị mới",
+    workType: "kehoach",
+    workGroup: "HUANLUYEN",
+    department: "3",
+    startDate: "09/02/2026",
+    endDate: "11/02/2026",
+    documentNumber: "209/QĐ-TTB",
+    location: "Kho thiết bị Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị tài liệu hướng dẫn",
+        team: "Tổ 3",
+        assignees: "Trương Giang Minh Tùng",
+        dueDate: "09/02/2026",
+        reportFields: [{ name: "Số tài liệu" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Hướng dẫn thực hành",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "10/02/2026",
+        reportFields: [{ name: "Số người được hướng dẫn" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-05T11:00:00Z"
+  },
+  {
+    id: 26,
+    name: "Công tác tuyên truyền pháp luật",
+    workType: "kehoach",
+    workGroup: "CHINHTR",
+    department: "2",
+    startDate: "14/02/2026",
+    endDate: "16/02/2026",
+    documentNumber: "214/CV-TTPL",
+    location: "Các khu phố Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "In ấn tờ rơi",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "13/02/2026",
+        reportFields: [{ name: "Số tờ rơi" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Phát tờ rơi tại khu dân cư",
+        team: "Tổ 2",
+        assignees: "Lâm Ngọc Huyền",
+        dueDate: "15/02/2026",
+        reportFields: [{ name: "Số hộ tiếp cận" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-10T08:00:00Z"
+  },
+  {
+    id: 27,
+    name: "Kiểm tra công tác phòng cháy",
+    workType: "dotxuat",
+    workGroup: "KTTC",
+    department: "1",
+    startDate: "19/02/2026",
+    endDate: "21/02/2026",
+    documentNumber: "219/CV-PCCC",
+    location: "Các cơ sở trọng điểm Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Kiểm tra bình chữa cháy",
+        team: "Tổ 1",
+        assignees: "Ngô Hoài Bảo",
+        dueDate: "19/02/2026",
+        reportFields: [{ name: "Số bình tốt" }, { name: "Số bình cần thay" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Lập biên bản kiểm tra",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "21/02/2026",
+        reportFields: [{ name: "Số biên bản" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-16T10:00:00Z"
+  },
+  {
+    id: 28,
+    name: "Hội nghị quân chính đầu năm",
+    workType: "kehoach",
+    workGroup: "VANPHONG",
+    department: "1",
+    startDate: "04/02/2026",
+    endDate: "04/02/2026",
+    documentNumber: "204/QĐ-HNQC",
+    location: "Hội trường UBND Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị báo cáo năm trước",
+        team: "Tổ 1",
+        assignees: "Nguyễn Thành Tài",
+        dueDate: "03/02/2026",
+        reportFields: [{ name: "Báo cáo" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Lập kế hoạch năm mới",
+        team: "Tổ 2",
+        assignees: "Lý Triệu An",
+        dueDate: "03/02/2026",
+        reportFields: [{ name: "Kế hoạch" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-01-28T09:00:00Z"
+  },
+  {
+    id: 29,
+    name: "Huấn luyện chiến đấu đêm",
+    workType: "kehoach",
+    workGroup: "HUANLUYEN",
+    department: "3",
+    startDate: "20/02/2026",
+    endDate: "22/02/2026",
+    documentNumber: "220/QĐ-CDD",
+    location: "Sân tập Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Chuẩn bị đèn chiếu sáng",
+        team: "Tổ 3",
+        assignees: "Lương Triệu Phát",
+        dueDate: "19/02/2026",
+        reportFields: [{ name: "Số đèn" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Huấn luyện thực hành",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "21/02/2026",
+        reportFields: [{ name: "Số người tham gia" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-14T10:00:00Z"
+  },
+  {
+    id: 30,
+    name: "Gặp mặt nhân chứng lịch sử",
+    workType: "kehoach",
+    workGroup: "CHINHTR",
+    department: "2",
+    startDate: "23/02/2026",
+    endDate: "23/02/2026",
+    documentNumber: "223/QĐ-NCLS",
+    location: "Nhà văn hóa Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Liên hệ mời nhân chứng",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "20/02/2026",
+        reportFields: [{ name: "Số người mời" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Chuẩn bị quà tặng",
+        team: "Tổ 2",
+        assignees: "Đoàn Quốc Đạt",
+        dueDate: "22/02/2026",
+        reportFields: [{ name: "Số phần quà" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-17T09:00:00Z"
+  },
+  {
+    id: 31,
+    name: "Kiểm tra thể lực định kỳ",
+    workType: "kehoach",
+    workGroup: "HUANLUYEN",
+    department: "1",
+    startDate: "25/02/2026",
+    endDate: "27/02/2026",
+    documentNumber: "225/QĐ-TL",
+    location: "Sân vận động Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập danh sách kiểm tra",
+        team: "Tổ 1",
+        assignees: "Ngô Trương Định",
+        dueDate: "24/02/2026",
+        reportFields: [{ name: "Số người" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tổ chức kiểm tra chạy 100m",
+        team: "Tổ 2",
+        assignees: "Phạm Gia Bảo",
+        dueDate: "25/02/2026",
+        reportFields: [{ name: "Số người đạt" }],
+        notes: "",
+        completed: true
+      },
+      {
+        title: "Tổ chức kiểm tra hít đất",
+        team: "Tổ 3",
+        assignees: "Phan Phong Phú",
+        dueDate: "26/02/2026",
+        reportFields: [{ name: "Số người đạt" }],
+        notes: "",
+        completed: false
+      }
+    ],
+    createdBy: "admin",
+    createdAt: "2026-02-20T08:00:00Z"
+  },
+  {
+    id: 32,
+    name: "Bảo vệ sự kiện văn hóa phường",
+    workType: "dotxuat",
+    workGroup: "DIEUDONGG",
+    department: "2",
+    startDate: "15/02/2026",
+    endDate: "15/02/2026",
+    documentNumber: "215/CV-BV",
+    location: "Sân khấu ngoài trời Phường Bình Phú",
+    attachedFiles: [],
+    tasks: [
+      {
+        title: "Lập phương án bảo vệ",
+        team: "Tổ 2",
+        assignees: "Nguyễn Thanh Nhân",
+        dueDate: "14/02/2026",
+        reportFields: [{ name: "Phương án" }],
+        notes: "",
+        completed: false
+      },
+      {
+        title: "Phân công lực lượng bảo vệ",
+        team: "Tổ 3",
+        assignees: "Nguyễn Tấn Thuận",
+        dueDate: "14/02/2026",
+        reportFields: [{ name: "Số người" }],
+        notes: "",
+        completed: true
+      }
+    ],
+    createdBy: "dqtt",
+    createdAt: "2026-02-12T11:00:00Z"
   }
 ];
 
@@ -665,7 +1373,9 @@ const sampleActivities = [
 localStorage.setItem('dqp10_users', JSON.stringify(dqp10_users));
 localStorage.setItem('dqp10_activities', JSON.stringify(sampleActivities));
 
-console.log('✅ Đã lưu 39 users và 12 hoạt động mẫu vào localStorage!');
+console.log('✅ Đã lưu 39 users và 32 hoạt động mẫu vào localStorage!');
+console.log('📅 Tháng 01/2026: 12 hoạt động');
+console.log('📅 Tháng 02/2026: 20 hoạt động');
 console.log('📊 User Distribution:');
 console.log('   Tổ 1: 4 members');
 console.log('   Tổ 2: 5 members');

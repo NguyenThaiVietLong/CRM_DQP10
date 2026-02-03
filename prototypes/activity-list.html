@@ -389,6 +389,36 @@
                 <span class="material-symbols-outlined">add</span>
                 <span class="font-semibold">Tạo kế hoạch</span>
               </a>
+
+              <!-- Month Navigation -->
+              <div
+                class="flex items-center gap-2 ml-4 border-l border-gray-200 pl-4"
+              >
+                <button
+                  @click="previousMonth()"
+                  class="p-2 hover:bg-gray-100 rounded-lg"
+                >
+                  <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <div class="text-center min-w-[140px]">
+                  <p
+                    class="text-sm font-bold text-gray-900"
+                    x-text="monthYearText"
+                  ></p>
+                </div>
+                <button
+                  @click="nextMonth()"
+                  class="p-2 hover:bg-gray-100 rounded-lg"
+                >
+                  <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+                <button
+                  @click="goToCurrentMonth()"
+                  class="px-3 py-1.5 bg-olive text-white rounded-lg hover:bg-olive/90 text-sm font-semibold"
+                >
+                  Tháng này
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -598,6 +628,8 @@
           currentUser: { fullName: "Guest", role: null, team: null },
           activities: [],
           filteredActivities: [],
+          currentMonth: new Date().getMonth(),
+          currentYear: new Date().getFullYear(),
           statusFilters: {
             notStarted: true, // Chưa bắt đầu - default checked
             inProgress: true, // Đang thực hiện - default checked
@@ -645,7 +677,16 @@
           },
 
           applyStatusFilterTo(activities) {
-            // Apply status filter
+            // First filter by month
+            const monthFiltered = activities.filter((a) => {
+              const [day, month, year] = a.startDate.split("/");
+              return (
+                parseInt(month) === this.currentMonth + 1 &&
+                parseInt(year) === this.currentYear
+              );
+            });
+
+            // Then apply status filter
             const selectedStatuses = [];
             if (this.statusFilters.notStarted)
               selectedStatuses.push("Chưa bắt đầu");
@@ -657,11 +698,55 @@
             if (selectedStatuses.length === 0) {
               this.filteredActivities = [];
             } else {
-              this.filteredActivities = activities.filter((a) => {
+              this.filteredActivities = monthFiltered.filter((a) => {
                 const status = this.getActivityStatus(a);
                 return selectedStatuses.includes(status);
               });
             }
+          },
+
+          get monthYearText() {
+            const months = [
+              "Tháng 1",
+              "Tháng 2",
+              "Tháng 3",
+              "Tháng 4",
+              "Tháng 5",
+              "Tháng 6",
+              "Tháng 7",
+              "Tháng 8",
+              "Tháng 9",
+              "Tháng 10",
+              "Tháng 11",
+              "Tháng 12",
+            ];
+            return `${months[this.currentMonth]} ${this.currentYear}`;
+          },
+
+          previousMonth() {
+            if (this.currentMonth === 0) {
+              this.currentMonth = 11;
+              this.currentYear--;
+            } else {
+              this.currentMonth--;
+            }
+            this.applyStatusFilter();
+          },
+
+          nextMonth() {
+            if (this.currentMonth === 11) {
+              this.currentMonth = 0;
+              this.currentYear++;
+            } else {
+              this.currentMonth++;
+            }
+            this.applyStatusFilter();
+          },
+
+          goToCurrentMonth() {
+            this.currentMonth = new Date().getMonth();
+            this.currentYear = new Date().getFullYear();
+            this.applyStatusFilter();
           },
 
           getProgress(activity) {
