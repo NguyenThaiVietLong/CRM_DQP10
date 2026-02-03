@@ -102,7 +102,7 @@
             <p class="text-sm font-medium text-gray-600">Trang chủ</p>
           </a>
           <!-- Dashboard Submenu -->
-          <div>
+          <div x-show="currentUser.role === 'admin'">
             <div class="flex items-center gap-3 px-3 py-2 text-gray-700">
               <span class="material-symbols-outlined text-gray-600">assessment</span>
               <p class="text-sm font-bold text-gray-700">Dashboard</p>
