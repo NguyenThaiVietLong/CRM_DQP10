@@ -153,6 +153,8 @@
       }
     </style>
 
+    <!-- Load sample data -->
+    <script src="sample-data.js"></script>
     <script>
       function loginApp() {
         return {
@@ -205,6 +207,84 @@
             }
           },
 
+          // Load sample data nếu chưa có trong localStorage
+          loadSampleData() {
+            const existingActivities = localStorage.getItem("dqp10_activities");
+            const existingUsers = localStorage.getItem("dqp10_users");
+
+            if (!existingActivities || !existingUsers) {
+              try {
+                // sampleActivities và dqp10_users được định nghĩa trong sample-data.js
+                if (typeof sampleActivities !== "undefined") {
+                  localStorage.setItem(
+                    "dqp10_activities",
+                    JSON.stringify(sampleActivities),
+                  );
+                  console.log("✅ Đã load sample activities vào localStorage");
+                }
+                if (typeof dqp10_users !== "undefined") {
+                  localStorage.setItem(
+                    "dqp10_users",
+                    JSON.stringify(dqp10_users),
+                  );
+                  console.log("✅ Đã load sample users vào localStorage");
+                }
+                return true; // Đã load data mới
+              } catch (error) {
+                console.error("❌ Lỗi khi load sample data:", error);
+                return false;
+              }
+            }
+            return false; // Data đã tồn tại
+          },
+
+          // Migrate activities: thêm status cho mỗi task nếu chưa có
+          migrateActivities() {
+            const data = localStorage.getItem("dqp10_activities");
+            if (!data) return;
+
+            try {
+              const activities = JSON.parse(data);
+              let updatedTasks = 0;
+
+              activities.forEach((activity) => {
+                // Remove activity-level status nếu có
+                if (activity.status) {
+                  delete activity.status;
+                }
+
+                // Add status to each task
+                if (activity.tasks && Array.isArray(activity.tasks)) {
+                  activity.tasks.forEach((task) => {
+                    if (!task.status) {
+                      // If task is already completed, set status to Hoàn thành
+                      if (task.completed) {
+                        task.status = "Hoàn thành";
+                      } else {
+                        // Default status for new tasks
+                        task.status = "Chờ nhận nhiệm vụ";
+                      }
+                      updatedTasks++;
+                    }
+                  });
+                }
+              });
+
+              // Save back to localStorage
+              localStorage.setItem(
+                "dqp10_activities",
+                JSON.stringify(activities),
+              );
+              if (updatedTasks > 0) {
+                console.log(
+                  `✅ Migration: Đã cập nhật status cho ${updatedTasks} tasks`,
+                );
+              }
+            } catch (error) {
+              console.error("❌ Lỗi khi migrate activities:", error);
+            }
+          },
+
           async handleLogin() {
             this.errorMessage = "";
             this.successMessage = "";
@@ -245,6 +325,12 @@
                 loginTime: new Date().toISOString(),
               };
               localStorage.setItem("dqp10_session", JSON.stringify(session));
+
+              // Load sample data nếu chưa có
+              this.loadSampleData();
+
+              // Migrate activities để đảm bảo tasks có status
+              this.migrateActivities();
 
               // Redirect to dashboard
               setTimeout(() => {
